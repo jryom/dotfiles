@@ -58,6 +58,7 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  npm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,3 +96,7 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"

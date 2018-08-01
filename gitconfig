@@ -2,6 +2,6 @@
 	name = Jesper Ryom
 	email = jesperryom@me.com
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/jesperryom/.gitignore_global
 [remote "origin"]
 	prune = true

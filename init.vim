@@ -20,6 +20,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " UI
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/MatchTagAlways'
@@ -27,6 +28,7 @@ Plug 'Valloric/MatchTagAlways'
 " Themes
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -92,7 +94,7 @@ let mapleader=","
 
 " nerdtree
 map <leader>b :NERDTreeToggle<CR>
-let g:NERDTreeWinSize = 45
+let g:NERDTreeWinSize = 40
 let g:NERDTreeRespectWildIgnore=1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
@@ -107,11 +109,11 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
 map <leader>g :Twiggy<cr>
 let g:twiggy_group_locals_by_slash = 0
 let g:twiggy_remote_branch_sort = 'date'
-let g:twiggy_num_columns = 45
+let g:twiggy_num_columns = 40
 
 " toggle tagbar
 nmap <leader>v :TagbarToggle<CR>
-let g:tagbar_width = 45
+let g:tagbar_width = 40
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 
@@ -196,13 +198,21 @@ map <leader>w :w<CR>
 map <leader>q :q<CR>
 
 " Theme config
-syntax on
-set background=light
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+
+if strftime('%H') > 6 && strftime('%H') < 19
+  set background=light
+  let g:airline_solarized_bg='light'
+else
+  set background=dark
+  let g:lightline = { 'colorscheme': 'stellarized_dark' }
+endif
+
+colorscheme solarized8
+let g:solarized_term_italics=1
+let g:solarized_extra_hi_groups=1
 
 " Plugin config
+let g:airline_theme='solarized'
 let g:airline_section_c = '%F'
 let g:airline_section_c = '%f'
 let g:airline#extensions#ale#enabled = 1

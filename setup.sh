@@ -4,7 +4,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 unset NVM_DIR
 script_path=$(dirname "$0")
 
-trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
 
 set -e
 
@@ -30,10 +30,10 @@ brew "python@2"
 EOF
 
 brew tap caskroom/fonts
-brew cask install font-sourcecodepro-nerd-font
+brew cask install font-mononoki-nerd-font
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
-$(brew --prefix)/opt/fzf/install
+echo y | $(brew --prefix)/opt/fzf/install
 
 python -m pip install --upgrade setuptools
 python -m pip install --upgrade pip
@@ -58,10 +58,9 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 
 ln -sfn "$script_path"/default-packages ~/.nvm/default-packages
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
 set +e
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 nvm install --lts
-nvm alias default node
