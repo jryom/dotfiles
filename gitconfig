@@ -1,7 +1,10 @@
 [user]
-	name = Jesper Ryom
-	email = jesperryom@me.com
+  name = Jesper Ryom
+  email = jesperryom@me.com
+
 [core]
-	excludesfile = /Users/jesperryom/.gitignore_global
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
 [remote "origin"]
-	prune = true
+  prune = true

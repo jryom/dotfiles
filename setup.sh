@@ -50,9 +50,6 @@ ln -sfn "$script_path"/init.vim ~/.config/nvim/init.vim
 ln -sfn "$script_path"/gitconfig ~/.gitconfig
 ln -sfn "$script_path"/gitignore_global ~/.gitignore_global
 ln -sfn "$script_path"/kitty.conf ~/.config/kitty
-ln -sfn "$script_path"/jsconfig.json ~/jsconfig.json
-
-git config --global core.excludesfile ~/.gitignore_global
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
