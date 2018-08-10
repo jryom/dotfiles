@@ -95,9 +95,6 @@ let mapleader=","
 map <leader>w :w<CR>
 map <leader>q :q<CR>
 
-" leader-Tab to move to prev location
-map <leader><Tab> <C-o>
-
 " nerdtree
 map <leader>b :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 45
@@ -192,10 +189,6 @@ noremap <leader>4 4gt
 noremap <leader>5 5gt
 noremap <leader>0 :tablast<cr>
 
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
 " Plugin config
 let g:ale_sign_error = '▒▒'
 let g:ale_sign_warning = '▒▒'
@@ -253,7 +246,7 @@ let g:lightline#ale#indicator_ok = ' '
 
 " nvim-typescript
 let g:nvim_typescript#javascript_support = 1
-let g:nvim_typescript#diagnosticsEnabled = 0
+let g:nvim_typescript#diagnosticsEnable = 0
 
 " match-tag-always
 let g:mta_filetypes = { 'javascript.jsx' : 1 }
