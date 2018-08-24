@@ -53,6 +53,8 @@ call plug#end()
 " Basic config
 set confirm
 set cursorline
+set foldlevelstart=20
+set foldmethod=syntax
 set expandtab
 set gdefault
 set ignorecase
@@ -60,7 +62,6 @@ set iskeyword+=-
 set laststatus=2
 set list
 set matchpairs+=<:>
-set mouse=a
 set nobackup
 set noshowcmd
 set noshowmode
@@ -94,9 +95,6 @@ let mapleader=","
 " saving, quitting
 map <leader>w :w<CR>
 map <leader>q :q<CR>
-
-" leader-Tab to move to prev location
-map <leader><Tab> <C-o>
 
 " nerdtree
 map <leader>b :NERDTreeToggle<CR>
@@ -171,9 +169,8 @@ nnoremap <leader>f :Ag<cr>
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " custom commands
-command! Gru execute 'Git remote update origin'
 command! PI silent! execute 'PlugInstall'
-command! PU silent! execute 'PlugUpdate | PlugUpgrade'
+command! PU silent! execute 'PlugUpdate | PlugUpgrade | UpdateRemotePlugins'
 command! PC silent! execute 'PlugClean'
 
 " move between windows
@@ -192,13 +189,9 @@ noremap <leader>4 4gt
 noremap <leader>5 5gt
 noremap <leader>0 :tablast<cr>
 
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
 " Plugin config
-let g:ale_sign_error = '▒▒'
-let g:ale_sign_warning = '▒▒'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 let g:ale_fix_on_save = 1
 
 let g:indentLine_char = '▏'
@@ -214,19 +207,19 @@ let g:closetag_close_shortcut = '<leader>>'
 " theme
 let g:lightline = {}
 
-" set background=light
-" let g:solarized_term_italics=1
-" let g:solarized_extra_hi_groups=1
-" let g:lightline.colorscheme = 'solarized'
-" colorscheme solarized8
+set background=light
+let g:solarized_term_italics=1
+let g:solarized_extra_hi_groups=1
+let g:lightline.colorscheme = 'solarized'
+colorscheme solarized8
 
-let g:lightline.colorscheme = 'challenger_deep'
-colorscheme challenger_deep
-hi Tag        ctermfg=01    guifg=#ff869a
-hi xmlTag     ctermfg=01    guifg=#ff869a
-hi xmlTagName ctermfg=01    guifg=#ff869a
-hi xmlEndTag  ctermfg=01    guifg=#ff869a
-hi link xmlEndTag xmlTag
+" let g:lightline.colorscheme = 'challenger_deep'
+" colorscheme challenger_deep
+" hi Tag        ctermfg=01    guifg=#ff869a
+" hi xmlTag     ctermfg=01    guifg=#ff869a
+" hi xmlTagName ctermfg=01    guifg=#ff869a
+" hi xmlEndTag  ctermfg=01    guifg=#ff869a
+" hi link xmlEndTag xmlTag
 
 " Lightline
 let g:lightline.active = {
@@ -253,14 +246,14 @@ let g:lightline#ale#indicator_ok = ' '
 
 " nvim-typescript
 let g:nvim_typescript#javascript_support = 1
-let g:nvim_typescript#diagnosticsEnabled = 0
+let g:nvim_typescript#diagnosticsEnable = 0
 
 " match-tag-always
 let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
 let g:ale_fixers = {
-\ 'javascript': ['prettier','eslint'],
+\ 'javascript': ['eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
 \ 'scss': ['stylelint'],

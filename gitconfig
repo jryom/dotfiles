@@ -4,7 +4,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = nvim
 
 [remote "origin"]
   prune = true
