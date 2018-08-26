@@ -19,8 +19,8 @@ Plug 'w0rp/ale'
 
 " UI
 Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
@@ -29,7 +29,7 @@ Plug 'ap/vim-css-color'
 
 " Themes
 Plug 'lifepillar/vim-solarized8'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'joshdick/onedark.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -190,9 +190,14 @@ noremap <leader>5 5gt
 noremap <leader>0 :tablast<cr>
 
 " Plugin config
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 let g:ale_fix_on_save = 1
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_inactive_collapse=1
 
 let g:indentLine_char = '▏'
 let g:jsx_ext_required = 0
@@ -205,44 +210,18 @@ let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_close_shortcut = '<leader>>'
 
 " theme
-let g:lightline = {}
-
-set background=light
-let g:solarized_term_italics=1
-let g:solarized_extra_hi_groups=1
-let g:lightline.colorscheme = 'solarized'
-colorscheme solarized8
-
-" let g:lightline.colorscheme = 'challenger_deep'
-" colorscheme challenger_deep
-" hi Tag        ctermfg=01    guifg=#ff869a
-" hi xmlTag     ctermfg=01    guifg=#ff869a
-" hi xmlTagName ctermfg=01    guifg=#ff869a
-" hi xmlEndTag  ctermfg=01    guifg=#ff869a
-" hi link xmlEndTag xmlTag
-
-" Lightline
-let g:lightline.active = {
-    \ 'left': [ [ 'mode', 'paste' ], [ 'gitbranch' ], [ 'readonly', 'relativepath', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo', 'percent' ],
-    \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-    \            [ 'filetype' ] ] }
-let g:lightline.inactive = { 'left': [], 'right': [] }
-let g:lightline.tabline = { 'left': [ [ 'tabs' ] ], 'right': [] }
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok' }
-let g:lightline.component_type = {
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error' }
-let g:lightline.subseparator = { 'left': '┆', 'right': '┆' }
-let g:lightline.component_function = { 'gitbranch': 'fugitive#head' }
-let g:lightline#ale#indicator_checking = ' '
-let g:lightline#ale#indicator_warnings = ' '
-let g:lightline#ale#indicator_errors = ' '
-let g:lightline#ale#indicator_ok = ' '
+if strftime('%H') >= 6 && strftime('%H') < 19
+  set background=light
+  let g:solarized_extra_hi_groups=1
+  let g:solarized_term_italics=1
+  colorscheme solarized8
+  hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
+  hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
+else
+  set background=dark
+  let g:onedark_terminal_italics=1
+  colorscheme onedark
+endif
 
 " nvim-typescript
 let g:nvim_typescript#javascript_support = 1
@@ -256,8 +235,7 @@ let g:ale_fixers = {
 \ 'javascript': ['eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
-\ 'scss': ['stylelint'],
-\ }
+\ 'scss': ['stylelint'] }
 let b:ale_set_balloons = 1
 
 " Auto commands
