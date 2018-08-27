@@ -193,11 +193,19 @@ noremap <leader>0 :tablast<cr>
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_fix_on_save = 1
+
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_symbols = {}
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_right_alt_sep = ''
+let g:airline_left_alt_sep = ''
 let g:airline_inactive_collapse=1
+let g:airline_section_x = airline#section#create(['filetype'])
+let g:airline_section_z = airline#section#create([' %l/%L  ', ':%3c '])
 
 let g:indentLine_char = '▏'
 let g:jsx_ext_required = 0
