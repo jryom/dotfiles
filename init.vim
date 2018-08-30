@@ -70,6 +70,7 @@ set noswapfile
 set novisualbell
 set nowritebackup
 set number
+set relativenumber
 set shiftround
 set shiftwidth=2
 set showmatch
@@ -91,10 +92,6 @@ nnoremap k gk
 
 " leader is comma
 let mapleader=","
-
-" saving, quitting
-map <leader>w :w<CR>
-map <leader>q :q<CR>
 
 " nerdtree
 map <leader>b :NERDTreeToggle<CR>
@@ -169,9 +166,7 @@ nnoremap <leader>f :Ag<cr>
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " custom commands
-command! PI silent! execute 'PlugInstall'
 command! PU silent! execute 'PlugUpdate | PlugUpgrade | UpdateRemotePlugins'
-command! PC silent! execute 'PlugClean'
 
 " move between windows
 map <C-j> <C-W>j
@@ -217,19 +212,17 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_close_shortcut = '<leader>>'
 
-" theme
-if strftime('%H') >= 6 && strftime('%H') < 19
-  set background=light
-  let g:solarized_extra_hi_groups=1
-  let g:solarized_term_italics=1
-  colorscheme solarized8
-  hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
-  hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
-else
-  set background=dark
-  let g:onedark_terminal_italics=1
-  colorscheme onedark
-endif
+let g:theme="dark"
+let g:onedark_terminal_italics=1
+set background=dark
+colorscheme onedark
+
+" let g:solarized_extra_hi_groups=1
+" let g:solarized_term_italics=1
+" set background=light
+" colorscheme solarized8
+" hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
+" hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
 
 " nvim-typescript
 let g:nvim_typescript#javascript_support = 1
@@ -240,7 +233,7 @@ let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
 let g:ale_fixers = {
-\ 'javascript': ['eslint'],
+\ 'javascript': ['prettier', 'eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
 \ 'scss': ['stylelint'] }
