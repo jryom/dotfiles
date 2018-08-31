@@ -55,6 +55,7 @@ set confirm
 set cursorline
 set foldlevelstart=20
 set foldmethod=syntax
+set exrc
 set expandtab
 set gdefault
 set ignorecase
@@ -71,6 +72,7 @@ set novisualbell
 set nowritebackup
 set number
 set relativenumber
+set secure
 set shiftround
 set shiftwidth=2
 set showmatch
@@ -233,7 +235,7 @@ let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
 let g:ale_fixers = {
-\ 'javascript': ['prettier', 'eslint'],
+\ 'javascript': ['eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
 \ 'scss': ['stylelint'] }
