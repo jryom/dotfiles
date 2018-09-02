@@ -63,6 +63,7 @@ set iskeyword+=-
 set laststatus=2
 set list
 set matchpairs+=<:>
+set mouse=a
 set nobackup
 set noshowcmd
 set noshowmode
@@ -71,7 +72,6 @@ set noswapfile
 set novisualbell
 set nowritebackup
 set number
-set relativenumber
 set secure
 set shiftround
 set shiftwidth=2
@@ -99,11 +99,9 @@ let mapleader=","
 map <leader>b :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 45
 let g:NERDTreeRespectWildIgnore=1
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
 let g:NERDTreeShowHidden=1
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeChDirMode=2
+let g:NERDTreeQuitOnOpen = 1
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 
 " twiggy
@@ -120,6 +118,7 @@ let g:tagbar_compact = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
 let g:neosnippet#enable_completed_snippet = 1
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -143,7 +142,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " remove search highlighting with ESC
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 
-" fzf
+" fzf / ag
 let $FZF_DEFAULT_COMMAND='fd --type f'
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -163,9 +162,11 @@ let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit' }
-nnoremap <leader>o :Files<cr>
+
+command! ProjectFiles execute 'Files' systemlist('git rev-parse --show-toplevel')[0]
+nnoremap <leader>o :ProjectFiles<cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..', 'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
 nnoremap <leader>f :Ag<cr>
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " custom commands
 command! PU silent! execute 'PlugUpdate | PlugUpgrade | UpdateRemotePlugins'

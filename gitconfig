@@ -6,5 +6,19 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
 
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = true
+
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+  prompt = true
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+
 [remote "origin"]
   prune = true
