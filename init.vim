@@ -88,12 +88,17 @@ set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/
 
 " Mappings
 
+" leader
+let mapleader=","
+
+" virtual old school
+nnoremap ; :
+vnoremap ; :
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-" leader is comma
-let mapleader=","
 
 " nerdtree
 map <leader>b :NERDTreeToggle<CR>
@@ -120,15 +125,16 @@ let g:tagbar_compact = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:neosnippet#enable_completed_snippet = 1
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " move lines
