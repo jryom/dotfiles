@@ -3,6 +3,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 unset NVM_DIR
 script_path=$(dirname "$0")
+echo "$script_path"
 
 trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
 

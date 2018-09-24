@@ -194,9 +194,6 @@ noremap <leader>5 5gt
 noremap <leader>0 :tablast<cr>
 
 " Plugin config
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_fix_on_save = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep=''
@@ -246,7 +243,9 @@ let g:ale_fixers = {
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
 \ 'scss': ['stylelint'] }
-let b:ale_set_balloons = 1
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_fix_on_save = 1
 
 " Auto commands
 " set filetypes
