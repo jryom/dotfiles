@@ -8,8 +8,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Language, autocompletion & linting
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -58,6 +57,7 @@ set foldmethod=syntax
 set exrc
 set expandtab
 set gdefault
+set hidden
 set ignorecase
 set iskeyword+=-
 set laststatus=2
@@ -136,6 +136,18 @@ endif
 inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" LanguageClient
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ }
+let g:LanguageClient_diagnosticsEnable=0
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> rs :call LanguageClient#textDocument_rename()<CR><Paste>
 
 " move lines
 nnoremap <A-j> :m .+1<CR>==
@@ -218,17 +230,17 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_close_shortcut = '<leader>>'
 
-let g:theme="dark"
-let g:onedark_terminal_italics=1
-set background=dark
-colorscheme onedark
+" let g:theme="dark"
+" let g:onedark_terminal_italics=1
+" set background=dark
+" colorscheme onedark
 
-" let g:solarized_extra_hi_groups=1
-" let g:solarized_term_italics=1
-" set background=light
-" colorscheme solarized8
-" hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
-" hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
+let g:solarized_extra_hi_groups=1
+let g:solarized_term_italics=1
+set background=light
+colorscheme solarized8
+hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
+hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
 
 " nvim-typescript
 let g:nvim_typescript#javascript_support = 1
