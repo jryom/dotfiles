@@ -9,9 +9,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Language, autocompletion & linting
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'w0rp/ale'
@@ -50,12 +55,13 @@ Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " Basic config
+set completeopt=noinsert,menuone,noselect
 set confirm
 set cursorline
+set expandtab
+set exrc
 set foldlevelstart=20
 set foldmethod=syntax
-set exrc
-set expandtab
 set gdefault
 set hidden
 set ignorecase
@@ -75,6 +81,7 @@ set number
 set secure
 set shiftround
 set shiftwidth=2
+set shortmess+=c
 set showmatch
 set smartcase
 set smartindent
@@ -121,33 +128,25 @@ let g:tagbar_width = 45
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:neosnippet#enable_completed_snippet = 1
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" LanguageClient
+" language client
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ }
 let g:LanguageClient_diagnosticsEnable=0
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> rs :call LanguageClient#textDocument_rename()<CR><Paste>
+
+" ncm2
+imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+smap <c-u> <Plug>(ultisnips_expand)
 
 " move lines
 nnoremap <A-j> :m .+1<CR>==
@@ -242,14 +241,12 @@ colorscheme solarized8
 hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
 hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
 
-" nvim-typescript
-let g:nvim_typescript#javascript_support = 1
-let g:nvim_typescript#diagnosticsEnable = 0
-
 " match-tag-always
 let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
+let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_fixers = {
 \ 'javascript': ['eslint'],
 \ 'typescript': ['tslint'],
@@ -261,8 +258,13 @@ let g:ale_fix_on_save = 1
 
 " Auto commands
 " set filetypes
+augroup FiletypeGroup
+  autocmd!
+  au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
 au BufRead,BufNewFile gitconfig set ft=.gitconfig
+au BufEnter * call ncm2#enable_for_buffer()
 " auto open nerdtree when opening vim with no file specified
 au StdinReadPre * let s:std_in=1
 au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
