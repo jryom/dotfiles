@@ -248,7 +248,7 @@ let g:mta_filetypes = { 'javascript.jsx' : 1 }
 let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
 let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_fixers = {
-\ 'javascript': ['eslint'],
+\ 'javascript': ['prettier', 'eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
 \ 'scss': ['stylelint'] }
