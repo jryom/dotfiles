@@ -244,9 +244,15 @@ colorscheme onedark
 let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
-let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linters = {
+\ 'jsx': ['stylelint', 'eslint'],
+\ 'javascript': ['eslint'],
+\ 'typescript': ['tslint'],
+\ 'css': ['stylelint'],
+\ 'scss': ['stylelint'] }
 let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_fixers = {
+\ 'jsx': ['prettier', 'eslint'],
 \ 'javascript': ['prettier', 'eslint'],
 \ 'typescript': ['tslint'],
 \ 'css': ['stylelint'],
@@ -254,6 +260,11 @@ let g:ale_fixers = {
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_fix_on_save = 1
+let g:ale_lint_delay=400
+let g:ale_echo_delay=100
+let g:ale_linters_explicit=1
+let g:ale_echo_msg_format='%severity%: %s (%code%)'
+
 
 " Auto commands
 " set filetypes
