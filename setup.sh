@@ -32,7 +32,6 @@ EOF
 
 brew tap caskroom/fonts
 brew cask install font-mononoki-nerd-font
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 echo y | $(brew --prefix)/opt/fzf/install
 
