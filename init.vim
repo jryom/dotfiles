@@ -66,7 +66,6 @@ set hidden
 set ignorecase
 set iskeyword+=-
 set laststatus=2
-set list
 set matchpairs+=<:>
 set mouse=a
 set nobackup
@@ -228,17 +227,17 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_close_shortcut = '<leader>>'
 
-let g:theme="dark"
-let g:onedark_terminal_italics=1
-set background=dark
-colorscheme onedark
+" let g:theme="dark"
+" let g:onedark_terminal_italics=1
+" set background=dark
+" colorscheme onedark
 
-" let g:solarized_extra_hi_groups=1
-" let g:solarized_term_italics=1
-" set background=light
-" colorscheme solarized8
-" hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
-" hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
+let g:solarized_extra_hi_groups=1
+let g:solarized_term_italics=1
+set background=light
+colorscheme solarized8
+hi! ALEErrorSign gui=bold guifg=#dc322f guibg=#EEE8D5
+hi! ALEWarningSign gui=bold guifg=#b58900 guibg=#EEE8D5
 
 " match-tag-always
 let g:mta_filetypes = { 'javascript.jsx' : 1 }
@@ -266,6 +265,8 @@ let g:ale_lint_delay=400
 let g:ale_echo_delay=100
 let g:ale_linters_explicit=1
 let g:ale_echo_msg_format='%severity%: %s (%code%)'
+nnoremap <silent> <leader>a :ALEFix<CR>
+
 
 
 " Auto commands
