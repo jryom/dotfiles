@@ -11,6 +11,9 @@ nnoremap k gk
 
 map <leader>b :NERDTreeToggle<CR>
 
+" workspace
+nnoremap <leader>s :ToggleWorkspace<CR>
+
 " language client
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> rs :call LanguageClient#textDocument_rename()<CR><Paste>

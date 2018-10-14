@@ -27,4 +27,4 @@ set splitbelow
 set splitright
 set tabstop=2
 set termguicolors
-set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/.Trash
+set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/.Trash,*/.undodir,*/Session.vim

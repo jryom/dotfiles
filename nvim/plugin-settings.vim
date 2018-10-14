@@ -1,3 +1,6 @@
+" vim-workspace
+let g:workspace_autosave = 0
+
 " nerdtree
 let g:NERDTreeWinSize = 45
 let g:NERDTreeRespectWildIgnore=1
@@ -13,6 +16,7 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['javascript-typescript-stdio'],
     \ }
 let g:LanguageClient_diagnosticsEnable=0
+let g:LanguageClient_changeThrottle = 0.5
 
 " ncm2
 let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
@@ -73,3 +77,4 @@ let g:ale_lint_delay=400
 let g:ale_echo_delay=100
 let g:ale_echo_msg_format='%severity%: %s (%code%)'
 let g:ale_fix_on_save=1
+let g:ale_linters_explicit = 1

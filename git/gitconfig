@@ -1,6 +1,6 @@
 [user]
   name = Jesper Ryom
-  email = jesperryom@me.com
+  email = jesper@ryom.me
 
 [core]
   excludesfile = ~/.gitignore_global
