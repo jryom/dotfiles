@@ -9,34 +9,51 @@ trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit 
 
 set -e
 
+echo "Checking command line tools installation"
+if type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
+   test -d "${xpath}" && test -x "${xpath}" ; then
+    echo "OK. Continuing"
+else
+   echo "Not installed. Finish installation and run script again"
+   xcode-select --install
+   EXIT
+fi
+
 if ! command -v brew >/dev/null; then
+  echo "Installing Homebrew"
   curl -fsS \
     'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
     export PATH="/usr/local/bin:$PATH"
 fi
 
+echo "Installing Homebrew updates"
 brew update --force # https://github.com/Homebrew/brew/issues/1151
+brew upgrade
+echo "Installing missing homebrew packages"
 brew bundle --file=- <<EOF
 brew "bash"
-brew "git"
-brew "neovim"
-brew "the_silver_searcher"
-brew "fzf"
-brew "fd"
 brew "coreutils"
+brew "ruby"
+brew "openssl"
+brew "git"
 brew "python"
 brew "python@2"
+brew "fd"
+brew "fzf"
+brew "neovim"
+brew "the_silver_searcher"
 EOF
 
+brew link --overwrite python
 brew tap caskroom/fonts
 brew cask install font-mononoki-nerd-font
-
-echo y | $(brew --prefix)/opt/fzf/install
 
 python -m pip install --upgrade setuptools
 python -m pip install --upgrade pip
 sudo pip2 install --upgrade neovim
 sudo pip3 install --upgrade neovim
+
+echo y | $(brew --prefix)/opt/fzf/install
 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
@@ -60,3 +77,4 @@ set +e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 nvm install --lts
+
