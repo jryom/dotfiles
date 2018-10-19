@@ -5,6 +5,12 @@ let mapleader=","
 nnoremap ; :
 vnoremap ; :
 
+" easier system clipboard
+nnoremap <leader>y "*y
+vnoremap <leader>y "*y
+nnoremap <leader>p "*p
+vnoremap <leader>p "*p
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk

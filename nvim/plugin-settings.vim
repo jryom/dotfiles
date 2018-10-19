@@ -1,5 +1,8 @@
-" vim-workspace
-let g:workspace_autosave = 0
+" CSS3 syntax
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 " nerdtree
 let g:NERDTreeWinSize = 45
@@ -16,13 +19,14 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['javascript-typescript-stdio'],
     \ }
 let g:LanguageClient_diagnosticsEnable=0
-let g:LanguageClient_changeThrottle = 0.5
+let g:LanguageClient_changeThrottle=0.5
 
 " ncm2
 let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
+au BufEnter * call ncm2#enable_for_buffer()
 
 " fzf / ag
 let $FZF_DEFAULT_COMMAND='fd --type f'
@@ -57,24 +61,26 @@ let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
 let g:ale_linters = {
-\ 'css': ['stylelint'],
-\ 'javascript': ['tsserver', 'eslint'],
-\ 'json': ['jsonlint'],
-\ 'jsx': ['tsserver', 'stylelint', 'eslint' ],
-\ 'scss': ['stylelint'],
-\ 'typescript': ['tslint'] }
+    \ 'css': ['stylelint'],
+    \ 'javascript': ['eslint'],
+    \ 'json': ['jsonlint'],
+    \ 'jsx': ['stylelint', 'eslint' ],
+    \ 'scss': ['stylelint'],
+    \ 'typescript': ['tslint'],
+    \ }
 let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_fixers = {
-\ 'css': ['stylelint'],
-\ 'javascript': ['prettier', 'eslint'],
-\ 'json': ['prettier'],
-\ 'jsx': ['prettier', 'eslint'],
-\ 'scss': ['stylelint'],
-\ 'typescript': ['tslint'] }
+    \ 'css': ['prettier', 'stylelint'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'json': ['prettier'],
+    \ 'jsx': ['prettier', 'eslint'],
+    \ 'scss': ['prettier', 'stylelint'],
+    \ 'typescript': ['tslint'],
+    \ }
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:ale_lint_delay=400
-let g:ale_echo_delay=100
-let g:ale_echo_msg_format='%severity%: %s (%code%)'
-let g:ale_fix_on_save=1
+" let g:ale_lint_delay=400
+" let g:ale_echo_delay=100
+let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
+" let g:ale_fix_on_save=1
 let g:ale_linters_explicit = 1

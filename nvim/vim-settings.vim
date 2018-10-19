@@ -28,3 +28,12 @@ set splitright
 set tabstop=2
 set termguicolors
 set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/.Trash,*/.undodir,*/Session.vim
+
+au BufRead,BufNewFile gitconfig set ft=.gitconfig
+au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END

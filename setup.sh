@@ -53,7 +53,17 @@ python -m pip install --upgrade pip
 sudo pip2 install --upgrade neovim
 sudo pip3 install --upgrade neovim
 
+gem install neovim
+
 echo y | $(brew --prefix)/opt/fzf/install
+
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]
+then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+else
+    cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git pull https://github.com/zsh-users/zsh-autosuggestions
+fi
 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 

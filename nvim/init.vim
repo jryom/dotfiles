@@ -3,4 +3,3 @@ source ~/.config/nvim/vim-settings.vim
 source ~/.config/nvim/mappings.vim
 source ~/.config/nvim/plugin-settings.vim
 source ~/.config/nvim/theme.vim
-source ~/.config/nvim/autocmd.vim

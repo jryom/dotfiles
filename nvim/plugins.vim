@@ -17,6 +17,7 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'w0rp/ale'
 
@@ -30,6 +31,8 @@ Plug 'Valloric/MatchTagAlways'
 " Themes
 Plug 'lifepillar/vim-solarized8'
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'fenetikm/falcon'
 
 " Git
 Plug 'airblade/vim-gitgutter'
