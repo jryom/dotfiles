@@ -45,8 +45,6 @@ brew "the_silver_searcher"
 EOF
 
 brew link --overwrite python
-brew tap caskroom/fonts
-brew cask install font-mononoki-nerd-font
 
 python -m pip install --upgrade setuptools
 python -m pip install --upgrade pip

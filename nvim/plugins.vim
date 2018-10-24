@@ -24,15 +24,10 @@ Plug 'w0rp/ale'
 " UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/MatchTagAlways'
-
-" Themes
 Plug 'lifepillar/vim-solarized8'
-Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'fenetikm/falcon'
+Plug 'kaicataldo/material.vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 " Git
 Plug 'airblade/vim-gitgutter'

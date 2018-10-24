@@ -47,7 +47,6 @@ let g:airline_left_alt_sep = ''
 let g:airline_inactive_collapse=1
 let g:airline_section_x = airline#section#create(['filetype'])
 let g:airline_section_z = airline#section#create([' %l/%L  ', ':%3c '])
-let g:jsx_ext_required = 0
 
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx'
@@ -55,9 +54,6 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_close_shortcut = '<leader>>'
-
-" match-tag-always
-let g:mta_filetypes = { 'javascript.jsx' : 1 }
 
 " ale
 let g:ale_linters = {
@@ -77,10 +73,7 @@ let g:ale_fixers = {
     \ 'scss': ['prettier', 'stylelint'],
     \ 'typescript': ['tslint'],
     \ }
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-" let g:ale_lint_delay=400
-" let g:ale_echo_delay=100
+let g:ale_sign_error = '■'
+let g:ale_sign_warning = '■'
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
-" let g:ale_fix_on_save=1
 let g:ale_linters_explicit = 1
