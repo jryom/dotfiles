@@ -25,6 +25,7 @@ Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'lifepillar/vim-solarized8'
 Plug 'kaicataldo/material.vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }

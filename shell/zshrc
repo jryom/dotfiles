@@ -1,11 +1,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 DEFAULT_USER=$USER
-ZSH_THEME="agnoster"
+ZSH_THEME="arrow"
 
 plugins=(
   git
   npm
   zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
 )
 
 bindkey '^ ' autosuggest-accept

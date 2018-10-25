@@ -13,8 +13,8 @@ elseif g:dark==2
   hi xmlTag     ctermfg=01    guifg=#ff869a
   hi xmlTagName ctermfg=01    guifg=#ff869a
   hi xmlEndTag  ctermfg=01    guifg=#ff869a
-  hi! ALEErrorSign gui=bold guifg=#ff5458 guibg=#1E1C31
-  hi! ALEWarningSign gui=bold guifg=#ffe9aa guibg=#1E1C31
+  hi! ALEErrorSign gui=bold guifg=#ff5458 guibg=#100e23
+  hi! ALEWarningSign gui=bold guifg=#ffe9aa guibg=#100e23
   hi link xmlEndTag xmlTag
 else
   let g:solarized_term_italics=1

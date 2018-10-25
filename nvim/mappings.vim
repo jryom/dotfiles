@@ -5,6 +5,9 @@ let mapleader=","
 nnoremap ; :
 vnoremap ; :
 
+" sort
+vnoremap <leader>s :sort<CR>
+
 " easier system clipboard
 nnoremap <leader>y "*y
 vnoremap <leader>y "*y
@@ -18,7 +21,7 @@ nnoremap k gk
 map <leader>b :NERDTreeToggle<CR>
 
 " workspace
-nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <leader>w :ToggleWorkspace<CR>
 
 " language client
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
@@ -65,3 +68,5 @@ nnoremap <leader>f :Ag<cr>
 
 " ale
 nnoremap <silent> <leader>a :ALEFix<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)

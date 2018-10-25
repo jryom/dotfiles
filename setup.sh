@@ -45,6 +45,8 @@ brew "the_silver_searcher"
 EOF
 
 brew link --overwrite python
+brew tap homebrew/cask-fonts
+brew cask install font-fantasque-sans-mono
 
 python -m pip install --upgrade setuptools
 python -m pip install --upgrade pip
@@ -55,13 +57,20 @@ gem install neovim
 
 echo y | $(brew --prefix)/opt/fzf/install
 
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]
-then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-else
-    cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git pull https://github.com/zsh-users/zsh-autosuggestions
-fi
+function zshPlugin(){
+  if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1 ]
+  then
+    git clone https://github.com/zsh-users/$1.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1
+  else
+    cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1
+    git pull https://github.com/zsh-users/$1
+    cd $script_path
+  fi
+}
+
+zshPlugin zsh-autosuggestions
+zshPlugin zsh-completions
+zshPlugin zsh-syntax-highlighting
 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
@@ -85,4 +94,3 @@ set +e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 nvm install --lts
-
