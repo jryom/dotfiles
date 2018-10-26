@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 DEFAULT_USER=$USER
-ZSH_THEME="arrow"
+ZSH_THEME=""
 
 plugins=(
   git
@@ -16,7 +16,15 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export LANG="en_US.UTF-8"
+
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 source ~/.aliases
+
+autoload -U promptinit; promptinit
+prompt pure
+prompt_newline='%666v'
+PROMPT=" $PROMPT"
+PURE_PROMPT_SYMBOL='→'

@@ -4,7 +4,6 @@ set cursorline
 set expandtab
 set exrc
 set gdefault
-set hidden
 set ignorecase
 set matchpairs+=<:>
 set mouse=a

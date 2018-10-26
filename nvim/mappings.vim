@@ -50,16 +50,6 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" managing tabs
-map <leader>t :tabnew<cr>
-map <leader>Tab :tabnext<cr>
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>0 :tablast<cr>
-
 " fzf
 command! ProjectFiles execute 'Files' systemlist('git rev-parse --show-toplevel')[0]
 nnoremap <leader>o :ProjectFiles<cr>

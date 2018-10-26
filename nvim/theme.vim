@@ -9,6 +9,7 @@ if g:dark==1
 elseif g:dark==2
   let g:airline_theme = 'challenger_deep'
   colorscheme challenger_deep
+  " jsx <3
   hi Tag        ctermfg=01    guifg=#ff869a
   hi xmlTag     ctermfg=01    guifg=#ff869a
   hi xmlTagName ctermfg=01    guifg=#ff869a

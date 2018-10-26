@@ -35,6 +35,8 @@ brew "bash"
 brew "coreutils"
 brew "ruby"
 brew "openssl"
+brew "httpie"
+brew "jq"
 brew "git"
 brew "python"
 brew "python@2"
@@ -47,9 +49,11 @@ EOF
 brew link --overwrite python
 brew tap homebrew/cask-fonts
 brew cask install font-fantasque-sans-mono
+brew cask install amethyst
 
 python -m pip install --upgrade setuptools
 python -m pip install --upgrade pip
+sudo pip install --upgrade haxor-news
 sudo pip2 install --upgrade neovim
 sudo pip3 install --upgrade neovim
 

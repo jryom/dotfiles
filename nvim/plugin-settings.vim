@@ -66,12 +66,24 @@ let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
-" nerdtree
+" nerdtree & git plugin
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeRespectWildIgnore=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize = 35
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "~",
+    \ "Staged"    : "+",
+    \ "Untracked" : "*",
+    \ "Renamed"   : "→",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "-",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '░',
+    \ "Unknown"   : "?"
+    \ }
 
 " vim-workspace
 let g:workspace_autosave = 0
