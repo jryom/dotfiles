@@ -27,24 +27,28 @@ fi
 echo "Installing Homebrew updates"
 brew update --force # https://github.com/Homebrew/brew/issues/1151
 brew upgrade
+
+brew tap jesseduffield/lazygit
+brew tap cjbassi/gotop
 echo "Installing missing homebrew packages"
 brew bundle --file=- <<EOF
-  brew "antigen"
-  brew "bash"
-  brew "coreutils"
+  brew "python"
+  brew "python@2"
   brew "ruby"
+  brew "zsh"
+  brew "coreutils"
   brew "openssl"
+  brew "git"
+  brew "antigen"
   brew "httpie"
   brew "jq"
   brew "ncurses"
-  brew "git"
-  brew "python"
-  brew "python@2"
+  brew "the_silver_searcher"
   brew "fd"
   brew "fzf"
   brew "neovim"
-  brew "the_silver_searcher"
-  brew "zsh"
+  brew "gotop"
+  brew "lazygit"
 EOF
 
 brew link --overwrite python
@@ -52,10 +56,9 @@ sudo chown -R `whoami` /usr/local/lib/python3.7/site-packages
 brew postinstall python3
 brew tap homebrew/cask-fonts
 brew cask install font-fantasque-sans-mono
-brew tap cjbassi/gotop
-brew install gotop
+brew cask install amethyst
 
-sudo pip3 install --upgrade pip setuptools haxor-news neovim
+sudo pip3 install --upgrade pip setuptools haxor-news neovim Pillow ranger-fm
 sudo pip2 install --upgrade neovim
 
 gem install neovim
@@ -66,6 +69,7 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 mkdir -p ~/.config/kitty/
 mkdir -p ~/.config/nvim/
+mkdir -p ~/.config/ranger/
 
 ln -sfn "$script_path/git/gitconfig"        ~/.gitconfig
 ln -sfn "$script_path/git/gitignore_global" ~/.gitignore_global
@@ -74,6 +78,7 @@ ln -sfn "$script_path/shell/antigenrc"      ~/.antigenrc
 ln -sfn "$script_path/shell/zshrc"          ~/.zshrc
 ln -sfn "$script_path/kitty/"*              ~/.config/kitty
 ln -sfn "$script_path/nvim/"*               ~/.config/nvim
+sudo ln -sfn "$script_path/ranger/"*        ~/.config/ranger
 
 nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
 

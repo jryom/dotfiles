@@ -1,10 +1,6 @@
 " leader
 let mapleader=","
 
-" virtual old school
-nnoremap ; :
-vnoremap ; :
-
 " sort
 vnoremap <leader>s :sort<CR>
 
@@ -43,12 +39,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " remove search highlighting with ESC
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-
-" move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " fzf
 command! ProjectFiles execute 'Files' systemlist('git rev-parse --show-toplevel')[0]
