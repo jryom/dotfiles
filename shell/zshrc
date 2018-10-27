@@ -1,26 +1,14 @@
-export ZSH="$HOME/.oh-my-zsh"
+export LANG="en_US.UTF-8"
+export TERM="xterm-kitty"
+
 DEFAULT_USER=$USER
-ZSH_THEME=""
 
-plugins=(
-  git
-  npm
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
-)
-
-bindkey '^ ' autosuggest-accept
-
-source $ZSH/oh-my-zsh.sh
+source /usr/local/share/antigen/antigen.zsh
+antigen init ~/.antigenrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export LANG="en_US.UTF-8"
-
-export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
+bindkey '^ ' autosuggest-accept
 source ~/.aliases
 
 autoload -U promptinit; promptinit

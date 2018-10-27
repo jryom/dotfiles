@@ -1,5 +1,7 @@
 alias vim="nvim"
 alias vi="nvim"
+alias v="nvim"
 alias cslate="rm -R node_modules/ package-lock.json; gfa; gl; npm i;"
 alias ls="ls -lap1"
-alias glances="glances --disable-bg -t 0.5"
+alias top="gotop"
+alias htop="gotop"

@@ -1,8 +1,6 @@
 #!/bin/sh
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 unset NVM_DIR
 
 trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
@@ -12,7 +10,7 @@ set -e
 echo "Checking command line tools installation"
 if type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
    test -d "${xpath}" && test -x "${xpath}" ; then
-    echo "OK. Continuing"
+   echo "OK. Continuing"
 else
    echo "Not installed. Finish installation and run script again"
    xcode-select --install
@@ -31,50 +29,38 @@ brew update --force # https://github.com/Homebrew/brew/issues/1151
 brew upgrade
 echo "Installing missing homebrew packages"
 brew bundle --file=- <<EOF
-brew "bash"
-brew "coreutils"
-brew "ruby"
-brew "openssl"
-brew "httpie"
-brew "jq"
-brew "git"
-brew "python"
-brew "python@2"
-brew "fd"
-brew "fzf"
-brew "neovim"
-brew "the_silver_searcher"
+  brew "antigen"
+  brew "bash"
+  brew "coreutils"
+  brew "ruby"
+  brew "openssl"
+  brew "httpie"
+  brew "jq"
+  brew "ncurses"
+  brew "git"
+  brew "python"
+  brew "python@2"
+  brew "fd"
+  brew "fzf"
+  brew "neovim"
+  brew "the_silver_searcher"
+  brew "zsh"
 EOF
 
 brew link --overwrite python
+sudo chown -R `whoami` /usr/local/lib/python3.7/site-packages
+brew postinstall python3
 brew tap homebrew/cask-fonts
 brew cask install font-fantasque-sans-mono
-brew cask install amethyst
+brew tap cjbassi/gotop
+brew install gotop
 
-python -m pip install --upgrade setuptools
-python -m pip install --upgrade pip
-sudo pip install --upgrade haxor-news
+sudo pip3 install --upgrade pip setuptools haxor-news neovim
 sudo pip2 install --upgrade neovim
-sudo pip3 install --upgrade neovim
 
 gem install neovim
 
 echo y | $(brew --prefix)/opt/fzf/install
-
-function zshPlugin(){
-  if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1 ]
-  then
-    git clone https://github.com/zsh-users/$1.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1
-  else
-    cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1
-    git pull https://github.com/zsh-users/$1
-    cd $script_path
-  fi
-}
-
-zshPlugin zsh-autosuggestions
-zshPlugin zsh-completions
-zshPlugin zsh-syntax-highlighting
 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
@@ -84,6 +70,7 @@ mkdir -p ~/.config/nvim/
 ln -sfn "$script_path/git/gitconfig"        ~/.gitconfig
 ln -sfn "$script_path/git/gitignore_global" ~/.gitignore_global
 ln -sfn "$script_path/shell/aliases"        ~/.aliases
+ln -sfn "$script_path/shell/antigenrc"      ~/.antigenrc
 ln -sfn "$script_path/shell/zshrc"          ~/.zshrc
 ln -sfn "$script_path/kitty/"*              ~/.config/kitty
 ln -sfn "$script_path/nvim/"*               ~/.config/nvim
@@ -98,3 +85,6 @@ set +e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 nvm install --lts
+
+sudo sh -c "echo $(which zsh) >> /etc/shells"
+chsh -s $(which zsh)
