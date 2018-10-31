@@ -7,9 +7,12 @@ set gdefault
 set ignorecase
 set matchpairs+=<:>
 set mouse=a
+set nobackup
 set noshowcmd
 set noshowmode
 set nostartofline
+set noswapfile
+set nowritebackup
 set number
 set secure
 set shiftround
