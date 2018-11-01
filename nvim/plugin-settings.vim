@@ -31,9 +31,10 @@ let g:ale_fixers = {
     \ 'typescript': ['tslint'],
     \ }
 let g:ale_echo_delay = 50
-let g:ale_lint_delay = 0
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 let g:ale_fix_on_save = 1
+let g:ale_lint_delay = 0
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '■'
@@ -82,8 +83,8 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unmerged"  : "═",
     \ "Deleted"   : "-",
     \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '░',
+    \ "Clean"     : "✓",
+    \ 'Ignored'   : '÷',
     \ "Unknown"   : "?"
     \ }
 
