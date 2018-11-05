@@ -1,17 +1,3 @@
-" airline
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_symbols = {}
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
-let g:airline_right_alt_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_inactive_collapse=1
-let g:airline_section_x = airline#section#create(['filetype'])
-let g:airline_section_z = airline#section#create([' %l/%L  ', ':%3c '])
-
 " ale
 let g:ale_linters = {
     \ 'css': ['stylelint'],
@@ -30,12 +16,10 @@ let g:ale_fixers = {
     \ 'scss': ['prettier', 'stylelint'],
     \ 'typescript': ['tslint'],
     \ }
-let g:ale_echo_delay = 50
+let g:ale_echo_delay = 200
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 let g:ale_fix_on_save = 1
-let g:ale_lint_delay = 0
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_delay = 400
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '■'
 let g:ale_sign_warning = '■'
@@ -46,7 +30,6 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-
 
 " fzf
 let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit' }
@@ -61,6 +44,30 @@ let g:LanguageClient_serverCommands = {
     \ }
 let g:LanguageClient_diagnosticsEnable=0
 let g:LanguageClient_changeThrottle=1
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 0,
+      \ 'component_expand': {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \ },
+      \ 'component_type': {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error'
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'linter_errors', 'linter_warnings' ],
+      \              [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 
 " ncm2
 au BufEnter * call ncm2#enable_for_buffer()
@@ -87,6 +94,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '÷',
     \ "Unknown"   : "?"
     \ }
+" auto open nerdtree when opening vim with no file specified
+au StdinReadPre * let s:std_in=1
+au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " vim-workspace
 let g:workspace_autosave = 0

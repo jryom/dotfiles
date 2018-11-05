@@ -22,15 +22,15 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'w0rp/ale'
 
 " UI
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'lifepillar/vim-solarized8'
 Plug 'kaicataldo/material.vim'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'jesperryom/challenger-deep'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+Plug 'itchyny/vim-gitbranch'
 
 " Editing and additional stuff
 Plug '/usr/local/opt/fzf'
@@ -43,5 +43,7 @@ Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'semanser/vim-outdated-plugins'
+
 
 call plug#end()
