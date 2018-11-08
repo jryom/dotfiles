@@ -1,4 +1,3 @@
-eslint
 gatsby-cli
 how-2
 javascript-typescript-langserver
@@ -7,5 +6,4 @@ neovim
 npm
 prettier
 pure-prompt
-stylelint
 tinypng-cli

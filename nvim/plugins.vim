@@ -30,7 +30,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'kaicataldo/material.vim'
 Plug 'jesperryom/challenger-deep'
 Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/vim-gitbranch'
+Plug 'tpope/vim-fugitive'
 
 " Editing and additional stuff
 Plug '/usr/local/opt/fzf'
