@@ -1,4 +1,4 @@
-let g:dark=2
+let g:dark=0
 
 if g:dark==1
   set background=dark

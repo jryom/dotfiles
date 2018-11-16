@@ -56,18 +56,43 @@ let g:lightline = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error'
       \ },
+      \ 'component': {
+      \     'lineinfo': "%{line('.') . '/' . line('$')}",
+      \ },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ],
+      \             [ 'gitbranch', 'filename'] ],
       \   'right': [ [ 'linter_errors', 'linter_warnings' ],
       \              [ 'lineinfo' ],
-      \              [ 'percent' ],
       \              [ 'filetype' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ [ 'filename'] ],
+      \   'right': [ [ 'lineinfo' ]]
+      \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'LightlineGit',
+      \   'filename': 'LightlineFilename',
+      \   'filetype': 'LightlineFiletype'
       \ },
       \ }
+
+function! LightlineFilename()
+  if expand('%:t') ==? 'NERD_tree_1' || expand('%:t') ==# ''
+    return ''
+  endif
+  let filename = winwidth(0) > 90 ? expand('%:p') : expand('%:t')
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+function! LightlineFiletype()
+  return expand('%:t') !=? 'NERD_tree_1' ? &filetype : ''
+endfunction
+
+function! LightlineGit()
+  return winwidth(0) > 70 ? fugitive#head() : ''
+endfunction
 
 " ncm2
 au BufEnter * call ncm2#enable_for_buffer()

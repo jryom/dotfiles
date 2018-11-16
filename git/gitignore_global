@@ -15,7 +15,6 @@ ehthumbs.db
 ncp-debug.log
 node_modules
 npm-debug.log
-package-lock.json
 tmux-client*.*
 tmux-server*.*
 webpack-assets.json
