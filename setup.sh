@@ -59,10 +59,8 @@ brew tap homebrew/cask-fonts
 brew cask install font-fantasque-sans-mono
 brew cask install amethyst
 
-sudo pip3 install --upgrade pip setuptools haxor-news neovim Pillow ranger-fm
-sudo pip2 install --upgrade neovim
-
-gem install neovim
+pip2 install --upgrade neovim
+pip3 install --upgrade pip setuptools haxor-news neovim Pillow ranger-fm
 
 echo y | $(brew --prefix)/opt/fzf/install
 

@@ -81,7 +81,7 @@ function! LightlineFilename()
   if expand('%:t') ==? 'NERD_tree_1' || expand('%:t') ==# ''
     return ''
   endif
-  let filename = winwidth(0) > 90 ? expand('%:p') : expand('%:t')
+  let filename = winwidth(0) > 90 ? expand('%') : expand('%:t')
   let modified = &modified ? ' +' : ''
   return filename . modified
 endfunction

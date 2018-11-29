@@ -1,3 +1,5 @@
+tnoremap <Esc> <C-\><C-n>
+
 " leader
 let mapleader=","
 

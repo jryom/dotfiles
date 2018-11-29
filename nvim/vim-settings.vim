@@ -28,6 +28,9 @@ set tabstop=2
 set termguicolors
 set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/.Trash,*/.undodir,*/Session.vim
 
+let g:python_host_prog  = systemlist('which python')[0]
+let g:python3_host_prog = systemlist('which python3')[0]
+
 au BufRead,BufNewFile gitconfig set ft=.gitconfig
 au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
 
