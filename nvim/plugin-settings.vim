@@ -18,8 +18,8 @@ let g:ale_fixers = {
     \ }
 let g:ale_echo_delay = 200
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
-let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 400
+let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_sign_error = '■'
 let g:ale_sign_warning = '■'
@@ -119,9 +119,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '÷',
     \ "Unknown"   : "?"
     \ }
-" auto open nerdtree when opening vim with no file specified
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " vim-workspace
 let g:workspace_autosave = 0

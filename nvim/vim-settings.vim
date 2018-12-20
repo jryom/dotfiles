@@ -26,7 +26,7 @@ set splitbelow
 set splitright
 set tabstop=2
 set termguicolors
-set wildignore+=*/.cache,*/.git,*/.svn/*,*/.DS_Store,*/node_modules,*/.vscode,*/.Trash,*/.undodir,*/Session.vim
+set wildignore+=*/.git,*/.DS_Store,*/node_modules/*,node_modules/*,*/.vscode,*/.Trash,.next/*
 
 let g:python_host_prog  = systemlist('which python')[0]
 let g:python3_host_prog = systemlist('which python3')[0]

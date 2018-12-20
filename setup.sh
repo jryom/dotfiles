@@ -55,8 +55,6 @@ brew link --overwrite python
 sudo chown -R `whoami` /usr/local/lib/python3.7/site-packages
 brew postinstall python3
 brew install heroku/brew/heroku
-brew tap homebrew/cask-fonts
-brew cask install font-fantasque-sans-mono
 brew cask install amethyst
 
 pip2 install --upgrade neovim
