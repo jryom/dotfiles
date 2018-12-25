@@ -31,19 +31,17 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,js'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
 " fzf
 let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit' }
 " fzf colors (why is this not set as default...)
 let g:fzf_colors = {'fg':['fg','Normal'],'bg':['bg','Normal'],'hl':['fg','Comment'],'fg+':['fg','CursorLine','CursorColumn','Normal'],'bg+':['bg','CursorLine','CursorColumn'],'hl+':['fg','Statement'],'info':['fg','PreProc'],'border':['fg','Ignore'],'prompt':['fg','Conditional'],'pointer':['fg','Exception'],'marker':['fg','Keyword'],'spinner':['fg','Label'],'header':['fg','Comment']}
-
-" language client
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ }
-let g:LanguageClient_diagnosticsEnable=0
-let g:LanguageClient_changeThrottle=1
 
 " lightline
 let g:lightline = {
@@ -93,13 +91,6 @@ endfunction
 function! LightlineGit()
   return winwidth(0) > 70 ? fugitive#head() : ''
 endfunction
-
-" ncm2
-au BufEnter * call ncm2#enable_for_buffer()
-let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " nerdtree & git plugin
 let g:NERDTreeMinimalUI=1

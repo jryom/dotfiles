@@ -7,3 +7,6 @@ alias htop="gotop"
 alias lg="lazygit"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias ls="ranger"
+alias chal="kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty/challenger_deep.conf"
+alias dark="kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty/palenight.conf"
+alias light="kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty/solarized_light.conf"

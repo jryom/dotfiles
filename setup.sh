@@ -56,6 +56,7 @@ sudo chown -R `whoami` /usr/local/lib/python3.7/site-packages
 brew postinstall python3
 brew install heroku/brew/heroku
 brew cask install amethyst
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 pip2 install --upgrade neovim
 pip3 install --upgrade pip setuptools haxor-news neovim Pillow ranger-fm
@@ -76,6 +77,8 @@ ln -sfn "$script_path/shell/zshrc"          ~/.zshrc
 ln -sfn "$script_path/kitty/"*              ~/.config/kitty
 ln -sfn "$script_path/nvim/"*               ~/.config/nvim
 sudo ln -sfn "$script_path/ranger/"*        ~/.config/ranger
+
+defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$script_path/ktt.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"; killall Dock
 
 nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
 

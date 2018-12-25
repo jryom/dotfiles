@@ -21,12 +21,8 @@ map <leader>b :NERDTreeToggle<CR>
 " workspace
 nnoremap <leader>w :ToggleWorkspace<CR>
 
-" language client
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> rs :call LanguageClient#textDocument_rename()<CR><Paste>
-
 " ncm2
-imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
+imap <expr> <c-u> <Plug>(ultisnips_expand)
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 smap <c-u> <Plug>(ultisnips_expand)
