@@ -1,0 +1,7 @@
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias cleanslate="sudo rm -R node_modules/ package-lock.json .next/ .cache/; gfa; gl; npm i;"
+alias ls="exa -lah --git-ignore --group-directories-first --git --color-scale"
+alias dev="npm run dev"
+alias tree="tree -I 'node_modules|cache|next'"

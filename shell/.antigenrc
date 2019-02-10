@@ -1,0 +1,9 @@
+antigen use oh-my-zsh
+
+export NVM_AUTO_USE=true
+antigen bundle git
+antigen bundle lukechilds/zsh-nvm
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
