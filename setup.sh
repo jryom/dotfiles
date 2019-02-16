@@ -38,7 +38,6 @@ brew bundle --file=- <<EOF
   brew "zsh"
   brew "coreutils"
   brew "git"
-  brew "antigen"
   brew "jq"
   brew "tree"
   brew "the_silver_searcher"
@@ -53,6 +52,10 @@ brew postinstall python3
 brew install heroku/brew/heroku
 brew cask install amethyst
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+if ! cd ~/.zplug; then
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
 
 pip2 install --upgrade pynvim
 pip3 install --upgrade pip setuptools pynvim
