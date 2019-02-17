@@ -1,6 +1,5 @@
 export LANG="en_US.UTF-8"
 export EDITOR=nvim
-export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 source ~/.aliases
 bindkey '^ ' autosuggest-accept
@@ -19,6 +18,8 @@ export FZF_DEFAULT_OPTS='
 source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "lukechilds/zsh-nvm"
+zplug "MichaelAquilina/zsh-you-should-use"
+zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "sindresorhus/pure"
 zplug "zsh-users/zsh-autosuggestions"
@@ -35,3 +36,13 @@ prompt pure
 prompt_newline='%666v'
 PROMPT=" $PROMPT"
 PURE_PROMPT_SYMBOL='→'
+
+vicd()
+{
+  local dst="$(command vifm --choose-dir - "$@")"
+  if [ -z "$dst" ]; then
+    echo 'Directory picking cancelled/failed'
+    return 1
+  fi
+  cd "$dst"
+}

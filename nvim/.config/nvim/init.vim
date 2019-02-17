@@ -18,22 +18,19 @@ function! PackInit() abort
 
   " UI
   call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('chriskempson/base16-vim')
+  call minpac#add('jesperryom/base16-vim')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('maximbaz/lightline-ale')
   call minpac#add('mike-hearn/base16-vim-lightline')
 
   " Editing and additional stuff
-  call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('junegunn/fzf.vim')
-  call minpac#add('terryma/vim-multiple-cursors')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-fugitive')
-  call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-vinegar')
 endfunction
@@ -74,7 +71,7 @@ augroup END
 
 let mapleader=","
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-map <leader>b :exe 'Explore' getcwd()<CR>
+map <leader>b :Explore<CR>
 
 " move vertically by visual line
 nnoremap j gj
@@ -93,11 +90,11 @@ let g:ale_fixers = {
     \ 'jsx': ['eslint'],
     \ 'scss': ['stylelint'],
     \ 'typescript': ['tslint'] }
-let g:ale_sign_error = '■'
-let g:ale_sign_warning = '■'
-let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_sign_error = '▊'
+let g:ale_sign_warning = '▊'
+let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -111,15 +108,9 @@ let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 set rtp+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_colors =  {'fg':['fg','Normal'],'bg':['bg','Normal'],
-  \ 'hl':['fg','Comment'],'fg+':['fg','CursorLine','CursorColumn','Normal'],
-  \ 'bg+':['bg', 'CursorLine','CursorColumn'],
-  \ 'hl+':['fg','Statement'],'info':['fg','PreProc'],
-  \ 'border':['fg','Ignore'],'prompt':['fg','Conditional'],
-  \ 'pointer':['fg','Exception'],'marker':['fg','Keyword'],
-  \ 'spinner': ['fg', 'Label'],'header':['fg', 'Comment'] }
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <leader>o :Files<cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..', 'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
+command! ProjectFiles execute 'Files' systemlist('git rev-parse --show-toplevel')[0]
+nnoremap <leader>o :ProjectFiles<cr>
 nnoremap <leader>f :Ag<cr>
 
 " lightline
@@ -171,8 +162,3 @@ endif
 
 let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
 silent execute "!kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/".g:colors_name.".conf"
-augroup FixAleSignColors
-  au!
-  au VimEnter * execute "hi! ALEErrorSign guifg=".g:terminal_color_1." guibg=".matchstr(execute('hi SignColumn'), 'guibg=\zs\S*')
-augroup END
-hi link xmlEndTag xmlTag

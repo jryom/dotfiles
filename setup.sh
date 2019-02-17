@@ -31,6 +31,7 @@ brew upgrade
 echo "Installing missing homebrew packages"
 brew bundle --file=- <<EOF
   brew "stow"
+  brew "vifm"
   brew "exa"
   brew "python"
   brew "python@2"
@@ -63,15 +64,17 @@ pip3 install --upgrade pip setuptools pynvim
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 mkdir -p ~/.config/kitty-base16-themes
-curl https://codeload.github.com/jesperryom/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
+curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
 if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
   mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
   git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 fi
 
+mkdir -p ~/.config/vifm/
+
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-stow -d "$script_path" -t ~/ stow && stow -d "$script_path" -t ~/ git kitty nvm nvim shell
+stow -d "$script_path" -t ~/ stow && stow -d "$script_path" -t ~/ git kitty nvm nvim shell vifm
 
 echo y | $(brew --prefix)/opt/fzf/install
 
