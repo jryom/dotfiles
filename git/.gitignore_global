@@ -8,7 +8,6 @@
 .env
 .undodir
 .vscode
-Session.vim
 Thumbs.db
 build
 ehthumbs.db

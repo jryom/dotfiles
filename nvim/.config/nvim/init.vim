@@ -18,15 +18,16 @@ function! PackInit() abort
 
   " UI
   call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('jesperryom/base16-vim')
   call minpac#add('itchyny/lightline.vim')
+  call minpac#add('jesperryom/base16-vim')
   call minpac#add('maximbaz/lightline-ale')
   call minpac#add('mike-hearn/base16-vim-lightline')
 
   " Editing and additional stuff
+  call minpac#add('Raimondi/delimitMate')
+  call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
-  call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-commentary')
@@ -37,11 +38,11 @@ endfunction
 
 set completeopt=noinsert,menuone,noselect
 set confirm
+set cursorline
 set expandtab
 set gdefault
 set inccommand=split
 set ignorecase smartcase
-set linebreak
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
@@ -56,20 +57,16 @@ set softtabstop=2
 set splitbelow splitright
 set tabstop=2
 set termguicolors
-set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,Session.vim,package-lock.json,.DS_Store
+set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,package-lock.json,.DS_Store
 
-au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
-
-" cursorline in active window
-augroup CursorLine
+augroup json 
   au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
+  au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" MAPPINGS
 
-let mapleader=","
+let mapleader=' '
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 map <leader>b :Explore<CR>
 
@@ -77,8 +74,8 @@ map <leader>b :Explore<CR>
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>p mF:%!prettier_d --single-quote --trailing-comma es5 --stdin --fix-to-stdout<CR>`F
-vnoremap <leader>p :!prettier_d --single-quote --trailing-comma es5 --stdin --fix-to-stdout<CR>gv
+nnoremap <leader>f :ALEFix prettier<CR>
+vnoremap <leader>f :!prettier --single-quote --trailing-comma es5 --stdin --fix-to-stdout<CR>gv
 let g:gutentags_cache_dir='~/.tags/'
 let g:closetag_filenames = '*.html,*.js,*.jsx'
 
@@ -95,23 +92,23 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_sign_error = '▊'
 let g:ale_sign_warning = '▊'
 let g:ale_fix_on_save = 1
+let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " deoplete / ultisnips
 let g:deoplete#enable_at_startup = 1
-let g:UltiSnipsExpandTrigger="<C-k>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+let g:UltiSnipsExpandTrigger='<C-k>'
+let g:UltiSnipsJumpForwardTrigger='<C-l>'
+let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 
 " fzf
-set rtp+=/usr/local/opt/fzf
+set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..', 'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
-command! ProjectFiles execute 'Files' systemlist('git rev-parse --show-toplevel')[0]
-nnoremap <leader>o :ProjectFiles<cr>
-nnoremap <leader>f :Ag<cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock*', {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <leader>o :Files<cr>
+nnoremap <leader>i :Ag<cr>
 
 " lightline
 let g:lightline = {
@@ -122,16 +119,14 @@ let g:lightline = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error' },
       \ 'component': {
-      \     'lineinfo': "%{line('.') . '/' . line('$')}" },
+      \     'lineinfo': "%3l/%{line('$')} : %-2v" },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename'] ],
       \   'right': [ [ 'linter_errors', 'linter_warnings' ],
       \              [ 'lineinfo' ],
       \              [ 'filetype' ] ] },
-      \ 'inactive': {
-      \   'left': [ [ 'filename'] ],
-      \   'right': [ [ 'lineinfo' ]] },
+      \ 'inactive': {'left': [ [ 'filename'] ] },
       \ 'component_function': {
       \   'gitbranch': 'LightlineGit',
       \   'filename': 'LightlineFilename' } }
@@ -148,11 +143,12 @@ endfunction
 
 " vim-workspace
 let g:workspace_autosave = 0
-nnoremap <leader>w :ToggleWorkspace<CR>
+let g:workspace_autocreate = 1
+let g:workspace_session_directory = $HOME . '/.config/nvim/sessions/'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" THEME
 
-if systemlist("defaults read -g AppleInterfaceStyle")[0]=='Dark'
+if systemlist('defaults read -g AppleInterfaceStyle')[0]==#'Dark'
   set background=dark
   colorscheme base16-ocean
 else
@@ -161,4 +157,4 @@ else
 endif
 
 let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
-silent execute "!kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/".g:colors_name.".conf"
+silent execute '!kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/'.g:colors_name.'.conf'

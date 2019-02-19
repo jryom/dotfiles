@@ -1,3 +1,14 @@
+REPORTTIME=5
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt CORRECT_ALL
+setopt HIST_IGNORE_ALL_DUPS
+autoload -Uz compinit
+compinit
+
 export LANG="en_US.UTF-8"
 export EDITOR=nvim
 export NVM_AUTO_USE=true
@@ -37,12 +48,14 @@ prompt_newline='%666v'
 PROMPT=" $PROMPT"
 PURE_PROMPT_SYMBOL='→'
 
-vicd()
-{
-  local dst="$(command vifm --choose-dir - "$@")"
-  if [ -z "$dst" ]; then
-    echo 'Directory picking cancelled/failed'
-    return 1
+# nnn
+export NNN_SHOW_HIDDEN=1
+export NNN_USE_EDITOR=1
+export NNN_TMPFILE=/tmp/nnn
+n() {
+  nnn "$@"
+  if [ -f $NNN_TMPFILE ]; then
+    . $NNN_TMPFILE
+    rm $NNN_TMPFILE
   fi
-  cd "$dst"
 }
