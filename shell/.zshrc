@@ -1,10 +1,8 @@
-REPORTTIME=5
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
-setopt CORRECT_ALL
 setopt HIST_IGNORE_ALL_DUPS
 autoload -Uz compinit
 compinit

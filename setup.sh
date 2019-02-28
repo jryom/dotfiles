@@ -72,7 +72,7 @@ fi
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-stow -d "$script_path" -t ~/ stow && stow -d "$script_path" -t ~/ git kitty nvm nvim shell
+stow -d "$script_path" -t ~/ stow && stow -d "$script_path" -t ~/ git kitty nvm nvim shell prettier
 
 nvim +PackUpdate +UpdateRemotePlugins +qall
 

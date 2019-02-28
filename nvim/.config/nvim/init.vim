@@ -7,14 +7,15 @@ function! PackInit() abort
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Language, autocompletion & linting
-  call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
-  call minpac#add('SirVer/ultisnips')
   call minpac#add('hail2u/vim-css3-syntax')
   call minpac#add('honza/vim-snippets')
   call minpac#add('ludovicchabant/vim-gutentags')
   call minpac#add('sheerun/vim-polyglot')
+  call minpac#add('shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  call minpac#add('sirver/ultisnips')
   call minpac#add('styled-components/vim-styled-components', { 'branch': 'main' })
   call minpac#add('w0rp/ale')
+  call minpac#add('prettier/vim-prettier')
 
   " UI
   call minpac#add('airblade/vim-gitgutter')
@@ -24,11 +25,11 @@ function! PackInit() abort
   call minpac#add('mike-hearn/base16-vim-lightline')
 
   " Editing and additional stuff
-  call minpac#add('Raimondi/delimitMate')
   call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('junegunn/fzf.vim')
+  call minpac#add('raimondi/delimitmate')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-fugitive')
@@ -74,8 +75,6 @@ map <leader>b :Explore<CR>
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>f :ALEFix prettier<CR>
-vnoremap <leader>f :!prettier --single-quote --trailing-comma es5 --stdin --fix-to-stdout<CR>gv
 let g:gutentags_cache_dir='~/.tags/'
 let g:closetag_filenames = '*.html,*.js,*.jsx'
 
@@ -109,6 +108,7 @@ let g:fzf_layout = { 'window': 'enew' }
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock*', {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <leader>o :Files<cr>
 nnoremap <leader>i :Ag<cr>
+nnoremap <leader>t :Tags<cr>
 
 " lightline
 let g:lightline = {

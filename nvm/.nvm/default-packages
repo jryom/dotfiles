@@ -3,5 +3,7 @@ gatsby-cli
 jsonlint
 neovim
 npm
+npm-check-updates
+prettier
 pure-prompt
 tinypng-cli
