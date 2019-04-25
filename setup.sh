@@ -28,9 +28,9 @@ brew upgrade
 brew bundle --file=- <<EOF
   tap "heroku/brew"
   tap "jesseduffield/lazygit"
+  brew "bat"
   brew "coreutils"
   brew "exa"
-  brew "fd"
   brew "fzf"
   brew "git"
   brew "heroku/brew/heroku"

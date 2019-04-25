@@ -15,24 +15,24 @@ function! PackInit() abort
   call minpac#add('sirver/ultisnips')
   call minpac#add('styled-components/vim-styled-components', { 'branch': 'main' })
   call minpac#add('w0rp/ale')
-  call minpac#add('prettier/vim-prettier')
+  call minpac#add('sbdchd/neoformat')
 
   " UI
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jesperryom/base16-vim')
   call minpac#add('maximbaz/lightline-ale')
-  call minpac#add('mike-hearn/base16-vim-lightline')
+  call minpac#add('jonleopard/base16-vim-lightline')
 
   " Editing and additional stuff
   call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
-  call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('raimondi/delimitmate')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-fugitive')
+  call minpac#add('tpope/vim-rhubarb')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-vinegar')
 endfunction
@@ -41,7 +41,6 @@ set completeopt=noinsert,menuone,noselect
 set confirm
 set cursorline
 set expandtab
-set gdefault
 set inccommand=split
 set ignorecase smartcase
 set matchpairs+=<:>
@@ -58,11 +57,16 @@ set softtabstop=2
 set splitbelow splitright
 set tabstop=2
 set termguicolors
-set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,package-lock.json,.DS_Store
+set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,package-lock.json,yarn.lock,.DS_Store
 
 augroup json 
   au!
   au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
+augroup END
+
+augroup windowresize
+  au!
+  au VimEnter,SessionLoadPost,VimResized * wincmd =
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" MAPPINGS
@@ -70,6 +74,7 @@ augroup END
 let mapleader=' '
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 map <leader>b :Explore<CR>
+map <leader>s :sort<CR>
 
 " move vertically by visual line
 nnoremap j gj
@@ -88,8 +93,8 @@ let g:ale_fixers = {
     \ 'typescript': ['tslint'] }
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_sign_error = '▊'
-let g:ale_sign_warning = '▊'
+let g:ale_sign_error =    '█'
+let g:ale_sign_warning =  '█'
 let g:ale_fix_on_save = 1
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -105,10 +110,14 @@ let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock*', {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <leader>o :Files<cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock* --ignore yarn.lock', {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>f :BTags<cr>
+nnoremap <leader>c :Commands<cr>
 nnoremap <leader>i :Ag<cr>
+nnoremap <leader>o :Files<cr>
 nnoremap <leader>t :Tags<cr>
+
 
 " lightline
 let g:lightline = {
@@ -133,6 +142,9 @@ let g:lightline = {
 
 function! LightlineFilename()
   let filename = winwidth(0) > 90 ? expand('%') : expand('%:t')
+  if strlen(filename) > winwidth(0)
+    return ''
+  endif
   let modified = &modified ? ' +' : ''
   return filename . modified
 endfunction
@@ -140,6 +152,10 @@ endfunction
 function! LightlineGit()
   return winwidth(0) > 70 ? fugitive#head() : ''
 endfunction
+
+" neoformat
+nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
+xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 
 " vim-workspace
 let g:workspace_autosave = 0

@@ -47,11 +47,10 @@ PROMPT=" $PROMPT"
 PURE_PROMPT_SYMBOL='→'
 
 # nnn
-export NNN_SHOW_HIDDEN=1
 export NNN_USE_EDITOR=1
 export NNN_TMPFILE=/tmp/nnn
 n() {
-  nnn "$@"
+  nnn -d "$@"
   if [ -f $NNN_TMPFILE ]; then
     . $NNN_TMPFILE
     rm $NNN_TMPFILE
