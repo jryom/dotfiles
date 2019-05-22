@@ -1,10 +1,6 @@
 #!/bin/sh
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
-
-set -e
-
 echo "Checking command line tools installation..."
 if ! type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
    test -d "${xpath}" && test -x "${xpath}"; then
@@ -26,6 +22,8 @@ brew upgrade
 if ! brew bundle check; then
   brew bundle install
 fi
+
+echo y | $(brew --prefix)/opt/fzf/install
 
 brew link --overwrite python
 brew postinstall python3
@@ -51,8 +49,6 @@ fi
 dotbot -c "$script_path/install.conf.yaml"
 
 nvim +PackUpdate +UpdateRemotePlugins +qall
-
-set +e
 
 fnm install 10 && fnm use 10
 npm i -g $(cat "$script_path/npm-global-packages" | tr '\n' ' ')

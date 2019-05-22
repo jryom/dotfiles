@@ -1,0 +1,7 @@
+--glob=!{node_modules/**,.git/**,.next/**,.undodir/**,yarn.log,package-lock}
+--follow
+--no-ignore-vcs
+--hidden
+--smart-case
+--no-heading
+--line-number

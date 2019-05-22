@@ -2,7 +2,6 @@
     link:
         force: true
         create: true
-        relink: true
         glob: true
 
 - clean: ['~']
@@ -11,6 +10,7 @@
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.prettierrc:
+    ~/.ripgreprc:
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
     ~/.config/fish/fishfile: fish/fishfile

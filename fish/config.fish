@@ -1,11 +1,11 @@
-fish_vi_key_bindings
+set fish_vi_key_bindings
 set -gx EDITOR nvim
-set -gx FZF_DEFAULT_COMMAND "fd \$dir --hidden --type f -E .git"
-set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4
-  --color=fg:12,header:4,info:3,pointer:6
-  --color=marker:6,fg+:13,prompt:3,hl+:4"
-set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --line-range :500 {}'"
+set -gx FZF_DEFAULT_COMMAND "rg --files"
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info:3,pointer:6,marker:6,fg+:13,prompt:3,hl+:4"
+set -gx FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview 'bat --color=always --line-range :500 {}'"
 set -gx BAT_THEME "base16"
+set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
@@ -30,4 +30,5 @@ if status --is-interactive
   source ~/.config/fish/abbreviations.fish
 end
 
+set PATH $HOME/.fnm $PATH
 fnm env --multi | source

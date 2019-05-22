@@ -110,12 +110,17 @@ let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock* --ignore yarn.lock', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+command! -bang -nargs=? -complete=dir Files 
+  \ call fzf#vim#files(<q-args>, {'options': '--delimiter / --nth -1'})
+command! -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --color=always '.shellescape(<q-args>),
+  \   1,
+  \   {'options': '--delimiter : --nth 2..'})
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>f :BTags<cr>
 nnoremap <leader>c :Commands<cr>
-nnoremap <leader>i :Ag<cr>
+nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 nnoremap <leader>t :Tags<cr>
 
