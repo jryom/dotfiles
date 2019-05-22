@@ -110,7 +110,8 @@ let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock* --ignore yarn.lock', {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, ' --ignore package-lock* --ignore yarn.lock', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>f :BTags<cr>
 nnoremap <leader>c :Commands<cr>
@@ -160,17 +161,13 @@ xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 " vim-workspace
 let g:workspace_autosave = 0
 let g:workspace_autocreate = 1
+let g:workspace_session_disable_on_args = 1
 let g:workspace_session_directory = $HOME . '/.config/nvim/sessions/'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" THEME
 
-if systemlist('defaults read -g AppleInterfaceStyle')[0]==#'Dark'
-  set background=dark
-  colorscheme base16-ocean
-else
-  set background=light
-  colorscheme base16-solarized-light
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
 endif
 
 let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
-silent execute '!kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/'.g:colors_name.'.conf'

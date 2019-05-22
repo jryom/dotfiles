@@ -1,8 +1,6 @@
 #!/bin/sh
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-unset NVM_DIR
-
 trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
 
 set -e
@@ -25,44 +23,24 @@ fi
 echo "Homebrewing..."
 brew update
 brew upgrade
-brew bundle --file=- <<EOF
-  tap "heroku/brew"
-  tap "jesseduffield/lazygit"
-  brew "bat"
-  brew "coreutils"
-  brew "exa"
-  brew "fzf"
-  brew "git"
-  brew "heroku/brew/heroku"
-  brew "jq"
-  brew "lazygit"
-  brew "neovim"
-  brew "nnn"
-  brew "python"
-  brew "python@2"
-  brew "ruby"
-  brew "stow"
-  brew "the_silver_searcher"
-  brew "tree"
-  brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
-  brew "yamllint"
-  brew "zsh"
-  cask "amethyst"
-EOF
+if ! brew bundle check; then
+  brew bundle install
+fi
 
 brew link --overwrite python
 brew postinstall python3
-echo y | $(brew --prefix)/opt/fzf/install
 
 pip2 install --upgrade pynvim
-pip3 install --upgrade pip setuptools pynvim vint
-
-if ! cd ~/.zplug; then
-  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-fi
+pip3 install --upgrade pip dotbot setuptools pynvim vint
 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
+if ! cd ~/.config/base16-shell; then
+  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+  cd .config/base16-shell
+  git fetch origin pull/154/head:fix-syntax-for-profile_helper.fish
+  git checkout fix-syntax-for-profile_helper.fish
+fi
 mkdir -p ~/.config/kitty-base16-themes
 curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
 if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
@@ -70,19 +48,16 @@ if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
   git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 fi
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-
-stow -d "$script_path" -t ~/ stow && stow -d "$script_path" -t ~/ git kitty nvm nvim shell prettier
+dotbot -c "$script_path/install.conf.yaml"
 
 nvim +PackUpdate +UpdateRemotePlugins +qall
 
 set +e
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm install --lts
+fnm install 10 && fnm use 10
+npm i -g $(cat "$script_path/npm-global-packages" | tr '\n' ' ')
 
-if ! grep -q $(which zsh) "/etc/shells"; then
-  sudo sh -c "echo $(which zsh) >> /etc/shells"
-  chsh -s $(which zsh)
+if ! grep -q $(which fish) "/etc/shells"; then
+  sudo sh -c "echo $(which fish) >> /etc/shells"
+  chsh -s $(which fish)
 fi
