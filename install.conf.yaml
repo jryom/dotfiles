@@ -17,3 +17,4 @@
     ~/.config/fish/functions/: fish/functions/*
     ~/.config/kitty/: kitty/*
     ~/.config/nvim/: nvim/*
+    ~/.config/lf/: lf/*
