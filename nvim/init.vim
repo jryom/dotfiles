@@ -112,11 +112,9 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
 command! -bang -nargs=? -complete=dir Files 
   \ call fzf#vim#files(<q-args>, {'options': '--delimiter / --nth -1'})
-command! -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --color=always '.shellescape(<q-args>),
-  \   1,
-  \   {'options': '--delimiter : --nth 2..'})
+command! -bang -nargs=* Rg 
+  \ call fzf#vim#grep('rg --column --color=always '.shellescape(<q-args>),
+  \ 1, {'options': '--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>f :BTags<cr>
 nnoremap <leader>c :Commands<cr>

@@ -34,7 +34,10 @@ map <enter> shell
 # execute current file (must be executable)
 map x $$f
 map X !$f
+
 map ? :doc
+
+map <c-g> quit 
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
