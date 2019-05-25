@@ -93,8 +93,8 @@ let g:ale_fixers = {
     \ 'typescript': ['tslint'] }
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_sign_error =    '█'
-let g:ale_sign_warning =  '█'
+let g:ale_sign_error =    '❱'
+let g:ale_sign_warning =  '❱'
 let g:ale_fix_on_save = 1
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -122,6 +122,10 @@ nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 nnoremap <leader>t :Tags<cr>
 
+" gitgutter
+let g:gitgutter_sign_added = '▌'
+let g:gitgutter_sign_modified = '▌'
+let g:gitgutter_sign_removed = '▌'
 
 " lightline
 let g:lightline = {
@@ -174,3 +178,5 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
+
+au ColorScheme * hi Normal ctermbg=none guibg=none

@@ -30,5 +30,6 @@ if status --is-interactive
   source ~/.config/fish/abbreviations.fish
 end
 
+# fnm
 set PATH $HOME/.fnm $PATH
 fnm env --multi | source

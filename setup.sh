@@ -1,4 +1,7 @@
 #!/bin/sh
+trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
+set -e
+
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 echo "Checking command line tools installation..."
@@ -21,6 +24,8 @@ brew update
 brew upgrade
 if ! brew bundle check; then
   brew bundle install
+  brew services start chunkwm
+  brew services start skhd
 fi
 
 echo y | $(brew --prefix)/opt/fzf/install
