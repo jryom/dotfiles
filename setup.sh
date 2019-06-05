@@ -2,6 +2,8 @@
 trap 'ret=$?; test $ret -ne 0 && printf "Script failed, aborting\n\n" >&2; exit $ret' EXIT
 set -e
 
+read -p 'Is this your personal computer? [y/n] ' personal
+
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 echo "Checking command line tools installation..."
@@ -22,10 +24,21 @@ fi
 echo "Homebrewing..."
 brew update
 brew upgrade
-if ! brew bundle check; then
-  brew bundle install
+if ! brew bundle check --file="$script_path/homebrew/brewfile"; then
+  brew bundle install --file="$script_path/homebrew/brewfile" --force
   brew services start chunkwm
   brew services start skhd
+fi
+
+if brew autoupdate --status | grep -q 'not'; then
+  echo "Enabling homebrew autoupdate"
+  brew autoupdate --start --enable-notification --upgrade --cleanup
+fi
+
+if [ "$personal" == "y" ]; then
+  if ! brew bundle check --file="$script_path/homebrew/personal"; then
+    brew bundle install --file="$script_path/homebrew/personal" --force 
+  fi
 fi
 
 echo y | $(brew --prefix)/opt/fzf/install
@@ -35,8 +48,6 @@ brew postinstall python3
 
 pip2 install --upgrade pynvim
 pip3 install --upgrade pip dotbot setuptools pynvim vint
-
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
 if ! cd ~/.config/base16-shell; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
