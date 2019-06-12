@@ -1,9 +1,6 @@
 #!/bin/bash
 
-chunkc core::log_file stdout
-chunkc core::log_level warn
 chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins
-chunkc core::hotload 0
 
 chunkc set global_desktop_mode           bsp
 chunkc set global_desktop_offset_top     8
@@ -21,10 +18,9 @@ chunkc set bsp_split_mode                optimal
 chunkc set bsp_split_ratio               0.5
 
 chunkc set monitor_focus_cycle           1
-chunkc set window_focus_cycle            monitor
+chunkc set window_focus_cycle            all
 
 chunkc set mouse_follows_focus           off
-chunkc set window_float_next             0
 chunkc set window_region_locked          1
 
 chunkc set mouse_move_window             \"fn 1\"
@@ -42,14 +38,9 @@ chunkc set focused_border_outline        1
 chunkc set focused_border_skip_floating  1
 chunkc set focused_border_skip_monocle   1
 
-chunkc set ffm_bypass_modifier           fn
-chunkc set ffm_standby_on_float          1
-chunkc set ffm_disable_autoraise         0
-
 chunkc core::load border.so
 chunkc core::load tiling.so
 
 chunkc tiling::rule --owner Finder --name Copy --state float &
-chunkc tiling::rule --owner \"App Store\" --state float &
 chunkc tiling::rule --owner \"System Preferences\" --state float &
 chunkc tiling::rule --owner \"Live\" --state float &

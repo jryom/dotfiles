@@ -1,4 +1,3 @@
-command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 
 function! PackInit() abort
@@ -7,13 +6,11 @@ function! PackInit() abort
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Language, autocompletion & linting
-  call minpac#add('hail2u/vim-css3-syntax')
   call minpac#add('honza/vim-snippets')
   call minpac#add('ludovicchabant/vim-gutentags')
   call minpac#add('sheerun/vim-polyglot')
-  call minpac#add('shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  call minpac#add('shougo/deoplete.nvim')
   call minpac#add('sirver/ultisnips')
-  call minpac#add('styled-components/vim-styled-components', { 'branch': 'main' })
   call minpac#add('w0rp/ale')
   call minpac#add('sbdchd/neoformat')
 
@@ -21,8 +18,8 @@ function! PackInit() abort
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jesperryom/base16-vim')
+  call minpac#add('jesperryom/base16-vim-lightline')
   call minpac#add('maximbaz/lightline-ale')
-  call minpac#add('jonleopard/base16-vim-lightline')
 
   " Editing and additional stuff
   call minpac#add('airblade/vim-rooter')
@@ -36,6 +33,12 @@ function! PackInit() abort
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-vinegar')
 endfunction
+
+" daily updates
+if ! filereadable(expand("~/.vim_updatecheck")) || readfile(glob("~/.vim_updatecheck"))[0] < (strftime('%y%m%d'))
+  call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+  silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.vim_updatecheck'
+endif
 
 set completeopt=noinsert,menuone,noselect
 set confirm
@@ -110,14 +113,7 @@ let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=? -complete=dir Files 
-  \ call fzf#vim#files(<q-args>, {'options': '--delimiter / --nth -1'})
-command! -bang -nargs=* Rg 
-  \ call fzf#vim#grep('rg --column --color=always '.shellescape(<q-args>),
-  \ 1, {'options': '--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>/ :BLines<cr>
-nnoremap <leader>f :BTags<cr>
-nnoremap <leader>c :Commands<cr>
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 nnoremap <leader>t :Tags<cr>
@@ -178,5 +174,3 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
-
-au ColorScheme * hi Normal ctermbg=none guibg=none
