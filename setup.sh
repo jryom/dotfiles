@@ -35,7 +35,7 @@ fi
 
 if [ "$personal" == "y" ]; then
   if ! brew bundle check --file="$script_path/homebrew/personal"; then
-    brew bundle install --file="$script_path/homebrew/personal" --force 
+    brew bundle install --file="$script_path/homebrew/personal" --force
   fi
 fi
 
@@ -47,15 +47,11 @@ dotbot -c "$script_path/install.conf.yaml"
 
 if ! cd ~/.config/base16-shell; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-else 
+else
   cd ~/.config/base16-shell && git fetch && git pull
 fi
 mkdir -p ~/.config/kitty-base16-themes
 curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
-if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
-  mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
-  git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
-fi
 
 fnm install 10 && fnm use 10
 npm i -g $(cat "$script_path/npm-global-packages" | tr '\n' ' ')

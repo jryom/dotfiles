@@ -1,44 +1,38 @@
-command! PackClean  call PackInit() | call minpac#clean()
-
-function! PackInit() abort
-  packadd minpac
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  " Language, autocompletion & linting
-  call minpac#add('honza/vim-snippets')
-  call minpac#add('ludovicchabant/vim-gutentags')
-  call minpac#add('sheerun/vim-polyglot')
-  call minpac#add('shougo/deoplete.nvim')
-  call minpac#add('sirver/ultisnips')
-  call minpac#add('w0rp/ale')
-  call minpac#add('sbdchd/neoformat')
-
-  " UI
-  call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('itchyny/lightline.vim')
-  call minpac#add('jesperryom/base16-vim')
-  call minpac#add('jesperryom/base16-vim-lightline')
-  call minpac#add('maximbaz/lightline-ale')
-
-  " Editing and additional stuff
-  call minpac#add('airblade/vim-rooter')
-  call minpac#add('alvan/vim-closetag')
-  call minpac#add('junegunn/fzf.vim')
-  call minpac#add('raimondi/delimitmate')
-  call minpac#add('thaerkh/vim-workspace')
-  call minpac#add('tpope/vim-commentary')
-  call minpac#add('tpope/vim-fugitive')
-  call minpac#add('tpope/vim-rhubarb')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('tpope/vim-vinegar')
-endfunction
-
-" daily updates
-if ! filereadable(expand("~/.vim_updatecheck")) || readfile(glob("~/.vim_updatecheck"))[0] < (strftime('%y%m%d'))
-  call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
-  silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.vim_updatecheck'
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+call plug#begin('~/.local/share/nvim/plugged')
+" Language, autocompletion & linting
+Plug 'honza/vim-snippets'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'sbdchd/neoformat'
+Plug 'sheerun/vim-polyglot'
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sirver/ultisnips'
+Plug 'w0rp/ale'
+
+" UI
+Plug 'airblade/vim-gitgutter'
+Plug 'jesperryom/base16-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Editing and additional stuff
+Plug 'airblade/vim-rooter'
+Plug 'alvan/vim-closetag'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'raimondi/delimitmate'
+Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+call plug#end()
 
 set completeopt=noinsert,menuone,noselect
 set confirm
@@ -62,7 +56,12 @@ set tabstop=2
 set termguicolors
 set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,package-lock.json,yarn.lock,.DS_Store
 
-augroup json 
+if ! filereadable(expand("~/.vim_updatecheck")) || readfile(glob("~/.vim_updatecheck"))[0] < (strftime('%y%m%d'))
+  :PlugUpdate
+  silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.vim_updatecheck'
+endif
+
+augroup json
   au!
   au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
 augroup END
@@ -72,36 +71,47 @@ augroup windowresize
   au VimEnter,SessionLoadPost,VimResized * wincmd =
 augroup END
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" MAPPINGS
+augroup syntaxfix
+  au!
+  au BufEnter * :syntax sync fromstart
+augroup END
 
+" general mappings
 let mapleader=' '
-nnoremap <silent> <Esc> :nohl<CR><Esc>
 map <leader>b :Explore<CR>
 map <leader>s :sort<CR>
-
-" move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+nnoremap <silent> <Esc> :nohl<CR><Esc>
 
 let g:gutentags_cache_dir='~/.tags/'
 let g:closetag_filenames = '*.html,*.js,*.jsx'
 
+" airline
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_skip_empty_sections = 1
+let g:airline_powerline_fonts = 1
+let g:airline_section_z = '%3l/%L:%3v'
+
 " ale
-let g:ale_linter_aliases = {'jsx': 'css'}
+let g:ale_linter_aliases = {'javascript': [ 'javascript', 'css' ]}
 let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'css': ['stylelint'],
-    \ 'javascript': ['eslint'],
-    \ 'jsx': ['eslint'],
+    \ 'javascript': ['stylelint', 'eslint'],
     \ 'scss': ['stylelint'],
     \ 'typescript': ['tslint'] }
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_sign_error =    '❱'
-let g:ale_sign_warning =  '❱'
+let g:ale_sign_error =    '█'
+let g:ale_sign_warning =  '█'
 let g:ale_fix_on_save = 1
 let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" base16
+if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
 
 " deoplete / ultisnips
 let g:deoplete#enable_at_startup = 1
@@ -110,7 +120,6 @@ let g:UltiSnipsJumpForwardTrigger='<C-l>'
 let g:UltiSnipsJumpBackwardTrigger='<C-h>'
 
 " fzf
-set runtimepath+=/usr/local/opt/fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
 nnoremap <leader>/ :BLines<cr>
@@ -119,43 +128,9 @@ nnoremap <leader>o :Files<cr>
 nnoremap <leader>t :Tags<cr>
 
 " gitgutter
-let g:gitgutter_sign_added = '▌'
-let g:gitgutter_sign_modified = '▌'
-let g:gitgutter_sign_removed = '▌'
-
-" lightline
-let g:lightline = {
-      \ 'component_expand': {
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors' },
-      \ 'component_type': {
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error' },
-      \ 'component': {
-      \     'lineinfo': "%3l/%{line('$')} : %-2v" },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'filename'] ],
-      \   'right': [ [ 'linter_errors', 'linter_warnings' ],
-      \              [ 'lineinfo' ],
-      \              [ 'filetype' ] ] },
-      \ 'inactive': {'left': [ [ 'filename'] ] },
-      \ 'component_function': {
-      \   'gitbranch': 'LightlineGit',
-      \   'filename': 'LightlineFilename' } }
-
-function! LightlineFilename()
-  let filename = winwidth(0) > 90 ? expand('%') : expand('%:t')
-  if strlen(filename) > winwidth(0)
-    return ''
-  endif
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
-
-function! LightlineGit()
-  return winwidth(0) > 70 ? fugitive#head() : ''
-endfunction
+let g:gitgutter_sign_added = '▍'
+let g:gitgutter_sign_modified = '▍'
+let g:gitgutter_sign_removed = '▍'
 
 " neoformat
 nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
@@ -166,11 +141,3 @@ let g:workspace_autosave = 0
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
 let g:workspace_session_directory = $HOME . '/.config/nvim/sessions/'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" THEME
-
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-endif
-
-let g:lightline.colorscheme=substitute(g:colors_name,'-','_','g')
