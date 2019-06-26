@@ -10,7 +10,6 @@
     ~/.chunkwmrc:
     ~/.gitconfig:
     ~/.gitignore_global:
-    ~/.prettierrc:
     ~/.ripgreprc:
     ~/.skhdrc:
     ~/.config/fish/config.fish: fish/config.fish

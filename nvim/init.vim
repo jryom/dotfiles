@@ -5,33 +5,28 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-" Language, autocompletion & linting
-Plug 'honza/vim-snippets'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'sbdchd/neoformat'
-Plug 'sheerun/vim-polyglot'
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sirver/ultisnips'
-Plug 'w0rp/ale'
-
-" UI
-Plug 'airblade/vim-gitgutter'
-Plug 'jesperryom/base16-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Editing and additional stuff
-Plug 'airblade/vim-rooter'
-Plug 'alvan/vim-closetag'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'raimondi/delimitmate'
-Plug 'thaerkh/vim-workspace'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
+  " language support, linting
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'sheerun/vim-polyglot'
+  " editing
+  Plug 'alvan/vim-closetag'
+  Plug 'honza/vim-snippets'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-vinegar'
+  " ui
+  Plug 'airblade/vim-gitgutter'
+  Plug 'jesperryom/base16-vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'w0rp/ale'
+  " misc
+  Plug '/usr/local/opt/fzf'
+  Plug 'airblade/vim-rooter'
+  Plug 'junegunn/fzf.vim'
+  Plug 'thaerkh/vim-workspace'
 call plug#end()
 
 set completeopt=noinsert,menuone,noselect
@@ -61,37 +56,27 @@ if ! filereadable(expand("~/.vim_updatecheck")) || readfile(glob("~/.vim_updatec
   silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.vim_updatecheck'
 endif
 
-augroup json
-  au!
-  au BufRead,BufNewFile .eslintrc,.jscsrc,.jshintrc,.babelrc,.stylelintrc set ft=json
-augroup END
+" autocommands
+au BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
+au VimEnter,SessionLoadPost,VimResized * wincmd =
+au BufEnter * :syntax sync fromstart
 
-augroup windowresize
-  au!
-  au VimEnter,SessionLoadPost,VimResized * wincmd =
-augroup END
-
-augroup syntaxfix
-  au!
-  au BufEnter * :syntax sync fromstart
-augroup END
-
-" general mappings
+" misc
 let mapleader=' '
 map <leader>b :Explore<CR>
 map <leader>s :sort<CR>
-nnoremap j gj
-nnoremap k gk
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-
-let g:gutentags_cache_dir='~/.tags/'
-let g:closetag_filenames = '*.html,*.js,*.jsx'
+if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
+let g:closetag_filenames = '*.html,*.js'
+let g:javascript_plugin_jsdoc = 1
 
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = '%3l/%L:%3v'
+let g:airline_symbols = {}
+let g:airline_symbols.dirty=''
 
 " ale
 let g:ale_linter_aliases = {'javascript': [ 'javascript', 'css' ]}
@@ -99,42 +84,46 @@ let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'css': ['stylelint'],
     \ 'javascript': ['stylelint', 'eslint'],
-    \ 'scss': ['stylelint'],
-    \ 'typescript': ['tslint'] }
+    \ 'scss': ['stylelint']
+    \ }
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_sign_error =    '█'
 let g:ale_sign_warning =  '█'
 let g:ale_fix_on_save = 1
-let g:ale_echo_msg_format='%severity%: %s (%linter%: %code%)'
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_msg_format='%severity%: %s (%linter%)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" base16
-if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
-
-" deoplete / ultisnips
-let g:deoplete#enable_at_startup = 1
-let g:UltiSnipsExpandTrigger='<C-k>'
-let g:UltiSnipsJumpForwardTrigger='<C-l>'
-let g:UltiSnipsJumpBackwardTrigger='<C-h>'
+" coc
+imap <C-l> <Plug>(coc-snippets-expand-jump)
+let g:coc_global_extensions = [
+      \ 'coc-json',
+      \ 'coc-pairs',
+      \ 'coc-prettier',
+      \ 'coc-snippets',
+      \ 'coc-tsserver',
+      \ 'coc-vimlsp',
+      \ 'coc-yaml'
+      \ ]
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap co :CocList outline<cr>
+nmap <leader>rn <Plug>(coc-rename)
+vmap <leader>p <Plug>(coc-format-selected)
+nmap <leader>p <Plug>(coc-format)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
-nnoremap <leader>t :Tags<cr>
 
 " gitgutter
 let g:gitgutter_sign_added = '▍'
 let g:gitgutter_sign_modified = '▍'
 let g:gitgutter_sign_removed = '▍'
-
-" neoformat
-nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
-xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 
 " vim-workspace
 let g:workspace_autosave = 0

@@ -1,0 +1,6 @@
+{
+  "diagnostic.enable": false,
+  "prettier.eslintIntegration": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5"
+}

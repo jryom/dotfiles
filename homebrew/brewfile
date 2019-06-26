@@ -21,15 +21,14 @@ brew "koekeishiya/formulae/chunkwm"
 brew "koekeishiya/formulae/skhd"
 brew "lf"
 brew "neovim"
-brew "prettier"
 brew "python"
 brew "python"
 brew "python@2"
 brew "ripgrep"
 brew "ruby"
 brew "tree"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "yamllint"
+brew "yarn"
 
 cask_args force: true
 cask "1password"
