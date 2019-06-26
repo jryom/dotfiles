@@ -7,11 +7,11 @@
 - clean: ['~']
 
 - link:
-    ~/.chunkwmrc:
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.ripgreprc:
     ~/.skhdrc:
+    ~/.yabairc:
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
     ~/.config/fish/fishfile: fish/fishfile

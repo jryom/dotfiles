@@ -24,7 +24,7 @@ fi
 if ! brew bundle check --file="$script_path/homebrew/brewfile"; then
   echo "Homebrewing..."
   brew bundle install --file="$script_path/homebrew/brewfile" --force
-  brew services start chunkwm
+  brew services start yabai
   brew services start skhd
 fi
 
