@@ -24,7 +24,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'w0rp/ale'
   " misc
   Plug '/usr/local/opt/fzf'
-  Plug 'airblade/vim-rooter'
+ Plug 'airblade/vim-rooter'
   Plug 'junegunn/fzf.vim'
   Plug 'thaerkh/vim-workspace'
 call plug#end()
@@ -70,13 +70,23 @@ if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | en
 let g:closetag_filenames = '*.html,*.js'
 let g:javascript_plugin_jsdoc = 1
 
+" tabs
+nnoremap <tab>   :tabnext<CR>
+nnoremap <S-tab> :tabprevious<CR>
+nnoremap † :tabnew<CR>  | " ALT-t
+nnoremap ∑ :tabclose<CR>| " ALT-w
+nnoremap ¡ 1gt          | " ALT-1
+nnoremap ™ 2gt          | " ALT-2
+nnoremap £ 3gt          | " ALT-3
+nnoremap ¢ 4gt          | " ALT-4
+nnoremap ∞ 5gt          | " ALT-5
+
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {}
-let g:airline_symbols.dirty=''
+let g:airline_symbols = {'dirty':''}
 
 " ale
 let g:ale_linter_aliases = {'javascript': [ 'javascript', 'css' ]}
@@ -84,7 +94,7 @@ let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'css': ['stylelint'],
     \ 'javascript': ['stylelint', 'eslint'],
-    \ 'scss': ['stylelint']
+    \ 'scss': ['stylelint'],
     \ }
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
@@ -105,7 +115,7 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
-      \ 'coc-yaml'
+      \ 'coc-yaml',
       \ ]
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
