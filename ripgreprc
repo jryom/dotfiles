@@ -1,4 +1,4 @@
---glob=!{node_modules/**,.git/**,.next/**,.undodir/**,yarn.log,package-lock}
+--glob=!{node_modules/**,.git/**,.next/**,.undodir/**,yarn.log,package-lock.json,coverage/**}
 --follow
 --no-ignore-vcs
 --hidden

@@ -8,25 +8,25 @@ call plug#begin('~/.local/share/nvim/plugged')
   " language support, linting
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'sheerun/vim-polyglot'
+  Plug 'w0rp/ale'
   " editing
   Plug 'alvan/vim-closetag'
   Plug 'honza/vim-snippets'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-vinegar'
   " ui
   Plug 'airblade/vim-gitgutter'
   Plug 'jesperryom/base16-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'w0rp/ale'
   " misc
+  Plug 'airblade/vim-rooter'
   Plug '/usr/local/opt/fzf'
- Plug 'airblade/vim-rooter'
   Plug 'junegunn/fzf.vim'
   Plug 'thaerkh/vim-workspace'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-vinegar'
 call plug#end()
 
 set completeopt=noinsert,menuone,noselect
@@ -75,11 +75,6 @@ nnoremap <tab>   :tabnext<CR>
 nnoremap <S-tab> :tabprevious<CR>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
-nnoremap ¡ 1gt          | " ALT-1
-nnoremap ™ 2gt          | " ALT-2
-nnoremap £ 3gt          | " ALT-3
-nnoremap ¢ 4gt          | " ALT-4
-nnoremap ∞ 5gt          | " ALT-5
 
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
@@ -93,40 +88,37 @@ let g:ale_linter_aliases = {'javascript': [ 'javascript', 'css' ]}
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'css': ['stylelint'],
-    \ 'javascript': ['stylelint', 'eslint'],
+    \ 'javascript': ['eslint'],
     \ 'scss': ['stylelint'],
     \ }
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_sign_error =    '█'
 let g:ale_sign_warning =  '█'
 let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 1
-let g:ale_echo_msg_format='%severity%: %s (%linter%)'
+let g:ale_echo_msg_format='%severity%: %s [%linter% - %code%]'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " coc
-imap <C-l> <Plug>(coc-snippets-expand-jump)
 let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-pairs',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-tsserver',
-      \ 'coc-vimlsp',
       \ 'coc-yaml',
       \ ]
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
 nmap co :CocList outline<cr>
-nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>p <Plug>(coc-format-selected)
 nmap <leader>p <Plug>(coc-format)
+imap <C-l> <Plug>(coc-snippets-expand-jump)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
+command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shellescape(<q-args>),
+  \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 
