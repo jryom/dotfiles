@@ -29,7 +29,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-vinegar'
 call plug#end()
 
-set completeopt=noinsert,menuone,noselect
 set confirm
 set cursorline
 set expandtab
@@ -51,9 +50,11 @@ set tabstop=2
 set termguicolors
 set wildignore+=*/.git/*,*/coverage/*,*/node_modules/*,*/.Trash/*,*/.next/*,*/.cache/*,*/public/*,*/vendor/*,*/.undodir/*,package-lock.json,yarn.lock,.DS_Store
 
-if ! filereadable(expand("~/.vim_updatecheck")) || readfile(glob("~/.vim_updatecheck"))[0] < (strftime('%y%m%d'))
-  :PlugUpdate
-  silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.vim_updatecheck'
+if ! filereadable(expand("~/.local/share/nvim/vim_updatecheck"))
+  \ || readfile(glob("~/.local/share/nvim/vim_updatecheck"))[0] < (strftime('%y%m%d'))
+  execute 'PlugUpdate'
+  silent! execute 'UpdateRemotePlugins'
+  silent! execute '!echo ' . (strftime('%y%m%d')) . ' > ~/.local/share/nvim/vim_updatecheck'
 endif
 
 " autocommands
@@ -69,10 +70,6 @@ nnoremap <silent> <Esc> :nohl<CR><Esc>
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
 let g:closetag_filenames = '*.html,*.js'
 let g:javascript_plugin_jsdoc = 1
-
-" tabs
-nnoremap <tab>   :tabnext<CR>
-nnoremap <S-tab> :tabprevious<CR>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 
@@ -91,8 +88,8 @@ let g:ale_fixers = {
     \ 'javascript': ['eslint'],
     \ 'scss': ['stylelint'],
     \ }
-let g:ale_sign_error =    '█'
-let g:ale_sign_warning =  '█'
+let g:ale_sign_error = '█'
+let g:ale_sign_warning = '█'
 let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_echo_msg_format='%severity%: %s [%linter% - %code%]'
@@ -121,11 +118,6 @@ command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shell
   \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
-
-" gitgutter
-let g:gitgutter_sign_added = '▍'
-let g:gitgutter_sign_modified = '▍'
-let g:gitgutter_sign_removed = '▍'
 
 " vim-workspace
 let g:workspace_autosave = 0

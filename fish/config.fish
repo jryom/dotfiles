@@ -23,8 +23,8 @@ if status --is-interactive
   set BASE16_SHELL "$HOME/.config/base16-shell/"
   source "$BASE16_SHELL/profile_helper.fish"
   if [ (dark-mode status) = 'on' ]
-    base16-solarflare
-    kittyColors base16-solarflare
+    base16-material-palenight
+    kittyColors base16-material-palenight
   else
     base16-solarized-light
     kittyColors base16-solarized-light

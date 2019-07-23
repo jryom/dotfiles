@@ -1,6 +1,10 @@
 {
-  "diagnostic.enable": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.displayByAle": true,
+  "diagnostic.virtualText": true,
+  "javascript.validate.enable": false,
   "prettier.eslintIntegration": true,
   "prettier.singleQuote": true,
+  "prettier.stylelintIntegration": true,
   "prettier.trailingComma": "es5"
 }
