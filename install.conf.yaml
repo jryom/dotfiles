@@ -1,21 +1,23 @@
 - defaults:
     link:
-        force: true
-        create: true
-        glob: true
+      force: true
+      create: true
+      glob: true
 
 - clean: ['~']
 
 - link:
-    ~/.gitconfig:
-    ~/.gitignore_global:
-    ~/.ripgreprc:
-    ~/.skhdrc:
-    ~/.yabairc:
-    ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
+    ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/functions/: fish/functions/*
     ~/.config/kitty/: kitty/*
-    ~/.config/nvim/: nvim/*
     ~/.config/lf/: lf/*
+    ~/.config/nvim/: nvim/*
+    ~/.config/yamllint/config: yamllint.yml
+    ~/.gitconfig:
+    ~/.gitignore_global:
+    ~/.prettierrc: prettierrc.json
+    ~/.ripgreprc:
+    ~/.skhdrc:
+    ~/.yabairc:

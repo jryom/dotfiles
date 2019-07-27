@@ -15,10 +15,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   " ui
-  Plug 'airblade/vim-gitgutter'
   Plug 'jesperryom/base16-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'mhinz/vim-signify'
   " misc
   Plug 'airblade/vim-rooter'
   Plug '/usr/local/opt/fzf'
@@ -87,6 +87,8 @@ let g:ale_fixers = {
     \ 'css': ['stylelint'],
     \ 'javascript': ['eslint'],
     \ 'scss': ['stylelint'],
+    \ 'yaml': ['prettier'],
+    \ 'json': ['prettier'],
     \ }
 let g:ale_sign_error = '█'
 let g:ale_sign_warning = '█'
@@ -99,16 +101,15 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " coc
 let g:coc_global_extensions = [
       \ 'coc-json',
-      \ 'coc-pairs',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-tsserver',
-      \ 'coc-yaml',
       \ ]
 nmap <silent> gd <Plug>(coc-definition)
 nmap co :CocList outline<cr>
 vmap <leader>p <Plug>(coc-format-selected)
 nmap <leader>p <Plug>(coc-format)
+nmap <leader>rn <Plug>(coc-rename)
 imap <C-l> <Plug>(coc-snippets-expand-jump)
 
 " fzf

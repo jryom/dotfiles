@@ -5,4 +5,5 @@ neovim
 npm
 npm-check-updates
 npm-merge-driver
+prettier
 stylelint
