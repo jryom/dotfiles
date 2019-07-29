@@ -23,6 +23,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'airblade/vim-rooter'
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'mbbill/undotree'
   Plug 'thaerkh/vim-workspace'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
@@ -32,13 +33,12 @@ call plug#end()
 set confirm
 set cursorline
 set expandtab
-set inccommand=split
 set ignorecase smartcase
+set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
 set nostartofline
-set noswapfile
 set number
 set shiftround
 set shiftwidth=2
@@ -72,6 +72,7 @@ let g:closetag_filenames = '*.html,*.js'
 let g:javascript_plugin_jsdoc = 1
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
@@ -124,4 +125,5 @@ nnoremap <leader>o :Files<cr>
 let g:workspace_autosave = 0
 let g:workspace_autocreate = 1
 let g:workspace_session_disable_on_args = 1
-let g:workspace_session_directory = $HOME . '/.config/nvim/sessions/'
+let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/'
+let g:workspace_undodir=$HOME . '/.local/share/nvim/undodir/'
