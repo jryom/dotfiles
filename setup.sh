@@ -30,7 +30,7 @@ fi
 
 if brew autoupdate --status | grep -q 'not'; then
   echo "Enabling homebrew autoupdate"
-  brew autoupdate --start 43200 --upgrade --cleanup
+  brew autoupdate --start 43200 --upgrade --enable-notification
 fi
 
 if [ "$personal" == "y" ]; then

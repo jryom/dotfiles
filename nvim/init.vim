@@ -10,15 +10,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sheerun/vim-polyglot'
   Plug 'w0rp/ale'
   " editing
-  Plug 'alvan/vim-closetag'
   Plug 'honza/vim-snippets'
+  Plug 'sbdchd/neoformat'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   " ui
+  Plug 'airblade/vim-gitgutter'
   Plug 'jesperryom/base16-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'mhinz/vim-signify'
   " misc
   Plug 'airblade/vim-rooter'
   Plug '/usr/local/opt/fzf'
@@ -63,16 +63,17 @@ au VimEnter,SessionLoadPost,VimResized * wincmd =
 au BufEnter * :syntax sync fromstart
 
 " misc
+if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
+let g:javascript_plugin_jsdoc = 1
 let mapleader=' '
 map <leader>b :Explore<CR>
 map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
-let g:closetag_filenames = '*.html,*.js'
-let g:javascript_plugin_jsdoc = 1
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>u :UndotreeToggle<cr>
+nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
+xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
@@ -100,16 +101,8 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " coc
-let g:coc_global_extensions = [
-      \ 'coc-json',
-      \ 'coc-prettier',
-      \ 'coc-snippets',
-      \ 'coc-tsserver',
-      \ ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-tsserver' ]
 nmap <silent> gd <Plug>(coc-definition)
-nmap co :CocList outline<cr>
-vmap <leader>p <Plug>(coc-format-selected)
-nmap <leader>p <Plug>(coc-format)
 nmap <leader>rn <Plug>(coc-rename)
 imap <C-l> <Plug>(coc-snippets-expand-jump)
 
