@@ -23,7 +23,7 @@ abbr -a . "open ."
 
 abbr -a dm "dark-mode; exec fish"
 
-abbr -a nin "npm install"
+abbr -a nin "npm install --save-exact"
 abbr -a nci "npm ci"
 abbr -a nrd "npm run dev"
 abbr -a nrl "npm run lint"

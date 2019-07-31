@@ -45,6 +45,11 @@ pip2 install --upgrade pynvim
 pip3 install --upgrade pynvim dotbot vint
 dotbot -c "$script_path/install.conf.yaml"
 
+if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
+  mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
+  git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+fi
+
 if ! cd ~/.config/base16-shell; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 else
