@@ -47,13 +47,6 @@ set tabstop=2
 set termguicolors
 set undofile
 
-if ! filereadable(expand("~/.local/share/nvim/lastupdate"))
-  \ || readfile(glob("~/.local/share/nvim/lastupdate"))[0] < (localtime() - 604800)
-  execute 'PackUpdate'
-  silent! execute 'UpdateRemotePlugins'
-  silent! execute '!echo ' . (localtime()) . ' > ~/.local/share/nvim/lastupdate'
-endif
-
 " autocommands
 autocmd BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
 autocmd BufEnter * :syntax sync fromstart

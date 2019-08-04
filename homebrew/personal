@@ -3,8 +3,5 @@ brew "ffmpeg"
 cask_args force: true
 cask "ableton-live-suite"
 cask "airfoil"
-cask "calibre"
 cask "hazel"
 cask "lingon-x"
-cask "pocket-casts"
-cask "steam"

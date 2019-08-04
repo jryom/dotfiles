@@ -28,11 +28,6 @@ if ! brew bundle check --file="$script_path/homebrew/brewfile"; then
   brew services start skhd
 fi
 
-if brew autoupdate --status | grep -q 'not'; then
-  echo "Enabling homebrew autoupdate"
-  brew autoupdate --start 43200 --upgrade --enable-notification
-fi
-
 if [ "$personal" == "y" ]; then
   if ! brew bundle check --file="$script_path/homebrew/personal"; then
     brew bundle install --file="$script_path/homebrew/personal" --force
