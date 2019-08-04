@@ -27,7 +27,7 @@ function! PackInit() abort
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
-  call minpac#add('tpope/vim-vinegar')
+  call minpac#add('jeetsukumaran/vim-filebeagle')
 endfunction
 
 set confirm
@@ -68,7 +68,6 @@ if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | en
 let g:javascript_plugin_jsdoc = 1
 let g:delimitMate_nesting_quotes = ['"', "'", '`']
 let mapleader=' '
-map <leader>b :Explore<CR>
 map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
@@ -76,6 +75,8 @@ nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
+let g:filebeagle_show_hidden=1
+let g:filebeagle_show_line_numbers=0
 
 " airline
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
