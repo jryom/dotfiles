@@ -7,6 +7,7 @@
 - clean: ['~']
 
 - link:
+    ~/.update: update.sh
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
@@ -14,10 +15,10 @@
     ~/.config/kitty/: kitty/*
     ~/.config/lf/: lf/*
     ~/.config/nvim/: nvim/*
-    ~/.config/yamllint/config: yamllint.yml
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc:
     ~/.yabairc:
+    ~/Library/LaunchAgents: launchd/*
