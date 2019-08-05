@@ -5,29 +5,25 @@ function! PackInit() abort
   packadd minpac
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-  " language support, linting
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release', 'do': 'call coc#util#install()'})
+  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('sheerun/vim-polyglot')
-  call minpac#add('w0rp/ale')
   " editing
   call minpac#add('honza/vim-snippets')
   call minpac#add('raimondi/delimitmate')
-  call minpac#add('sbdchd/neoformat')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
-  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('jesperryom/base16-vim')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   " misc
   call minpac#add('airblade/vim-rooter')
+  call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('mbbill/undotree')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
-  call minpac#add('jeetsukumaran/vim-filebeagle')
 endfunction
 
 set confirm
@@ -59,49 +55,58 @@ if ! filereadable(expand("~/.local/share/nvim/lastupdate"))
 endif
 
 " autocommands
-au BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
-au VimEnter,SessionLoadPost,VimResized * wincmd =
-au BufEnter * :syntax sync fromstart
+autocmd BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
+autocmd BufEnter * :syntax sync fromstart
+autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
+autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
 
 " misc
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
 let g:javascript_plugin_jsdoc = 1
-let g:delimitMate_nesting_quotes = ['"', "'", '`']
 let mapleader=' '
 map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>u :UndotreeToggle<cr>
-nnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
-xnoremap <leader>p :Neoformat prettier <bar> :Neoformat eslint_d<cr><cr>
 let g:filebeagle_show_hidden=1
 let g:filebeagle_show_line_numbers=0
 
 " airline
+let g:airline#extensions#coc#enabled = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_skip_empty_sections = 1
+let g:airline_left_alt_sep = ''
+let g:airline_left_sep = ''
 let g:airline_powerline_fonts = 1
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
 let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {'dirty':''}
-
-" ale
-let g:ale_linter_aliases = {'javascript': [ 'javascript', 'css' ]}
-let g:ale_fixers = {
-    \ '*': ['remove_trailing_lines', 'trim_whitespace', 'prettier', 'stylelint'],
-    \ 'javascript': ['eslint'],
-    \ }
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '█'
-let g:ale_sign_warning = '█'
-let g:ale_virtualtext_cursor = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:airline_symbols = {'dirty':' '}
 
 " coc
-let g:coc_global_extensions = [ 'coc-json', 'coc-snippets', 'coc-tsserver' ]
+let g:coc_global_extensions = [
+  \ 'coc-eslint',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-prettier',
+  \ 'coc-snippets',
+  \ 'coc-stylelint',
+  \ 'coc-tsserver',
+  \ 'coc-vimlsp',
+  \ 'coc-yaml',
+  \ 'coc-yank',
+  \ ]
 nmap <silent> gd <Plug>(coc-definition)
-imap <C-l> <Plug>(coc-snippets-expand-jump)
+imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>p <Plug>(coc-format)
+vmap <silent> <leader>p <Plug>(coc-format-selected)
+nmap <silent> <leader>a <Plug>(coc-codeaction)
+vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'

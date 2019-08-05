@@ -1,6 +1,22 @@
 {
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.displayByAle": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "json",
+    "markdown",
+    "scss",
+    "yaml"
+  ],
+  "diagnostic.errorSign": "█",
+  "diagnostic.hintSign": "█",
+  "diagnostic.infoSign": "█",
+  "diagnostic.level": "warning",
   "diagnostic.virtualText": true,
-  "javascript.validate.enable": false
+  "diagnostic.virtualTextLines": 1,
+  "diagnostic.warningSign": "█",
+  "eslint.autoFixOnSave": true,
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "yank.highlight.duration": 100,
 }
