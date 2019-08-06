@@ -11,7 +11,7 @@ fish_vi_key_bindings
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
-  gsed --follow-symlinks -i "s+\/base16-.*+/$argv.conf+g" ~/.config/kitty/kitty.conf
+  gsed ---follow-symlinks -i -e '/# color_start/,/# color_end/c\# color_start\nfine, thanks\n# color_end' ~/.config/alacritty/alacritty.yml
 end
 
 if not functions -q fisher
@@ -25,10 +25,10 @@ if status --is-interactive
   source "$BASE16_SHELL/profile_helper.fish"
   if [ (dark-mode status) = 'on' ]
     base16-material-palenight
-    kittyColors base16-material-palenight
+    # kittyColors base16-material-palenight
   else
     base16-solarized-light
-    kittyColors base16-solarized-light
+    # kittyColors base16-solarized-light
   end
   source ~/.config/fish/abbreviations.fish
 end
