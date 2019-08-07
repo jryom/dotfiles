@@ -45,6 +45,15 @@ if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
   git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 fi
 
+if ! cd ~/.tmux/plugins/tpm; then
+  mkdir -p ~/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+if ! cd ~/.tmux/base16-tmux; then
+  git clone https://github.com/jesperryom/base16-tmux ~/.tmux/base16-tmux
+fi
+
 if ! cd ~/.config/base16-shell; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 else

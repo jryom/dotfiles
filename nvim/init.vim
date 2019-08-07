@@ -9,6 +9,7 @@ function! PackInit() abort
   call minpac#add('sheerun/vim-polyglot')
   " editing
   call minpac#add('honza/vim-snippets')
+  call minpac#add('raimondi/delimitmate')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
@@ -22,6 +23,7 @@ function! PackInit() abort
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('mbbill/undotree')
   call minpac#add('thaerkh/vim-workspace')
+  call minpac#add('tmux-plugins/vim-tmux-focus-events')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
 endfunction
@@ -84,7 +86,6 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
-  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-snippets',
   \ 'coc-stylelint',

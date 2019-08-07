@@ -14,6 +14,10 @@ function kittyColors
   gsed --follow-symlinks -i "s+\/base16-.*+/$argv.conf+g" ~/.config/kitty/kitty.conf
 end
 
+function tmuxColors
+  gsed --follow-symlinks -i "s+colors/base16-.*+colors/$argv.conf+g" ~/.tmux.conf
+end
+
 if not functions -q fisher
   set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
   curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
@@ -26,9 +30,11 @@ if status --is-interactive
   if [ (dark-mode status) = 'on' ]
     base16-material-palenight
     kittyColors base16-material-palenight
+    tmuxColors base16-material-palenight
   else
     base16-solarized-light
     kittyColors base16-solarized-light
+    tmuxColors base16-solarized-light
   end
   source ~/.config/fish/abbreviations.fish
 end

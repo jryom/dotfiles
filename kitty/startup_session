@@ -1,1 +1,1 @@
-launch tmux attach
+launch tmux new -A -s default
