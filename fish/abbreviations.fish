@@ -28,3 +28,5 @@ abbr -a nci "npm ci"
 abbr -a nrd "npm run dev"
 abbr -a nrl "npm run lint"
 abbr -a nrt "npm run test"
+
+abbr -a ta "tmux attach"

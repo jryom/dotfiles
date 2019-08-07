@@ -9,7 +9,6 @@ function! PackInit() abort
   call minpac#add('sheerun/vim-polyglot')
   " editing
   call minpac#add('honza/vim-snippets')
-  call minpac#add('raimondi/delimitmate')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
@@ -18,6 +17,7 @@ function! PackInit() abort
   call minpac#add('vim-airline/vim-airline-themes')
   " misc
   call minpac#add('airblade/vim-rooter')
+  call minpac#add('christoomey/vim-tmux-navigator')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('mbbill/undotree')
@@ -84,6 +84,7 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-snippets',
   \ 'coc-stylelint',
@@ -94,8 +95,8 @@ let g:coc_global_extensions = [
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
-nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>p <Plug>(coc-format)
 vmap <silent> <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
@@ -108,6 +109,12 @@ command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shell
   \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
+
+" tmux navigator
+nnoremap <silent> <c-w>h  :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-w>j  :TmuxNavigateDown<cr>
+nnoremap <silent> <c-w>k  :TmuxNavigateUp<cr>
+nnoremap <silent> <c-w>l  :TmuxNavigateRight<cr>
 
 " vim-workspace
 let g:workspace_autocreate = 1
