@@ -1,5 +1,5 @@
 # launch kitty with tmp file for remote control
-cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/code
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/code --session ~/.config/kitty/startup_session
 
 # focus window
 alt - h : yabai -m window --focus west

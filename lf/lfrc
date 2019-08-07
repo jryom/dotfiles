@@ -10,6 +10,8 @@ set shell sh
 # times.
 set shellopts '-eu'
 
+set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
+
 set hidden
 
 map f $vi $(fzf)
@@ -76,20 +78,19 @@ cmd extract ${{
     esac
 }}
 
-# compress current file or selected files with tar and gunzip
-cmd tar ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    tar czf $1.tar.gz $1
-    rm -rf $1
+cmd tiny ${{
+  lf -remote "send $id set nopreview"
+  lf -remote "send $id set ratios 1"
 }}
 
-# compress current file or selected files with zip
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
+cmd small ${{
+  lf -remote "send $id set ratios 2:3"
+}}
+
+cmd medium ${{
+  lf -remote "send $id set ratios 1:2:3"
+}}
+
+cmd large ${{
+  lf -remote "send $id set ratios 1:2:3:5"
 }}

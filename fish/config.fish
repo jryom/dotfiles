@@ -11,12 +11,17 @@ fish_vi_key_bindings
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
+  gsed --follow-symlinks -i "s+\/base16-.*+/$argv.conf+g" ~/.config/kitty/kitty.conf
+end
+
+function tmuxColors
+  cp -f ~/.tmux/base16-tmux/colors/$argv.conf ~/.tmux/theme.conf
 end
 
 if not functions -q fisher
-    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-    fish -c fisher
+  set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+  curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+  fish -c fisher
 end
 
 if status --is-interactive
@@ -25,10 +30,13 @@ if status --is-interactive
   if [ (dark-mode status) = 'on' ]
     base16-material-palenight
     kittyColors base16-material-palenight
+    tmuxColors base16-material-palenight
   else
     base16-solarized-light
     kittyColors base16-solarized-light
+    tmuxColors base16-solarized-light
   end
+  tmux source-file ~/.tmux/theme.conf
   source ~/.config/fish/abbreviations.fish
 end
 

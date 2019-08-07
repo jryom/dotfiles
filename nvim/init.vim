@@ -18,10 +18,12 @@ function! PackInit() abort
   call minpac#add('vim-airline/vim-airline-themes')
   " misc
   call minpac#add('airblade/vim-rooter')
+  call minpac#add('christoomey/vim-tmux-navigator')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('mbbill/undotree')
   call minpac#add('thaerkh/vim-workspace')
+  call minpac#add('tmux-plugins/vim-tmux-focus-events')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
 endfunction
@@ -45,6 +47,8 @@ set softtabstop=2
 set splitbelow splitright
 set tabstop=2
 set termguicolors
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set undofile
 
 " autocommands
@@ -94,8 +98,8 @@ let g:coc_global_extensions = [
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
-nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>p <Plug>(coc-format)
 vmap <silent> <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
@@ -108,6 +112,12 @@ command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shell
   \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
+
+" tmux navigator
+nnoremap <silent> <c-w>h  :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-w>j  :TmuxNavigateDown<cr>
+nnoremap <silent> <c-w>k  :TmuxNavigateUp<cr>
+nnoremap <silent> <c-w>l  :TmuxNavigateRight<cr>
 
 " vim-workspace
 let g:workspace_autocreate = 1
