@@ -1,9 +1,7 @@
 depcheck
-eslint
 gatsby-cli
 neovim
 npm
 npm-check-updates
 npm-merge-driver
-prettier
 stylelint

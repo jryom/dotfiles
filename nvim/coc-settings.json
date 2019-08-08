@@ -1,6 +1,21 @@
 {
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.displayByAle": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "markdown",
+    "scss",
+    "yaml"
+  ],
+  "diagnostic.errorSign": "█",
+  "diagnostic.hintSign": "█",
+  "diagnostic.infoSign": "█",
+  "diagnostic.level": "warning",
   "diagnostic.virtualText": true,
-  "javascript.validate.enable": false
+  "diagnostic.virtualTextLines": 1,
+  "diagnostic.warningSign": "█",
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "yank.highlight.duration": 80,
 }
