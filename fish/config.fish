@@ -15,7 +15,7 @@ function kittyColors
 end
 
 function tmuxColors
-  gsed --follow-symlinks -i "s+colors/base16-.*+colors/$argv.conf+g" ~/.tmux.conf
+  cp -f ~/.tmux/base16-tmux/colors/$argv.conf ~/.tmux/theme.conf
 end
 
 if not functions -q fisher
@@ -36,6 +36,7 @@ if status --is-interactive
     kittyColors base16-solarized-light
     tmuxColors base16-solarized-light
   end
+  tmux source-file ~/.tmux/theme.conf
   source ~/.config/fish/abbreviations.fish
 end
 
