@@ -2,16 +2,25 @@
   name = Jesper Ryom
   email = jesper@ryom.me
 
+[push]
+  default = current
+
+[rebase]
+  autosquash = true
+
+[color]
+  ui = auto
+
 [core]
   excludesfile = ~/.gitignore_global
   editor = nvim
-  ignoreCase = false
 
 [diff]
   tool = vimdiff
+  colorMoved = zebra
 
 [difftool]
-  prompt = true
+  prompt = false
 
 [merge]
   tool = vimdiff
@@ -19,7 +28,7 @@
   prompt = true
 
 [mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [remote "origin"]
   prune = true

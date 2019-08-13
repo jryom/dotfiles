@@ -9,21 +9,21 @@ function! PackInit() abort
   call minpac#add('sheerun/vim-polyglot')
   " editing
   call minpac#add('honza/vim-snippets')
-  call minpac#add('raimondi/delimitmate')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
   call minpac#add('jesperryom/base16-vim')
+  call minpac#add('jiangmiao/auto-pairs')
+  call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   " misc
   call minpac#add('airblade/vim-rooter')
-  call minpac#add('christoomey/vim-tmux-navigator')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('mbbill/undotree')
+  call minpac#add('rondale-sc/vim-spacejam')
   call minpac#add('thaerkh/vim-workspace')
-  call minpac#add('tmux-plugins/vim-tmux-focus-events')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
 endfunction
@@ -47,9 +47,9 @@ set softtabstop=2
 set splitbelow splitright
 set tabstop=2
 set termguicolors
+set undofile
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-set undofile
 
 " autocommands
 autocmd BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
@@ -61,7 +61,6 @@ autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
 
 " misc
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
-let g:javascript_plugin_jsdoc = 1
 let mapleader=' '
 map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
@@ -69,7 +68,6 @@ nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>u :UndotreeToggle<cr>
 let g:filebeagle_show_hidden=1
-let g:filebeagle_show_line_numbers=0
 
 " airline
 let g:airline#extensions#coc#enabled = 1
@@ -80,7 +78,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_right_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {'dirty':' '}
+let g:airline_symbols = {'dirty':'✱'}
+let g:highlightedyank_highlight_duration = 80
 
 " coc
 let g:coc_global_extensions = [
@@ -94,7 +93,6 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
   \ 'coc-yaml',
-  \ 'coc-yank',
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
@@ -113,14 +111,7 @@ command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shell
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 
-" tmux navigator
-nnoremap <silent> <c-w>h  :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-w>j  :TmuxNavigateDown<cr>
-nnoremap <silent> <c-w>k  :TmuxNavigateUp<cr>
-nnoremap <silent> <c-w>l  :TmuxNavigateRight<cr>
-
 " vim-workspace
-let g:workspace_autocreate = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/'
