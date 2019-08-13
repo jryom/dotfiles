@@ -2,7 +2,6 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",
-    "javascript",
     "json",
     "markdown",
     "scss",
@@ -15,7 +14,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextLines": 1,
   "diagnostic.warningSign": "█",
+  "eslint.autoFixOnSave": true,
   "javascript.validate.enable": false,
   "prettier.eslintIntegration": true,
-  "yank.highlight.duration": 80,
 }

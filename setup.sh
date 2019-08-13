@@ -37,7 +37,7 @@ fi
 echo y | $(brew --prefix)/opt/fzf/install
 
 pip2 install --upgrade pynvim
-pip3 install --upgrade pynvim dotbot vint pip
+pip3 install --upgrade pynvim dotbot pip 
 dotbot -c "$script_path/install.conf.yaml"
 
 if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
@@ -61,6 +61,11 @@ else
 fi
 mkdir -p ~/.config/kitty-base16-themes
 curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
+
+if ! cd ~/.config/kitty-base16-themes; then
+  mkdir -p ~/.config/kitty-base16-themes
+  curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
+fi
 
 tic -x "$script_path/terminfo/xterm-256color-italic.terminfo"
 tic -x "$script_path/terminfo/tmux-256color.terminfo"

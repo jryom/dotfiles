@@ -11,7 +11,7 @@ fish_vi_key_bindings
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
-  gsed --follow-symlinks -i "s+\/base16-.*+/$argv.conf+g" ~/.config/kitty/kitty.conf
+  cp -f ~/.config/kitty-base16-themes/$argv.conf ~/.config/kitty/theme.conf
 end
 
 function tmuxColors
