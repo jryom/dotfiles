@@ -1,4 +1,8 @@
+all-the-package-names
 depcheck
+dockerfile-language-server-nodejs
+elm-format
+@elm-tooling/elm-language-server
 gatsby-cli
 neovim
 npm

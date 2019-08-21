@@ -36,22 +36,12 @@ fi
 
 echo y | $(brew --prefix)/opt/fzf/install
 
-pip2 install --upgrade pynvim
-pip3 install --upgrade pynvim dotbot pip 
+pip3 install --upgrade pynvim dotbot pip pip-review
 dotbot -c "$script_path/install.conf.yaml"
 
 if ! cd ~/.config/nvim/pack/minpac/opt/minpac; then
   mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
   git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
-fi
-
-if ! cd ~/.tmux/plugins/tpm; then
-  mkdir -p ~/.tmux/plugins/tpm
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-if ! cd ~/.tmux/base16-tmux; then
-  git clone https://github.com/jesperryom/base16-tmux ~/.tmux/base16-tmux
 fi
 
 if ! cd ~/.config/base16-shell; then
@@ -66,9 +56,6 @@ if ! cd ~/.config/kitty-base16-themes; then
   mkdir -p ~/.config/kitty-base16-themes
   curl https://codeload.github.com/kdrag0n/base16-kitty/tar.gz/master | tar -C ~/.config/kitty-base16-themes/ -xz --strip=2 base16-kitty-master/colors/
 fi
-
-tic -x "$script_path/terminfo/xterm-256color-italic.terminfo"
-tic -x "$script_path/terminfo/tmux-256color.terminfo"
 
 fnm install 10 && fnm use 10
 npm i -g $(cat "$script_path/npm-global-packages" | tr '\n' ' ')

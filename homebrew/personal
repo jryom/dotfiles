@@ -1,7 +1,4 @@
-brew "ffmpeg"
-
 cask_args force: true
 cask "ableton-live-suite"
 cask "airfoil"
 cask "hazel"
-cask "lingon-x"
