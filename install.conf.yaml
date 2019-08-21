@@ -11,7 +11,7 @@
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
     ~/.config/fish/functions/: fish/functions/*
-    ~/.config/kitty/: kitty/*
+    ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/lf/: lf/*
     ~/.config/nvim/: nvim/*
     ~/.gitconfig:
@@ -19,7 +19,6 @@
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc:
-    ~/.tmux.conf:
-    ~/.update: update.sh
+    ~/.update: update.fish
     ~/.yabairc:
     ~/Library/LaunchAgents: launchd/*

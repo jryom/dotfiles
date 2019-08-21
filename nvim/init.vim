@@ -9,11 +9,11 @@ function! PackInit() abort
   call minpac#add('sheerun/vim-polyglot')
   " editing
   call minpac#add('honza/vim-snippets')
+  call minpac#add('junegunn/vim-easy-align')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
   call minpac#add('jesperryom/base16-vim')
-  call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
@@ -21,8 +21,6 @@ function! PackInit() abort
   call minpac#add('airblade/vim-rooter')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
-  call minpac#add('mbbill/undotree')
-  call minpac#add('rondale-sc/vim-spacejam')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
@@ -41,23 +39,24 @@ set number
 set rtp+=/usr/local/opt/fzf
 set shiftround
 set shiftwidth=2
-set shortmess+=c
+set shortmess+=actFTWI
 set smartindent
 set softtabstop=2
 set splitbelow splitright
+set title titlestring=%t%m\ -\ nvim
 set tabstop=2
 set termguicolors
 set undofile
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
-" autocommands
-autocmd BufRead,BufNewFile .eslintrc,.babelrc,.stylelintrc set ft=json
-autocmd BufEnter * :syntax sync fromstart
-autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
-autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+augroup autocommands
+  autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json
+  autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+  autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd FileType elm setlocal shiftwidth=4 softtabstop=4
+augroup END
 
 " misc
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
@@ -68,6 +67,8 @@ nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>u :UndotreeToggle<cr>
 let g:filebeagle_show_hidden=1
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " airline
 let g:airline#extensions#coc#enabled = 1
@@ -87,6 +88,7 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-snippets',
   \ 'coc-stylelint',
@@ -102,6 +104,7 @@ nmap <silent> <leader>p <Plug>(coc-format)
 vmap <silent> <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>c :CocCommand<cr>
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'

@@ -1,4 +1,4 @@
-function sudo
+function sudo -d "mirror bash's sudo !!"
   if test "$argv" = !!
     eval command sudo $history[1]
   else

@@ -1,21 +1,18 @@
 set -gx EDITOR nvim
-set -gx FZF_DEFAULT_COMMAND "rg --files"
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info:3,pointer:6,marker:6,fg+:13,prompt:3,hl+:4"
-set -gx FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview 'bat --color=always --line-range :500 {}'"
+set -U FZF_LEGACY_KEYBINDINGS 0
 set -gx BAT_THEME "base16"
-set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
+set -gx FZF_FIND_FILE_COMMAND "$FZF_DEFAULT_COMMAND"
+set -U FZF_FIND_FILE_OPTS "--reverse --inline-info"
+set -U FZF_ENABLE_OPEN_PREVIEW 1
+set -gx FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview 'bat --color=always --line-range :500 {}'"
+set -gx FZF_DEFAULT_COMMAND "rg --files"
+set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info:3,pointer:6,marker:6,fg+:13,prompt:3,hl+:4"
 set -gx LC_ALL "en_US.UTF-8"
-
-fish_vi_key_bindings
+set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
   cp -f ~/.config/kitty-base16-themes/$argv.conf ~/.config/kitty/theme.conf
-end
-
-function tmuxColors
-  cp -f ~/.tmux/base16-tmux/colors/$argv.conf ~/.tmux/theme.conf
 end
 
 if not functions -q fisher
@@ -25,18 +22,16 @@ if not functions -q fisher
 end
 
 if status --is-interactive
+  fish_vi_key_bindings
   set BASE16_SHELL "$HOME/.config/base16-shell/"
   source "$BASE16_SHELL/profile_helper.fish"
   if [ (dark-mode status) = 'on' ]
     base16-material-palenight
     kittyColors base16-material-palenight
-    tmuxColors base16-material-palenight
   else
     base16-solarized-light
     kittyColors base16-solarized-light
-    tmuxColors base16-solarized-light
   end
-  tmux source-file ~/.tmux/theme.conf
   source ~/.config/fish/abbreviations.fish
 end
 

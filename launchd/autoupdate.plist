@@ -2,18 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ExitTimeOut</key>
+	<integer>360</integer>
 	<key>Label</key>
 	<string>local.autoupdate</string>
-	<key>Nice</key>
-	<integer>1</integer>
+	<key>ProcessType</key>
+	<string>Background</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>sh</string>
 		<string>-c</string>
-		<string>"$HOME/.update"</string>
+		<string>/usr/local/bin/fish $HOME/.update</string>
 	</array>
-	<key>RunAtLoad</key>
-	<true/>
 	<key>StandardErrorPath</key>
 	<string>/tmp/local.autoupdate.err</string>
 	<key>StandardOutPath</key>

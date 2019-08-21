@@ -1,4 +1,4 @@
-function l
+function l -d "Open lf with width-based no. of columns. cd on quit"
     set tmp (mktemp)
     set columns (tput cols)
     if test $columns -lt 70 
