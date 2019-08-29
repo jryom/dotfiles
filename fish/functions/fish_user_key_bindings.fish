@@ -6,3 +6,5 @@ function fish_user_key_bindings -d "More vim like completion bindings"
     bind -M $mode \cp up-or-search
   end
 end
+
+fzf_key_bindings

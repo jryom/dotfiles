@@ -7,6 +7,7 @@
 - clean: ['~']
 
 - link:
+    ~/.config/bitbar/: bitbar/*
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/fish/fishfile: fish/fishfile
