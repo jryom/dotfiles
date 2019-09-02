@@ -13,10 +13,10 @@ function! PackInit() abort
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
-  call minpac#add('jesperryom/base16-vim')
   call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
+  call minpac#add('lifepillar/vim-solarized8')
   " misc
   call minpac#add('airblade/vim-rooter')
   call minpac#add('jeetsukumaran/vim-filebeagle')
@@ -58,9 +58,13 @@ augroup autocommands
   autocmd FileType elm setlocal shiftwidth=4 softtabstop=4
 augroup END
 
-" misc
+" theme
 if len(systemlist('defaults read -g AppleInterfaceStyle 2>/dev/null')) | set bg=dark | else | set bg=light | endif
-if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
+colorscheme solarized8_flat
+let g:solarized_diffmode="low"
+let g:solarized_extra_hi_groups=1
+
+" misc
 let mapleader=' '
 map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
@@ -71,17 +75,14 @@ let g:filebeagle_show_hidden=1
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:highlightedyank_highlight_duration = 80
+hi link HighlightedyankRegion Search
 
 " airline
 let g:airline#extensions#coc#enabled = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_left_alt_sep = ''
-let g:airline_left_sep = ''
-let g:airline_powerline_fonts = 1
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
 let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {'dirty':'✱'}
+let g:airline_symbols = {'dirty':'✱', 'branch': ''}
+let g:airline_theme='solarized'
 
 " coc
 let g:coc_global_extensions = [
@@ -94,7 +95,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-stylelint',
   \ 'coc-tsserver',
-  \ 'coc-vimlsp',
   \ 'coc-yaml',
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
@@ -106,14 +106,25 @@ vmap <silent> <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>c :CocCommand<cr>
+autocmd VimEnter * hi CocErrorHighlight gui=bold guifg=#dc322f guisp=#dc322f gui=undercurl
+autocmd VimEnter * hi CocWarningHighlight gui=bold guifg=#b58900 guisp=#b58900 gui=undercurl
+autocmd VimEnter * hi CocErrorSign guifg=#dc322f
+autocmd VimEnter * hi CocWarningSign guifg=#b58900
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
-command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --color=always '.shellescape(<q-args>),
+command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>),
   \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
+let g:fzf_colors =  {'fg':['fg','Normal'],'bg':['bg','Normal'],
+  \ 'hl':['fg','IncSearch'],'fg+':['fg','CursorLineNr'],
+  \ 'bg+':['bg', 'CursorLine'],
+  \ 'hl+':['fg','IncSearch'],'info':['fg','PreProc'],
+  \ 'border':['fg','Ignore'],'prompt':['fg','Conditional'],
+  \ 'pointer':['fg','Exception'],'marker':['fg','Title'],
+  \ 'spinner': ['fg', 'Label'],'header':['fg', 'Comment'] }
 
 " vim-workspace
 let g:workspace_autosave = 0

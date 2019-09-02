@@ -11,8 +11,8 @@ set -gx LC_ALL "en_US.UTF-8"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 
 function kittyColors
-  kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty-base16-themes/$argv.conf
-  cp -f ~/.config/kitty-base16-themes/$argv.conf ~/.config/kitty/theme.conf
+  kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/base16-kitty/colors/$argv.conf
+  cp -f ~/.config/base16-kitty/colors/$argv.conf ~/.config/kitty/theme.conf
 end
 
 if not functions -q fisher
@@ -26,8 +26,8 @@ if status --is-interactive
   set BASE16_SHELL "$HOME/.config/base16-shell/"
   source "$BASE16_SHELL/profile_helper.fish"
   if [ (dark-mode status) = 'on' ]
-    base16-material-palenight
-    kittyColors base16-material-palenight
+    base16-solarized-dark
+    kittyColors base16-solarized-dark
   else
     base16-solarized-light
     kittyColors base16-solarized-light

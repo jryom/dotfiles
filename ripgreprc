@@ -3,5 +3,11 @@
 --no-ignore-vcs
 --hidden
 --smart-case
---no-heading
---line-number
+--color=always
+--no-column
+--no-line-number
+
+--colors=path:fg:blue
+
+--colors=match:style:bold
+--colors=match:fg:yellow

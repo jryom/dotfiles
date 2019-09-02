@@ -50,26 +50,26 @@ echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
 pip3 install --upgrade pynvim dotbot pip pip-review >/dev/null && echo "Done!"
-dotbot -c "$script_path/install.conf.yaml" >/dev/null
+# dotbot -c "$script_path/install.conf.yaml" >/dev/null
 
-if ! cd ~/.config/nvim/pack/minpac/opt/minpac >/dev/null; then
+if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
   echo -n "Pulling minpac repo... "
   mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
-  git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+  git clone --quiet https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac >/dev/null
   echo "Done!"
 fi
 
-echo -n "Pulling base16-shell repo... "
-if ! cd ~/.config/base16-shell >/dev/null; then
-  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+if [ ! -d ~/.config/base16-shell ]; then
+  echo -n "Pulling base16-shell repo... "
+  git clone --quiet https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
   echo "Done!"
 else
   cd ~/.config/base16-shell && git pull
 fi
 
-echo -n "Pulling base16-kitty repo... "
-if ! cd ~/.config/base16-kitty >/dev/null; then
-  git clone https://github.com/kdrag0n/base16-kitty.git ~/.config/base16-kitty
+if [ ! -d ~/.config/base16-kitty ]; then
+  echo -n "Pulling base16-kitty repo... "
+  git clone --quiet https://github.com/kdrag0n/base16-kitty.git ~/.config/base16-kitty
   echo "Done!"
 else
   cd ~/.config/base16-kitty && git pull
