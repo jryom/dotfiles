@@ -59,6 +59,7 @@ augroup autocommands
 augroup END
 
 " misc
+if len(systemlist('defaults read -g AppleInterfaceStyle 2>/dev/null')) | set bg=dark | else | set bg=light | endif
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
 let mapleader=' '
 map <leader>s :sort<CR>
@@ -69,6 +70,7 @@ nnoremap <leader>u :UndotreeToggle<cr>
 let g:filebeagle_show_hidden=1
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+let g:highlightedyank_highlight_duration = 80
 
 " airline
 let g:airline#extensions#coc#enabled = 1
@@ -80,7 +82,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%3l/%L:%3v'
 let g:airline_symbols = {'dirty':'✱'}
-let g:highlightedyank_highlight_duration = 80
 
 " coc
 let g:coc_global_extensions = [
