@@ -5,7 +5,7 @@ set -gx FZF_FIND_FILE_COMMAND "$FZF_DEFAULT_COMMAND"
 set -U FZF_FIND_FILE_OPTS "--reverse --inline-info"
 set -U FZF_ENABLE_OPEN_PREVIEW 1
 set -gx FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview 'bat --color=always --line-range :500 {}'"
-set -gx FZF_DEFAULT_COMMAND "rg --files"
+set -gx FZF_DEFAULT_COMMAND "fd --type f"
 set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info:3,pointer:6,marker:6,fg+:13,prompt:3,hl+:4"
 set -gx LC_ALL "en_US.UTF-8"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
