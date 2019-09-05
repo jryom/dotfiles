@@ -58,6 +58,13 @@ augroup autocommands
   autocmd FileType elm setlocal shiftwidth=4 softtabstop=4
 augroup END
 
+" update plugins weekly on launch
+if ! filereadable(expand("~/.local/share/nvim/lastupdate"))
+  \ || readfile(glob("~/.local/share/nvim/lastupdate"))[0] < (localtime() - 604800)
+  execute 'PackUpdate'
+  silent execute '!echo ' . (localtime()) . ' > ~/.local/share/nvim/lastupdate'
+endif
+
 " theme
 if len(systemlist('defaults read -g AppleInterfaceStyle 2>/dev/null')) | set bg=dark | else | set bg=light | endif
 colorscheme solarized8_flat

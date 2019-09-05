@@ -19,7 +19,3 @@ fisher self-update
 echo ''
 echo 'Running pip-review'
 pip-review --auto
-echo ''
-echo 'Running nvim package update functions'
-nvim +PackUpdate +UpdateRemotePlugins +qall
-echo ''
