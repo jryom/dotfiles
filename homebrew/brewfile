@@ -25,6 +25,7 @@ brew "ruby"
 brew "schniz/tap/fnm"
 brew "skhd"
 brew "terminal-notifier"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "yabai"
 
 cask_args force: true

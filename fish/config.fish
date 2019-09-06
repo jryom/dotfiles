@@ -1,3 +1,6 @@
+alias python "/usr/local/bin/python3"
+alias pip "/usr/local/bin/pip3"
+
 set -gx EDITOR nvim
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -gx BAT_THEME "base16"

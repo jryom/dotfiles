@@ -7,11 +7,13 @@
     "scss",
     "yaml"
   ],
+  "python.jediEnabled": false,
   "diagnostic.errorSign": "█",
   "diagnostic.hintSign": "█",
   "diagnostic.infoSign": "█",
   "diagnostic.level": "warning",
   "diagnostic.warningSign": "█",
+  "list.maxHeight": 15,
   "javascript.validate.enable": false,
   "eslint.autoFixOnSave": true,
   "prettier.eslintIntegration": true,
