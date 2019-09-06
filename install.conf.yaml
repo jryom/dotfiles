@@ -8,6 +8,8 @@
 
 - link:
     ~/.askpass: askpass.sh
+    ~/.config/base16-kitty: submodules/base16-kitty
+    ~/.config/base16-shell: submodules/base16-shell
     ~/.config/bitbar/: bitbar/*
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
     ~/.config/fish/config.fish: fish/config.fish

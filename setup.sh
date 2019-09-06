@@ -13,7 +13,6 @@ if spctl --status > /dev/null; then
   echo "Gatekeeper disabled."
 fi
 
-
 echo -n "Checking command line tools installation..."
 if ! type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
    test -d "${xpath}" && test -x "${xpath}"; then
@@ -45,34 +44,26 @@ if [ "$personal" == "y" ]; then
 fi
 echo "Done!"
 
+echo -n "Fetching submodules... "
+git submodule --quiet init
+git submodule --quiet update --remote
+echo "Done!"
+
 echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
 pip3 install --upgrade pynvim dotbot pip pip-review >/dev/null && echo "Done!"
+
+echo -n "Symlinking files... "
 dotbot -c "$script_path/install.conf.yaml" >/dev/null
+echo "Done!"
 
 if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
   echo -n "Pulling minpac repo... "
   mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
   git clone --quiet https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac >/dev/null
   echo "Done!"
-fi
-
-if [ ! -d ~/.config/base16-shell ]; then
-  echo -n "Pulling base16-shell repo... "
-  git clone --quiet https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-  echo "Done!"
-else
-  cd ~/.config/base16-shell && git pull
-fi
-
-if [ ! -d ~/.config/base16-kitty ]; then
-  echo -n "Pulling base16-kitty repo... "
-  git clone --quiet https://github.com/kdrag0n/base16-kitty.git ~/.config/base16-kitty
-  echo "Done!"
-else
-  cd ~/.config/base16-kitty && git pull
 fi
 
 defaults write com.matryer.BitBar pluginsDirectory "~/.config/bitbar"
