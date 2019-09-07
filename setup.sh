@@ -50,7 +50,7 @@ echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
 pip3 install --upgrade pynvim dotbot pip pip-review >/dev/null && echo "Done!"
-# dotbot -c "$script_path/install.conf.yaml" >/dev/null
+dotbot -c "$script_path/install.conf.yaml" >/dev/null
 
 if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
   echo -n "Pulling minpac repo... "
