@@ -90,12 +90,10 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
-  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-snippets',
   \ 'coc-stylelint',
   \ 'coc-tsserver',
-  \ 'coc-yaml',
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)

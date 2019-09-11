@@ -5,6 +5,9 @@ echo ''
 echo 'Running brew upgrade'
 brew upgrade
 echo ''
+echo 'Running brew cask upgrade'
+brew cask upgrade --greedy --force
+echo ''
 echo 'Running brew cleanup'
 brew cleanup
 echo ''
