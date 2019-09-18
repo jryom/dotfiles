@@ -121,7 +121,7 @@ autocmd VimEnter * hi CocWarningSign guifg=#b58900
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
 command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>),
-  \ 1, {'options':'--delimiter : --nth 2..'}, <bang>0)
+  \ 0, {'options':'--delimiter : --nth 3..'}, <bang>0)
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 let g:fzf_colors =  {'fg':['fg','Normal'],'bg':['bg','Normal'],
