@@ -1,6 +1,6 @@
 --glob=!**/{yarn.log,package-lock.json}
 --glob=!**/{node_modules,.git,.next,.undodir,coverage,.cache,dist}/**
---color=always
+--color=auto
 --colors=match:fg:yellow
 --colors=match:style:bold
 --colors=path:fg:blue
