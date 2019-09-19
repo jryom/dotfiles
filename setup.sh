@@ -53,7 +53,7 @@ echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
-pip3 install --upgrade pynvim dotbot pip pip-review >/dev/null && echo "Done!"
+pip3 install --upgrade jedi pynvim dotbot pip pip-review >/dev/null && echo "Done!"
 
 echo -n "Symlinking files... "
 dotbot -c "$script_path/install.conf.yaml" >/dev/null
