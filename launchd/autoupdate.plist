@@ -16,12 +16,7 @@
 	<string>/tmp/local.autoupdate.err</string>
 	<key>StandardOutPath</key>
 	<string>/tmp/local.autoupdate.out</string>
-	<key>StartCalendarInterval</key>
-	<dict>
-		<key>Hour</key>
-		<integer>6</integer>
-		<key>Minute</key>
-		<integer>0</integer>
-	</dict>
+	<key>StartInterval</key>
+	<integer>604800</integer>
 </dict>
 </plist>
