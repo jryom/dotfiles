@@ -13,10 +13,10 @@ function! PackInit() abort
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-surround')
   " ui
+  call minpac#add('gcmt/taboo.vim')
   call minpac#add('jesperryom/base16-vim')
   call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
   " misc
   call minpac#add('airblade/vim-rooter')
   call minpac#add('jeetsukumaran/vim-filebeagle')
@@ -34,9 +34,11 @@ set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
+set noshowcmd
 set nostartofline
 set number
 set rtp+=/usr/local/opt/fzf
+set pumblend=15
 set shiftround
 set shiftwidth=2
 set shortmess+=actFTWI
@@ -72,6 +74,7 @@ if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | en
 " misc
 let mapleader=' '
 map <leader>s :sort<CR>
+map <leader>b :Gblame<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
@@ -80,9 +83,11 @@ let g:filebeagle_show_hidden=1
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:highlightedyank_highlight_duration = 80
+let g:taboo_tab_format = "  %N. %f%m  "
 
 " airline
 let g:airline#extensions#coc#enabled = 1
+let g:airline_theme = "base16_vim"
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_section_z = '%3l/%L:%3v'
 let g:airline_symbols = {'dirty':'✱', 'branch': ''}
