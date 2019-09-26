@@ -74,7 +74,8 @@ if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | en
 " misc
 let mapleader=' '
 map <leader>s :sort<CR>
-map <leader>b :Gblame<CR>
+map j gj
+map k gk
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w

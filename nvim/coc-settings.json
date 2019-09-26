@@ -2,11 +2,14 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",
+    "htmldjango",
     "json",
     "markdown",
+    "python",
     "scss",
     "yaml"
   ],
+  "coc.preferences.formatOnType": true,
   "diagnostic.errorSign": "█",
   "diagnostic.hintSign": "█",
   "diagnostic.infoSign": "█",
@@ -16,6 +19,8 @@
   "javascript.validate.enable": false,
   "eslint.autoFixOnSave": true,
   "prettier.eslintIntegration": true,
+  "python.formatting.provider": "autopep8",
+  "python.linting.flake8Enabled": true,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
