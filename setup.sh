@@ -2,8 +2,6 @@
 trap 'ret=$?; test $ret -ne 0 && printf "Failed!\n" >&2; exit $ret' EXIT
 set -e
 
-read -p 'Is this your personal computer? [y/n] ' personal
-
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # Disable Gatekeeper if active
@@ -30,17 +28,11 @@ if ! command -v brew >/dev/null; then
 fi
 
 echo -n "Looking for missing brew packages... "
-if ! brew bundle check --file="$script_path/homebrew/brewfile" >/dev/null; then
+if ! brew bundle check --file="$script_path/brewfile" >/dev/null; then
   echo "Dependencies missing! Brewing..."
-  brew bundle install --file="$script_path/homebrew/brewfile" --force
+  brew bundle install --file="$script_path/brewfile" --force
   brew services start yabai
   brew services start skhd
-fi
-if [ "$personal" == "y" ]; then
-  if ! brew bundle check --file="$script_path/homebrew/personal" >/dev/null; then
-    echo "More dependencies missing! Brewing some more..."
-    brew bundle install --file="$script_path/homebrew/personal" --force
-  fi
 fi
 echo "Done!"
 
