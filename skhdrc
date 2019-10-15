@@ -40,8 +40,16 @@ shift + alt - left: yabai -m window --display prev; yabai -m display --focus pre
 shift + alt - right:  yabai -m window --display next; yabai -m display --focus next
 
 # move desktop
-shift + ctrl - right: yabai -m space --move next
-shift + ctrl - left:  yabai -m space --move prev
+shift + ctrl - p: test (yabai -m query --spaces --display | jq '.[0].index') \
+                  -lt (yabai -m query --spaces --space | jq '.index') \
+                  && yabai -m space --move prev
+shift + ctrl - n: test (yabai -m query --spaces --display | jq '.[-1].index') \
+                  -gt (yabai -m query --spaces --space | jq '.index') \
+                  && yabai -m space --move next
+
+# send desktop
+shift + ctrl - left: yabai -m space --display prev; yabai -m display --focus prev
+shift + ctrl - right: yabai -m space --display next; yabai -m display --focus next
 
 # focus desktop
 shift + ctrl - h: test (yabai -m query --spaces --display | jq '.[0].index') \

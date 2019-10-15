@@ -72,19 +72,19 @@ if len(systemlist('defaults read -g AppleInterfaceStyle 2>/dev/null')) | set bg=
 if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
 
 " misc
-let mapleader=' '
-map <leader>s :sort<CR>
 map j gj
 map k gk
+let mapleader=' '
+nnoremap <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
-nnoremap <leader>u :UndotreeToggle<cr>
-let g:filebeagle_show_hidden=1
+nnoremap <leader>b :Gblame<cr>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:highlightedyank_highlight_duration = 80
 let g:taboo_tab_format = "  %N. %f%m  "
+let g:filebeagle_show_hidden=1
 
 " airline
 let g:airline#extensions#coc#enabled = 1
