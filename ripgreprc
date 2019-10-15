@@ -1,5 +1,5 @@
 --glob=!**/{yarn.log,package-lock.json}
---glob=!**/{node_modules,.git,.next,.undodir,coverage,.cache,dist}/**
+--glob=!**/{node_modules,.git,.next,.undodir,coverage,.cache,dist,migrations,__pycache__}/**
 --color=auto
 --colors=match:fg:yellow
 --colors=match:style:bold

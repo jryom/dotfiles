@@ -1,8 +1,5 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "html",
-    "htmldjango",
     "json",
     "markdown",
     "python",
@@ -18,6 +15,7 @@
   "list.maxHeight": 15,
   "javascript.validate.enable": false,
   "eslint.autoFixOnSave": true,
+  "html.validate.scripts": true,
   "prettier.eslintIntegration": true,
   "python.formatting.provider": "autopep8",
   "python.linting.flake8Enabled": true,
