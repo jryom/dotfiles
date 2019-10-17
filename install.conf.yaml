@@ -21,7 +21,8 @@
     ~/.gitignore_global:
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
-    ~/.skhdrc:
+    ~/.skhdrc: yabai/skhdrc
     ~/.update: update.fish
-    ~/.yabairc:
+    ~/.yabairc: yabai/yabairc
+    ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/Library/LaunchAgents: launchd/*
