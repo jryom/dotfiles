@@ -51,6 +51,7 @@ set termguicolors
 set undofile
 
 augroup autocommands
+  autocmd BufEnter * :syntax sync fromstart
   autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json
   autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -75,7 +76,7 @@ if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | en
 map j gj
 map k gk
 let mapleader=' '
-nnoremap <leader>s :sort<CR>
+map <leader>s :sort<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
