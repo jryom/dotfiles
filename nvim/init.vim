@@ -10,7 +10,8 @@ function! PackInit() abort
   " editing
   call minpac#add('honza/vim-snippets')
   call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('tpope/vim-commentary')
+  call minpac#add('tomtom/tcomment_vim')
+  call minpac#add('tpope/vim-sleuth')
   call minpac#add('tpope/vim-surround')
   " ui
   call minpac#add('gcmt/taboo.vim')
@@ -28,7 +29,6 @@ endfunction
 
 set confirm
 set cursorline
-set expandtab
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
@@ -36,17 +36,12 @@ set mouse=a
 set noshowmode
 set noshowcmd
 set nostartofline
-set number
 set rtp+=/usr/local/opt/fzf
 set pumblend=15
 set shiftround
-set shiftwidth=2
 set shortmess+=actFTWI
-set smartindent
-set softtabstop=2
 set splitbelow splitright
 set title titlestring=%t%m\ -\ nvim
-set tabstop=2
 set termguicolors
 set undofile
 
@@ -58,7 +53,6 @@ augroup autocommands
   autocmd WinLeave * setlocal nocursorline
   autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
   autocmd BufWritePre * %s/\s\+$//e
-  autocmd FileType elm setlocal shiftwidth=4 softtabstop=4
 augroup END
 
 " update plugins weekly on launch
