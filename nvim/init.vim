@@ -38,12 +38,15 @@ set noshowcmd
 set nostartofline
 set rtp+=/usr/local/opt/fzf
 set pumblend=15
+set shell=/bin/bash
+set signcolumn=yes
 set shiftround
 set shortmess+=actFTWI
 set splitbelow splitright
 set title titlestring=%t%m\ -\ nvim
 set termguicolors
 set undofile
+set updatetime=500
 
 augroup autocommands
   autocmd BufEnter * :syntax sync fromstart
@@ -53,6 +56,7 @@ augroup autocommands
   autocmd WinLeave * setlocal nocursorline
   autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
   autocmd BufWritePre * %s/\s\+$//e
+  autocmd CursorHold * :echo get(b:, 'coc_git_blame', '')
 augroup END
 
 " update plugins weekly on launch
@@ -71,10 +75,10 @@ map j gj
 map k gk
 let mapleader=' '
 map <leader>s :sort<CR>
+map <leader>n :set number!<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
-nnoremap <leader>b :Gblame<cr>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:highlightedyank_highlight_duration = 80

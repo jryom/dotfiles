@@ -15,6 +15,7 @@
   "list.maxHeight": 15,
   "javascript.validate.enable": false,
   "eslint.autoFixOnSave": true,
+  "git.addGBlameToBufferVar": true,
   "html.validate.scripts": true,
   "prettier.eslintIntegration": true,
   "python.formatting.provider": "autopep8",

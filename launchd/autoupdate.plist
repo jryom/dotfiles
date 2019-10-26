@@ -5,7 +5,7 @@
 	<key>Label</key>
 	<string>local.autoupdate</string>
 	<key>ProcessType</key>
-	<string>Background</string>
+	<string>Standard</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>sh</string>
@@ -17,6 +17,6 @@
 	<key>StandardOutPath</key>
 	<string>/tmp/local.autoupdate.out</string>
 	<key>StartInterval</key>
-	<integer>604800</integer>
+	<integer>172800</integer>
 </dict>
 </plist>
