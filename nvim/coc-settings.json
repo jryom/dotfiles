@@ -1,11 +1,4 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "json",
-    "markdown",
-    "python",
-    "scss",
-    "yaml"
-  ],
   "coc.preferences.formatOnType": true,
   "diagnostic.errorSign": "█",
   "diagnostic.hintSign": "█",
@@ -13,13 +6,13 @@
   "diagnostic.level": "warning",
   "diagnostic.warningSign": "█",
   "list.maxHeight": 15,
-  "javascript.validate.enable": false,
   "eslint.autoFixOnSave": true,
   "git.addGBlameToBufferVar": true,
   "html.validate.scripts": true,
   "prettier.eslintIntegration": true,
   "python.formatting.provider": "autopep8",
   "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",

@@ -16,7 +16,6 @@ function! PackInit() abort
   " ui
   call minpac#add('gcmt/taboo.vim')
   call minpac#add('jesperryom/base16-vim')
-  call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('vim-airline/vim-airline')
   " misc
   call minpac#add('airblade/vim-rooter')
@@ -25,6 +24,7 @@ function! PackInit() abort
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
+  call minpac#add('tpope/vim-unimpaired')
 endfunction
 
 set confirm
@@ -38,7 +38,6 @@ set noshowmode
 set noshowcmd
 set nostartofline
 set rtp+=/usr/local/opt/fzf
-set pumblend=15
 set signcolumn=yes
 set shiftround
 set shortmess+=actFTWI
@@ -75,10 +74,10 @@ map j gj
 map k gk
 let mapleader=' '
 map <leader>s :sort<CR>
-map <leader>n :set number!<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
+nnoremap <leader>w :bdelete<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:taboo_tab_format = "  %N. %f%m  "
