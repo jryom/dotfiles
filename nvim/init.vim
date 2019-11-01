@@ -29,6 +29,7 @@ endfunction
 
 set confirm
 set cursorline
+set hidden
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
@@ -38,7 +39,6 @@ set noshowcmd
 set nostartofline
 set rtp+=/usr/local/opt/fzf
 set pumblend=15
-set shell=/bin/bash
 set signcolumn=yes
 set shiftround
 set shortmess+=actFTWI
@@ -81,7 +81,6 @@ nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-let g:highlightedyank_highlight_duration = 80
 let g:taboo_tab_format = "  %N. %f%m  "
 let g:filebeagle_show_hidden=1
 
@@ -119,6 +118,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': 'enew' }
 command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>),
   \ 0, {'options':'--delimiter : --nth 3..'}, <bang>0)
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 
