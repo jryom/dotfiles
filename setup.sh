@@ -22,9 +22,8 @@ echo " OK!"
 
 if ! command -v brew >/dev/null; then
   echo "Installing Homebrew..."
-  curl -fsS \
-    'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-    export PATH="/usr/local/bin:$PATH"
+  curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+  export PATH="/usr/local/bin:$PATH"
 fi
 
 echo -n "Looking for missing brew packages... "
@@ -45,7 +44,8 @@ echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
-sudo pip3 install --upgrade jedi pynvim dotbot pip pip-review >/dev/null && echo "Done!"
+pip3 install --user --upgrade jedi pynvim dotbot pip pip-review >/dev/null && echo "Done!"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 echo -n "Symlinking files... "
 dotbot -c "$script_path/install.conf.yaml" >/dev/null

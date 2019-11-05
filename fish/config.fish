@@ -12,6 +12,8 @@ set -gx FZF_DEFAULT_COMMAND "rg --files"
 set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info:3,pointer:6,marker:6,fg+:13,prompt:3,hl+:4"
 set -gx LC_ALL "en_US.UTF-8"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
+set PATH $HOME/Library/Python/3.7/bin $PATH
+set PATH /usr/local/bin $PATH
 
 function kittyColors
   kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/base16-kitty/colors/$argv.conf
