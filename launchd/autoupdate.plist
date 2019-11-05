@@ -5,7 +5,7 @@
 	<key>Label</key>
 	<string>local.autoupdate</string>
 	<key>ProcessType</key>
-	<string>Standard</string>
+	<string>Background</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>sh</string>
@@ -13,10 +13,15 @@
 		<string>/usr/local/bin/fish $HOME/.update</string>
 	</array>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.autoupdate.err</string>
+	<string>/tmp/autoupdate.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.autoupdate.out</string>
-	<key>StartInterval</key>
-	<integer>172800</integer>
+	<string>/tmp/autoupdate.out</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Weekday</key>
+			<integer>1</integer>
+		</dict>
+	</array>
 </dict>
 </plist>
