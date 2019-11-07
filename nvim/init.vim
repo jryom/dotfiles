@@ -29,6 +29,7 @@ endfunction
 
 set confirm
 set cursorline
+set foldmethod=indent foldlevel=20 foldnestmax=1
 set hidden
 set ignorecase smartcase
 set inccommand=split
@@ -80,10 +81,14 @@ nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
 nnoremap <leader>w :bdelete<CR>
+nnoremap <expr> <leader>af &foldlevel ? 'zM' : 'zR'
+map <leader>f za
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:taboo_tab_format = "  %N. %f%m  "
 let g:filebeagle_show_hidden=1
+let g:filebeagle_suppress_keymaps=1
+map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
 
 " airline
 let g:airline#extensions#coc#enabled = 1
