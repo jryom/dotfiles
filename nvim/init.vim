@@ -74,6 +74,8 @@ map j gj
 map k gk
 let mapleader=' '
 map <leader>s :sort<CR>
+map <leader>w :bwipeout<CR>
+map <leader>q :call DeleteHiddenBuffers()<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap † :tabnew<CR>  | " ALT-t
 nnoremap ∑ :tabclose<CR>| " ALT-w
@@ -126,3 +128,12 @@ let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/'
 let g:workspace_session_disable_on_args = 1
+
+" delete hidden buffers
+function DeleteHiddenBuffers()
+  let tpbl=[]
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    silent execute 'bwipeout' buf
+  endfor
+endfunction
