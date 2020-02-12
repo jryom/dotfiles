@@ -4,8 +4,7 @@ abbr -a dot  "cd ~/code/dotfiles"
 abbr -a sm   "smerge ./ -n"
 abbr -a .    "open ."
 
-abbr -a ls   "exa -lah --git-ignore --group-directories-first --git --color-scale"
-abbr -a ssh  "kitty +kitten ssh"
+abbr -a kssh  "kitty +kitten ssh"
 abbr -a v    "nvim"
 abbr -a vim  "nvim"
 

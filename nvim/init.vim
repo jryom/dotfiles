@@ -95,7 +95,7 @@ let g:airline#extensions#coc#enabled = 1
 let g:airline_theme = "base16_vim"
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {'dirty':'✱', 'branch': ''}
+let g:airline_symbols = {'dirty':'✱ ', 'branch': ''}
 
 " coc
 let g:coc_global_extensions = [

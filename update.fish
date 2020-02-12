@@ -11,7 +11,7 @@ brew       upgrade --fetch-HEAD                  | ts
 
 printf     "\n\nRunning brew cask upgrade...\n"  | ts
 env        SUDO_ASKPASS="$HOME/.askpass" \
-brew       cask upgrade --greedy --force         | ts
+brew       cask upgrade --force         	 | ts
 
 printf     "\n\nRunning brew cleanup...\n"       | ts
 brew       cleanup                               | ts

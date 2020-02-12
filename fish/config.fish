@@ -13,6 +13,7 @@ set -gx FZF_DEFAULT_OPTS "--color=bg+:10,bg:0,spinner:6,hl:4,fg:12,header:4,info
 set -gx LC_ALL "en_US.UTF-8"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.ripgreprc"
 set PATH $HOME/Library/Python/3.7/bin $PATH
+set PATH /usr/local/lib/python3.7/site-packages/pip $PATH
 set PATH /usr/local/bin $PATH
 
 function kittyColors

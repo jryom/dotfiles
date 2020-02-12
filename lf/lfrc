@@ -39,7 +39,7 @@ map X !$f
 
 map ? :doc
 
-map <c-g> quit 
+map <c-g> quit
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
@@ -51,7 +51,7 @@ map O $mimeopen --ask $f
 # text files and a file opener for the rest.
 cmd open ${{
     case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
+        text/* | */json) $EDITOR $fx;;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
