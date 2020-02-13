@@ -15,6 +15,15 @@ shift + cmd - f: yabai -m window --toggle native-fullscreen
              f3: yabai -m space --layout float
              f4: yabai -m space --layout bsp
 
+# toggle opacity
+alt - o: if test (yabai -m config normal_window_opacity) -lt 1; \
+           yabai -m config normal_window_opacity 1; \
+           yabai -m config window_opacity off; \
+         else; \
+           yabai -m config window_opacity on; \
+           yabai -m config normal_window_opacity 0.8; \
+         end
+
 # focus window
 alt - h: yabai -m window --focus west
 alt - j: yabai -m window --focus south
@@ -31,12 +40,12 @@ shift + alt - l: yabai -m window --warp east
 shift + alt - p: test (yabai -m query --spaces --display | jq '.[0].index') \
                   -lt (yabai -m query --spaces --space | jq '.index') \
                   && yabai -m window --space prev && yabai -m space --focus prev
-shift + alt - n: test (yabai -m query --spaces --display | jq '.[-1].index') \
-                  -gt (yabai -m query --spaces --space | jq '.index') \
-                  && yabai -m window --space next && yabai -m space --focus next \
-                  || yabai -m space --create && set index (yabai -m query --spaces --display \
-                  | jq 'map(select(."native-fullscreen" == 0))[-1].index') \
-                  && yabai -m window --space "$index" && yabai -m space --focus "$index"
+shift + alt - n: if test (yabai -m query --spaces --display | jq '.[-1].index') -gt \
+                 (yabai -m query --spaces --space | jq '.index'); \
+                 yabai -m window --space next && yabai -m space --focus next; else; \
+                 yabai -m space --create && set index (yabai -m query --spaces --display \
+                 | jq 'map(select(."native-fullscreen" == 0))[-1].index') \
+                 && yabai -m window --space "$index" && yabai -m space --focus "$index"; end;
 shift + alt - 1: yabai -m window --space  1; yabai -m space --focus 1
 shift + alt - 2: yabai -m window --space  2; yabai -m space --focus 2
 shift + alt - 3: yabai -m window --space  3; yabai -m space --focus 3
