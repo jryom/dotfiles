@@ -7,7 +7,7 @@
 - clean: ['~']
 
 - link:
-    ~/.askpass: askpass.sh
+    ~/.askpass: scripts/askpass.sh
     ~/.config/base16-kitty: submodules/base16-kitty
     ~/.config/base16-shell: submodules/base16-shell
     ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
@@ -22,7 +22,7 @@
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
-    ~/.update: update.fish
+    ~/.update: scripts/update.fish
     ~/.yabairc: yabai/yabairc
     ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/Library/LaunchAgents: launchd/*
