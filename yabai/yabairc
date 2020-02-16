@@ -1,15 +1,19 @@
 yabai -m config auto_balance             on
 yabai -m config layout                   bsp
-yabai -m config top_padding              8
-yabai -m config bottom_padding           8
-yabai -m config left_padding             8
-yabai -m config right_padding            8
-yabai -m config window_gap               8
+yabai -m config top_padding              7
+yabai -m config bottom_padding           7
+yabai -m config left_padding             7
+yabai -m config right_padding            7
+yabai -m config window_gap               7
 yabai -m config window_placement         second_child
 
 yabai -m config window_shadow            float
 yabai -m config window_opacity           on
 yabai -m config normal_window_opacity    0.8
 yabai -m config window_opacity_duration  0.0
+
+yabai -m config window_border_width 3
+yabai -m config active_window_border_color 0xFFFFFFFF
+yabai -m config normal_window_border_color 0x00FFFFFF
 
 yabai -m signal --add event=space_changed action="bash ~/.config/yabai/yabai-destroy_empty_spaces.sh"

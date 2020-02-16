@@ -24,6 +24,13 @@ alt - o: if test (yabai -m config normal_window_opacity) -lt 1; \
            yabai -m config normal_window_opacity 0.8; \
          end
 
+# toggle borders
+alt - b: if test (yabai -m config window_border) = "off"; \
+           yabai -m config window_border on; \
+         else; \
+           yabai -m config window_border off; \
+         end
+
 # focus window
 alt - h: yabai -m window --focus west
 alt - j: yabai -m window --focus south
