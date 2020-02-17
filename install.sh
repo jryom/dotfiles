@@ -58,9 +58,6 @@ if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
   echo "Done!"
 fi
 
-defaults write com.matryer.BitBar pluginsDirectory "~/.config/bitbar"
-defaults write com.matryer.BitBar userConfigDisabled -bool true
-
 echo -n "Installing node... "
 fnm install 10 >/dev/null && fnm use 10 >/dev/null
 
