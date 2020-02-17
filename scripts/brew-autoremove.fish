@@ -1,5 +1,5 @@
-# author @connorworley
 #!/usr/bin/env fish
+# author @connorworley
 
 set -l visited_formulas 'brew-cask'
 
