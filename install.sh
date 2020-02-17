@@ -29,7 +29,7 @@ fi
 echo -n "Looking for missing brew packages... "
 if ! brew bundle check --file="$script_path/brewfile" >/dev/null; then
   echo "Dependencies missing! Brewing..."
-  brew bundle install --file="$script_path/brewfile" --force
+  brew bundle install --file="$script_path/brewfile" --force --no-lock
   brew services start yabai
   brew services start skhd
 fi
