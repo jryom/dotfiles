@@ -5,6 +5,8 @@ cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
 # misc single commands
 shift + cmd - f: yabai -m window --toggle native-fullscreen
         alt - f: yabai -m window --toggle zoom-fullscreen
+        alt - g: yabai -m window --ratio rel:0.1
+        alt - s: yabai -m window --ratio rel:-0.1
         alt - 0: yabai -m space --balance
         alt - r: yabai -m space --rotate 90
         alt - p: yabai -m space --toggle padding; yabai -m space --toggle gap
@@ -73,7 +75,6 @@ shift + ctrl - 5: yabai -m space --focus 5
 shift + ctrl - 6: yabai -m space --focus 6
 
 # create/destroy desktops
-shift + ctrl - x: yabai -m space --destroy
 shift + ctrl - c: yabai -m space --create \
                   && set index (yabai -m query --spaces --display \
                   | jq 'map(select(."native-fullscreen" == 0))[-1].index') \
