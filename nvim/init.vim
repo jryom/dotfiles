@@ -5,26 +5,23 @@ function! PackInit() abort
   packadd minpac
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
+  call minpac#add('airblade/vim-rooter')
+  call minpac#add('gcmt/taboo.vim')
+  call minpac#add('honza/vim-snippets')
+  call minpac#add('jeetsukumaran/vim-filebeagle')
+  call minpac#add('jesperryom/base16-vim')
+  call minpac#add('junegunn/fzf.vim')
+  call minpac#add('junegunn/vim-easy-align')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('sheerun/vim-polyglot')
-  " editing
-  call minpac#add('honza/vim-snippets')
-  call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('tomtom/tcomment_vim')
-  call minpac#add('tpope/vim-sleuth')
-  call minpac#add('tpope/vim-surround')
-  " ui
-  call minpac#add('gcmt/taboo.vim')
-  call minpac#add('jesperryom/base16-vim')
-  call minpac#add('vim-airline/vim-airline')
-  " misc
-  call minpac#add('airblade/vim-rooter')
-  call minpac#add('jeetsukumaran/vim-filebeagle')
-  call minpac#add('junegunn/fzf.vim')
   call minpac#add('thaerkh/vim-workspace')
+  call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
+  call minpac#add('tpope/vim-sleuth')
+  call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
+  call minpac#add('vim-airline/vim-airline')
 endfunction
 
 set confirm
