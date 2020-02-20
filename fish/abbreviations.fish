@@ -21,10 +21,11 @@ abbr -a grh  "git reset --hard"
 abbr -a gs   "git status"
 
 abbr -a dm   "dark-mode; exec fish"
-abbr -a dtl  "lsof -U | grep dtach"
 
 abbr -a nin  "npm install --save-exact"
 abbr -a nci  "npm ci"
 abbr -a nrd  "npm run dev"
 abbr -a nrl  "npm run lint"
 abbr -a nrt  "npm run test"
+
+abbr -a n  "nvim $HOME/Dropbox/notes.md"
