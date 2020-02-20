@@ -22,6 +22,7 @@ brew "ruby"
 brew "schniz/tap/fnm"
 brew "skhd"
 brew "terminal-notifier"
+brew "tldr"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "yabai"
 
@@ -46,5 +47,3 @@ cask "spotmenu"
 cask "sublime-merge"
 cask "sublime-text"
 cask "whatsapp"
-
-mas "Noizio", id: 928871589
