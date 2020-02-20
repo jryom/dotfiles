@@ -3,7 +3,7 @@ cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
               --listen-on unix:/tmp/mykitty --single-instance -d ~/code
 
 # misc single commands
-shift + ctrl - j: yabai -m display --focus recent
+shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + cmd - f:  yabai -m window --toggle native-fullscreen
         alt - f:  yabai -m window --toggle zoom-fullscreen
         alt - g:  yabai -m window --ratio rel:0.1
@@ -78,12 +78,11 @@ shift + alt - 5: yabai -m window --space 5 && yabai -m space --focus 5
 shift + alt - 6: yabai -m window --space 6 && yabai -m space --focus 6
 
 # send window to monitor and follow focus
-shift + alt - left:  yabai -m window --display prev && \
-                     yabai -m display --focus prev && \
-                     yabai -m display --focus last
-shift + alt - right: yabai -m window --display next && \
-                     yabai -m display --focus next && \
-                     yabai -m display --focus last
+shift + alt - m: begin; yabai -m window --display prev && yabai -m display --focus prev; end || \
+                 begin; yabai -m window --display next && yabai -m display --focus next; end
+
+# send desktop to monitor and follow focus
+shift + ctrl - m: yabai -m space --display next || yabai -m space --display prev
 
 # move desktop
 shift + ctrl - p: test (yabai -m query --spaces --display | jq '.[0].index') \
@@ -92,10 +91,6 @@ shift + ctrl - p: test (yabai -m query --spaces --display | jq '.[0].index') \
 shift + ctrl - n: test (yabai -m query --spaces --display | jq '.[-1].index') \
                   -gt (yabai -m query --spaces --space | jq '.index') && \
                   yabai -m space --move next
-
-# send desktop
-shift + ctrl - left:  yabai -m space --display prev && yabai -m display --focus prev
-shift + ctrl - right: yabai -m space --display next && yabai -m display --focus next
 
 # focus desktop
 shift + ctrl - h: test (yabai -m query --spaces --display | jq '.[0].index') -lt \
