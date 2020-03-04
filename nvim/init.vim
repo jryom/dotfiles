@@ -6,7 +6,6 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
   call minpac#add('airblade/vim-rooter')
-  call minpac#add('gcmt/taboo.vim')
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('jesperryom/base16-vim')
@@ -25,8 +24,6 @@ function! PackInit() abort
 endfunction
 
 set confirm
-set cursorline
-set foldmethod=indent foldlevel=20 foldnestmax=1
 set hidden
 set ignorecase smartcase
 set inccommand=split
@@ -34,9 +31,8 @@ set matchpairs+=<:>
 set mouse=a
 set noshowmode
 set noshowcmd
-set nostartofline
 set rtp+=/usr/local/opt/fzf
-set signcolumn=yes
+set signcolumn=yes:1
 set shiftround
 set shortmess+=actFTWI
 set splitbelow splitright
@@ -72,20 +68,17 @@ map j gj
 map k gk
 let mapleader=' '
 map <leader>s :sort<CR>
-map <leader>w :bwipeout<CR>
-map <leader>q :call DeleteHiddenBuffers()<CR>
+map <leader>w :w<CR>
+map <leader>d :bdelete<CR>
+map <leader>t :tabnew<CR>
+map <leader>c :tabclose<CR>
+map <leader>ac :call DeleteHiddenBuffers()<CR>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-nnoremap † :tabnew<CR>  | " ALT-t
-nnoremap ∑ :tabclose<CR>| " ALT-w
-nnoremap <leader>w :bdelete<CR>
-nnoremap <expr> <leader>af &foldlevel ? 'zM' : 'zR'
-map <leader>f za
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-let g:taboo_tab_format = "  %N. %f%m  "
 let g:filebeagle_show_hidden=1
 let g:filebeagle_suppress_keymaps=1
-map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
+map <silent>- <Plug>FileBeagleOpenCurrentBufferDir
 
 " airline
 let g:airline#extensions#coc#enabled = 1
@@ -115,7 +108,6 @@ nmap <silent> <leader>p <Plug>(coc-format-selected)
 xmap <silent> <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>c :CocCommand<cr>
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
