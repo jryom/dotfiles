@@ -44,7 +44,7 @@ shift + alt - j: yabai -m window --warp south
 shift + alt - k: yabai -m window --warp north
 shift + alt - l: yabai -m window --warp east
 
-# send window to desktop and follow focus
+# send window to prev/next space, create new space if first/last index
 shift + alt - p: if test (yabai -m query --spaces --display | jq '.[0].index') -lt \
                  (yabai -m query --spaces --space | jq '.index'); \
                    yabai -m window --space prev && \
@@ -70,6 +70,23 @@ shift + alt - n: if test (yabai -m query --spaces --display | jq '.[-1].index') 
                    yabai -m space --focus "$index"; \
                  end; \
                  yabai -m window --focus last
+
+# send window to new first/last desktop on monitor
+shift + alt - b: yabai -m space --create && \
+                 set query (yabai -m query --spaces --display \
+                 | jq 'map(select(."native-fullscreen" == 0))') && \
+                 set last (echo $query | jq '.[-1].index') && \
+                 set first (echo $query | jq '.[0].index') && \
+                 yabai -m window --space "$last" && \
+                 yabai -m space --focus "$last" && \
+                 yabai -m space --move "$first"
+shift + alt - e: yabai -m space --create && \
+                 set index (yabai -m query --spaces --display \
+                 | jq 'map(select(."native-fullscreen" == 0))[-1].index') && \
+                 yabai -m window --space "$index" && \
+                 yabai -m space --focus "$index"
+
+# send window to desktop and follow focus
 shift + alt - 1: yabai -m window --space 1 && yabai -m space --focus 1
 shift + alt - 2: yabai -m window --space 2 && yabai -m space --focus 2
 shift + alt - 3: yabai -m window --space 3 && yabai -m space --focus 3
@@ -91,6 +108,12 @@ shift + ctrl - p: test (yabai -m query --spaces --display | jq '.[0].index') \
 shift + ctrl - n: test (yabai -m query --spaces --display | jq '.[-1].index') \
                   -gt (yabai -m query --spaces --space | jq '.index') && \
                   yabai -m space --move next
+
+# move desktop to first/last index of monitor
+shift + ctrl - b: yabai -m space --move (yabai -m query --spaces --display \
+                 | jq 'map(select(."native-fullscreen" == 0))[0].index')
+shift + ctrl - e: yabai -m space --move (yabai -m query --spaces --display \
+                 | jq 'map(select(."native-fullscreen" == 0))[-1].index')
 
 # focus desktop
 shift + ctrl - h: test (yabai -m query --spaces --display | jq '.[0].index') -lt \
