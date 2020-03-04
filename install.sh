@@ -44,7 +44,7 @@ echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
-pip3 install --user --upgrade jedi pynvim dotbot pip pip-review >/dev/null && echo "Done!"
+pip3 install --user --upgrade jedi pynvim dotbot docutils pip pip-review >/dev/null && echo "Done!"
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
 echo -n "Symlinking files... "
