@@ -17,15 +17,8 @@ abbr -a gd   "git difftool"
 abbr -a gf   "git fetch --all --prune"
 abbr -a gl   "git pull"
 abbr -a gp   "git push"
-abbr -a grh  "git reset --hard"
 abbr -a gs   "git status"
 
 abbr -a dm   "dark-mode; exec fish"
 
-abbr -a nin  "npm install --save-exact"
-abbr -a nci  "npm ci"
-abbr -a nrd  "npm run dev"
-abbr -a nrl  "npm run lint"
-abbr -a nrt  "npm run test"
-
-abbr -a n  "nvim $HOME/Dropbox/notes.md"
+abbr -a n  "nvim $HOME/Documents/notes.md"
