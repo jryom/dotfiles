@@ -6,6 +6,7 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
   call minpac#add('airblade/vim-rooter')
+  call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('jesperryom/base16-vim')
