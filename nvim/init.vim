@@ -29,18 +29,18 @@ set hidden
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
-set mouse=a
-set noshowmode
 set noshowcmd
+set noshowmode
+set pumblend=10
 set rtp+=/usr/local/opt/fzf
-set signcolumn=yes:1
 set shiftround
 set shortmess+=actFTWI
+set signcolumn=yes:1
 set splitbelow splitright
-set title titlestring=%t%m\ -\ nvim
 set termguicolors
+set title titlestring=%t%m\ -\ nvim
 set undofile
-set updatetime=500
+set updatetime=100
 
 augroup autocommands
   autocmd BufEnter * :syntax sync fromstart
