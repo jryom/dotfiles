@@ -3,26 +3,33 @@ trap "test $status -ne 0 && terminal-notifier -group 'Upgrade script error' \
 
 terminal-notifier -title "Upgrade script" -message "Running upgrade script" -group "Upgrade script"
 
-printf     "\n\nRunning brew update...\n"        | ts
-brew       update                                | ts
+printf     "Running brew update...\n"        | ts
+brew       update
+printf     "\n\n\n"
 
-printf     "\n\nRunning brew upgrade...\n"       | ts
-brew       upgrade --fetch-HEAD                  | ts
+printf     "Running brew upgrade...\n"       | ts
+brew       upgrade --fetch-HEAD
+printf     "\n\n\n"
 
-printf     "\n\nRunning brew cask upgrade...\n"  | ts
+printf     "Running brew cask upgrade...\n"  | ts
 env        SUDO_ASKPASS="$HOME/.askpass" \
-brew       cask upgrade --force         	 | ts
+brew       cask upgrade --force
+printf     "\n\n\n"
 
-printf     "\n\nRunning brew cleanup...\n"       | ts
-brew       cleanup                               | ts
+printf     "Running brew cleanup...\n"       | ts
+brew       cleanup
+printf     "\n\n\n"
 
-printf     "\n\nRunning npm update..."\n         | ts
-npm        update -g                             | ts
+printf     "Running npm update..."\n         | ts
+npm        update -g
+printf     "\n\n\n"
 
-printf     "\n\nRunning fisher self-update...\n" | ts
-fisher     self-update                           | ts
+printf     "Running fisher self-update...\n" | ts
+fisher     self-update
+printf     "\n\n\n"
 
-printf     "\n\nRunning pip-review...\n"         | ts
-pip-review --auto                                | ts
+printf     "Running pip-review...\n"         | ts
+pip-review --auto
 
 terminal-notifier -title "Upgrade script" -message "Finished running upgrade script" -group "Upgrade script"
+printf     "\n\n\n"
