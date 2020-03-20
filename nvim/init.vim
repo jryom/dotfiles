@@ -51,6 +51,7 @@ augroup autocommands
   autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
   autocmd BufWritePre * %s/\s\+$//e
   autocmd CursorHold * :echo get(b:, 'coc_git_blame', '')
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 " update plugins weekly on launch
@@ -96,19 +97,28 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-pairs',
   \ 'coc-prettier',
-  \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-stylelint',
   \ 'coc-tsserver',
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
-nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>p <Plug>(coc-format-selected)
-xmap <silent> <leader>p <Plug>(coc-format-selected)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>r <Plug>(coc-refactor)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
