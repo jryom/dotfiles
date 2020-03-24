@@ -1,4 +1,5 @@
 {
+  "diagnostic-languageserver.filetypes": { "javascript": ["stylelint"] },
   "diagnostic.errorSign": "█",
   "diagnostic.hintSign": "█",
   "diagnostic.infoSign": "█",

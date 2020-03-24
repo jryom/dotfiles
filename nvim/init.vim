@@ -89,6 +89,7 @@ let g:airline_symbols = {'dirty':'✱ ', 'branch': ''}
 
 " coc
 let g:coc_global_extensions = [
+  \ 'coc-diagnostic',
   \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-html',
