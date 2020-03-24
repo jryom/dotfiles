@@ -7,25 +7,13 @@
   "eslint.autoFixOnSave": true,
   "git.addGBlameToBufferVar": true,
   "html.validate.scripts": true,
-  "list.maxHeight": 15,
-  "prettier.eslintIntegration": true,
-  "python.formatting.provider": "autopep8",
-  "python.linting.flake8Enabled": true,
-  "python.linting.pylintEnabled": false,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile", "Dockerfile"],
       "args": ["--stdio"]
     },
-    "elmLS": {
-      "command": "elm-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["elm"],
-      "rootPatterns": ["elm.json"],
-      "initializationOptions": {
-        "elmAnalyseTrigger": "change"
-      }
-    }
+    "list.maxHeight": 15,
+    "prettier.eslintIntegration": true
   }
 }

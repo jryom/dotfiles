@@ -25,7 +25,6 @@ function! PackInit() abort
 endfunction
 
 set confirm
-set hidden
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
@@ -51,7 +50,6 @@ augroup autocommands
   autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
   autocmd BufWritePre * %s/\s\+$//e
   autocmd CursorHold * :echo get(b:, 'coc_git_blame', '')
-  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 " update plugins weekly on launch
@@ -95,10 +93,8 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
-  \ 'coc-pairs',
   \ 'coc-prettier',
   \ 'coc-snippets',
-  \ 'coc-stylelint',
   \ 'coc-tsserver',
   \ ]
 nmap <silent> gd <Plug>(coc-definition)
