@@ -59,7 +59,7 @@ if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
 fi
 
 echo -n "Installing node... "
-fnm install 10 >/dev/null && fnm use 10 >/dev/null
+fnm install 12 >/dev/null && fnm use 12 >/dev/null
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \
