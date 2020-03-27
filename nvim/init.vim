@@ -6,6 +6,7 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
   call minpac#add('airblade/vim-rooter')
+  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('honza/vim-snippets')
@@ -91,6 +92,7 @@ let g:airline_symbols = {'dirty':'✱ ', 'branch': ''}
 
 " coc
 let g:coc_global_extensions = [
+  \ 'coc-css',
   \ 'coc-diagnostic',
   \ 'coc-eslint',
   \ 'coc-html',

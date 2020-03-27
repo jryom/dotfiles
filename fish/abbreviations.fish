@@ -22,3 +22,5 @@ abbr -a gs   "git status"
 abbr -a dm   "dark-mode; exec fish"
 
 abbr -a n  "nvim $HOME/Documents/notes.md"
+
+abbr -a ejectall 'osascript -e "tell application \"Finder\" to eject (every disk whose ejectable is true)"'
