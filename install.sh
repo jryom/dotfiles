@@ -51,13 +51,6 @@ echo -n "Symlinking files... "
 dotbot -c "$script_path/install.conf.yaml" >/dev/null
 echo "Done!"
 
-if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
-  echo -n "Pulling minpac repo... "
-  mkdir -p ~/.config/nvim/pack/minpac/opt/minpack
-  git clone --quiet https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac >/dev/null
-  echo "Done!"
-fi
-
 echo -n "Installing node... "
 eval "$(fnm env --multi)"
 fnm install 12 && fnm use 12 >/dev/null
@@ -76,8 +69,8 @@ antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock show-recents -bool false
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 15
 defaults write com.apple.dock autohide -bool true
 killall Dock
 

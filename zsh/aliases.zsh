@@ -17,4 +17,4 @@ alias \
   l="l" \
   n="vim $HOME/Documents/notes.md" \
   sm="smerge ./ -n" \
-  v="vim"
+  v="nvim"
