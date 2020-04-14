@@ -93,7 +93,6 @@ let g:airline_symbols = {'dirty':'✱ ', 'branch': ''}
 let g:coc_global_extensions = [
   \ 'coc-diagnostic',
   \ 'coc-eslint',
-  \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-prettier',
@@ -109,15 +108,6 @@ nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>r <Plug>(coc-refactor)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
