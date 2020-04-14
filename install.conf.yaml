@@ -20,8 +20,8 @@
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
     ~/.update: scripts/update.sh
+    ~/.vim/coc-settings.json: vim/coc-settings.json
+    ~/.vimrc: vim/vimrc
     ~/.yabairc: yabai/yabairc
     ~/.zshrc: zsh/zshrc.zsh
-    ~/.vimrc: vim/vimrc
-    ~/.vim/coc-settings.json: vim/coc-settings.json
     ~/Library/LaunchAgents: launchd/*

@@ -6,18 +6,22 @@ function! PackInit() abort
   call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
+  call minpac#add('her/central.vim')
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('jesperryom/base16-vim')
   call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('junegunn/vim-easy-align')
+  call minpac#add('junegunn/vim-slash')
+  call minpac#add('markonm/traces.vim')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('sheerun/vim-polyglot')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
+  call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-sleuth')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
@@ -27,28 +31,28 @@ endfunction
 command! PackClean call PackInit() | call minpac#clean()
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 
-if empty(glob('~/.config/nvim/pack/minpac/opt/minpac'))
-  silent !git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+if empty(glob('~/.vim/pack/minpac/opt/minpac'))
+  silent !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
   execute 'PackUpdate'
 endif
 
 set confirm
+set hlsearch
 set ignorecase smartcase
-set inccommand=split
 set matchpairs+=<:>
+set mouse=a
 set noshowcmd
 set noshowmode
 set rtp+=/usr/local/opt/fzf
 set shiftround
 set shortmess+=actFTWI
-set signcolumn=yes:1
 set splitbelow splitright
 set termguicolors
-set title titlestring=%t%m\ -\ nvim
-set undofile
+set title titlestring=%t%m\ -\ vim
+set updatetime=100
 
 augroup autocommands
-  autocmd BufEnter * :syntax sync fromstart
+  autocmd!
   autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json
   autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -57,10 +61,10 @@ augroup autocommands
 augroup END
 
 " update plugins weekly on launch
-if ! filereadable(expand("~/.local/share/nvim/lastupdate"))
-  \ || readfile(glob("~/.local/share/nvim/lastupdate"))[0] < (localtime() - 604800)
+if ! filereadable(expand("~/.vim/lastupdate"))
+  \ || readfile(glob("~/.vim/lastupdate"))[0] < (localtime() - 604800)
   execute 'PackUpdate'
-  silent execute '!echo ' . (localtime()) . ' > ~/.local/share/nvim/lastupdate'
+  silent execute '!echo ' . (localtime()) . ' > ~/.vim/lastupdate'
 endif
 
 " theme
@@ -77,7 +81,6 @@ map <leader>d :bdelete<CR>
 map <leader>t :tabnew<CR>
 map <leader>c :tabclose<CR>
 map <leader>ac :call DeleteHiddenBuffers()<CR>
-nnoremap <silent> <Esc> :nohl<CR><Esc>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:filebeagle_show_hidden=1
@@ -110,7 +113,8 @@ nmap <silent> gn <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>r <Plug>(coc-refactor)
+nmap <silent> <leader>r <Plug>(coc-rename)
+nmap <silent> <leader>R <Plug>(coc-refactor)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -124,11 +128,11 @@ nnoremap <leader>o :Files<cr>
 " vim-workspace
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
-let g:workspace_session_directory = $HOME . '/.local/share/nvim/sessions/'
+let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_session_disable_on_args = 1
 
 " delete hidden buffers
-function DeleteHiddenBuffers()
+function! DeleteHiddenBuffers()
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
