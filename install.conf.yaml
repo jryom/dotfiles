@@ -10,19 +10,17 @@
     ~/.askpass: scripts/askpass.sh
     ~/.config/base16-kitty: submodules/base16-kitty
     ~/.config/base16-shell: submodules/base16-shell
-    ~/.config/fish/abbreviations.fish: fish/abbreviations.fish
-    ~/.config/fish/config.fish: fish/config.fish
-    ~/.config/fish/fishfile: fish/fishfile
-    ~/.config/fish/functions/: fish/functions/*
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/lf/: lf/*
     ~/.config/nvim/: nvim/*
-    ~/.gitconfig:
+    ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/.gitignore_global:
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
-    ~/.update: scripts/update.fish
+    ~/.update: scripts/update.sh
     ~/.yabairc: yabai/yabairc
-    ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
+    ~/.zshrc: zsh/zshrc.zsh
+    ~/.vimrc: vim/vimrc
+    ~/.vim/coc-settings.json: vim/coc-settings.json
     ~/Library/LaunchAgents: launchd/*

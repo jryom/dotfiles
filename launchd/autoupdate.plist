@@ -10,7 +10,7 @@
 	<array>
 		<string>sh</string>
 		<string>-c</string>
-		<string>/usr/local/bin/fish $HOME/.update</string>
+		<string>$HOME/.update</string>
 	</array>
 	<key>StandardErrorPath</key>
 	<string>/tmp/autoupdate.err</string>

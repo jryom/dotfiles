@@ -59,16 +59,26 @@ if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ]; then
 fi
 
 echo -n "Installing node... "
-fnm install 12 >/dev/null && fnm use 12 >/dev/null
+eval "$(fnm env --multi)"
+fnm install 12 && fnm use 12 >/dev/null
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \
   $(cat "$script_path/npm-global-packages" | tr '\n' ' ') >/dev/null
 echo "Done!"
 
-echo "Installation finished!"
-
-if ! grep -q $(which fish) "/etc/shells"; then
-  sudo sh -c "echo $(which fish) >> /etc/shells"
-  chsh -s $(which fish)
+! [[ "$SHELL" = "$(which zsh)" ]] && chsh -s $(which zsh)
+if ! grep -q $(which zsh) "/etc/shells"; then
+  sudo sh -c "echo $(which zsh) >> /etc/shells"
 fi
+
+antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
+
+defaults write com.apple.dock static-only -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write com.apple.dock autohide -bool true
+killall Dock
+
+echo "Installation finished!"
