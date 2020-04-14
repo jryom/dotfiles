@@ -1,12 +1,9 @@
-command! PackClean call PackInit() | call minpac#clean()
-command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
-
 function! PackInit() abort
   packadd minpac
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-  call minpac#add('airblade/vim-rooter')
   call minpac#add('airblade/vim-gitgutter')
+  call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('honza/vim-snippets')
@@ -27,13 +24,20 @@ function! PackInit() abort
   call minpac#add('vim-airline/vim-airline')
 endfunction
 
+command! PackClean call PackInit() | call minpac#clean()
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+
+if empty(glob('~/.config/nvim/pack/minpac/opt/minpac'))
+  silent !git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+  execute 'PackUpdate'
+endif
+
 set confirm
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set noshowcmd
 set noshowmode
-set pumblend=10
 set rtp+=/usr/local/opt/fzf
 set shiftround
 set shortmess+=actFTWI
@@ -42,7 +46,6 @@ set splitbelow splitright
 set termguicolors
 set title titlestring=%t%m\ -\ nvim
 set undofile
-set updatetime=100
 
 augroup autocommands
   autocmd BufEnter * :syntax sync fromstart
@@ -50,9 +53,7 @@ augroup autocommands
   autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
-  autocmd TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
   autocmd BufWritePre * %s/\s\+$//e
-  autocmd CursorHold * :echo get(b:, 'coc_git_blame', '')
 augroup END
 
 " update plugins weekly on launch

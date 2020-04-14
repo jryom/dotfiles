@@ -1,0 +1,16 @@
+[user]
+  name = Jesper Ryom
+  email = jesper@ryom.me
+
+[push]
+  default = current
+
+[color]
+  ui = auto
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
+[remote "origin"]
+  prune = true
