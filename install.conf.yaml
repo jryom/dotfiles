@@ -24,4 +24,5 @@
     ~/.vimrc: vim/vimrc
     ~/.yabairc: yabai/yabairc
     ~/.zshrc: zsh/zshrc.zsh
+    ~/.timemachine-backup: scripts/timemachine-backup.sh
     ~/Library/LaunchAgents: launchd/*
