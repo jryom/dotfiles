@@ -69,8 +69,8 @@ antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock show-recents -bool false
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain KeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write com.apple.dock autohide -bool true
 killall Dock
 

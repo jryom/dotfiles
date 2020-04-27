@@ -1,7 +1,5 @@
 depcheck
-dockerfile-language-server-nodejs
 neovim
 npm
 npm-check-updates
-npm-merge-driver
 pure-prompt
