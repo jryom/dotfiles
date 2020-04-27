@@ -10,13 +10,13 @@ function! PackInit() abort
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('jesperryom/base16-vim')
-  call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('junegunn/vim-slash')
   call minpac#add('markonm/traces.vim')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('sheerun/vim-polyglot')
+  call minpac#add('styled-components/vim-styled-components')
   call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-fugitive')
@@ -80,7 +80,7 @@ map <leader>w :w<CR>
 map <leader>d :bdelete<CR>
 map <leader>t :tabnew<CR>
 map <leader>c :tabclose<CR>
-map <leader>ac :call DeleteHiddenBuffers()<CR>
+map <leader>ca :call DeleteHiddenBuffers()<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:filebeagle_show_hidden=1
