@@ -19,10 +19,10 @@
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
+    ~/.timemachine-backup: scripts/timemachine-backup.sh
     ~/.update: scripts/update.sh
     ~/.vim/coc-settings.json: vim/coc-settings.json
     ~/.vimrc: vim/vimrc
     ~/.yabairc: yabai/yabairc
     ~/.zshrc: zsh/zshrc.zsh
-    ~/.timemachine-backup: scripts/timemachine-backup.sh
     ~/Library/LaunchAgents: launchd/*
