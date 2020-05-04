@@ -1,6 +1,4 @@
-changyuheng/zsh-interactive-cd
 djui/alias-tips
-ohmyzsh/ohmyzsh path:plugins/per-directory-history
 mafredri/zsh-async
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
 sindresorhus/pure
