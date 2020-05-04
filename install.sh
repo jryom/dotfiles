@@ -4,6 +4,14 @@ set -e
 
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock static-only -bool true
+defaults write com.apple.dock tilesize -int 48
+killall Dock
+
 # Disable Gatekeeper if active
 if spctl --status > /dev/null; then
   echo "Gatekeeper enabled, enter password to disable..."
@@ -67,11 +75,10 @@ fi
 
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
-defaults write com.apple.dock static-only -bool true
-defaults write com.apple.dock show-recents -bool false
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-defaults write com.apple.dock autohide -bool true
-killall Dock
+loginitems -a "Bartender 3"
+loginitems -a "Flux"
+loginitems -a "Itsycal"
+loginitems -a "Mail"
+loginitems -a "SpaceId"
 
 echo "Installation finished!"
