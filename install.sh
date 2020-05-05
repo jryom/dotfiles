@@ -81,4 +81,6 @@ loginitems -a "Itsycal"
 loginitems -a "Mail"
 loginitems -a "SpaceId"
 
+defaultbrowser firefox
+
 echo "Installation finished!"
