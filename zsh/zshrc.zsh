@@ -19,21 +19,15 @@ bindkey 'ç' fzf-cd-widget
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
 
-async_init
-async_start_worker theme_worker
-
 if [ "$(dark-mode status)" = 'on' ]; then
   base16_material-palenight
-  async_job theme_worker kittyColors base16-material-palenight
+  (kittyColors base16-material-palenight &)
 else
   base16_solarized-light
-  async_job theme_worker kittyColors base16-solarized-light
+  (kittyColors base16-solarized-light &)
 fi
-
-async_stop_worker theme_worker
 
 eval "$(fnm env --multi)"
 
 autoload -U promptinit; promptinit
 prompt pure
-
