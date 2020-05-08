@@ -4,12 +4,14 @@ set -e
 
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.finder _FXSortFoldersFirst -bool YES
 killall Dock
 
 # Disable Gatekeeper if active
