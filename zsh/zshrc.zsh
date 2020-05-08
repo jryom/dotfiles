@@ -1,5 +1,9 @@
 SCRIPT_PATH=`dirname $(greadlink -f ${(%):-%x})`
 
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
 source "$SCRIPT_PATH/functions.zsh"
 source "$SCRIPT_PATH/aliases.zsh"
 source "$SCRIPT_PATH/env.zsh"

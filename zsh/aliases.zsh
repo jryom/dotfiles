@@ -1,11 +1,25 @@
 alias \
+  -- -='cd -' \
+  .....="cd ../../../.." \
+  ....="cd ../../.." \
+  ...="cd ../.." \
   ..="cd .." \
   dm="dark-mode; zsh" \
   dot="cd $HOME/code/dotfiles" \
   ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'" \
-  kittyColors="kittyColors" \
-  l="l" \
+  ga="git add" \
+  gap="git add --patch" \
+  gl="git pull" \
+  gp="git push" \
+  gs="git status" \
+  ls="ls -lAh" \
   n="vim $HOME/Documents/notes.md" \
+  nci="npm clean-install" \
+  ni="npm install" \
+  nise="npm install --save-exact" \
+  nrd="npm run dev" \
+  ns="npm start" \
+  nt="npm test" \
   sm="smerge ./" \
   v="vim" \
   vimrc="vim $HOME/.vimrc"
