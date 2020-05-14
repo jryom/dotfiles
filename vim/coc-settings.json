@@ -2,11 +2,11 @@
   "diagnostic-languageserver.filetypes": {
     "javascript": "stylelint"
   },
-  "diagnostic.errorSign": "█",
-  "diagnostic.hintSign": "█",
-  "diagnostic.infoSign": "█",
+  "diagnostic.errorSign": "●",
+  "diagnostic.hintSign": "●",
+  "diagnostic.infoSign": "●",
   "diagnostic.level": "warning",
-  "diagnostic.warningSign": "█",
+  "diagnostic.warningSign": "●",
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
   "list.maxHeight": 15,
