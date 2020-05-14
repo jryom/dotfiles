@@ -1,4 +1,5 @@
 export \
+  DOTDIR=`dirname $(dirname $(/usr/local/bin/greadlink -f ${(%):-%x}))` \
   THEME_DARK="material-palenight" \
   THEME_LIGHT="solarized-light"
 

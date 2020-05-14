@@ -5,10 +5,11 @@ alias \
   ...="cd ../.." \
   ..="cd .." \
   dm="dark-mode; zsh" \
-  dot="cd $HOME/code/dotfiles" \
+  dot="cd $DOTDIR" \
   ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'" \
   ga="git add" \
   gap="git add --patch" \
+  gf='git fetch' \
   gl="git pull" \
   gp="git push" \
   gs="git status" \
@@ -22,4 +23,3 @@ alias \
   nt="npm test" \
   sm="smerge ./" \
   v="vim" \
-  vimrc="vim $HOME/.vimrc"

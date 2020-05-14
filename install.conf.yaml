@@ -12,13 +12,11 @@
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/lf/: lf/*
     ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
-    ~/.dark-mode: scripts/dark-mode.zsh
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
-    ~/.update: scripts/update.sh
     ~/.vim/: vim/*
     ~/.vimrc:
     ~/.yabairc: yabai/yabairc

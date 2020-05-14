@@ -6,13 +6,15 @@
 	<false/>
 	<key>Label</key>
 	<string>local.autoupdate</string>
+	<key>Nice</key>
+	<integer>10</integer>
 	<key>ProcessType</key>
 	<string>Background</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>sh</string>
+		<string>zsh</string>
 		<string>-c</string>
-		<string>$HOME/.update</string>
+		<string>$DOTDIR/scripts/update.zsh</string>
 	</array>
 	<key>StandardErrorPath</key>
 	<string>/tmp/autoupdate.err</string>
