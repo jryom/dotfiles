@@ -1,6 +1,12 @@
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
+setopt \
+  auto_cd \
+  auto_pushd \
+  pushd_ignore_dups \
+  pushd_minus \
+  inc_append_history \
+  extended_history \
+  hist_find_no_dups \
+  hist_ignore_all_dups
 
 source "$DOTDIR/zsh/functions.zsh"
 source "$DOTDIR/zsh/aliases.zsh"
