@@ -1,5 +1,5 @@
-#!/bin/bash
-export PATH="/usr/local/bin:$PATH"
+#!/bin/zsh
+PATH="/usr/local/bin:/$HOME/Library/Python/3.7/bin:$PATH"
 eval "$(fnm env --multi)"
 
 trap 'ret=$?; test $ret -ne 0 && terminal-notifier -group "Upgrade script error" -title "Upgrade script" -message "Upgrade script encountered an error! Check the logs for details."; exit $ret' EXIT
@@ -24,8 +24,20 @@ printf "Running brew cleanup...\n"      | ts
 brew cleanup
 printf "\n\n\n"
 
-printf "Running npm update..."\n        | ts
+printf "Running npm update...\n"        | ts
 npm update -g
+printf "\n\n\n"
+
+printf "Updating TLDR local data...\n"  | ts
+tldr --update
+printf "\n\n\n"
+
+printf "Updating antibody plugins...\n" | ts
+antibody bundle < "$DOTDIR/zsh/zsh_plugins" > ~/.zsh_plugins
+printf "\n\n\n"
+
+printf "Updating Python packages...\n"  | ts
+pip-review --auto
 printf "\n\n\n"
 
 terminal-notifier -title "Upgrade script" -message "Finished running upgrade script" -group "Upgrade script"
