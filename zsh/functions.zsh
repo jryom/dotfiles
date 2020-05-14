@@ -23,6 +23,6 @@ function l() {
 }
 
 function kittyColors() {
-  kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/base16-kitty/colors/$argv.conf
-  cp -f ~/.config/base16-kitty/colors/$argv.conf ~/.config/kitty/theme.conf
+  kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/base16-kitty/colors/$argv-256.conf
+  cp -f ~/.config/base16-kitty/colors/$argv-256.conf ~/.config/kitty/theme.conf
 }

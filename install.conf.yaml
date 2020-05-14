@@ -9,10 +9,8 @@
 - link:
     ~/.askpass: scripts/askpass.sh
     ~/.config/base16-kitty: submodules/base16-kitty
-    ~/.config/base16-shell: submodules/base16-shell
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/lf/: lf/*
-    ~/.config/nvim/: nvim/*
     ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
@@ -20,8 +18,8 @@
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
     ~/.update: scripts/update.sh
-    ~/.vim/coc-settings.json: vim/coc-settings.json
-    ~/.vimrc: vim/vimrc
+    ~/.vim/: vim/*
+    ~/.vimrc:
     ~/.yabairc: yabai/yabairc
     ~/.zshrc: zsh/zshrc.zsh
     ~/Library/LaunchAgents: launchd/*

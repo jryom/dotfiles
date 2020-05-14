@@ -9,7 +9,6 @@ function! PackInit() abort
   call minpac#add('her/central.vim')
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
-  call minpac#add('jesperryom/base16-vim')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('junegunn/vim-slash')
@@ -25,7 +24,6 @@ function! PackInit() abort
   call minpac#add('tpope/vim-sleuth')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
-  call minpac#add('vim-airline/vim-airline')
 endfunction
 
 command! PackClean call PackInit() | call minpac#clean()
@@ -35,6 +33,8 @@ if empty(glob('~/.vim/pack/minpac/opt/minpac'))
   silent !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
   execute 'PackUpdate'
 endif
+
+colorscheme base16
 
 set confirm
 set hlsearch
@@ -47,15 +47,13 @@ set rtp+=/usr/local/opt/fzf
 set shiftround
 set shortmess+=actFTWI
 set splitbelow splitright
-set termguicolors
-set title titlestring=%t%m\ -\ vim
 set updatetime=100
 
 augroup autocommands
   autocmd!
   autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json
-  autocmd VimEnter,SessionLoadPost,VimResized * wincmd =
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd SessionLoadPost,VimResized * wincmd =
+  autocmd WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
 augroup END
@@ -67,32 +65,20 @@ if ! filereadable(expand("~/.vim/lastupdate"))
   silent execute '!echo ' . (localtime()) . ' > ~/.vim/lastupdate'
 endif
 
-" theme
-if len(systemlist('defaults read -g AppleInterfaceStyle 2>/dev/null')) | set bg=dark | else | set bg=light | endif
-if filereadable(expand("~/.vimrc_background")) | source ~/.vimrc_background | endif
-
 " misc
 map j gj
 map k gk
 let mapleader=' '
-map <leader>s :sort<CR>
-map <leader>w :w<CR>
 map <leader>d :bdelete<CR>
 map <leader>t :tabnew<CR>
 map <leader>c :tabclose<CR>
 map <leader>ca :call DeleteHiddenBuffers()<CR>
+map <leader>s :call SynStack()<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:filebeagle_show_hidden=1
 let g:filebeagle_suppress_keymaps=1
 map <silent>- <Plug>FileBeagleOpenCurrentBufferDir
-
-" airline
-let g:airline#extensions#coc#enabled = 1
-let g:airline_theme = "base16_vim"
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_section_z = '%3l/%L:%3v'
-let g:airline_symbols = {'dirty':'✱ ', 'branch': ''}
 
 " coc
 let g:coc_global_extensions = [
