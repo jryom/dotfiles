@@ -93,3 +93,8 @@ cmd medium ${{
 cmd large ${{
   lf -remote "send $id set ratios 1:2:3:5"
 }}
+
+cmd on_cd ${{
+  cd "$(pwd)"
+}}
+on_cd
