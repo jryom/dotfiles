@@ -21,12 +21,6 @@ bindkey 'ç' fzf-cd-widget
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
 
-if [ "$(dark-mode status)" = 'on' ]; then
-  (kittyColors base16-material-palenight &)
-else
-  (kittyColors base16-solarized-light &)
-fi
-
 eval "$(fnm env --multi)"
 
 autoload -U promptinit; promptinit

@@ -24,6 +24,8 @@ function! PackInit() abort
   call minpac#add('tpope/vim-sleuth')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
+
+  call minpac#add('vim-scripts/SyntaxAttr.vim')
 endfunction
 
 command! PackClean call PackInit() | call minpac#clean()
