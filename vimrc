@@ -2,10 +2,8 @@ function! PackInit() abort
   packadd minpac
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
-  call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('her/central.vim')
   call minpac#add('honza/vim-snippets')
   call minpac#add('jeetsukumaran/vim-filebeagle')
@@ -16,7 +14,6 @@ function! PackInit() abort
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('sheerun/vim-polyglot')
   call minpac#add('styled-components/vim-styled-components')
-  call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
@@ -38,13 +35,11 @@ endif
 
 colorscheme base16
 
-set confirm
+set hidden
 set hlsearch
 set ignorecase smartcase
 set matchpairs+=<:>
 set mouse=a
-set noshowcmd
-set noshowmode
 set rtp+=/usr/local/opt/fzf
 set shiftround
 set shortmess+=actFTWI
@@ -71,11 +66,7 @@ endif
 map j gj
 map k gk
 let mapleader=' '
-map <leader>d :bdelete<CR>
-map <leader>t :tabnew<CR>
-map <leader>c :tabclose<CR>
-map <leader>ca :call DeleteHiddenBuffers()<CR>
-map <leader>s :call SynStack()<CR>
+map <leader>bd :call DeleteHiddenBuffers()<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 let g:filebeagle_show_hidden=1
@@ -87,6 +78,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-diagnostic',
   \ 'coc-eslint',
+  \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-prettier',
@@ -112,12 +104,6 @@ command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>),
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
-
-" vim-workspace
-let g:workspace_autosave = 0
-let g:workspace_persist_undo_history = 0
-let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-let g:workspace_session_disable_on_args = 1
 
 " delete hidden buffers
 function! DeleteHiddenBuffers()
