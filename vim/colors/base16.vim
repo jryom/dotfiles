@@ -72,7 +72,7 @@ hi MatchParen                 ctermfg=07       ctermbg=NONE cterm=bold
 hi ModeMsg                    ctermfg=02       ctermbg=NONE cterm=NONE
 hi MoreMsg                    ctermfg=02       ctermbg=NONE cterm=NONE
 hi NonText                    ctermfg=08       ctermbg=NONE cterm=NONE
-hi Normal                     ctermfg=07       ctermbg=NONE   cterm=NONE
+hi Normal                     ctermfg=07       ctermbg=NONE cterm=NONE
 hi PMenu                      ctermfg=07       ctermbg=18   cterm=NONE
 hi PMenuSel                   ctermfg=18       ctermbg=07   cterm=NONE
 hi PmenuSbar                  ctermfg=NONE     ctermbg=18   cterm=NONE
@@ -83,7 +83,9 @@ hi Search                     ctermfg=18       ctermbg=03   cterm=NONE
 hi SignColumn                 ctermfg=08       ctermbg=00   cterm=NONE
 hi SpecialKey                 ctermfg=08       ctermbg=NONE cterm=NONE
 hi StatusLine                 ctermfg=20       ctermbg=18   cterm=NONE
-hi StatusLineNC               ctermfg=19       ctermbg=18   cterm=NONE
+hi StatusLineRed              ctermfg=16       ctermbg=18   cterm=bold
+hi StatusLineGit              ctermfg=08       ctermbg=18   cterm=NONE
+hi StatusLineNC               ctermfg=08       ctermbg=18   cterm=NONE
 hi Substitute                 ctermfg=18       ctermbg=03   cterm=NONE
 hi TabLine                    ctermfg=08       ctermbg=18   cterm=NONE
 hi TabLineFill                ctermfg=08       ctermbg=18   cterm=NONE
@@ -245,7 +247,7 @@ hi jsOperator                 ctermfg=04       ctermbg=NONE cterm=NONE
 hi jsRegexpString             ctermfg=06       ctermbg=NONE cterm=NONE
 hi jsReturn                   ctermfg=05       ctermbg=NONE cterm=NONE
 hi jsStatement                ctermfg=05       ctermbg=NONE cterm=NONE
-hi Noise                      ctermfg=08       ctermbg=NONE cterm=NONE
+hi Noise                      ctermfg=20       ctermbg=NONE cterm=NONE
 " hi link jsVariableDef Identifier
 " hi jsStorageClass
 " hi jsSuper
@@ -356,3 +358,7 @@ hi CocHintSign                ctermfg=04       ctermbg=NONE cterm=NONE
 hi CocHighlightText           ctermfg=NONE     ctermbg=NONE cterm=underline
 
 hi HighlightedyankRegion      ctermfg=00       ctermbg=03   cterm=NONE
+
+hi fzf1                       ctermfg=07       ctermbg=18
+hi fzf2                       ctermfg=07       ctermbg=18
+hi fzf3                       ctermfg=07       ctermbg=18

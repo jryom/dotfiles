@@ -1,7 +1,9 @@
 function! PackInit() abort
   packadd minpac
   call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
+  call minpac#init({'progress_open': 'vertical', 'status_open': 'vertical'})
+
+  call minpac#add('airblade/vim-gitgutter')
   call minpac#add('airblade/vim-rooter')
   call minpac#add('alvan/vim-closetag')
   call minpac#add('her/central.vim')
@@ -9,11 +11,12 @@ function! PackInit() abort
   call minpac#add('jeetsukumaran/vim-filebeagle')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('junegunn/vim-slash')
   call minpac#add('markonm/traces.vim')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+  call minpac#add('romainl/vim-cool')
   call minpac#add('sheerun/vim-polyglot')
   call minpac#add('styled-components/vim-styled-components')
+  call minpac#add('thaerkh/vim-workspace')
   call minpac#add('tomtom/tcomment_vim')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-rhubarb')
@@ -21,8 +24,6 @@ function! PackInit() abort
   call minpac#add('tpope/vim-sleuth')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
-
-  call minpac#add('vim-scripts/SyntaxAttr.vim')
 endfunction
 
 command! PackClean call PackInit() | call minpac#clean()
@@ -45,6 +46,9 @@ set shiftround
 set shortmess+=actFTWI
 set splitbelow splitright
 set updatetime=100
+set signcolumn=yes
+set statusline=\ %f\ \ %<
+set statusline+=%#StatusLineRed#%r%#StatusLine#%m%=%l/%L:%-3c
 
 augroup autocommands
   autocmd!
@@ -65,20 +69,19 @@ endif
 " misc
 map j gj
 map k gk
-let mapleader=' '
-map <leader>bd :call DeleteHiddenBuffers()<CR>
+let mapleader = ' '
+map <leader>w :w<CR>
 xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-let g:filebeagle_show_hidden=1
-let g:filebeagle_suppress_keymaps=1
+let g:filebeagle_show_hidden = 1
+let g:filebeagle_suppress_keymaps = 1
 map <silent>- <Plug>FileBeagleOpenCurrentBufferDir
 
 " coc
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-diagnostic',
+  \ 'coc-flow',
   \ 'coc-eslint',
-  \ 'coc-git',
   \ 'coc-html',
   \ 'coc-json',
   \ 'coc-prettier',
@@ -105,11 +108,10 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>i :Rg<cr>
 nnoremap <leader>o :Files<cr>
 
-" delete hidden buffers
-function! DeleteHiddenBuffers()
-  let tpbl=[]
-  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-    silent execute 'bwipeout' buf
-  endfor
-endfunction
+" vim workspace
+let g:workspace_session_disable_on_args = 1
+let g:workspace_autosave = 0
+let g:workspace_persist_undo_history = 0
+let g:workspace_session_directory = $HOME.'/.vim/sessions/'
+nnoremap <leader>s :ToggleWorkspace<CR>
+map <leader>dh :CloseHiddenBuffers<CR>
