@@ -24,6 +24,10 @@ printf "Running brew cleanup...\n"      | ts
 brew cleanup
 printf "\n\n\n"
 
+printf "Updating Node installation...\n"        | ts
+fnm install "lts/*" && fnm use "lts/*" && fnm default $(fnm current)
+printf "\n\n\n"
+
 printf "Running npm update...\n"        | ts
 npm update -g
 printf "\n\n\n"
