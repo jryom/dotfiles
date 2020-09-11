@@ -8,8 +8,7 @@
 
 - link:
     ~/.askpass: scripts/askpass.sh
-    ~/.config/base16-kitty: submodules/base16-kitty
-    ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/kitty/: kitty/*
     ~/.config/lf/: lf/*
     ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/.gitconfig: git/gitconfig
