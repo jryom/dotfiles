@@ -11,6 +11,7 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
 defaults write com.apple.finder _FXSortFoldersFirst -bool YES
 killall Dock
 
@@ -55,7 +56,7 @@ echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 
 echo -n "Installing pip packages... "
 pip3 install --user --upgrade jedi pynvim dotbot docutils pip pip-review >/dev/null && echo "Done!"
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 echo -n "Symlinking files... "
 dotbot -c "$script_path/install.conf.yaml" >/dev/null
@@ -63,7 +64,7 @@ echo "Done!"
 
 echo -n "Installing node... "
 eval "$(fnm env --multi)"
-fnm install 12 && fnm use 12 >/dev/null
+fnm install "latest" && fnm use "latest" && fnm default $(fnm current) >/dev/null
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \
@@ -82,7 +83,5 @@ loginitems -a "Flux"
 loginitems -a "Itsycal"
 loginitems -a "Mail"
 loginitems -a "SpaceId"
-
-defaultbrowser firefox
 
 echo "Installation finished!"
