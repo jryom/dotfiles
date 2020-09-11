@@ -9,8 +9,8 @@ setopt \
   hist_ignore_all_dups
 
 source "$DOTDIR/zsh/functions.zsh"
-source "$DOTDIR/zsh/aliases.zsh"
 source "$DOTDIR/zsh/env.zsh"
+source "$DOTDIR/zsh/aliases.zsh"
 
 bindkey -v
 bindkey '^l' autosuggest-accept
@@ -22,6 +22,7 @@ bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey 'ç' fzf-cd-widget
 
+autoload -U compinit && compinit;
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
 
