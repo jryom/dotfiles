@@ -5,6 +5,9 @@
 [push]
   default = current
 
+[pull]
+  rebase = true
+
 [color]
   ui = auto
 
@@ -14,3 +17,6 @@
 
 [remote "origin"]
   prune = true
+
+[alias]
+  logs  = log --graph --pretty=format:'%C(green)%h%Creset%C(red)%d%Creset %s %C(cyan)(%cr) %C(yellow)<%an>%Creset' --abbrev-commit
