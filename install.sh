@@ -11,8 +11,13 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock tilesize -int 48
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
 defaults write com.apple.finder _FXSortFoldersFirst -bool YES
+defaults write com.apple.finder CreateDesktop 0
+defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 killall Dock
 
 # Disable Gatekeeper if active
