@@ -26,6 +26,8 @@ autoload -U compinit && compinit;
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
 
+zstyle ':completion:*' fzf-search-display true
+
 eval "$(fnm env --multi)"
 
 autoload -U promptinit; promptinit

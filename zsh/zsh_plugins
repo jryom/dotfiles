@@ -4,5 +4,5 @@ ohmyzsh/ohmyzsh path:plugins/gnu-utils
 sindresorhus/pure
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-aloxaf/fzf-tab
+lincheney/fzf-tab-completion path:zsh
 zsh-users/zsh-syntax-highlighting
