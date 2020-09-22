@@ -13,7 +13,6 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
 
 [remote "origin"]
   prune = true

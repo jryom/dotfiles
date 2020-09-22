@@ -1,6 +1,7 @@
 depcheck
 npm
 npm-check-updates
+neovim
 pure-prompt
 typescript
 yarn

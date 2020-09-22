@@ -1,7 +1,5 @@
 {
-  "diagnostic-languageserver.filetypes": {
-    "javascript": "stylelint"
-  },
+  "highlight.colorNames.enable": false,
   "diagnostic.errorSign": "●",
   "diagnostic.hintSign": "●",
   "diagnostic.infoSign": "●",
@@ -10,5 +8,6 @@
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
   "list.maxHeight": 15,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "tsserver.formatOnType": true
 }
