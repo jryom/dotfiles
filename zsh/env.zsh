@@ -1,6 +1,6 @@
 export  BAT_STYLE="full"
 export  DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
-export  EDITOR="$DOTDIR/nv"
+export  EDITOR="$DOTDIR/nvim/nvim"
 export  FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
 export  FZF_THEME_LIGHT='--color=fg:#4b505b,bg:#fafafa,hl:#5079be
 --color=fg+:#4b505b,bg+:#fafafa,hl+:#3a8b84
