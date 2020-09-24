@@ -46,11 +46,6 @@ if ! brew bundle check --file="$script_path/brewfile" >/dev/null; then
 fi
 echo "Done!"
 
-echo -n "Fetching submodules... "
-git submodule --quiet init
-git submodule --quiet update --remote
-echo "Done!"
-
 echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
 

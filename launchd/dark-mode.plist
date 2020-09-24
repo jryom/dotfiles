@@ -2,40 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>KeepAlive</key>
+	<true/>
 	<key>Label</key>
 	<string>local.dark-mode</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>zsh</string>
 		<string>-c</string>
-		<string>$DOTDIR/scripts/dark-mode.zsh</string>
+		<string>$DOTDIR/scripts/dark-notify.zsh</string>
 	</array>
-	<key>StartCalendarInterval</key>
-	<array>
-		<dict>
-			<key>Minute</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>Minute</key>
-			<integer>10</integer>
-		</dict>
-		<dict>
-			<key>Minute</key>
-			<integer>20</integer>
-		</dict>
-		<dict>
-			<key>Minute</key>
-			<integer>30</integer>
-		</dict>
-		<dict>
-			<key>Minute</key>
-			<integer>40</integer>
-		</dict>
-		<dict>
-			<key>Minute</key>
-			<integer>50</integer>
-		</dict>
-	</array>
+	<key>RunAtLoad</key>
+	<true/>
 </dict>
 </plist>
