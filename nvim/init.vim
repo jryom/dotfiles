@@ -28,6 +28,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
+Plug 'asheq/close-buffers.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
@@ -87,7 +88,7 @@ augroup END
 let mapleader = ' '
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 map <leader>w :w<CR>
-map <leader>q :bd<CR>
+nnoremap <silent> <C-q> :Bdelete menu<CR>
 xmap ga <Plug>(EasyAlign)
 let g:closetag_filetypes = 'html,xhtml,jsx,javascript'
 let g:javascript_plugin_flow = 1
@@ -160,4 +161,3 @@ let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME.'/.local/share/nvim/sessions/'
 nnoremap <leader>s :ToggleWorkspace<CR>
-map <leader>dh :CloseHiddenBuffers<CR>
