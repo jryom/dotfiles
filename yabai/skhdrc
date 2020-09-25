@@ -3,6 +3,7 @@ cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
               --listen-on unix:/tmp/mykitty --single-instance -d ~/code
 
 # misc single commands
+shift + ctrl - d: dark-mode
 shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + cmd - f:  yabai -m window --toggle native-fullscreen
         alt - f:  yabai -m window --toggle zoom-fullscreen

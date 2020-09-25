@@ -17,6 +17,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rhysd/git-messenger.vim'
 Plug 'sainnhe/edge'
+Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', {'branch':'main'}
 Plug 'thaerkh/vim-workspace'
@@ -54,9 +55,23 @@ set undofile
 set updatetime=100
 
 " theme
-lua require('dark_notify').run()
-let g:edge_style = 'neon'
-colorscheme edge
+let g:gruvbox_material_sign_column_background = 'none'
+let g:edge_sign_column_background = 'none'
+if len(systemlist('defaults read -g AppleInterfaceStyle'))==1
+  set background=dark
+  colorscheme gruvbox-material
+else
+  set background=light
+  colorscheme edge
+endif
+:lua <<EOF
+  require('dark_notify').run({
+    schemes = {
+      dark  = "gruvbox-material",
+      light = "edge"
+    },
+  })
+EOF
 
 augroup autocommands
   autocmd!
@@ -92,6 +107,7 @@ omap <Right> ]
 xmap <Right> ]
 
 " airline
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z = '%3l/%L:%2v'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
@@ -131,8 +147,7 @@ nmap <silent> <leader>R <Plug>(coc-refactor)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-" let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.8 } }
 command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 nnoremap <leader>b :Buffers<CR>
