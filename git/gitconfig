@@ -19,3 +19,19 @@
 
 [alias]
   logs  = log --graph --pretty=format:'%C(green)%h%Creset%C(red)%d%Creset %s %C(cyan)(%cr) %C(yellow)<%an>%Creset' --abbrev-commit
+
+[core]
+  pager = delta --syntax-theme $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "asi-dark" || echo "ansi-light")
+
+[delta]
+  line-numbers = true
+  side-by-side = true
+
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
+[merge]
+  tool = nvim
+
+[mergetool]
+  prompt = false
