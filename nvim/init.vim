@@ -8,12 +8,15 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'alvan/vim-closetag'
+Plug 'asheq/close-buffers.vim'
+Plug 'bronson/vim-visual-star-search'
 Plug 'cohama/lexima.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
-Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'lambdalisue/fern.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rhysd/git-messenger.vim'
 Plug 'sainnhe/edge'
@@ -28,7 +31,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
-Plug 'asheq/close-buffers.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
@@ -37,6 +39,7 @@ if ! filereadable(expand("~/.config/nvim/lastupdate"))
   silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
 endif
 
+set gdefault
 set hidden
 set hlsearch
 set ignorecase smartcase
@@ -48,7 +51,7 @@ set pumblend=10
 set rtp+=/usr/local/opt/fzf
 set scrolloff=5
 set shiftround
-set shortmess+=actFTWI
+set shortmess+=acWI
 set signcolumn=yes
 set splitbelow splitright
 set termguicolors
@@ -82,22 +85,19 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
 " misc
 let mapleader = ' '
 nnoremap <silent> <Esc> :nohl<CR><Esc>
-map <leader>w :w<CR>
 nnoremap <silent> <C-q> :Bdelete menu<CR>
-xmap ga <Plug>(EasyAlign)
+xnoremap ga <Plug>(EasyAlign)
 let g:closetag_filetypes = 'html,xhtml,jsx,javascript'
 let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
-let g:filebeagle_suppress_keymaps = 1
-let g:filebeagle_show_hidden = 1
-map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
-map <leader>g :GitMessenger<cr>
-nnoremap <leader>l :FuzzySearch<cr>
+nnoremap <silent> - :Fern . -reveal=%<CR>
+nnoremap <leader>g :GitMessenger<cr>
 nmap <Up> <C-y>
 nmap <Down> <C-e>
 nmap <Left> [
@@ -106,6 +106,23 @@ xmap <Left> [
 nmap <Right> ]
 omap <Right> ]
 xmap <Right> ]
+let g:fern#default_hidden = 1
+
+let g:grepper = {}
+let g:grepper.tools = ['rg']
+" substitute current/selected word in file
+nnoremap <Leader>s :%s/<C-r><C-w>//c<Left><Left>
+xnoremap <Leader>s "sy:%s/<C-r>s//c<Left><Left>
+" substitute current/selected d in cwd
+nnoremap <Leader>S
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r><C-w>//c \| update
+  \ <C-Left><C-Left><Left><Left><Left>
+xmap <Leader>S
+  \ "sy \|
+  \ :Grepper <C-r>s<CR>
+  \ :cfdo %s/<C-r>s//c \| update
+  \ <C-Left><C-Left><Left><Left><Left>
 
 " airline
 let g:airline#extensions#whitespace#enabled = 0
@@ -127,18 +144,17 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-prettier',
       \ 'coc-snippets',
-      \ 'coc-stylelintplus',
       \ 'coc-styled-components',
+      \ 'coc-stylelintplus',
       \ 'coc-tsserver',
-      \ 'coc-vimlsp',
       \ 'coc-yaml',
       \ ]
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
-nmap <silent> gp <Plug>(coc-diagnostic-prev)
-nmap <silent> gn <Plug>(coc-diagnostic-next)
 nmap <silent> gh :call CocAction('doHover')<cr>
+nmap <silent> <leader>N <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 nmap <silent> <leader>c :CocCommand<CR>
@@ -152,7 +168,8 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.8 } }
 command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>i :Rg<cr>
+nnoremap <leader>i :Rg <cr>
+xnoremap <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <leader>o :Files<cr>
 
 " vim workspace
@@ -160,4 +177,4 @@ let g:workspace_session_disable_on_args = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME.'/.local/share/nvim/sessions/'
-nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <leader>w :ToggleWorkspace<CR>
