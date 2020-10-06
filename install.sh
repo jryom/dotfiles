@@ -79,9 +79,7 @@ fi
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
 loginitems -a "Bartender 3"
-loginitems -a "Flux"
 loginitems -a "Itsycal"
-loginitems -a "Mail"
 loginitems -a "SpaceId"
 
 echo "Installation finished!"

@@ -17,6 +17,6 @@
 	<key>StandardOutPath</key>
 	<string>/tmp/local.github-notifications.stdout</string>
 	<key>StartInterval</key>
-	<integer>600</integer>
+	<integer>900</integer>
 </dict>
 </plist>

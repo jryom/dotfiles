@@ -13,6 +13,8 @@ alias \
   gp="git push" \
   gr="git reset" \
   gs="git status" \
+  stash="git stash" \
+  pop="git stash pop" \
   ls="ls -lAh" \
   n="$EDITOR $HOME/Documents/notes.md" \
   nci="npm clean-install" \
@@ -25,3 +27,4 @@ alias \
   nu="npm uninstall" \
   sm="smerge ./" \
   v="$EDITOR" \
+  x="exit"

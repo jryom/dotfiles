@@ -17,7 +17,7 @@ printf "\n\n\n"
 
 printf "Running brew cask upgrade...\n" | ts
 env SUDO_ASKPASS="$HOME/.askpass" \
-brew cask upgrade --force
+brew upgrade --cask --force
 printf "\n\n\n"
 
 printf "Running brew cleanup...\n"      | ts

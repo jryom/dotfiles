@@ -12,7 +12,6 @@ export HISTSIZE=1000000
 export HISTTIMEFORMAT="[%F %T] "
 export KEYTIMEOUT=1
 export LC_ALL="en_US.UTF-8"
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export PATH=$HOME/Library/Python/3.8/bin:/usr/local/lib/python3.8/site-packages/pip:/usr/local/bin:$PATH
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export VISUAL="$EDITOR"
