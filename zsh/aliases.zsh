@@ -16,6 +16,7 @@ alias \
   stash="git stash" \
   pop="git stash pop" \
   ls="ls -lAh" \
+  lg="lazygit" \
   n="$EDITOR $HOME/Documents/notes.md" \
   nci="npm clean-install" \
   ni="npm install" \

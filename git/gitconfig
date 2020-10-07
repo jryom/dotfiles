@@ -1,37 +1,38 @@
 [user]
-  name = Jesper Ryom
-  email = jesper@ryom.me
+	name = Jesper Ryom
+	email = jesper@ryom.me
 
 [push]
-  default = current
+	default = current
 
 [pull]
-  rebase = true
-
-[color]
-  ui = auto
+	rebase = true
 
 [core]
-  excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
+	pager = delta --syntax-theme $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "asi-dark" || echo "ansi-light")
 
 [remote "origin"]
-  prune = true
+	prune = true
 
-[alias]
-  logs  = log --graph --pretty=format:'%C(green)%h%Creset%C(red)%d%Creset %s %C(cyan)(%cr) %C(yellow)<%an>%Creset' --abbrev-commit
-
-[core]
-  pager = delta --syntax-theme $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "asi-dark" || echo "ansi-light")
-
-[delta]
-  line-numbers = true
-  side-by-side = true
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
 
 [mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [merge]
-  tool = nvim
+	tool = nvim
 
 [mergetool]
-  prompt = false
+	prompt = false
+
+[delta]
+	line-numbers = true
+	side-by-side = true
+
