@@ -9,28 +9,30 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'alvan/vim-closetag'
 Plug 'asheq/close-buffers.vim'
-Plug 'bronson/vim-visual-star-search'
+Plug 'cocopon/vaffle.vim'
 Plug 'cohama/lexima.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'lambdalisue/fern.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rhysd/git-messenger.vim'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
+Plug 'simnalamburt/vim-mundo'
 Plug 'styled-components/vim-styled-components', {'branch':'main'}
 Plug 'thaerkh/vim-workspace'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-test/vim-test'
+Plug 'wellle/targets.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
@@ -40,16 +42,15 @@ if ! filereadable(expand("~/.config/nvim/lastupdate"))
 endif
 
 set gdefault
-set hidden
 set hlsearch
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
+set number relativenumber
 set pumblend=10
 set rtp+=/usr/local/opt/fzf
-set scrolloff=5
 set shiftround
 set shortmess+=acWI
 set signcolumn=yes
@@ -68,7 +69,7 @@ else
   set background=light
   colorscheme edge
 endif
-:lua <<EOF
+lua << EOF
   require('dark_notify').run({
     schemes = {
       dark  = "gruvbox-material",
@@ -79,58 +80,31 @@ EOF
 
 augroup autocommands
   autocmd!
-  autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json
-  autocmd BufEnter * :syntax sync fromstart
+  autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json5
+  autocmd BufEnter *.js :syntax sync fromstart
   autocmd SessionLoadPost,VimResized * wincmd =
-  autocmd WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
+  autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
-" misc
-let mapleader = ' '
-nnoremap <silent> <Esc> :nohl<CR><Esc>
-nnoremap <silent> <C-q> :Bdelete menu<CR>
-xnoremap ga <Plug>(EasyAlign)
-let g:closetag_filetypes = 'html,xhtml,jsx,javascript'
-let g:javascript_plugin_flow = 1
-let g:javascript_plugin_jsdoc = 1
-nnoremap <silent> - :Fern . -reveal=%<CR>
-nnoremap <leader>g :GitMessenger<cr>
-nmap <Up> <C-y>
-nmap <Down> <C-e>
-nmap <Left> [
-omap <Left> [
-xmap <Left> [
-nmap <Right> ]
-omap <Right> ]
-xmap <Right> ]
-let g:fern#default_hidden = 1
-
-let g:grepper = {}
-let g:grepper.tools = ['rg']
-" substitute current/selected word in file
-nnoremap <Leader>s :%s/<C-r><C-w>//c<Left><Left>
-xnoremap <Leader>s "sy:%s/<C-r>s//c<Left><Left>
-" substitute current/selected d in cwd
-nnoremap <Leader>S
-  \ :Grepper -cword -noprompt<CR>
-  \ :cfdo %s/<C-r><C-w>//c \| update
-  \ <C-Left><C-Left><Left><Left><Left>
-xmap <Leader>S
-  \ "sy \|
-  \ :Grepper <C-r>s<CR>
-  \ :cfdo %s/<C-r>s//c \| update
-  \ <C-Left><C-Left><Left><Left><Left>
-
 " airline
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_section_z = '%3l/%L:%2v'
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_inactive_collapse = 1
+let g:airline_powerline_fonts = 1
+let g:airline_section_z = '%3l/%L:%2v'
+let g:airline_skip_empty_sections = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {'dirty':'!'}
 endif
@@ -149,32 +123,94 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-yaml',
       \ ]
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
-nmap <silent> gh :call CocAction('doHover')<cr>
-nmap <silent> <leader>N <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>f <Plug>(coc-format)
-nmap <silent> <leader>a <Plug>(coc-codeaction)
-nmap <silent> <leader>c :CocCommand<CR>
-vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>r <Plug>(coc-rename)
-nmap <silent> <leader>R <Plug>(coc-refactor)
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.8 } }
 command! -bang -nargs=* Rg call fzf#vim#grep('rg '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>i :Rg <cr>
-xnoremap <leader>i "fy :Rg <C-R>f<cr>
-nnoremap <leader>o :Files<cr>
 
 " vim workspace
 let g:workspace_session_disable_on_args = 1
 let g:workspace_autosave = 0
 let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME.'/.local/share/nvim/sessions/'
-nnoremap <leader>w :ToggleWorkspace<CR>
+
+" misc
+let g:closetag_filetypes = 'html,xhtml,jsx,javascript'
+let g:grepper = { "tools": ['rg'] }
+let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
+let g:mundo_preview_bottom = 1
+let g:mundo_verbose_graph = 0
+let g:vaffle_show_hidden_files = 1
+let test#strategy = "kitty"
+
+" keymaps
+" misc
+let mapleader = ' '
+nnoremap <silent> <leader> w :w<cr>
+nnoremap <silent> dm :execute 'delmarks '.nr2char(getchar())<cr>
+nnoremap <silent> <Esc> :nohl<CR><Esc>
+nnoremap <silent> <C-t> :tabnew %<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+" unimpaired mappings that work on non-US kb
+nmap <Left> [
+omap <Left> [
+xmap <Left> [
+nmap <Right> ]
+omap <Right> ]
+xmap <Right> ]
+
+nnoremap <leader>g :G<cr>
+xnoremap <leader>g :Gclog<cr>
+nnoremap <silent> - :call vaffle#init(expand('%'))<CR>
+nnoremap <silent> <c-Q> :Bdelete menu<CR>
+xnoremap ga <Plug>(EasyAlign)
+nnoremap <leader>tw :ToggleWorkspace<CR>
+nnoremap <leader>u :MundoToggle<CR>
+
+" coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
+nmap <silent> gh :call CocAction('doHover')<cr>
+nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>f <Plug>(coc-format)
+nmap <silent> <leader>c :CocCommand<CR>
+nmap <silent> <leader>a <Plug>(coc-codeaction)
+vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+
+" fzf
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>i :Rg <cr>
+xnoremap <leader>i "fy :Rg <C-R>f<cr>
+nnoremap <leader>m :Marks<cr>
+nnoremap <leader>o :Files<cr>
+nnoremap <leader>q :History:<cr>
+nnoremap <leader>/ :BLines<cr>
+nnoremap <leader>G :BCommits<cr>
+
+" vim-grepper
+" substitute current/selected word in file
+nnoremap <Leader>s :%s/<C-r><C-w>//c <Left><Left><Left>
+xnoremap <Leader>s "sy:%s/<C-r>s//c <Left><Left><Left>
+" substitute current/selected d in cwd
+nnoremap <Leader>S
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r><C-w>//c \| update
+  \ <C-Left><C-Left><Left><Left><Left>
+xmap <Leader>S
+  \ "sy \|
+  \ :Grepper <C-r>s<CR>
+  \ :cfdo %s/<C-r>s//c \| update
+  \ <C-Left><C-Left><Left><Left><Left>
