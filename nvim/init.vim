@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
-Plug 'alvan/vim-closetag'
 Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
 Plug 'cohama/lexima.vim'
@@ -57,7 +56,7 @@ set signcolumn=yes
 set splitbelow splitright
 set termguicolors
 set undofile
-set updatetime=100
+set updatetime=200
 
 " theme
 let g:gruvbox_material_sign_column_background = 'none'
@@ -89,14 +88,13 @@ augroup autocommands
 augroup END
 
 " airline
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#branch#displayed_head_limit = 20
+let g:airline#extensions#branch#format = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_count = 0
-let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#whitespace#enabled = 0
@@ -137,7 +135,6 @@ let g:workspace_persist_undo_history = 0
 let g:workspace_session_directory = $HOME.'/.local/share/nvim/sessions/'
 
 " misc
-let g:closetag_filetypes = 'html,xhtml,jsx,javascript'
 let g:grepper = { "tools": ['rg'] }
 let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
@@ -153,23 +150,6 @@ nnoremap <silent> <leader> w :w<cr>
 nnoremap <silent> dm :execute 'delmarks '.nr2char(getchar())<cr>
 nnoremap <silent> <Esc> :nohl<CR><Esc>
 nnoremap <silent> <C-t> :tabnew %<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-" unimpaired mappings that work on non-US kb
-nmap <Left> [
-omap <Left> [
-xmap <Left> [
-nmap <Right> ]
-omap <Right> ]
-xmap <Right> ]
-
 nnoremap <leader>g :G<cr>
 xnoremap <leader>g :Gclog<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<CR>
@@ -178,8 +158,20 @@ xnoremap ga <Plug>(EasyAlign)
 nnoremap <leader>tw :ToggleWorkspace<CR>
 nnoremap <leader>u :MundoToggle<CR>
 
+" airline
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
 " coc
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gtd <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
 nmap <silent> gh :call CocAction('doHover')<cr>
@@ -199,6 +191,14 @@ nnoremap <leader>o :Files<cr>
 nnoremap <leader>q :History:<cr>
 nnoremap <leader>/ :BLines<cr>
 nnoremap <leader>G :BCommits<cr>
+
+" unimpaired
+nmap <Left> [
+omap <Left> [
+xmap <Left> [
+nmap <Right> ]
+omap <Right> ]
+xmap <Right> ]
 
 " vim-grepper
 " substitute current/selected word in file

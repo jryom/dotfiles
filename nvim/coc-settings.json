@@ -7,7 +7,6 @@
   "diagnostic.warningSign": "●",
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
-  "list.maxHeight": 15,
   "prettier.eslintIntegration": true,
   "tsserver.formatOnType": true
 }
