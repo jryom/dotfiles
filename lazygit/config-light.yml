@@ -12,13 +12,10 @@ gui:
   skipunstagelinewarning: false
   theme:
     lighttheme: true
-    activeBorderColor:
-      - default
+    ActiveBorderColor:
       - bold
-    inactiveBorderColor:
+    InactiveBorderColor:
       - black
-    selectedLineBgColor:
-      - default
 
 startuppopupversion: 1
-confirmOnQuit: true
+quitOnTopLevelReturn: true

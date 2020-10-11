@@ -20,5 +20,4 @@
     ~/.yabairc: yabai/yabairc
     ~/.zshenv: zsh/zshenv.zsh
     ~/.zshrc: zsh/zshrc.zsh
-    ~/Library/Application Support/jesseduffield/lazygit/config.yml: lazygit/config.yml
     ~/Library/LaunchAgents: launchd/*

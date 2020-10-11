@@ -10,7 +10,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = delta --syntax-theme $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "asi-dark" || echo "ansi-light")
+	pager = delta
 
 [remote "origin"]
 	prune = true
@@ -22,6 +22,11 @@
 	interactive = auto
 	ui = true
 	pager = true
+
+[diff]
+	algorithm = patience
+	context = 8
+	indentHeuristic = true
 
 [mergetool "nvim"]
 	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
@@ -35,4 +40,4 @@
 [delta]
 	line-numbers = true
 	side-by-side = true
-
+	syntax-theme = $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "OneHalfDark" || echo "OneHalfLight")
