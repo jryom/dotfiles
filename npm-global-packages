@@ -1,7 +1,8 @@
 depcheck
+neovim
 npm
 npm-check-updates
-neovim
 pure-prompt
+trash-cli
 typescript
 yarn

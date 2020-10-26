@@ -1,3 +1,5 @@
+# vi: ft=zsh
+
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell zsh
 
@@ -12,35 +14,17 @@ set shellopts '-eu:--shwordsplit'
 set ifs "\n"
 set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
 
-map f $vi $(fzf)
-
 set hidden
-set color256
 set drawbox
 set wrapscroll
-
 set incsearch
-
 set previewer ~/.config/lf/pv.sh
-map i $~/.config/lf/pv.sh $f | less -R
-
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
-set ifs "\n"
-
-# use enter for shell commands
-map <enter> shell
 
 # execute current file (must be executable)
 map x $$f
 map X !$f
 
 map ? :doc
-
-map <c-g> quit
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
@@ -60,7 +44,7 @@ cmd open ${{
 cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 map r push :rename<space>
 
-cmd trash %set -f; mv $fx ~/.trash
+cmd trash %set -f; trash $fx
 
 map <delete> trash
 
@@ -80,8 +64,3 @@ cmd medium ${{
 cmd large ${{
   lf -remote "send $id set ratios 1:2:3:5"
 }}
-
-cmd on_cd ${{
-  cd "$(pwd)"
-}}
-on_cd

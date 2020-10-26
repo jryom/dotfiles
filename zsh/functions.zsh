@@ -1,15 +1,17 @@
 function l() {
   tmp="$(mktemp)"
   columns="$(tput cols)"
-  if [ $columns -lt 70 ]; then
-    lf -command "tiny" -last-dir-path="$tmp" "$@"
-  elif [ $columns -lt 100 ]; then
-    lf -command "small" -last-dir-path="$tmp" "$@"
-  elif [ $columns -lt 200 ]; then
-    lf -command "medium" -last-dir-path="$tmp" "$@"
-  else
-    lf -command "large" -last-dir-path="$tmp" "$@"
+  size="tiny"
+
+  if [ $columns -gt 200 ]; then
+    size="large"
+  elif [ $columns -gt 100 ]; then
+    size="medium"
+  elif [ $columns -gt 80 ]; then
+    size="small"
   fi
+
+  lf -command "$size" -last-dir-path="$tmp"
 
   if [ -f "$tmp" ]; then
     dir="$(cat "$tmp")"
