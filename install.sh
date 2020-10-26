@@ -63,7 +63,7 @@ dotbot -c "$script_path/install.conf.yaml" >/dev/null
 echo "Done!"
 
 echo -n "Installing node... "
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 fnm install "latest" && fnm use "latest" && fnm default $(fnm current) >/dev/null
 
 echo -n "Installing global NPM packages... "

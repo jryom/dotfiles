@@ -1,6 +1,6 @@
 #!/bin/zsh
 PATH="/usr/local/bin:/$HOME/Library/Python/3.7/bin:$PATH"
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 
 trap 'ret=$?; test $ret -ne 0 && terminal-notifier -group "Upgrade script error" -title "Upgrade script" -message "Upgrade script encountered an error! Check the logs for details."; exit $ret' EXIT
 set -e
@@ -24,8 +24,8 @@ printf "Running brew cleanup...\n"      | ts
 brew cleanup
 printf "\n\n\n"
 
-printf "Updating Node installation...\n"        | ts
-fnm install "lts/*" && fnm use "lts/*" && fnm default $(fnm current)
+printf "Updating Node installation...\n"     | ts
+fnm install "latest" && fnm use "latest" && fnm default $(fnm current)
 printf "\n\n\n"
 
 printf "Running npm update...\n"        | ts

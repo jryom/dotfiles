@@ -28,7 +28,7 @@ source ~/.zsh_plugins
 
 zstyle ':completion:*' fzf-search-display true
 
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 
 autoload -U promptinit; promptinit
 prompt pure
