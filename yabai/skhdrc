@@ -3,6 +3,7 @@
 # launch kitty with tmp file for remote control
 cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
               --listen-on unix:/tmp/mykitty --single-instance -d ~/code
+cmd - y: brew services restart yabai; brew services restart skhd
 
 # misc single commands
 shift + ctrl - d: dark-mode
@@ -30,10 +31,10 @@ alt - t: if [[ "$(yabai -m config normal_window_opacity)" -lt 1 ]]; then \
         fi
 
 # focus window
-alt - h: yabai -m window --focus west
-alt - j: yabai -m window --focus south
-alt - k: yabai -m window --focus north
-alt - l: yabai -m window --focus east
+alt - h: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.prev || echo west)
+alt - j: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.next || echo south)
+alt - k: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.next || echo north)
+alt - l: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.next || echo east)
 
 # move window
 shift + alt - h: yabai -m window --warp west
