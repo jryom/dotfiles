@@ -1,3 +1,5 @@
+# vi: ft=config
+
 # launch kitty with tmp file for remote control
 cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
               --listen-on unix:/tmp/mykitty --single-instance -d ~/code

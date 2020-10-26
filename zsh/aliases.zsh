@@ -1,5 +1,6 @@
 alias \
   -- -="cd -" \
+  cl="clear" \
   code="cd $HOME/code" \
   dot="cd $DOTDIR" \
   ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'" \
@@ -13,9 +14,10 @@ alias \
   gp="git push" \
   gr="git reset" \
   gs="git status" \
+  g="lazygit" \
   stash="git stash" \
   pop="git stash pop" \
-  ls="ls -lAh" \
+  ls="gls --almost-all --color --group-directories-first --human-readable -o" \
   lg="lazygit" \
   n="$EDITOR $HOME/Documents/notes.md" \
   nci="npm clean-install" \
@@ -27,5 +29,7 @@ alias \
   nt="npm test" \
   nu="npm uninstall" \
   sm="smerge ./" \
+  so="source ~/.zshrc; clear" \
+  up="zsh $DOTDIR/scripts/update.zsh" \
   v="$EDITOR" \
   x="exit"

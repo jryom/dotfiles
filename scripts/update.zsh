@@ -7,20 +7,20 @@ set -e
 
 terminal-notifier -title "Upgrade script" -message "Running upgrade script" -group "Upgrade script"
 
-printf "Running brew update...\n"       | ts
+printf "Running brew update...\n"            | ts
 brew update
 printf "\n\n\n"
 
-printf "Running brew upgrade...\n"      | ts
+printf "Running brew upgrade...\n"           | ts
 brew upgrade --fetch-HEAD
 printf "\n\n\n"
 
-printf "Running brew cask upgrade...\n" | ts
+printf "Running brew cask upgrade...\n"      | ts
 env SUDO_ASKPASS="$HOME/.askpass" \
 brew upgrade --cask --force
 printf "\n\n\n"
 
-printf "Running brew cleanup...\n"      | ts
+printf "Running brew cleanup...\n"           | ts
 brew cleanup
 printf "\n\n\n"
 
@@ -28,19 +28,20 @@ printf "Updating Node installation...\n"     | ts
 fnm install "latest" && fnm use "latest" && fnm default $(fnm current)
 printf "\n\n\n"
 
-printf "Running npm update...\n"        | ts
-npm update -g
+printf "Installing global NPM packages...\n" | ts
+npm install -g \
+  $(cat "$DOTDIR/npm-global-packages" | tr '\n' ' ') >/dev/null
 printf "\n\n\n"
 
-printf "Updating TLDR local data...\n"  | ts
+printf "Updating TLDR local data...\n"       | ts
 tldr --update
 printf "\n\n\n"
 
-printf "Updating antibody plugins...\n" | ts
+printf "Updating antibody plugins...\n"      | ts
 antibody bundle < "$DOTDIR/zsh/zsh_plugins" > ~/.zsh_plugins
 printf "\n\n\n"
 
-printf "Updating Python packages...\n"  | ts
+printf "Updating Python packages...\n"       | ts
 pip-review --auto
 printf "\n\n\n"
 
