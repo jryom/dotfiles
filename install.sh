@@ -1,8 +1,11 @@
 #!/bin/bash
+
 trap 'ret=$?; test $ret -ne 0 && printf "Failed!\n" >&2; exit $ret' EXIT
 set -e
 
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+source "$script_path/zsh/env.zsh"
 
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
@@ -64,7 +67,7 @@ echo "Done!"
 
 echo -n "Installing node... "
 eval "$(fnm env)"
-fnm install "latest" && fnm use "latest" && fnm default $(fnm current) >/dev/null
+fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current) >/dev/null
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \

@@ -1,5 +1,8 @@
 #!/bin/zsh
+
 PATH="/usr/local/bin:/$HOME/Library/Python/3.7/bin:$PATH"
+source "$DOTDIR/zsh/env.zsh"
+
 eval "$(fnm env)"
 
 trap 'ret=$?; test $ret -ne 0 && terminal-notifier -group "Upgrade script error" -title "Upgrade script" -message "Upgrade script encountered an error! Check the logs for details."; exit $ret' EXIT
@@ -25,7 +28,7 @@ brew cleanup
 printf "\n\n\n"
 
 printf "Updating Node installation...\n"     | ts
-fnm install "latest" && fnm use "latest" && fnm default $(fnm current)
+fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current)
 printf "\n\n\n"
 
 printf "Installing global NPM packages...\n" | ts
