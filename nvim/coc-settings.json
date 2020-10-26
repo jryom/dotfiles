@@ -6,6 +6,7 @@
   "diagnostic.level": "warning",
   "diagnostic.warningSign": "●",
   "eslint.autoFixOnSave": true,
+  "git.showCommitInFloating": true,
   "html.validate.scripts": true,
   "prettier.eslintIntegration": true,
   "tsserver.formatOnType": true
