@@ -1,20 +1,20 @@
 git:
   paging:
     colorArg: always
-    pager: diff-so-fancy
-    # https://github.com/jesseduffield/lazygit/issues/893
-    # pager: delta --24-bit-color=never
+    pager: delta --24-bit-color=never --paging=never
   pull:
     mode: 'rebase'
 
 gui:
+  sidePanelWidth: 0.25
   skipstashwarning: true
   skipunstagelinewarning: false
   theme:
-    lighttheme: true
-    ActiveBorderColor:
+    lightTheme: true
+    activeBorderColor:
+      - black
       - bold
-    InactiveBorderColor:
+    inactiveBorderColor:
       - black
 
 startuppopupversion: 1
