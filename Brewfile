@@ -55,3 +55,5 @@ cask "mullvadvpn"
 cask "spaceid"
 cask "spotify"
 cask "spotmenu"
+
+mas "NextDNS", id: 1464122853

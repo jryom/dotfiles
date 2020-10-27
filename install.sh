@@ -79,6 +79,11 @@ if ! grep -q $(which zsh) "/etc/shells"; then
   sudo sh -c "echo $(which zsh) >> /etc/shells"
 fi
 
+for f in $(zsh -i -c compaudit)
+do
+  sudo chmod -R 755 $f
+done
+
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
 loginitems -a "Bartender 3"
