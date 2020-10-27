@@ -7,6 +7,7 @@
 - clean: ['~']
 
 - link:
+    /etc/fstab: ~/Documents/.config/fstab
     ~/.askpass: scripts/askpass.sh
     ~/.config/kitty/: kitty/*
     ~/.config/lf/: lf/*

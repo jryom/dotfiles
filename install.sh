@@ -55,23 +55,23 @@ fi
 echo "Done!"
 
 echo -n "Installing fzf... "
-echo y | $(brew --prefix)/opt/fzf/install >/dev/null && echo "Done!"
+echo y | $(brew --prefix)/opt/fzf/install && echo "Done!"
 
 echo -n "Installing pip packages... "
-pip3 install --user --upgrade jedi pynvim dotbot docutils pip pip-review >/dev/null && echo "Done!"
+pip3 install --user --upgrade jedi pynvim dotbot docutils pip pip-review && echo "Done!"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 echo -n "Symlinking files... "
-dotbot -c "$script_path/install.conf.yaml" >/dev/null
+sudo dotbot -c "$script_path/install.conf.yaml"
 echo "Done!"
 
 echo -n "Installing node... "
 eval "$(fnm env)"
-fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current) >/dev/null
+fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current)
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \
-  $(cat "$script_path/npm-global-packages" | tr '\n' ' ') >/dev/null
+  $(cat "$script_path/npm-global-packages" | tr '\n' ' ')
 echo "Done!"
 
 ! [[ "$SHELL" = "$(which zsh)" ]] && chsh -s $(which zsh)
