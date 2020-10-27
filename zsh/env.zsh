@@ -6,7 +6,8 @@ export FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tr
 export FZF_THEME_DARK='--color=16,bg+:0'
 export FZF_THEME_LIGHT='--color=16,bg+:7'
 export FZF_DEFAULT_COMMAND="rg --files --hidden"
-export FZF_DEFAULT_OPTS="--ansi $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "$FZF_THEME_DARK" || echo "$FZF_THEME_LIGHT")"
+export FZF_DEFAULT_OPTS="--ansi $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "$FZF_THEME_DARK" || echo "$FZF_THEME_LIGHT") --no-height"
+export HISTFILE=~/Documents/.config/zsh-history
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 export HISTTIMEFORMAT="[%F %T] "
