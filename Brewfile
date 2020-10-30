@@ -36,6 +36,7 @@ brew "skhd"
 brew "terminal-notifier"
 brew "tldr"
 brew "tree"
+brew "watchexec"
 brew "yabai"
 
 cask_args force: true
