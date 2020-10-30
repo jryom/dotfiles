@@ -18,8 +18,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export VISUAL="$EDITOR"
 
 PATH=$PATH
-PATH+=$( gfind $HOME/Library/Python -maxdepth 2 -type d -printf ":%p" )
+PATH+=:/usr/local/bin
+PATH+=:$( find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':' )
 PATH+=$( python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))" )
-PATH+=/usr/local/bin
 
 export PATH

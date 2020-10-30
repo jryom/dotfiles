@@ -58,11 +58,10 @@ echo -n "Installing fzf... "
 echo y | $(brew --prefix)/opt/fzf/install && echo "Done!"
 
 echo -n "Installing pip packages... "
-pip3 install --user --upgrade jedi pynvim dotbot docutils pip pip-review && echo "Done!"
-export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+python3 -m pip install --user --upgrade $(cat "$script_path/pip-packages" | tr '\n' ' ') && echo "Done!"
 
 echo -n "Symlinking files... "
-sudo dotbot -c "$script_path/install.conf.yaml"
+sudo python3 -m dotbot -c "$script_path/install.conf.yaml"
 echo "Done!"
 
 echo -n "Installing node... "
