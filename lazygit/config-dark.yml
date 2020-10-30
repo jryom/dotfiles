@@ -1,4 +1,5 @@
 git:
+  disableForcePushing: true
   paging:
     colorArg: always
     pager: delta --24-bit-color=never --paging=never
@@ -19,3 +20,10 @@ gui:
 
 startuppopupversion: 1
 quitOnTopLevelReturn: true
+keybinding:
+    files:
+      commitChanges: 'C'
+      commitChangesWithEditor: 'c'
+    commits:
+      renameCommit: 'R'
+      renameCommitWithEditor: 'r'
