@@ -10,7 +10,6 @@ setopt \
 
 source "$DOTDIR/zsh/functions.zsh"
 source "$DOTDIR/zsh/env.zsh"
-source "$DOTDIR/zsh/aliases.zsh"
 
 bindkey -v
 bindkey '^l' autosuggest-accept
@@ -25,6 +24,8 @@ bindkey 'ç' fzf-cd-widget
 autoload -U compinit && compinit;
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
+
+source "$DOTDIR/zsh/aliases.zsh"
 
 zstyle ':completion:*' fzf-search-display true
 

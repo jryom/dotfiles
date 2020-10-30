@@ -1,35 +1,41 @@
-alias \
-  -- -="cd -" \
-  cl="clear" \
-  code="cd $HOME/code" \
-  dot="cd $DOTDIR" \
-  ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'" \
-  ga="git add" \
-  gap="git add --patch" \
-  gd="git diff" \
-  gcm="git checkout master" \
-  gco="git checkout" \
-  gf='git fetch' \
-  gl="git pull" \
-  gp="git push" \
-  gr="git reset" \
-  gs="git status" \
-  g="lazygit" \
-  stash="git stash" \
-  pop="git stash pop" \
-  ls="gls --almost-all --color --group-directories-first --human-readable -o" \
-  lg="lazygit" \
-  n="$EDITOR $HOME/Documents/notes.md" \
-  nci="npm clean-install" \
-  ni="npm install" \
-  nise="npm install --save-exact" \
-  nrb="npm run build" \
-  nrd="npm run dev" \
-  ns="npm start" \
-  nt="npm test" \
-  nu="npm uninstall" \
-  sm="smerge ./" \
-  so="source ~/.zshrc; clear" \
-  up="zsh $DOTDIR/scripts/update.zsh" \
-  v="$EDITOR" \
-  x="exit"
+alias -- -="cd -"
+alias cp="cp -riv"
+alias find="find ./ -name"
+alias findd="find ./ -type d -name"
+alias grep='grep --color=auto'
+alias x="exit"
+alias ls="exa --all --group-directories-first --long --git --header"
+alias mkdir='mkdir -vp'
+alias mv="mv -iv"
+
+alias code="cd $HOME/code"
+alias conf="cd $HOME/.config"
+alias dot="cd $DOTDIR"
+alias ejectall="osascript -e 'tell application "Finder" to eject (every disk whose ejectable is true)'"
+alias sz="source ~/.zshrc && clear"
+alias up="zsh $DOTDIR/scripts/update.zsh"
+alias v="$EDITOR"
+alias vim="$EDITOR"
+alias w="$EDITOR $HOME/Documents/vimwiki/index.wiki"
+
+alias g="lazygit"
+alias gs="git status --show-stash --verbose --untracked-files --column"
+alias gd="git diff"
+alias gl="git pull"
+alias gp="git push"
+
+alias nci="npm clean-install"
+alias ni="npm install"
+alias nise="npm install --save-exact"
+alias nrb="npm run build"
+alias nrd="npm run dev"
+alias ns="npm start"
+alias nt="npm test"
+alias nu="npm uninstall"
+
+alias y="yarn"
+
+alias ncup="ncu -t patch"
+alias ncupu="ncu -t patch -u"
+alias ncum="ncu -t minor"
+alias ncumu="ncu -t minor -u"

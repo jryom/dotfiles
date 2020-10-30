@@ -9,7 +9,6 @@ cmd - y: brew services restart yabai; brew services restart skhd
 shift + ctrl - d: dark-mode
 shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + cmd - f:  yabai -m window --toggle native-fullscreen
-        alt - f:  yabai -m window --toggle zoom-fullscreen
         alt - g:  yabai -m window --ratio rel:0.025
         alt - s:  yabai -m window --ratio rel:-0.025
         alt - 0:  yabai -m space --balance
@@ -29,6 +28,10 @@ alt - t: if [[ "$(yabai -m config normal_window_opacity)" -lt 1 ]]; then \
            yabai -m config window_opacity on; \
            yabai -m config normal_window_opacity 0.8; \
         fi
+
+# various window commands
+shift + alt - f:  yabai -m window --toggle zoom-fullscreen
+shift + alt - p : yabai -m window --toggle float && yabai -m window --grid 16:16:12:11:4:5
 
 # focus window
 alt - h: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.prev || echo west)
@@ -132,3 +135,4 @@ shift + ctrl - c: yabai -m space --create && \
 
 # destroy desktop
 shift + ctrl - x: yabai -m space --destroy
+
