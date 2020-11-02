@@ -1,7 +1,9 @@
 djui/alias-tips
 mafredri/zsh-async
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
 sindresorhus/pure
+valiev/almostontop
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 lincheney/fzf-tab-completion path:zsh

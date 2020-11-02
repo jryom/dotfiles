@@ -1,8 +1,6 @@
-depcheck
 neovim
 npm
 npm-check-updates
 pure-prompt
-trash-cli
 typescript
 yarn
