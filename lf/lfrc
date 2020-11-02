@@ -16,7 +16,6 @@ set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
 
 set hidden
 set drawbox
-set wrapscroll
 set incsearch
 set previewer ~/.config/lf/pv.sh
 
@@ -48,19 +47,10 @@ cmd trash %set -f; trash $fx
 
 map <delete> trash
 
-cmd tiny ${{
-  lf -remote "send $id set nopreview"
-  lf -remote "send $id set ratios 1"
-}}
+cmd tiny :set nopreview; set ratios 1; set nodrawbox
 
-cmd small ${{
-  lf -remote "send $id set ratios 2:3"
-}}
+cmd small :set ratios 2:3
 
-cmd medium ${{
-  lf -remote "send $id set ratios 1:2:3"
-}}
+cmd medium :set ratios 1:2:3
 
-cmd large ${{
-  lf -remote "send $id set ratios 1:2:3:5"
-}}
+cmd large :set ratios 1:2:3:5

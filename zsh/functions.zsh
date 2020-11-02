@@ -5,7 +5,7 @@ function l() {
 
   if [ $columns -gt 200 ]; then
     size="large"
-  elif [ $columns -gt 100 ]; then
+  elif [ $columns -gt 120 ]; then
     size="medium"
   elif [ $columns -gt 80 ]; then
     size="small"
