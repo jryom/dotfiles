@@ -73,10 +73,7 @@ npm install --loglevel silent --no-progress -g \
   $(cat "$script_path/npm-global-packages" | tr '\n' ' ')
 echo "Done!"
 
-! [[ "$SHELL" = "$(which zsh)" ]] && chsh -s $(which zsh)
-if ! grep -q $(which zsh) "/etc/shells"; then
-  sudo sh -c "echo $(which zsh) >> /etc/shells"
-fi
+! [[ "$( which zsh )" = "/usr/local/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 for f in $(zsh -i -c compaudit)
 do
