@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
 
 spaces=$(yabai -m query --spaces --display)
 multiplespaces=$(echo "$spaces" | jq -re 'map(select(."native-fullscreen" == 0)) | length > 1')

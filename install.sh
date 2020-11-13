@@ -45,12 +45,17 @@ if ! command -v brew >/dev/null; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
+if ! sudo cat /etc/sudoers | grep yabai >/dev/null; then
+  echo "Adding yabai to sudoers..."
+  sudo zsh -c "echo '$(whoami) $(hostname) = (root) NOPASSWD: $(which yabai)' >> /etc/sudoers"
+fi
+
 echo -n "Looking for missing brew packages... "
 if ! brew bundle check --file="$script_path/Brewfile" >/dev/null; then
   echo "Dependencies missing! Brewing..."
   brew bundle install --file="$script_path/Brewfile" --force --no-lock
-  brew services start yabai
-  brew services start skhd
+  brew services start koekeishiya/formulae/yabai
+  brew services start koekeishiya/formulae/skhd
 fi
 echo "Done!"
 

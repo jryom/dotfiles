@@ -3,7 +3,7 @@
 # launch kitty with tmp file for remote control
 cmd - return: /Applications/Kitty.app/Contents/MacOS/kitty \
               --listen-on unix:/tmp/mykitty --single-instance -d ~/code
-cmd - y: brew services restart yabai; brew services restart skhd
+cmd - y: killall yabai && killall skhd
 
 # misc single commands
 shift + ctrl - d: dark-mode
