@@ -23,6 +23,8 @@ set previewer ~/.config/lf/pv.sh
 map x $$f
 map X !$f
 
+map <c-z> :quit
+
 map ? :doc
 
 # dedicated keys for file opener actions

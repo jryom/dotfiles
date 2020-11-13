@@ -24,6 +24,7 @@ bindkey '^w' backward-kill-word
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey 'ç' fzf-cd-widget
+bindkey '^Z' ctrl-z
 
 autoload -U compinit && compinit;
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
