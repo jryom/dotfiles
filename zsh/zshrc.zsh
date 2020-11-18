@@ -1,12 +1,16 @@
-setopt \
-  auto_cd \
-  auto_pushd \
-  pushd_ignore_dups \
-  pushd_minus \
-  inc_append_history \
-  extended_history \
-  hist_find_no_dups \
-  hist_ignore_all_dups
+setopt ALL_EXPORT
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_REDUCE_BLANKS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
 
 source "$DOTDIR/zsh/functions.zsh"
 source "$DOTDIR/zsh/env.zsh"

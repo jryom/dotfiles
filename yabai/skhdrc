@@ -31,7 +31,8 @@ alt - t: if [[ "$(yabai -m config normal_window_opacity)" -lt 1 ]]; then \
 
 # various window commands
 shift + alt - f:  yabai -m window --toggle zoom-fullscreen
-shift + alt - p : yabai -m window --toggle float && yabai -m window --grid 16:16:12:11:4:5
+shift + alt - c: yabai -m window --toggle float && yabai -m window --grid 16:16:11:11:5:5
+shift + alt - m: yabai -m window --toggle float && yabai -m window --grid 16:16:2:1:12:14
 
 # focus window
 alt - h: yabai -m window --focus $([ "$(yabai -m query --spaces | jq -r 'map(select(."focused" == 1))[0].type')" = stack ] && echo stack.prev || echo west)
@@ -115,11 +116,8 @@ shift + ctrl - b: yabai -m space --move "$(yabai -m query --spaces --display | j
 shift + ctrl - e: yabai -m space --move "$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')"
 
 # focus desktop
-shift + ctrl - h: [[ "$(yabai -m query --spaces --display | jq '.[0].index')" -lt "$(yabai -m query --spaces --space | jq '.index')" ]] && \
-                  yabai -m space --focus prev && yabai -m window --focus first
-shift + ctrl - l: [[ "$(yabai -m query --spaces --display | jq '.[-1].index')" -gt "$(yabai -m query --spaces --space | jq '.index')" ]] && \
-                  yabai -m space --focus next && \
-                  yabai -m window --focus first
+shift + ctrl - h: yabai -m space --focus prev && yabai -m window --focus first
+shift + ctrl - l: yabai -m space --focus next && yabai -m window --focus first
 shift + ctrl - 1: yabai -m space --focus 1 && yabai -m window --focus first
 shift + ctrl - 2: yabai -m space --focus 2 && yabai -m window --focus first
 shift + ctrl - 3: yabai -m space --focus 3 && yabai -m window --focus first
@@ -135,4 +133,3 @@ shift + ctrl - c: yabai -m space --create && \
 
 # destroy desktop
 shift + ctrl - x: yabai -m space --destroy
-

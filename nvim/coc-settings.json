@@ -1,5 +1,4 @@
 {
-  "highlight.colorNames.enable": false,
   "diagnostic.errorSign": "●",
   "diagnostic.hintSign": "●",
   "diagnostic.infoSign": "●",
@@ -7,7 +6,10 @@
   "diagnostic.warningSign": "●",
   "eslint.autoFixOnSave": true,
   "git.showCommitInFloating": true,
+  "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
   "prettier.eslintIntegration": true,
+  "stylelintplus.autoFixOnFormat": true,
+  "stylelintplus.cssInJs": true,
   "tsserver.formatOnType": true
 }
