@@ -24,7 +24,7 @@ brew "lazygit"
 brew "lf"
 brew "loginitems"
 brew "moreutils"
-brew "neovim"
+brew "neovim", args: ['head']
 brew "python"
 brew "ripgrep"
 brew "ruby"
