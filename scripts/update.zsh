@@ -1,7 +1,8 @@
 #!/bin/zsh
 
-PATH="/usr/local/bin/:$PATH"
 source "$DOTDIR/zsh/env.zsh"
+PATH="/usr/local/bin/:$PATH"
+SUDO_ASKPASS="$HOME/.askpass" \
 
 eval "$(fnm env)"
 
@@ -15,14 +16,11 @@ brew update
 printf "\n\n\n"
 
 printf "Running brew upgrade...\n"           | ts
-brew cleanup
 brew upgrade --fetch-HEAD
 printf "\n\n\n"
 
 printf "Running brew cask upgrade...\n"      | ts
-env SUDO_ASKPASS="$HOME/.askpass" \
 brew upgrade --cask --force
-brew cleanup
 printf "\n\n\n"
 
 printf "Updating Node installation...\n"     | ts
