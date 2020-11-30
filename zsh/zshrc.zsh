@@ -36,5 +36,7 @@ zstyle ':completion:*' fzf-search-display true
 
 eval "$(fnm env)"
 
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
 autoload -U promptinit; promptinit
 prompt pure
