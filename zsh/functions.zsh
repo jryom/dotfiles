@@ -34,3 +34,9 @@ ctrl-z () {
   fi
 }
 zle -N ctrl-z
+
+# Allow passing dir/filename to cd
+cd() {
+  [[ ! -e $argv[-1] ]] || [[ -d $argv[-1] ]] || argv[-1]=${argv[-1]%/*}
+  builtin cd "$@"
+}
