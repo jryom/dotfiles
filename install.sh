@@ -45,9 +45,9 @@ if ! command -v brew >/dev/null; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
-if ! sudo cat /etc/sudoers | grep yabai >/dev/null; then
+if [ ! -f /private/etc/sudoers.d/yabai  ]; then
   echo "Adding yabai to sudoers..."
-  sudo zsh -c "echo '$(whoami) $(hostname) = (root) NOPASSWD: $(which yabai)' >> /etc/sudoers"
+  sudo zsh -c "echo '$(whoami) ALL = (root) NOPASSWD: $(which yabai) --load-sa' >> /private/etc/sudoers.d/yabai"
 fi
 
 echo -n "Looking for missing brew packages... "
