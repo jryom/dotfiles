@@ -71,7 +71,7 @@ echo "Done!"
 
 echo -n "Installing node... "
 eval "$(fnm env)"
-fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current)
+fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
 echo -n "Installing global NPM packages... "
 npm install --loglevel silent --no-progress -g \

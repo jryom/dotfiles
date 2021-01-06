@@ -24,7 +24,7 @@ brew upgrade --cask --force
 printf "\n\n\n"
 
 printf "Updating Node installation...\n"     | ts
-fnm install "$NODE_VERSION" && fnm use "$NODE_VERSION" && fnm default $(fnm current)
+fnm install --lts && fnm use lts-latest && fnm default lts-latest
 printf "\n\n\n"
 
 printf "Installing global NPM packages...\n" | ts
