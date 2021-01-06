@@ -8,9 +8,6 @@ alias ls="exa --all --group-directories-first --long --git --header"
 alias mkdir='mkdir -vp'
 alias mv="mv -iv"
 
-alias code="cd $HOME/code"
-alias conf="cd $HOME/.config"
-alias dot="cd $DOTDIR"
 alias ejectall="osascript -e 'tell application "Finder" to eject (every disk whose ejectable is true)'"
 alias sz="source ~/.zshrc && clear"
 alias up="zsh $DOTDIR/scripts/update.zsh"
@@ -21,6 +18,7 @@ alias w="$EDITOR $HOME/Documents/vimwiki/index.wiki"
 alias g="lazygit"
 alias gs="git status --show-stash --verbose --untracked-files --column"
 alias gd="git diff"
+alias gf="git fetch"
 alias gl="git pull"
 alias gp="git push"
 
