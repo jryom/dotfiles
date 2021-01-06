@@ -60,4 +60,5 @@ cask "sublime-merge"
 
 mas "Dark Reader for Safari", id: 1438243180
 mas "NextDNS", id: 1464122853
+mas "Tampermonkey", id: 1482490089
 mas "Vimari", id: 1480933944
