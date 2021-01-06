@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
-Plug 'bronson/vim-visual-star-search'
 Plug 'cocopon/vaffle.vim'
 Plug 'cohama/lexima.vim'
 Plug 'cormacrelf/dark-notify'
@@ -19,13 +18,11 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
-Plug 'styled-components/vim-styled-components', {'branch':'main'}
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
@@ -156,7 +153,7 @@ let mapleader = ' '
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent> dm :execute 'delmarks '.nr2char(getchar())<cr>
-nnoremap <silent> <Esc> :nohl<cr><Esc>
+nnoremap <silent> <Esc> :nohl<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader><leader> :write<cr>
 nnoremap <leader>z zA

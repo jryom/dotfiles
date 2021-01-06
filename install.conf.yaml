@@ -23,8 +23,6 @@
     ~/.zshrc: zsh/zshrc.zsh
     ~/Library/LaunchAgents: launchd/*
     ~/Library/Application Support/organize/config.yaml: ~/Documents/.config/organize-config.yaml
-    ~/Library/Preferences/com.apple.Spotlight.plist: ~/Documents/.config/com.apple.Spotlight.plist
     ~/Library/Preferences/com.choosyosx.Choosy.plist: ~/Documents/.config/com.choosyosx.Choosy.plist
     ~/Library/Preferences/com.dshnkao.SpaceId.plist: ~/Documents/.config/com.dshnkao.SpaceId.plist
     ~/Library/Preferences/com.mowglii.ItsycalApp.plist: ~/Documents/.config/com.mowglii.ItsycalApp.plist
-    ~/Library/Preferences/com.surteesstudios.Bartender.plist: ~/Documents/.config/com.surteesstudios.Bartender.plist
