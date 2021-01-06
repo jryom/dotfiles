@@ -23,8 +23,8 @@
 	<key>StartCalendarInterval</key>
 	<array>
 		<dict>
-			<key>Weekday</key>
-			<integer>1</integer>
+			<key>Hour</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 </dict>
