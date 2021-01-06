@@ -39,5 +39,4 @@
 
 [delta]
 	line-numbers = true
-	side-by-side = true
 	syntax-theme = $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "OneHalfDark" || echo "OneHalfLight")
