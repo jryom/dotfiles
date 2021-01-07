@@ -101,6 +101,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:mundo_preview_bottom = 1
 let g:vaffle_show_hidden_files = 1
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki'}]
+let g:vimsyn_embed = 'l'
 
 " airline
 call airline#parts#define_minwidth('branch', 180)
