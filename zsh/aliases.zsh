@@ -4,8 +4,9 @@ alias find="find ./ -name"
 alias findd="find ./ -type d -name"
 alias grep='grep --color=auto'
 alias x="exit"
-alias ls="exa --all --group-directories-first --long --git --header"
-alias mkdir='mkdir -vp'
+alias ls="gls --color=auto"
+alias ll="ls -AlFh --group-directories-first"
+alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 
 alias ejectall="osascript -e 'tell application "Finder" to eject (every disk whose ejectable is true)'"
