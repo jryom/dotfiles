@@ -9,6 +9,8 @@
 .undodir
 .vim/coc-settings.json
 .vscode
+.in
+.out
 Thumbs.db
 build
 ehthumbs.db
