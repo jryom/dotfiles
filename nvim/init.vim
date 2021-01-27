@@ -16,6 +16,8 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
@@ -69,7 +71,6 @@ set updatetime=200
 augroup autocommands
   autocmd!
   autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json5
-  autocmd BufEnter *.js :syntax sync fromstart
   autocmd SessionLoadPost,VimResized * wincmd =
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
@@ -87,20 +88,26 @@ else
   set background=light
   colorscheme edge
 endif
+
 lua << EOF
-  require('dark_notify').run({
-    schemes = {
-      dark  = "gruvbox-material",
-      light = "edge"
-    },
-  })
+require'colorizer'.setup()
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+  },
+}
+require('dark_notify').run({
+  schemes = {
+    dark  = "gruvbox-material",
+    light = "edge"
+  },
+})
 EOF
 " }}}
 
 " PLUGIN SETTINGS: {{{
 " misc plugin settings
-let g:javascript_plugin_flow = 1
-let g:javascript_plugin_jsdoc = 1
 let g:mundo_preview_bottom = 1
 let g:vaffle_show_hidden_files = 1
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki'}]
@@ -127,7 +134,6 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-eslint',
       \ 'coc-flow',
-      \ 'coc-highlight',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-prettier',
