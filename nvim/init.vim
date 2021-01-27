@@ -5,12 +5,14 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
 Plug 'cohama/lexima.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,6 +20,7 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
+Plug 'szw/vim-maximizer'
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -123,7 +126,6 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-eslint',
       \ 'coc-flow',
-      \ 'coc-git',
       \ 'coc-highlight',
       \ 'coc-html',
       \ 'coc-json',
@@ -167,6 +169,8 @@ xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
 nmap <leader>c <Plug>(qf_qf_toggle)
 nmap ç <Plug>(qf_qf_switch)
+nnoremap <leader>b :ToggleBufExplorer <cr>
+nnoremap <leader>m :MaximizerToggle <cr>
 
 " tabs
 nnoremap <silent> <C-t> :tabnew %<cr>
@@ -199,7 +203,6 @@ nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 
 " fzf
-nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>I :Rg <cr>
 nnoremap <silent> <leader>i :RgOnlyLines <cr>
 xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
