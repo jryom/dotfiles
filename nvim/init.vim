@@ -74,6 +74,7 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+  autocmd TextYankPost,FocusGained,FocusLost * if exists(':rshada') | rshada | wshada | endif
 augroup END
 
 " THEME SETTINGS: {{{
