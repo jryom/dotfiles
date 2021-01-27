@@ -1,7 +1,6 @@
 alias -- -="cd -"
 alias cp="cp -riv"
-alias find="find ./ -name"
-alias findd="find ./ -type d -name"
+alias find="gfind"
 alias grep='grep --color=auto'
 alias x="exit"
 alias ls="gls --color=auto"
@@ -9,7 +8,7 @@ alias ll="ls -AlFh --group-directories-first"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 
-alias ejectall="osascript -e 'tell application "Finder" to eject (every disk whose ejectable is true)'"
+alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias sz="source ~/.zshrc && clear"
 alias up="zsh $DOTDIR/scripts/update.zsh"
 alias v="$EDITOR"
