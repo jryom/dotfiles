@@ -60,9 +60,9 @@ set noshowcmd
 set pumblend=10
 set rtp+=/usr/local/opt/fzf
 set sessionoptions-=help
+set signcolumn=number
 set shiftround
 set shortmess+=acWI
-set signcolumn=yes
 set splitbelow splitright
 set termguicolors
 set undofile
@@ -79,8 +79,10 @@ augroup autocommands
 augroup END
 
 " THEME SETTINGS: {{{
-let g:gruvbox_material_sign_column_background = 'none'
+let g:edge_diagnostic_line_highlight = 1
 let g:edge_sign_column_background = 'none'
+let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_sign_column_background = 'none'
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1
   set background=dark
   colorscheme gruvbox-material
