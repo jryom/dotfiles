@@ -34,9 +34,9 @@ source "$DOTDIR/zsh/aliases.zsh"
 
 zstyle ':completion:*' fzf-search-display true
 
+source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 autoload -U promptinit; promptinit
 prompt pure

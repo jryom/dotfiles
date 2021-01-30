@@ -7,7 +7,6 @@ tap "nextdns/tap"
 tap "ojford/formulae"
 
 brew "antibody"
-brew "autojump"
 brew "bat"
 brew "brew-rmtree"
 brew "coreutils"
@@ -37,6 +36,7 @@ brew "tree"
 brew "vivid"
 brew "watchexec"
 brew "yabai"
+brew "z"
 brew "zsh"
 
 cask_args force: true

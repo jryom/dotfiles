@@ -40,3 +40,13 @@ cd() {
   [[ ! -e $argv[-1] ]] || [[ -d $argv[-1] ]] || argv[-1]=${argv[-1]%/*}
   builtin cd "$@"
 }
+
+v() {
+  if [ -d "$1" ] || [ -f "$1" ]; then
+    $EDITOR "$1"
+  elif [ -z "$1" ]; then
+    $EDITOR
+  else
+    z "$1" && $EDITOR
+  fi
+}
