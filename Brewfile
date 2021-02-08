@@ -41,8 +41,11 @@ brew "z"
 brew "zsh"
 
 cask_args force: true
+
 cask "1password"
+cask "aldente"
 cask "appcleaner"
+cask "bartender"
 cask "choosy"
 cask "firefox"
 cask "font-iosevka"
