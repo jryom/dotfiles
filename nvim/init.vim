@@ -5,27 +5,26 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
-Plug 'cohama/lexima.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'raimondi/delimitmate'
+Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'szw/vim-maximizer'
-Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -35,15 +34,14 @@ Plug 'wellle/targets.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
-      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 604800)
-  execute 'PlugUpdate'
+      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 86400)
+  execute 'PlugUpgrade | PlugUpdate'
   silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
 endif
 
 set diffopt+=algorithm:patience,indent-heuristic
-set foldmethod=syntax
+set foldmethod=indent
 set foldnestmax=1
-set foldminlines=3
 set foldlevel=4
 set gdefault
 set hidden
@@ -57,10 +55,9 @@ set noshowmode
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set number relativenumber
 set noshowcmd
-set pumblend=10
+set pumblend=10 winblend=10
 set rtp+=/usr/local/opt/fzf
-set sessionoptions-=help
-set signcolumn=number
+set signcolumn=yes
 set shiftround
 set shortmess+=acWI
 set splitbelow splitright
@@ -76,6 +73,10 @@ augroup autocommands
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
   autocmd TextYankPost,FocusGained,FocusLost * if exists(':rshada') | rshada | wshada | endif
+  autocmd VimEnter * nested
+        \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
+        \   source Session.vim |
+        \ endif
 augroup END
 
 " THEME SETTINGS: {{{
@@ -92,9 +93,21 @@ else
 endif
 
 lua << EOF
-require'colorizer'.setup()
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
+  ensure_installed = {
+    "bash",
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "lua",
+    "regex",
+    "tsx",
+    "typescript",
+    "yaml",
+  },
   highlight = {
     enable = true,
   },
@@ -117,7 +130,7 @@ let g:vimsyn_embed = 'l'
 
 " airline
 call airline#parts#define_minwidth('branch', 180)
-call airline#parts#define_minwidth('coc_status', 180)
+call airline#parts#define_minwidth('coc_status', 130)
 call airline#parts#define_minwidth('filetype', 100)
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
@@ -131,18 +144,25 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {'dirty':'!'}
 endif
 
+" bufexplorer
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowRelativePath=1
+
 " coc
 let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-eslint',
-      \ 'coc-flow',
+      \ 'coc-git',
       \ 'coc-html',
       \ 'coc-json',
+      \ 'coc-markdownlint',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-styled-components',
       \ 'coc-stylelintplus',
       \ 'coc-tsserver',
+      \ 'coc-vimlsp',
       \ 'coc-yaml',
       \ ]
 
@@ -151,35 +171,26 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
-" vim workspace
-let g:workspace_session_disable_on_args = 1
-let g:workspace_autosave = 0
-let g:workspace_persist_undo_history = 0
-let g:workspace_session_directory = $HOME.'/.local/share/nvim/sessions/'
-" }}}
-
 " KEYMAPS: {{{
 " misc
 let mapleader = ' '
 nnoremap j gj
 nnoremap k gk
-nnoremap <silent> dm :execute 'delmarks '.nr2char(getchar())<cr>
 nnoremap <silent> <Esc> :nohl<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader><leader> :write<cr>
 nnoremap <leader>z zA
 nnoremap <expr> <leader>x &foldlevel ? 'zM' :'zR'
-nnoremap <leader>tw :ToggleWorkspace<cr>
+nnoremap <leader>tw :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <Leader>s :%s/<C-r><C-w>//c <Left><Left><Left>
 xnoremap <Leader>s "sy:%s/<C-r>s//c <Left><Left><Left>
 xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
-nmap <leader>c <Plug>(qf_qf_toggle)
-nmap ç <Plug>(qf_qf_switch)
 nnoremap <leader>b :ToggleBufExplorer <cr>
 nnoremap <leader>m :MaximizerToggle <cr>
+nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 
 " tabs
 nnoremap <silent> <C-t> :tabnew %<cr>
@@ -202,22 +213,24 @@ nnoremap Qs :Bdelete select<cr>
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>h :call CocAction('doHover')<cr>
+nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> <leader>g <Plug>(coc-git-commit)
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>l :CocList<cr>
+vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
 " fzf
 nnoremap <silent> <leader>I :Rg <cr>
 nnoremap <silent> <leader>i :RgOnlyLines <cr>
 xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <silent> <leader>o :Files<cr>
-nnoremap <silent> <leader>q :History:<cr>
-nnoremap <silent> <leader>/ :BLines:<cr>
+nnoremap <silent> <leader>/ :BLines<cr>
 
 " fugitive
 nnoremap <silent> <leader>gb :Gblame<cr>

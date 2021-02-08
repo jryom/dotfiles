@@ -1,7 +1,7 @@
 {
   "git.showCommitInFloating": true,
   "git.addGBlameToVirtualText": true,
-  "git.virtualTextPrefix": "                        ",
+  "git.virtualTextPrefix": "                   ",
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.previewMaxHeight": 100,
   "diagnostic.errorSign": "",
@@ -24,6 +24,5 @@
   "stylelintplus.autoFixOnFormat": true,
   "stylelintplus.cssInJs": true,
   "suggest.maxPreviewWidth": 150,
-  "suggest.minTriggerInputLength": 2,
   "tsserver.formatOnType": true
 }
