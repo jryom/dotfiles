@@ -1,4 +1,4 @@
-function l() {
+l () {
   tmp="$(mktemp)"
   columns="$(tput cols)"
   size="tiny"
@@ -34,6 +34,7 @@ ctrl-z () {
   fi
 }
 zle -N ctrl-z
+bindkey '^Z' ctrl-z
 
 # Allow passing dir/filename to cd
 cd() {
@@ -43,10 +44,14 @@ cd() {
 
 v() {
   if [ -d "$1" ] || [ -f "$1" ]; then
-    $EDITOR "$1"
+    print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR "$1"
   elif [ -z "$1" ]; then
-    $EDITOR
+    print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR
   else
-    z "$1" && $EDITOR
+    z "$1" && print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR
   fi
+}
+
+precmd () {
+  print -Pn "\e]0;%~\a"
 }

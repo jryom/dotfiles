@@ -8,6 +8,8 @@ alias ls="gls --color=auto"
 alias ll="ls -AlFh --group-directories-first"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
+alias reset="tput reset"
+alias clear="reset"
 
 alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias sz="source ~/.zshrc && clear"
@@ -32,6 +34,8 @@ alias nt="npm test"
 alias nu="npm uninstall"
 
 alias y="yarn"
+alias ya="yarn add"
+alias yad="yarn add -D"
 
 alias ncup="ncu -t patch"
 alias ncupu="ncu -t patch -u"

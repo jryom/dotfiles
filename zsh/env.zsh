@@ -13,7 +13,6 @@ HISTSIZE=1000000
 HISTTIMEFORMAT="[%F %T] "
 KEYTIMEOUT=1
 LC_ALL="en_US.UTF-8"
-LS_COLORS="$(vivid generate $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "jellybeans" || echo "one-light"))"
 RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 VISUAL="$EDITOR"
 

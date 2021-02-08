@@ -6,5 +6,5 @@ sindresorhus/pure
 zpm-zsh/autoenv
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-lincheney/fzf-tab-completion path:zsh
+aloxaf/fzf-tab
 zsh-users/zsh-syntax-highlighting
