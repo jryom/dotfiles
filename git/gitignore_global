@@ -1,3 +1,5 @@
+# vi: ft=gitignore
+
 *.swo
 *.swp
 .DS_Store
@@ -6,6 +8,7 @@
 .Trashes
 ._*
 .env
+.nvimlog
 .undodir
 .vim/coc-settings.json
 .vscode
@@ -18,3 +21,4 @@ ncp-debug.log
 node_modules
 npm-debug.log
 webpack-assets.json
+Session.vim

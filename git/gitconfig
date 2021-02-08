@@ -1,3 +1,5 @@
+# vi: ft=gitconfig
+
 [user]
 	name = Jesper Ryom
 	email = 2834949+iamjesper@users.noreply.github.com
@@ -7,6 +9,9 @@
 
 [pull]
 	rebase = true
+
+[rebase]
+	autoStash = true
 
 [core]
 	excludesfile = ~/.gitignore_global
