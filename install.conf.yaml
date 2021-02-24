@@ -15,7 +15,6 @@
     ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
-    ~/.prettierrc: prettierrc.json
     ~/.ripgreprc:
     ~/.skhdrc: yabai/skhdrc
     ~/.yabairc: yabai/yabairc
