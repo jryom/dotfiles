@@ -21,7 +21,6 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
-Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -29,12 +28,11 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
-Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
-      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 86400)
+      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 2)
   execute 'PlugUpgrade | PlugUpdate'
   silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
 endif
@@ -72,7 +70,7 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-  autocmd TextYankPost,FocusGained,FocusLost * if exists(':rshada') | rshada | wshada | endif
+  autocmd TextYankPost * if exists(':rshada') | rshada | wshada | endif
   autocmd VimEnter * nested
         \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
         \   source Session.vim |
@@ -80,8 +78,10 @@ augroup autocommands
 augroup END
 
 " THEME SETTINGS: {{{
+let g:edge_better_performance = 1
 let g:edge_diagnostic_line_highlight = 1
 let g:edge_sign_column_background = 'none'
+let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_sign_column_background = 'none'
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1
@@ -125,8 +125,8 @@ EOF
 " misc plugin settings
 let g:mundo_preview_bottom = 1
 let g:vaffle_show_hidden_files = 1
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki'}]
 let g:vimsyn_embed = 'l'
+let g:rooter_silent_chdir = 1
 
 " airline
 call airline#parts#define_minwidth('branch', 180)
@@ -176,15 +176,16 @@ command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>
 let mapleader = ' '
 nnoremap j gj
 nnoremap k gk
+nnoremap Y y$
 nnoremap <silent> <Esc> :nohl<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader><leader> :write<cr>
 nnoremap <leader>z zA
 nnoremap <expr> <leader>x &foldlevel ? 'zM' :'zR'
-nnoremap <leader>tw :Obsession<cr>
+nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
-nnoremap <Leader>s :%s/<C-r><C-w>//c <Left><Left><Left>
-xnoremap <Leader>s "sy:%s/<C-r>s//c <Left><Left><Left>
+nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
+xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
@@ -215,6 +216,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> <leader>g <Plug>(coc-git-commit)
+nmap <silent> <leader>d :CocDiagnostics<cr>
+nmap <silent> <leader>c :CocCommand<cr>
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
