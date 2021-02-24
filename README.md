@@ -1,3 +1,3 @@
 # Dotfiles
 
-These are my everchanging dotfiles for macOS.
+These are my ever changing dotfiles for macOS.
