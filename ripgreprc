@@ -1,4 +1,4 @@
---glob=!**/{yarn*.lock,yarn*.log,package-lock.json,report*.json,test-report.xml,*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,*.DS_Store,__*__.*,*.dump}
+--glob=!**/{yarn*.lock,yarn*.log,package-lock.json,report*.json,test-report.xml,*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,*.DS_Store,__*__.*,*.dump,Session.vim}
 --glob=!**/{node_modules,.git,.next,.undodir,coverage,.cache,dist,migrations,__pycache__,__generated__}/**
 --colors=match:fg:yellow
 --colors=match:style:bold

@@ -12,10 +12,10 @@ alias reset="tput reset"
 alias clear="reset"
 
 alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
+alias n="$EDITOR $HOME/Documents/Notes"
 alias sz="source ~/.zshrc && clear"
 alias up="zsh $DOTDIR/scripts/update.zsh"
 alias vim="$EDITOR"
-alias w="$EDITOR $HOME/Documents/vimwiki/index.wiki"
 
 alias g="lazygit"
 alias gs="git status --show-stash --verbose --untracked-files --column"
