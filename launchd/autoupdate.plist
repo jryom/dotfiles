@@ -7,7 +7,7 @@
 	<key>Label</key>
 	<string>local.autoupdate</string>
 	<key>Nice</key>
-	<integer>10</integer>
+	<integer>20</integer>
 	<key>ProcessType</key>
 	<string>Background</string>
 	<key>ProgramArguments</key>
@@ -24,7 +24,15 @@
 	<array>
 		<dict>
 			<key>Hour</key>
-			<integer>0</integer>
+			<integer>10</integer>
+			<key>Weekday</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>Hour</key>
+			<integer>10</integer>
+			<key>Weekday</key>
+			<integer>4</integer>
 		</dict>
 	</array>
 </dict>

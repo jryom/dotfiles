@@ -32,7 +32,7 @@ Plug 'wellle/targets.vim'
 call plug#end()
 
 if ! filereadable(expand("~/.config/nvim/lastupdate"))
-      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 2)
+      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 3)
   execute 'PlugUpgrade | PlugUpdate'
   silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
 endif
