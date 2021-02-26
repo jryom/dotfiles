@@ -94,20 +94,7 @@ endif
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    "bash",
-    "css",
-    "graphql",
-    "html",
-    "javascript",
-    "jsdoc",
-    "json",
-    "lua",
-    "regex",
-    "tsx",
-    "typescript",
-    "yaml",
-  },
+  ensure_installed = "maintained",
   highlight = {
     enable = true,
   },
@@ -123,7 +110,6 @@ EOF
 
 " PLUGIN SETTINGS: {{{
 " misc plugin settings
-let g:mundo_preview_bottom = 1
 let g:vaffle_show_hidden_files = 1
 let g:vimsyn_embed = 'l'
 let g:rooter_silent_chdir = 1
@@ -141,7 +127,7 @@ let g:airline_right_alt_sep = '┊'
 let g:airline_right_sep=''
 let g:airline_section_z = '%3l/%L:%2v'
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {'dirty':'!'}
+  let g:airline_symbols = {'dirty':'*'}
 endif
 
 " bufexplorer
@@ -195,12 +181,12 @@ nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 
 " tabs
 nnoremap <silent> <C-t> :tabnew %<cr>
+nnoremap <silent> <C-q> :tabclose<cr>
 nnoremap <silent> <leader>1 1gt
 nnoremap <silent> <leader>2 2gt
 nnoremap <silent> <leader>3 3gt
 nnoremap <silent> <leader>4 4gt
 nnoremap <silent> <leader>5 5gt
-nnoremap <silent> <C-Q> :tabclose<cr>
 
 " close-buffers
 nnoremap Q :Bdelete menu<cr>
@@ -216,12 +202,12 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> <leader>g <Plug>(coc-git-commit)
-nmap <silent> <leader>d :CocDiagnostics<cr>
 nmap <silent> <leader>c :CocCommand<cr>
+nmap <silent> <leader>d :CocDiagnostics<cr>
+nmap <silent> <leader>l :CocList<cr>
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
-nmap <silent> <leader>l :CocList<cr>
 vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
