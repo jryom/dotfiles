@@ -29,7 +29,6 @@ brew "python"
 brew "ripgrep"
 brew "ruby"
 brew "skhd"
-brew "so"
 brew "terminal-notifier"
 brew "tldr"
 brew "trash"
@@ -67,3 +66,4 @@ mas "Dark Reader for Safari", id: 1438243180
 mas "NextDNS", id: 1464122853
 mas "Tampermonkey", id: 1482490089
 mas "Vimari", id: 1480933944
+mas "Xcode", id: 497799835
