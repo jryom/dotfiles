@@ -16,11 +16,7 @@ brew update
 printf "\n\n\n"
 
 printf "Running brew upgrade...\n"           | ts
-brew upgrade --fetch-HEAD
-printf "\n\n\n"
-
-printf "Running brew cask upgrade...\n"      | ts
-brew upgrade --cask --force
+brew upgrade --fetch-HEAD --greedy
 printf "\n\n\n"
 
 printf "Updating Node installation...\n"     | ts

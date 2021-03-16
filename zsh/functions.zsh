@@ -1,4 +1,4 @@
-l () {
+lfwrapper () {
   tmp="$(mktemp)"
   columns="$(tput cols)"
   size="tiny"
@@ -42,14 +42,26 @@ cd() {
   builtin cd "$@"
 }
 
-v() {
-  if [ -d "$1" ] || [ -f "$1" ]; then
-    print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR "$1"
-  elif [ -z "$1" ]; then
-    print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR
+zAndLaunch() {
+  if [ -d "$2" ] || [ -f "$2" ]; then
+    print -Pn "\e]0;%~: $1\a" && $1 "$2"
+  elif [ -z "$2" ]; then
+    print -Pn "\e]0;%~: $1\a" && $1
   else
-    z "$1" && print -Pn "\e]0;%~: $EDITOR\a" && $EDITOR
+    z "$2" && print -Pn "\e]0;%~: $1\a" && $1
   fi
+}
+
+l() {
+  zAndLaunch lfwrapper $1
+}
+
+v() {
+  zAndLaunch $EDITOR $1
+}
+
+g() {
+  zAndLaunch lazygit $1
 }
 
 precmd () {

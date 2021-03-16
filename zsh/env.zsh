@@ -1,6 +1,6 @@
 BAT_STYLE="full"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
-BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo "gruvbox" || echo "OneHalfLight")"
+BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo "gruvbox-dark" || echo "OneHalfLight")"
 EDITOR="nvim"
 FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
 FZF_THEME_DARK='--color=fg:#c5cdd9,bg:#262729,hl:#6cb6eb
