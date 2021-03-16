@@ -12,13 +12,17 @@
   "eslint.autoFixOnSave": true,
   "git.addGBlameToVirtualText": true,
   "git.showCommitInFloating": true,
-  "git.virtualTextPrefix": "            ",
+  "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
   "notification.maxHeight": 100,
   "notification.maxWidth": 150,
   "prettier.proseWrap": "always",
   "signature.maxWindowHeight": 100,
   "signature.maxWindowWidth": 150,
+  "snippets.extends": {
+     "typescriptreact": ["javascript"],
+     "typescript": ["javascript"]
+  },
   "suggest.maxPreviewWidth": 150,
   "tsserver.formatOnType": true
 }

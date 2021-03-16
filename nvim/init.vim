@@ -1,6 +1,5 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -31,29 +30,24 @@ Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 call plug#end()
 
-if ! filereadable(expand("~/.config/nvim/lastupdate"))
-      \ || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 3)
+if ! filereadable(expand("~/.config/nvim/lastupdate")) || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 7)
   execute 'PlugUpgrade | PlugUpdate'
   silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
 endif
 
-set diffopt+=algorithm:patience,indent-heuristic
 set foldmethod=indent
 set foldnestmax=1
 set foldlevel=4
 set gdefault
 set hidden
 set hlsearch
-set lazyredraw
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
-set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set number relativenumber
 set noshowcmd
-set pumblend=10 winblend=10
 set rtp+=/usr/local/opt/fzf
 set signcolumn=yes
 set shiftround
@@ -70,7 +64,6 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-  autocmd TextYankPost * if exists(':rshada') | rshada | wshada | endif
   autocmd VimEnter * nested
         \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
         \   source Session.vim |
@@ -96,7 +89,7 @@ lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
-    enable = true,
+    enable = false,
   },
 }
 require('dark_notify').run({
@@ -115,9 +108,9 @@ let g:vimsyn_embed = 'l'
 let g:rooter_silent_chdir = 1
 
 " airline
-call airline#parts#define_minwidth('branch', 180)
-call airline#parts#define_minwidth('coc_status', 130)
-call airline#parts#define_minwidth('filetype', 100)
+call airline#parts#define_minwidth('branch', 120)
+call airline#parts#define_minwidth('coc_status', 100)
+call airline#parts#define_minwidth('filetype', 90)
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_alt_sep = '┊'
@@ -126,6 +119,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_right_alt_sep = '┊'
 let g:airline_right_sep=''
 let g:airline_section_z = '%3l/%L:%2v'
+let g:airline_mode_map = {'__':'-','c':'C','i':'I','ic':'I','ix':'I','n':'N','multi':'M','ni':'N','no':'N','R':'R','Rv':'R','s':'S','S':'S','':'S','t':'T','v':'V','V':'V','':'V',}
 if !exists('g:airline_symbols')
   let g:airline_symbols = {'dirty':'*'}
 endif
@@ -154,18 +148,17 @@ let g:coc_global_extensions = [
 
 " fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1,
-      \ fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
+command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
 " KEYMAPS: {{{
 " misc
 let mapleader = ' '
-nnoremap j gj
-nnoremap k gk
+nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap Y y$
 nnoremap <silent> <Esc> :nohl<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
-nnoremap <leader><leader> :write<cr>
+nnoremap <leader>w :write<cr>
 nnoremap <leader>z zA
 nnoremap <expr> <leader>x &foldlevel ? 'zM' :'zR'
 nnoremap <leader>ts :Obsession<cr>
@@ -176,7 +169,6 @@ xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
 nnoremap <leader>b :ToggleBufExplorer <cr>
-nnoremap <leader>m :MaximizerToggle <cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 
 " tabs
@@ -199,7 +191,6 @@ nnoremap Qs :Bdelete select<cr>
 " coc
 imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh :call CocAction('doHover')<cr>
 nmap <silent> <leader>g <Plug>(coc-git-commit)
 nmap <silent> <leader>c :CocCommand<cr>
@@ -220,11 +211,6 @@ nnoremap <silent> <leader>i :RgOnlyLines <cr>
 xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <silent> <leader>o :Files<cr>
 nnoremap <silent> <leader>/ :BLines<cr>
-
-" fugitive
-nnoremap <silent> <leader>gb :Gblame<cr>
-nnoremap <silent> <leader>gl :0Gclog<cr>
-xnoremap <silent> <leader>gl :'<,'>Gclog<cr>
 
 " unimpaired on non-US layouts
 nmap <Left> [

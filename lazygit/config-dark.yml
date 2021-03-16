@@ -1,5 +1,4 @@
 git:
-  disableForcePushing: true
   paging:
     colorArg: always
     pager: delta --24-bit-color=never --paging=never
@@ -19,7 +18,8 @@ gui:
       - black
 
 startuppopupversion: 1
-quitOnTopLevelReturn: true
+notARepository: 'skip'
+quitOnTopLevelReturn: false
 keybinding:
     files:
       commitChanges: 'C'
