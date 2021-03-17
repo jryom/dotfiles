@@ -14,14 +14,21 @@
   "git.showCommitInFloating": true,
   "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql", "javascript", "javascriptreact"]
+    }
+  },
   "notification.maxHeight": 100,
   "notification.maxWidth": 150,
   "prettier.proseWrap": "always",
   "signature.maxWindowHeight": 100,
   "signature.maxWindowWidth": 150,
   "snippets.extends": {
-     "typescriptreact": ["javascript"],
-     "typescript": ["javascript"]
+    "typescriptreact": ["javascript"],
+    "typescript": ["javascript"]
   },
   "suggest.maxPreviewWidth": 150,
   "tsserver.formatOnType": true
