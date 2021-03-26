@@ -1,11 +1,12 @@
 git:
   paging:
     colorArg: always
-    pager: delta --24-bit-color=never --paging=never
+    pager: delta --paging=never
   pull:
     mode: 'rebase'
 
 gui:
+  showFileTree: true
   sidePanelWidth: 0.25
   skipstashwarning: true
   skipunstagelinewarning: false
@@ -19,11 +20,11 @@ gui:
 
 startuppopupversion: 1
 notARepository: 'skip'
-quitOnTopLevelReturn: false
 keybinding:
     files:
       commitChanges: 'C'
       commitChangesWithEditor: 'c'
+      toggleTreeView: 't'
     commits:
       renameCommit: 'R'
       renameCommitWithEditor: 'r'

@@ -45,25 +45,26 @@ if ! command -v brew >/dev/null; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
-if [ ! -f /private/etc/sudoers.d/yabai  ]; then
-  echo "Adding yabai to sudoers..."
-  sudo zsh -c "echo '$(whoami) ALL = (root) NOPASSWD: $(which yabai) --load-sa' >> /private/etc/sudoers.d/yabai"
-fi
-
 echo -n "Looking for missing brew packages... "
 if ! brew bundle check --file="$script_path/Brewfile" >/dev/null; then
   echo "Dependencies missing! Brewing..."
   brew bundle install --file="$script_path/Brewfile" --force --no-lock
+  if [ ! -f /private/etc/sudoers.d/yabai  ]; then
+    echo "Adding yabai to sudoers..."
+    sudo zsh -c "echo '$(whoami) ALL = (root) NOPASSWD: $(which yabai) --load-sa' >> /private/etc/sudoers.d/yabai"
+  fi
   brew services start koekeishiya/formulae/yabai
   brew services start koekeishiya/formulae/skhd
 fi
 echo "Done!"
 
 echo -n "Installing fzf... "
-echo y | $(brew --prefix)/opt/fzf/install && echo "Done!"
+echo y | $(brew --prefix)/opt/fzf/install
+echo "Done!"
 
 echo -n "Installing pip packages... "
-python3 -m pip install --user --upgrade $(cat "$script_path/pip-packages" | tr '\n' ' ') && echo "Done!"
+python3 -m pip install --user --upgrade $(cat "$script_path/pip-packages" | tr '\n' ' ')
+echo "Done!"
 
 echo -n "Symlinking files... "
 sudo python3 -m dotbot -c "$script_path/install.conf.yaml"

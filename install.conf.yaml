@@ -12,7 +12,7 @@
     ~/.config/kitty/: kitty/*
     ~/.config/lf/: lf/*
     ~/.config/nvim/: nvim/*
-    ~/.config/yabai/yabai-destroy_empty_spaces.sh: yabai/yabai-destroy_empty_spaces.sh
+    ~/.config/yabai/yabai-destroy_empty_spaces.zsh: yabai/yabai-destroy_empty_spaces.zsh
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.ripgreprc:

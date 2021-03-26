@@ -30,28 +30,30 @@ Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 call plug#end()
 
-if ! filereadable(expand("~/.config/nvim/lastupdate")) || readfile(glob("~/.config/nvim/lastupdate"))[0] < (localtime() - 60 * 60 * 24 * 7)
+if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim')[0] < (localtime() - 60 * 60 * 24 * 7)
   execute 'PlugUpgrade | PlugUpdate'
-  silent execute '!echo ' . (localtime()) . ' > ~/.config/nvim/lastupdate'
+  silent execute '!echo ' . (localtime()) . ' > /tmp/lastupdatevim'
 endif
 
+set foldlevel=4
 set foldmethod=indent
 set foldnestmax=1
-set foldlevel=4
 set gdefault
 set hidden
 set hlsearch
 set ignorecase smartcase
 set inccommand=split
+set iskeyword+=-
 set matchpairs+=<:>
 set mouse=a
+set noshowcmd
 set noshowmode
 set number relativenumber
-set noshowcmd
+set redrawtime=500
 set rtp+=/usr/local/opt/fzf
-set signcolumn=yes
 set shiftround
 set shortmess+=acWI
+set signcolumn=yes
 set splitbelow splitright
 set termguicolors
 set undofile
@@ -86,12 +88,10 @@ else
 endif
 
 lua << EOF
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.configs'.setup({
   ensure_installed = "maintained",
-  highlight = {
-    enable = false,
-  },
-}
+  highlight = { enable = false },
+})
 require('dark_notify').run({
   schemes = {
     dark  = "gruvbox-material",

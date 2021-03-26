@@ -11,6 +11,7 @@ alias mv="mv -iv"
 alias reset="tput reset"
 alias clear="reset"
 alias dush="du -sh ./*"
+alias serve="npx http-server"
 
 alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias n="$EDITOR $HOME/Documents/Notes"

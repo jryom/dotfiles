@@ -14,7 +14,8 @@
 	<array>
 		<string>zsh</string>
 		<string>-c</string>
-		<string>$DOTDIR/scripts/update.zsh</string>
+		<string>-i</string>
+		<string>[[ $(date +%s) &gt; $(( $(cat /tmp/lastupdatesys  2&gt;/dev/null || echo 0) + 60 * 60 * 24 * 7 )) ]] &amp;&amp; zsh -c $DOTDIR/scripts/update.zsh || exit 0</string>
 	</array>
 	<key>StandardErrorPath</key>
 	<string>/tmp/autoupdate.err</string>
@@ -25,14 +26,6 @@
 		<dict>
 			<key>Hour</key>
 			<integer>10</integer>
-			<key>Weekday</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>Hour</key>
-			<integer>10</integer>
-			<key>Weekday</key>
-			<integer>4</integer>
 		</dict>
 	</array>
 </dict>
