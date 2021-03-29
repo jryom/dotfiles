@@ -63,7 +63,3 @@ v() {
 g() {
   zAndLaunch lazygit $1
 }
-
-precmd () {
-  print -Pn "\e]0;%~\a"
-}

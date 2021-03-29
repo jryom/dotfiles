@@ -3,6 +3,7 @@ mafredri/zsh-async
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
 sindresorhus/pure
+jeffreytse/zsh-vi-mode
 zpm-zsh/autoenv
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions

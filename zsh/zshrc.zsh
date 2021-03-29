@@ -1,6 +1,3 @@
-precmd () {
-  print -Pn "\e]0;%~\a"
-}
 setopt ALL_EXPORT
 setopt AUTO_CD
 setopt AUTO_PUSHD
@@ -19,25 +16,19 @@ setopt PUSHD_MINUS
 
 source "$DOTDIR/zsh/env.zsh"
 
-bindkey -v
-bindkey '^l' autosuggest-accept
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^a' beginning-of-line
-bindkey '^[[Z' reverse-menu-complete
-bindkey '^e' end-of-line
-bindkey 'ç' fzf-cd-widget
-
 autoload -U compinit && compinit;
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh_plugins
 source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
 
-# prompt_pure_set_title() {}
+function zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  bindkey 'ç' fzf-cd-widget
+  bindkey '^l' autosuggest-accept
+  bindkey '^[[Z' reverse-menu-complete
+  bindkey '^Z' ctrl-z
+}
 
 source "$DOTDIR/zsh/aliases.zsh"
 
@@ -50,4 +41,3 @@ zstyle ':fzf-tab:*' default-color $'\033[30m'
 zstyle ':fzf-tab:*' show-group full
 
 source "$DOTDIR/zsh/functions.zsh"
-bindkey '^Z' ctrl-z
