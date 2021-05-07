@@ -10,8 +10,8 @@ shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + cmd - f:  yabai -m window --toggle native-fullscreen
         alt - 0:  yabai -m space --balance && yabai -m space --padding abs:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING && yabai -m space --gap abs:$WM_SPACING
         alt - r:  yabai -m space --rotate 90
-alt + shift - p:  yabai -m space --padding rel:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING
-        alt - p:  yabai -m space --padding rel:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING
+alt + shift - s:  yabai -m space --padding rel:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING
+        alt - s:  yabai -m space --padding rel:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING
 alt + shift - v:  yabai -m space --padding rel:0:0:-$WM_SPACING:-$WM_SPACING
         alt - v:  yabai -m space --padding rel:0:0:$WM_SPACING:$WM_SPACING
 alt + shift - g:  yabai -m space --gap rel:-$WM_SPACING

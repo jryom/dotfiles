@@ -15,7 +15,6 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = delta
 
 [remote "origin"]
 	prune = true

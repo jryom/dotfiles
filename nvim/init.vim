@@ -30,9 +30,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 call plug#end()
 
+command! Up execute 'PlugUpgrade | PlugUpdate | silent execute "!echo " . (localtime()) . " > /tmp/lastupdatevim"'
+
 if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim')[0] < (localtime() - 60 * 60 * 24 * 7)
-  execute 'PlugUpgrade | PlugUpdate'
-  silent execute '!echo ' . (localtime()) . ' > /tmp/lastupdatevim'
+  execute 'Up'
 endif
 
 set foldlevel=4
@@ -46,10 +47,8 @@ set inccommand=split
 set iskeyword+=-
 set matchpairs+=<:>
 set mouse=a
-set noshowcmd
 set noshowmode
 set number relativenumber
-set redrawtime=500
 set rtp+=/usr/local/opt/fzf
 set shiftround
 set shortmess+=acWI
@@ -136,7 +135,6 @@ let g:coc_global_extensions = [
       \ 'coc-git',
       \ 'coc-html',
       \ 'coc-json',
-      \ 'coc-markdownlint',
       \ 'coc-prettier',
       \ 'coc-snippets',
       \ 'coc-styled-components',
@@ -220,3 +218,5 @@ nmap <Right> ]
 omap <Right> ]
 xmap <Right> ]
 " }}}
+"
+let g:neovide_cursor_animation_length=0.1
