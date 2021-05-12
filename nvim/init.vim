@@ -111,6 +111,7 @@ call airline#parts#define_minwidth('branch', 120)
 call airline#parts#define_minwidth('coc_status', 100)
 call airline#parts#define_minwidth('filetype', 90)
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#scrollbar#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_alt_sep = '┊'
 let g:airline_left_sep=''
