@@ -20,6 +20,7 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
+Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -158,6 +159,7 @@ nnoremap Y y$
 nnoremap <silent> <Esc> :nohl<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader>w :write<cr>
+nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <leader>z zA
 nnoremap <expr> <leader>x &foldlevel ? 'zM' :'zR'
 nnoremap <leader>ts :Obsession<cr>
