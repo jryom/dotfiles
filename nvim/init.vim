@@ -66,6 +66,7 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+  autocmd TermEnter * setlocal nonumber norelativenumber
   autocmd VimEnter * nested
         \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
         \   source Session.vim |
@@ -147,6 +148,7 @@ let g:coc_global_extensions = [
       \ ]
 
 " fzf
+let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
@@ -156,7 +158,7 @@ let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap Y y$
-nnoremap <silent> <Esc> :nohl<cr>
+nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader>w :write<cr>
 nnoremap <C-w>m :MaximizerToggle!<cr>
