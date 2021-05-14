@@ -28,6 +28,12 @@ printf "Updating Node installation...\n"     | ts
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 printf "\n\n"
 
+printf "Looking for missing global NPM modules...\n" | ts
+installed="$(npm ls --global --json --depth 0 | jq '.dependencies | length')"
+required="$(wc -l < $DOTDIR/npm-global-packages | xargs)"
+if (( $installed < $required )); then npm install -g $(cat "$DOTDIR/npm-global-packages" | tr '\n' ' '); fi
+printf "\n\n"
+
 printf "Updating global NPM packages...\n" | ts
 ncu -gse 2 || npm update -g
 printf "\n\n"
