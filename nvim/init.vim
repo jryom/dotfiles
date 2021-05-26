@@ -9,12 +9,10 @@ Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'raimondi/delimitmate'
 Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/gruvbox-material'
@@ -37,15 +35,11 @@ if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim'
   execute 'Up'
 endif
 
-set foldlevel=4
-set foldmethod=indent
-set foldnestmax=1
 set gdefault
 set hidden
 set hlsearch
 set ignorecase smartcase
 set inccommand=split
-set iskeyword+=-
 set matchpairs+=<:>
 set mouse=a
 set noshowmode
@@ -66,7 +60,6 @@ augroup autocommands
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-  autocmd TermEnter * setlocal nonumber norelativenumber
   autocmd VimEnter * nested
         \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
         \   source Session.vim |
@@ -105,7 +98,6 @@ EOF
 " PLUGIN SETTINGS: {{{
 " misc plugin settings
 let g:vaffle_show_hidden_files = 1
-let g:vimsyn_embed = 'l'
 let g:rooter_silent_chdir = 1
 
 " airline
@@ -113,7 +105,6 @@ call airline#parts#define_minwidth('branch', 120)
 call airline#parts#define_minwidth('coc_status', 100)
 call airline#parts#define_minwidth('filetype', 90)
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#scrollbar#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_left_alt_sep = '┊'
 let g:airline_left_sep=''
@@ -125,11 +116,6 @@ let g:airline_mode_map = {'__':'-','c':'C','i':'I','ic':'I','ix':'I','n':'N','mu
 if !exists('g:airline_symbols')
   let g:airline_symbols = {'dirty':'*'}
 endif
-
-" bufexplorer
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowRelativePath=1
 
 " coc
 let g:coc_global_extensions = [
@@ -144,11 +130,9 @@ let g:coc_global_extensions = [
       \ 'coc-stylelintplus',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
-      \ 'coc-yaml',
       \ ]
 
 " fzf
-let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
@@ -162,8 +146,6 @@ nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nnoremap <leader>w :write<cr>
 nnoremap <C-w>m :MaximizerToggle!<cr>
-nnoremap <leader>z zA
-nnoremap <expr> <leader>x &foldlevel ? 'zM' :'zR'
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
@@ -171,17 +153,19 @@ xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
-nnoremap <leader>b :ToggleBufExplorer <cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
+
+" autoclose brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
 
 " tabs
 nnoremap <silent> <C-t> :tabnew %<cr>
 nnoremap <silent> <C-q> :tabclose<cr>
-nnoremap <silent> <leader>1 1gt
-nnoremap <silent> <leader>2 2gt
-nnoremap <silent> <leader>3 3gt
-nnoremap <silent> <leader>4 4gt
-nnoremap <silent> <leader>5 5gt
 
 " close-buffers
 nnoremap Q :Bdelete menu<cr>
@@ -214,6 +198,7 @@ nnoremap <silent> <leader>i :RgOnlyLines <cr>
 xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <silent> <leader>o :Files<cr>
 nnoremap <silent> <leader>/ :BLines<cr>
+nnoremap <silent> <leader>b :Buffers <cr>
 
 " unimpaired on non-US layouts
 nmap <Left> [
@@ -223,5 +208,3 @@ nmap <Right> ]
 omap <Right> ]
 xmap <Right> ]
 " }}}
-"
-let g:neovide_cursor_animation_length=0.1
