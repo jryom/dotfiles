@@ -20,7 +20,6 @@
   "dialog.maxHeight": 100,
   "dialog.maxWidth": 150,
   "eslint.autoFixOnSave": true,
-  "git.addGBlameToVirtualText": true,
   "git.showCommitInFloating": true,
   "highlight.colorNames.enable": false,
   "html.validate.scripts": true,

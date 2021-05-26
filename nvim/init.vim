@@ -15,7 +15,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
-Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'szw/vim-maximizer'
@@ -70,28 +69,16 @@ augroup END
 let g:edge_better_performance = 1
 let g:edge_diagnostic_line_highlight = 1
 let g:edge_sign_column_background = 'none'
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_diagnostic_line_highlight = 1
-let g:gruvbox_material_sign_column_background = 'none'
-if len(systemlist('defaults read -g AppleInterfaceStyle'))==1
-  set background=dark
-  colorscheme gruvbox-material
-else
-  set background=light
-  colorscheme edge
-endif
+let g:edge_style = 'neon'
+if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
+colorscheme edge
 
 lua << EOF
 require'nvim-treesitter.configs'.setup({
   ensure_installed = "maintained",
-  highlight = { enable = false },
+  highlight = { enable = true },
 })
-require('dark_notify').run({
-  schemes = {
-    dark  = "gruvbox-material",
-    light = "edge"
-  },
-})
+require('dark_notify').run()
 EOF
 " }}}
 
@@ -106,15 +93,10 @@ call airline#parts#define_minwidth('coc_status', 100)
 call airline#parts#define_minwidth('filetype', 90)
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_left_alt_sep = '┊'
-let g:airline_left_sep=''
-let g:airline_powerline_fonts = 1
-let g:airline_right_alt_sep = '┊'
-let g:airline_right_sep=''
 let g:airline_section_z = '%3l/%L:%2v'
 let g:airline_mode_map = {'__':'-','c':'C','i':'I','ic':'I','ix':'I','n':'N','multi':'M','ni':'N','no':'N','R':'R','Rv':'R','s':'S','S':'S','':'S','t':'T','v':'V','V':'V','':'V',}
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {'dirty':'*'}
+  let g:airline_symbols = {'dirty':'*', 'branch': "\ue0a0"}
 endif
 
 " coc
