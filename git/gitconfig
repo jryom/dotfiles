@@ -29,7 +29,6 @@
 
 [diff]
 	algorithm = patience
-	context = 8
 	indentHeuristic = true
 
 [mergetool "nvim"]
@@ -44,3 +43,4 @@
 [delta]
 	line-numbers = true
 	syntax-theme = $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "OneHalfDark" || echo "OneHalfLight")
+	hunk-header-style = omit

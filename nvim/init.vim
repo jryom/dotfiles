@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
@@ -43,7 +44,7 @@ set mouse=a
 set number relativenumber
 set rtp+=/usr/local/opt/fzf
 set shiftround
-set shortmess+=acWI
+set shortmess+=actFTWI
 set signcolumn=yes
 set splitbelow splitright
 set termguicolors
@@ -75,6 +76,7 @@ lua << EOF
 require'nvim-treesitter.configs'.setup({
   ensure_installed = "maintained",
   highlight = { enable = true },
+  indent = { enable = true }
 })
 require('dark_notify').run()
 EOF
@@ -89,7 +91,6 @@ let g:rooter_silent_chdir = 1
 let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-eslint',
-      \ 'coc-git',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-prettier',
@@ -112,6 +113,7 @@ nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap Y y$
 nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
+nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 nnoremap <leader>w :write<cr>
 nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <leader>ts :Obsession<cr>
@@ -121,7 +123,6 @@ xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
-nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 
 " autoclose brackets
 inoremap " ""<left>
@@ -130,10 +131,6 @@ inoremap ` ``<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-
-" tabs
-nnoremap <silent> <C-t> :tabnew %<cr>
-nnoremap <silent> <C-q> :tabclose<cr>
 
 " close-buffers
 nnoremap Q :Bdelete menu<cr>
@@ -144,21 +141,19 @@ nnoremap Qt :Bdelete this<cr>
 nnoremap Qs :Bdelete select<cr>
 
 " coc
-imap <silent> <C-l> <Plug>(coc-snippets-expand-jump)
+inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : "<Plug>(coc-snippets-expand-jump)"
+inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gh :call CocAction('doHover')<cr>
-nmap <silent> <leader>g <Plug>(coc-git-commit)
-nmap <silent> <leader>c :CocCommand<cr>
-nmap <silent> <leader>d :CocDiagnostics<cr>
-nmap <silent> <leader>l :CocList<cr>
+nnoremap <silent> gh :call CocAction('doHover')<cr>
+nnoremap <silent> <leader>c :CocCommand<cr>
+nnoremap <silent> <leader>d :CocDiagnostics<cr>
+nnoremap <silent> <leader>l :CocList<cr>
 nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>f <Plug>(coc-format)
-vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>a <Plug>(coc-codeaction)
-vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
-nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
-nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+nmap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+nmap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
 " fzf
 nnoremap <silent> <leader>I :Rg <cr>
@@ -167,6 +162,10 @@ xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <silent> <leader>o :Files<cr>
 nnoremap <silent> <leader>/ :BLines<cr>
 nnoremap <silent> <leader>b :Buffers <cr>
+
+" tabs
+nnoremap <silent> <C-t> :tabnew %<cr>
+nnoremap <silent> <C-q> :tabclose<cr>
 
 " unimpaired on non-US layouts
 nmap <Left> [

@@ -17,10 +17,7 @@
   "diagnostic.maxWindowHeight": 100,
   "diagnostic.maxWindowWidth": 150,
   "diagnostic.warningSign": "",
-  "dialog.maxHeight": 100,
-  "dialog.maxWidth": 150,
   "eslint.autoFixOnSave": true,
-  "git.showCommitInFloating": true,
   "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
   "languageserver": {
@@ -36,10 +33,6 @@
       ]
     }
   },
-  "notification.maxHeight": 100,
-  "notification.maxWidth": 150,
-  "signature.maxWindowHeight": 100,
-  "signature.maxWindowWidth": 150,
   "snippets.extends": {
     "typescriptreact": ["javascript"],
     "typescript": ["javascript"]
