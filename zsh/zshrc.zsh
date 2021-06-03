@@ -28,6 +28,7 @@ function zvm_after_init() {
   bindkey '^l' autosuggest-accept
   bindkey '^[[Z' reverse-menu-complete
   bindkey '^Z' ctrl-z
+  enable-fzf-tab
 }
 
 source "$DOTDIR/zsh/aliases.zsh"
