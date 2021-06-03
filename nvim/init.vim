@@ -24,7 +24,6 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 call plug#end()
 
@@ -41,7 +40,6 @@ set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set mouse=a
-set noshowmode
 set number relativenumber
 set rtp+=/usr/local/opt/fzf
 set shiftround
@@ -86,18 +84,6 @@ EOF
 " misc plugin settings
 let g:vaffle_show_hidden_files = 1
 let g:rooter_silent_chdir = 1
-
-" airline
-call airline#parts#define_minwidth('branch', 120)
-call airline#parts#define_minwidth('coc_status', 100)
-call airline#parts#define_minwidth('filetype', 90)
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_section_z = '%3l/%L:%2v'
-let g:airline_mode_map = {'__':'-','c':'C','i':'I','ic':'I','ix':'I','n':'N','multi':'M','ni':'N','no':'N','R':'R','Rv':'R','s':'S','S':'S','':'S','t':'T','v':'V','V':'V','':'V',}
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {'dirty':'*', 'branch': "\ue0a0"}
-endif
 
 " coc
 let g:coc_global_extensions = [
