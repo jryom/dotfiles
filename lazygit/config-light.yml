@@ -16,7 +16,7 @@ gui:
       - black
       - bold
     inactiveBorderColor:
-      - black
+      - white
 
 startuppopupversion: 1
 notARepository: 'skip'
