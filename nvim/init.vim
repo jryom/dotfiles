@@ -18,7 +18,6 @@ Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
-Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -115,7 +114,6 @@ nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 nnoremap <leader>w :write<cr>
-nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
