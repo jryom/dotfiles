@@ -139,7 +139,7 @@ nnoremap Qt :Bdelete this<cr>
 nnoremap Qs :Bdelete select<cr>
 
 " coc
-inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : "<Plug>(coc-snippets-expand-jump)"
+inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : coc#refresh()
 inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
 nmap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gh :call CocAction('doHover')<cr>
