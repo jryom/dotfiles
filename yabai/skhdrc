@@ -24,11 +24,11 @@ alt + shift - g:  yabai -m space --gap rel:-$WM_SPACING
 
 # toggle transparency
 alt - t: if [[ "$(yabai -m config normal_window_opacity)" -lt 1 ]]; then \
-           yabai -m config normal_window_opacity 1; \
+           yabai -m config normal_window_opacity 1.0; \
            yabai -m config window_opacity off; \
          else; \
            yabai -m config window_opacity on; \
-           yabai -m config normal_window_opacity 0.8; \
+           yabai -m config normal_window_opacity $WM_OPACITY; \
         fi
 
 # various window commands
@@ -47,6 +47,22 @@ shift + alt - h: yabai -m window --warp west
 shift + alt - j: yabai -m window --warp south
 shift + alt - k: yabai -m window --warp north
 shift + alt - l: yabai -m window --warp east
+
+# resize windows
+shift + alt - left:         yabai -m window --resize left:-$WM_SPACING:0
+shift + alt + ctrl - left:  yabai -m window --resize left:$WM_SPACING:0
+shift + alt - right:        yabai -m window --resize right:$WM_SPACING:0
+shift + alt + ctrl - right: yabai -m window --resize right:-$WM_SPACING:0
+shift + alt - up:           yabai -m window --resize top:0:-$WM_SPACING
+shift + alt + ctrl - up:    yabai -m window --resize top:0:$WM_SPACING
+shift + alt - down:         yabai -m window --resize bottom:0:$WM_SPACING
+shift + alt + ctrl - down:  yabai -m window --resize bottom:0:-$WM_SPACING
+
+# set window insert
+cmd + alt - k: yabai -m window --insert north
+cmd + alt - h: yabai -m window --insert west
+cmd + alt - l: yabai -m window --insert east
+cmd + alt - j: yabai -m window --insert south
 
 # send window to prev/next space, create new space if first/last index
 shift + alt - p: if [[ "$(yabai -m query --spaces --display | jq '.[0].index')" -lt "$(yabai -m query --spaces --space | jq '.index')" ]]; then \

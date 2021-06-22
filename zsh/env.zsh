@@ -13,7 +13,7 @@ FZF_THEME_LIGHT='--color=fg:#4b505b,bg:#fafafa,hl:#5079be
 --color=marker:#608e32,spinner:#d05858,header:#3a8b84'
 FZF_DEFAULT_COMMAND="rg --files --hidden"
 FZF_DEFAULT_OPTS="--ansi $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "$FZF_THEME_DARK" || echo "$FZF_THEME_LIGHT")"
-HISTFILE=~/Documents/.config/zsh-history
+HISTFILE=~/Documents/Settings/zsh-history
 HISTFILESIZE=1000000
 HISTSIZE=1000000
 HISTTIMEFORMAT="[%F %T] "

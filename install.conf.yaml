@@ -7,8 +7,9 @@
 - clean: ['~']
 
 - link:
-    /etc/fstab: ~/Documents/.config/fstab
+    /etc/fstab: ~/Documents/Settings/fstab
     ~/.askpass: scripts/askpass.sh
+    ~/.config/: ~/Documents/Settings/.config/*
     ~/.config/kitty/: kitty/*
     ~/.config/lf/: lf/*
     ~/.config/nvim/: nvim/*
@@ -21,7 +22,7 @@
     ~/.zshenv: zsh/zshenv.zsh
     ~/.zshrc: zsh/zshrc.zsh
     ~/Library/LaunchAgents: launchd/*
-    ~/Library/Application Support/organize/config.yaml: ~/Documents/.config/organize-config.yaml
-    ~/Library/Preferences/com.choosyosx.Choosy.plist: ~/Documents/.config/com.choosyosx.Choosy.plist
-    ~/Library/Preferences/com.dshnkao.SpaceId.plist: ~/Documents/.config/com.dshnkao.SpaceId.plist
-    ~/Library/Preferences/com.mowglii.ItsycalApp.plist: ~/Documents/.config/com.mowglii.ItsycalApp.plist
+    ~/Library/LaunchAgents/: ~/Documents/Settings/LaunchAgents/*
+    ~/Library/Preferences/com.choosyosx.Choosy.plist: ~/Documents/Settings/com.choosyosx.Choosy.plist
+    ~/Library/Preferences/com.dshnkao.SpaceId.plist: ~/Documents/Settings/com.dshnkao.SpaceId.plist
+    ~/Library/Preferences/com.mowglii.ItsycalApp.plist: ~/Documents/Settings/com.mowglii.ItsycalApp.plist

@@ -33,6 +33,7 @@ if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim'
   execute 'Up'
 endif
 
+set clipboard^=unnamed
 set gdefault
 set hidden
 set hlsearch
