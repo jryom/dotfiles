@@ -1,4 +1,5 @@
 tap "beeftornado/rmtree"
+tap "clementtsang/bottom"
 tap "cormacrelf/tap"
 tap "homebrew/cask-fonts"
 tap "iamjesper/homebrew-formulae"
@@ -8,6 +9,7 @@ tap "ojford/formulae"
 
 brew "antibody"
 brew "bat"
+brew "bottom"
 brew "brew-rmtree"
 brew "coreutils"
 brew "dark-mode"

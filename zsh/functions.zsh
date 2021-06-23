@@ -63,3 +63,7 @@ v() {
 g() {
   zAndLaunch lazygit $1
 }
+
+b() {
+  btm --color $( defaults read -g AppleInterfaceStyle &>/dev/null && echo 'default' || echo 'default-light' )
+}
