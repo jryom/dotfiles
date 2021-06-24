@@ -10,6 +10,7 @@ source "$script_path/zsh/env.zsh"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
@@ -53,8 +54,6 @@ if ! brew bundle check --file="$script_path/Brewfile" >/dev/null; then
     echo "Adding yabai to sudoers..."
     sudo zsh -c "echo '$(whoami) ALL = (root) NOPASSWD: $(which yabai) --load-sa' >> /private/etc/sudoers.d/yabai"
   fi
-  brew services start koekeishiya/formulae/yabai
-  brew services start koekeishiya/formulae/skhd
 fi
 echo "Done!"
 
@@ -91,5 +90,8 @@ antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 loginitems -a "Bartender 3"
 loginitems -a "Itsycal"
 loginitems -a "SpaceId"
+
+brew services start koekeishiya/formulae/yabai
+brew services start koekeishiya/formulae/skhd
 
 echo "Installation finished!"

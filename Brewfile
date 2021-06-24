@@ -1,6 +1,7 @@
 tap "beeftornado/rmtree"
 tap "clementtsang/bottom"
 tap "cormacrelf/tap"
+tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "jryom/homebrew-formulae"
 tap "koekeishiya/formulae"
@@ -46,7 +47,6 @@ brew "zsh"
 cask_args force: true
 
 cask "1password"
-cask "aldente"
 cask "appcleaner"
 cask "bartender"
 cask "browserstacklocal"
