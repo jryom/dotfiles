@@ -33,7 +33,6 @@ if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim'
   execute 'Up'
 endif
 
-set clipboard^=unnamed
 set gdefault
 set hidden
 set hlsearch
@@ -122,14 +121,6 @@ xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 xnoremap < <gv
 xnoremap > >gv
 xmap ga <Plug>(EasyAlign)
-
-" autoclose brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ` ``<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
 
 " close-buffers
 nnoremap Q :Bdelete menu<cr>
