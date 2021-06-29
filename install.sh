@@ -3,10 +3,23 @@
 trap 'ret=$?; test $ret -ne 0 && printf "Failed!\n" >&2; exit $ret' EXIT
 set -e
 
+# Ask for the sudo permission upfront and keep valid until EOS
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Store script execution path
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 source "$script_path/zsh/env.zsh"
 
+# Disable Gatekeeper if active
+if spctl --status > /dev/null; then
+  echo "Gatekeeper enabled, enter password to disable..."
+  sudo spctl --master-disable
+  echo "Gatekeeper disabled."
+fi
+
+# Change some macOS default settings and restart dock
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write NSGlobalDomain KeyRepeat -int 2
@@ -23,13 +36,6 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool t
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 killall Dock
-
-# Disable Gatekeeper if active
-if spctl --status > /dev/null; then
-  echo "Gatekeeper enabled, enter password to disable..."
-  sudo spctl --master-disable
-  echo "Gatekeeper disabled."
-fi
 
 echo -n "Checking command line tools installation..."
 if ! type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
@@ -78,12 +84,16 @@ npm install --loglevel silent --no-progress -g \
   $(cat "$script_path/npm-global-packages" | tr '\n' ' ')
 echo "Done!"
 
+# Use custom zsh install rather than bundled version
 ! [[ "$( which zsh )" = "/usr/local/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 for f in $(zsh -i -c compaudit)
 do
   sudo chmod -R 755 $f
 done
+
+# Use touchID for sudo permission
+cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
