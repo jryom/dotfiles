@@ -72,7 +72,7 @@ if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | el
 colorscheme edge
 
 lua << EOF
-require'nvim-treesitter.configs'.setup({
+require('nvim-treesitter.configs').setup({
   ensure_installed = "maintained",
   highlight = { enable = true },
   indent = { enable = true }

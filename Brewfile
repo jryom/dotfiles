@@ -47,6 +47,7 @@ brew "zsh"
 cask_args force: true
 
 cask "1password"
+cask "alfred"
 cask "appcleaner"
 cask "bartender"
 cask "browserstacklocal"
