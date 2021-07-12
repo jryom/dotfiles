@@ -66,7 +66,6 @@ augroup END
 " THEME SETTINGS: {{{
 let g:edge_better_performance = 1
 let g:edge_diagnostic_line_highlight = 1
-let g:edge_sign_column_background = 'none'
 let g:edge_style = 'neon'
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
 colorscheme edge
