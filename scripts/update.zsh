@@ -22,7 +22,10 @@ installed="$(npm ls --global --json --depth 0 | jq '.dependencies | length')"
 required="$(wc -l < $DOTDIR/npm-global-packages | xargs)"
 if (( $installed < $required )); then npm install -g $(cat "$DOTDIR/npm-global-packages" | tr '\n' ' '); fi
 
-ncu -gse 2 || npm update -g
+for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
+do
+	npm -g install "$package"
+done
 
 tldr --update
 
