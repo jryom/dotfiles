@@ -34,6 +34,8 @@ if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim'
 endif
 
 set gdefault
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 set hidden
 set hlsearch
 set ignorecase smartcase
