@@ -16,7 +16,7 @@ function! FilePath() abort
     return '%t'
   endif
   let len = len(expand('%'))
-  return winwidth('%') > len + 100 ? '%f' : '%t'
+  return winwidth('%') > len + 50 ? '%f' : '%t'
 endfunction
 
 function! Flags() abort
