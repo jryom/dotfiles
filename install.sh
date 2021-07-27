@@ -1,9 +1,8 @@
 #!/bin/bash
 
-trap 'ret=$?; test $ret -ne 0 && printf "Failed!\n" >&2; exit $ret' EXIT
 set -ev
 
-# Ask for the sudo permission upfront and keep valid until EOS
+# Ask for the sudo permission upfront and keep valid until EOF
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
@@ -78,7 +77,6 @@ cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficie
 
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
-loginitems -a "Bartender 3"
 loginitems -a "Itsycal"
 loginitems -a "SpaceId"
 

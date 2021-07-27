@@ -27,11 +27,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
 call plug#end()
 
-command! Up execute 'PlugUpgrade | PlugUpdate | silent execute "!echo " . (localtime()) . " > /tmp/lastupdatevim"'
-
-if ! filereadable(expand('/tmp/lastupdatevim')) || readfile('/tmp/lastupdatevim')[0] < (localtime() - 60 * 60 * 24 * 7)
-  execute 'Up'
-endif
+command! Up execute 'PlugUpgrade | PlugUpdate'
 
 set gdefault
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case

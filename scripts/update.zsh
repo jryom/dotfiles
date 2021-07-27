@@ -6,10 +6,7 @@ SUDO_ASKPASS="$HOME/.askpass" \
 
 eval "$(fnm env)"
 
-trap 'ret=$?; test $ret -ne 0 && terminal-notifier -group "Upgrade script" -title "Upgrade script" -message "Encountered an error! Check the logs for details."; exit $ret' EXIT
 set -ev
-
-terminal-notifier -title "Upgrade script" -message "Running..." -group "Upgrade script"
 
 brew update
 brew upgrade --fetch-HEAD --greedy
@@ -32,7 +29,3 @@ tldr --update
 antibody bundle < "$DOTDIR/zsh/zsh_plugins" > ~/.zsh_plugins
 
 python3 -m pip install --user --upgrade $(cat "$DOTDIR/pip-packages" | tr '\n' ' ')
-
-terminal-notifier -title "Upgrade script" -message "Finished!" -group "Upgrade script"
-
-date +'%s' > "/tmp/lastupdatesys"
