@@ -77,6 +77,10 @@ cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficie
 
 antibody bundle < "$script_path/zsh/zsh_plugins" > ~/.zsh_plugins
 
+curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim --headless +PlugInstall +qa
+
 loginitems -a "Itsycal"
 loginitems -a "SpaceId"
 
