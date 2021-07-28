@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
 Plug 'cocopon/vaffle.vim'
@@ -8,11 +7,13 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
+Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -62,9 +63,13 @@ let g:edge_diagnostic_line_highlight = 1
 let g:edge_style = 'neon'
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
 colorscheme edge
+" }}}
 
+" LUA: {{{
 lua << EOF
+require('nvim-autopairs').setup()
 require('nvim-treesitter.configs').setup({
+  autopairs = { enable = true },
   ensure_installed = "maintained",
   highlight = { enable = true },
   indent = { enable = true }
@@ -83,6 +88,7 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-eslint',
       \ 'coc-html',
+      \ 'coc-git',
       \ 'coc-json',
       \ 'coc-prettier',
       \ 'coc-snippets',
@@ -102,6 +108,9 @@ let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap Y y$
+xnoremap < <gv
+xnoremap > >gv
+nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
@@ -110,8 +119,7 @@ nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
 xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
-xnoremap < <gv
-xnoremap > >gv
+nnoremap <Leader>g :silent grep<Space>
 xmap ga <Plug>(EasyAlign)
 
 " close-buffers
