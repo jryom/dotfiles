@@ -9,7 +9,7 @@ eval "$(fnm env)"
 set -ev
 
 brew update
-brew upgrade --fetch-HEAD --greedy
+brew upgrade --greedy
 HOMEBREW_CLEANUP_MAX_AGE_DAYS=60
 brew cleanup
 
