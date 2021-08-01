@@ -46,6 +46,7 @@ set updatetime=200
 
 augroup autocommands
   autocmd!
+  autocmd BufEnter * :syntax sync fromstart
   autocmd BufRead,BufNewFile .{eslint,babel,stylelint,prettier}rc set ft=json5
   autocmd SessionLoadPost,VimResized * wincmd =
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
