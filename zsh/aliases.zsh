@@ -5,7 +5,7 @@ alias grep='grep --color=auto'
 alias x="exit"
 alias j="z"
 alias ls="exa"
-alias ll="exa -la --group-directories-first"
+alias ll="exa -lagh --git --group-directories-first"
 alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias reset="tput reset"
