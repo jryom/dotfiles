@@ -87,6 +87,7 @@ let g:rooter_silent_chdir = 1
 " coc
 let g:coc_global_extensions = [
       \ 'coc-css',
+      \ 'coc-diagnostic',
       \ 'coc-eslint',
       \ 'coc-html',
       \ 'coc-git',
@@ -96,7 +97,6 @@ let g:coc_global_extensions = [
       \ 'coc-styled-components',
       \ 'coc-stylelintplus',
       \ 'coc-tsserver',
-      \ 'coc-vimlsp',
       \ ]
 
 " fzf

@@ -11,6 +11,14 @@
   ],
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.listOfWorkspaceEdit": "location",
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "markdown": "markdownlint",
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
