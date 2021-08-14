@@ -4,12 +4,15 @@ source "$DOTDIR/zsh/env.zsh"
 PATH="/usr/local/bin/:$PATH"
 SUDO_ASKPASS="$HOME/.askpass" \
 
-eval "$(fnm env)"
-
 set -ev
 
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+eval "$(fnm env)"
+
 brew update
-brew upgrade --greedy
+brew upgrade --greedy --force
 HOMEBREW_CLEANUP_MAX_AGE_DAYS=60
 brew cleanup
 
