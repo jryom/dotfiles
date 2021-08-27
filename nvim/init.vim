@@ -25,18 +25,23 @@ Plug 'windwp/nvim-autopairs'
 call plug#end()
 
 command! Up execute 'PlugUpgrade | PlugUpdate'
+command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
+set foldminlines=3
+set foldlevelstart=99
+set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
 set gdefault
-set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set grepformat=%f:%l:%c:%m,%f:%l:%m
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 set hidden
 set hlsearch
 set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set mouse=a
-set number relativenumber
 set rtp+=/usr/local/opt/fzf
+set scrolloff=8
 set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
@@ -59,7 +64,7 @@ augroup autocommands
         \ endif
 augroup END
 
-" THEME SETTINGS: {{{
+" Theme settings: {{{
 let g:edge_better_performance = 1
 let g:edge_diagnostic_line_highlight = 1
 let g:edge_style = 'neon'
@@ -67,7 +72,7 @@ if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | el
 colorscheme edge
 " }}}
 
-" LUA: {{{
+" Lua: {{{
 lua << EOF
 require('nvim-autopairs').setup()
 require('nvim-treesitter.configs').setup({
@@ -80,12 +85,9 @@ require('dark_notify').run()
 EOF
 " }}}
 
-" PLUGIN SETTINGS: {{{
-" misc plugin settings
+" Plugin settings: {{{
 let g:vaffle_show_hidden_files = 1
 let g:rooter_silent_chdir = 1
-
-" coc
 let g:indent_blankline_filetype_exclude = ['help','vaffle','markdown']
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_trailing_blankline_indent = v:false
@@ -102,13 +104,9 @@ let g:coc_global_extensions = [
       \ 'coc-stylelintplus',
       \ 'coc-tsserver',
       \ ]
-
-" fzf
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
-" KEYMAPS: {{{
-" misc
+" Keymaps: {{{
 let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
