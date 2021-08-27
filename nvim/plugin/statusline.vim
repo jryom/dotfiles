@@ -54,6 +54,22 @@ function! Warnings() abort
   return ''
 endfunction
 
+function! Hints() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if get(info, 'hint', 0) > 0
+    return '  ' . info['hint'] . ' '
+  endif
+  return ''
+endfunction
+
+function! Info() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if get(info, 'information', 0) > 0
+    return '  ' . info['information'] . ' '
+  endif
+  return ''
+endfunction
+
 function! RenderStatusLine() abort
   setlocal statusline=\ %{%FilePath()%}
   setlocal statusline+=%{%Flags()%}
@@ -69,6 +85,8 @@ function! RenderStatusLine() abort
   if b:active == 1
     setlocal statusline+=%#TSDanger#%{Errors()}
     setlocal statusline+=%#TSWarning#%{Warnings()}
+    setlocal statusline+=%#TSNote#%{Info()}
+    setlocal statusline+=%#TSNote#%{Hints()}
   endif
 endfunction
 
