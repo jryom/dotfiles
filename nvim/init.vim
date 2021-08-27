@@ -6,9 +6,10 @@ Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'phaazon/hop.nvim'
 Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sheerun/vim-polyglot'
@@ -20,7 +21,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'wellle/targets.vim'
+Plug 'windwp/nvim-autopairs'
 call plug#end()
 
 command! Up execute 'PlugUpgrade | PlugUpdate'
@@ -85,6 +86,9 @@ let g:vaffle_show_hidden_files = 1
 let g:rooter_silent_chdir = 1
 
 " coc
+let g:indent_blankline_filetype_exclude = ['help','vaffle','markdown']
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-diagnostic',
@@ -115,12 +119,14 @@ nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
-nnoremap <leader>w :write<cr>
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
 xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 nnoremap <Leader>g :silent grep<Space>
+map <silent> <Space>w <cmd>HopWord<cr>
+map <silent> <Space>l <cmd>HopLine<cr>
+map <silent> <Space>p <cmd>HopPattern<cr>
 xmap ga <Plug>(EasyAlign)
 
 " close-buffers
@@ -136,13 +142,13 @@ inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : coc#expandableOrJumpable
 inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
 nmap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gh :call CocAction('doHover')<cr>
-nnoremap <silent> <leader>c :CocCommand<cr>
-nnoremap <silent> <leader>d :CocDiagnostics<cr>
-nnoremap <silent> <leader>l :CocList<cr>
-nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>f <Plug>(coc-format)
-nmap <silent> <leader>a <Plug>(coc-codeaction)
+nnoremap <silent> <leader>cc :CocCommand<cr>
+nnoremap <silent> <leader>cd :CocDiagnostics<cr>
+nnoremap <silent> <leader>cl :CocList<cr>
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>cf <Plug>(coc-format)
+nmap <silent> <leader>ca <Plug>(coc-codeaction)
 nmap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
 nmap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
