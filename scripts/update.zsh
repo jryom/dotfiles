@@ -32,3 +32,5 @@ tldr --update
 antibody bundle < "$DOTDIR/zsh/zsh_plugins" > ~/.zsh_plugins
 
 python3 -m pip install --user --upgrade $(cat "$DOTDIR/pip-packages" | tr '\n' ' ')
+
+sudo softwareupdate --install --all --restart --agree-to-license
