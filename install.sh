@@ -57,15 +57,15 @@ fi
 
 echo y | "$(brew --prefix)"/opt/fzf/install
 
-python3 -m pip install --user --upgrade "$(cat $script_path/pip-packages | tr '\n' ' ')"
+python3 -m pip install --user --upgrade $(cat $script_path/pip-packages | tr '\n' ' ')
 
 sudo python3 -m dotbot -c "$script_path/install.conf.yaml"
 
 eval "$(fnm env)"
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
-npm install --loglevel silent --no-progress -g \
-  "$(cat $script_path/npm-global-packages | tr '\n' ' ')"
+
+npm install --no-progress -g $(cat $script_path/npm-global-packages | tr '\n' ' ')
 
 # Use custom zsh install rather than bundled version
 ! [[ "$( which zsh )" = "/usr/local/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
