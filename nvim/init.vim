@@ -27,6 +27,7 @@ call plug#end()
 command! Up execute 'PlugUpgrade | PlugUpdate'
 command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
+set colorcolumn=999
 set foldminlines=3
 set foldlevelstart=99
 set foldexpr=nvim_treesitter#foldexpr()
@@ -40,6 +41,7 @@ set ignorecase smartcase
 set inccommand=split
 set matchpairs+=<:>
 set mouse=a
+set number relativenumber
 set rtp+=/usr/local/opt/fzf
 set scrolloff=8
 set shiftround
@@ -118,16 +120,14 @@ nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
-nnoremap <Leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
-xnoremap <Leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
-nnoremap <Leader>g :silent grep<Space>
-map <silent> <Space>w <cmd>HopWord<cr>
-map <silent> <Space>l <cmd>HopLine<cr>
-map <silent> <Space>p <cmd>HopPattern<cr>
-xmap ga <Plug>(EasyAlign)
+nnoremap <leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
+xnoremap <leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
+nnoremap <leader>g :silent grep<Space>
+map <leader>w <cmd>HopWord<cr>
+xmap ga <plug>(EasyAlign)
 
 " close-buffers
-nnoremap Q :Bdelete menu<cr>
+nnoremap Q  :Bdelete menu<cr>
 nnoremap Qa :Bdelete all<cr>
 nnoremap Qh :Bdelete hidden<cr>
 nnoremap Qo :Bdelete other<cr>
@@ -137,15 +137,15 @@ nnoremap Qs :Bdelete select<cr>
 " coc
 inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : coc#refresh()
 inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
-nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gh :call CocAction('doHover')<cr>
-nnoremap <silent> <leader>cc :CocCommand<cr>
-nnoremap <silent> <leader>cd :CocDiagnostics<cr>
-nnoremap <silent> <leader>cl :CocList<cr>
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>cf <Plug>(coc-format)
-nmap <silent> <leader>ca <Plug>(coc-codeaction)
+nmap gd <plug>(coc-definition)
+nnoremap gh :call CocAction('doHover')<cr>
+nnoremap <leader>c :CocCommand<cr>
+nnoremap <leader>l :CocList<cr>
+nmap [d <plug>(coc-diagnostic-prev)
+nmap ]d <plug>(coc-diagnostic-next)
+nmap <leader>f <plug>(coc-format)
+xmap <leader>f <plug>(coc-format-selected)
+nmap <leader>a <plug>(coc-codeaction)
 nmap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
 nmap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
@@ -154,7 +154,6 @@ nnoremap <silent> <leader>I :Rg <cr>
 nnoremap <silent> <leader>i :RgOnlyLines <cr>
 xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
 nnoremap <silent> <leader>o :Files<cr>
-nnoremap <silent> <leader>/ :BLines<cr>
 nnoremap <silent> <leader>b :Buffers <cr>
 
 " tabs
