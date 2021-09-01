@@ -61,6 +61,9 @@ python3 -m pip install --user --upgrade $(cat $script_path/pip-packages | tr '\n
 
 sudo python3 -m dotbot -c "$script_path/install.conf.yaml"
 
+# zsh completions
+gh completion -s zsh > /usr/local/share/zsh/site-functions/_gh
+
 eval "$(fnm env)"
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 

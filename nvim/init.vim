@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
+Plug 'bronson/vim-visual-star-search'
 Plug 'cocopon/vaffle.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
@@ -14,7 +15,6 @@ Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
-Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -113,7 +113,6 @@ nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
-nnoremap <C-w>m :MaximizerToggle!<cr>
 nnoremap <silent> <Esc> :nohlsearch<cr>
 nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)

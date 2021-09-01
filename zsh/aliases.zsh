@@ -13,6 +13,7 @@ alias clear="reset"
 alias dush="du -sh ./*"
 alias serve="npx http-server -c-1"
 alias notify="terminal-notifier -message"
+alias go="googler"
 
 alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias n="cd $HOME/Documents/Notes && $EDITOR"
