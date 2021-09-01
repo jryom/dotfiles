@@ -10,7 +10,7 @@
 	<array>
 		<string>zsh</string>
 		<string>-c</string>
-		<string>$DOTDIR/scripts/dark-notify.zsh</string>
+		<string>$HOME/.config/scripts/dark-notify</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 setopt ALL_EXPORT
 setopt AUTO_CD
 setopt AUTO_PUSHD
@@ -14,16 +16,16 @@ setopt MENU_COMPLETE
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
 
-source "$DOTDIR/zsh/env.zsh"
+source "$HOME/.config/zsh/env"
 
 autoload -U compinit && compinit;
 
-source ~/.zsh_plugins
+source $HOME/.zsh_plugins
 source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
 
 function zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
   bindkey 'ç' fzf-cd-widget
   bindkey '^l' autosuggest-accept
   bindkey '^[[Z' reverse-menu-complete
@@ -31,7 +33,7 @@ function zvm_after_init() {
   enable-fzf-tab
 }
 
-source "$DOTDIR/zsh/aliases.zsh"
+source "$HOME/.config/zsh/aliases"
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -41,4 +43,6 @@ zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
 zstyle ':fzf-tab:*' default-color $'\033[30m'
 zstyle ':fzf-tab:*' show-group full
 
-source "$DOTDIR/zsh/functions.zsh"
+source "$HOME/.config/zsh/functions"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

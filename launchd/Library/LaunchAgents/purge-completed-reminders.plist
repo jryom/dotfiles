@@ -14,7 +14,7 @@
 	<array>
 		<string>zsh</string>
 		<string>-c</string>
-		<string>osascript $DOTDIR/scripts/purge-completed-reminders.AppleScript</string>
+		<string>osascript $HOME/.config/scripts/purge-completed-reminders.AppleScript</string>
 	</array>
 	<key>StartCalendarInterval</key>
 	<array>

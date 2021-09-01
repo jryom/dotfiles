@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 lfwrapper () {
   tmp="$(mktemp)"
   columns="$(tput cols)"

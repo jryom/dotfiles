@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 BAT_STYLE="full"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
 BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo 'OneHalfDark' || echo 'OneHalfLight')"
@@ -13,13 +15,13 @@ FZF_THEME_LIGHT='--color=fg:#4b505b,bg:#fafafa,hl:#5079be
 --color=marker:#608e32,spinner:#d05858,header:#3a8b84'
 FZF_DEFAULT_COMMAND="rg --files --hidden"
 FZF_DEFAULT_OPTS="--ansi $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "$FZF_THEME_DARK" || echo "$FZF_THEME_LIGHT")"
-HISTFILE=~/Documents/Settings/zsh-history
+HISTFILE=~/Documents/Dotfiles/zsh-history
 HISTFILESIZE=1000000
 HISTSIZE=1000000
 HISTTIMEFORMAT="[%F %T] "
 KEYTIMEOUT=1
 LC_ALL="en_US.UTF-8"
-RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 VISUAL="$EDITOR"
 
 PATH=/usr/local/bin:$PATH

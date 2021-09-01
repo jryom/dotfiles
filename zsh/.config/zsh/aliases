@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 alias -- -="cd -"
 alias cp="cp -riv"
 alias find="gfind"
@@ -15,10 +17,13 @@ alias serve="npx http-server -c-1"
 alias notify="terminal-notifier -message"
 alias go="googler"
 
+alias skat="$HOME/Code/dmot-vpn-scripts/start-vpn.sh"
+alias sophos="while true; do sudo pkill -9 -f ophos; sleep 1; done"
+
 alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias n="cd $HOME/Documents/Notes && $EDITOR"
-alias sz="source ~/.zshrc && clear"
-alias up="zsh $DOTDIR/scripts/update.zsh"
+alias sz="source $HOME/.zshrc && clear"
+alias up="zsh $HOME/.config/scripts/update"
 alias vim="$EDITOR"
 
 alias gs="git status --show-stash --verbose --untracked-files --column"
