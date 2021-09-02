@@ -1,0 +1,25 @@
+[flags]
+dot_marker = true
+left_legend = true
+battery = true
+tree = true
+show_table_scroll_position = true
+
+[[row]]
+		ratio=20
+		[[row.child]]
+			type="cpu"
+		[[row.child]]
+			type="net"
+[[row]]
+    ratio=20
+    [[row.child]]
+      type="mem"
+		[[row.child]]
+			type="temp"
+[[row]]
+  ratio=60
+  [[row.child]]
+    type="proc"
+    default=true
+
