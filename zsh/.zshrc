@@ -16,6 +16,8 @@ setopt MENU_COMPLETE
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
 
+set -o vi
+
 source "$HOME/.config/zsh/env"
 
 autoload -U compinit && compinit;
@@ -24,14 +26,13 @@ source $HOME/.zsh_plugins
 source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
 
-function zvm_after_init() {
-  [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
-  bindkey 'ç' fzf-cd-widget
-  bindkey '^l' autosuggest-accept
-  bindkey '^[[Z' reverse-menu-complete
-  bindkey '^Z' ctrl-z
-  enable-fzf-tab
-}
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
+bindkey 'ç' fzf-cd-widget
+bindkey '^l' autosuggest-accept
+bindkey '^[[Z' reverse-menu-complete
+bindkey '^Z' ctrl-z
+enable-fzf-tab
 
 source "$HOME/.config/zsh/aliases"
 
