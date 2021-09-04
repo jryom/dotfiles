@@ -5,7 +5,6 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "jryom/homebrew-formulae"
 tap "koekeishiya/formulae"
-tap "nextdns/tap"
 tap "ojford/formulae"
 
 brew "antibody"
@@ -75,7 +74,6 @@ cask "spotify"
 cask "sublime-merge"
 
 mas "Dark Reader for Safari", id: 1438243180
-mas "NextDNS", id: 1464122853
 mas "Tampermonkey", id: 1482490089
 mas "Tailscale", id: 1475387142
 mas "Vimari", id: 1480933944
