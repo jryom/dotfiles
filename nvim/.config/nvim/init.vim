@@ -2,7 +2,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'asheq/close-buffers.vim'
 Plug 'bronson/vim-visual-star-search'
-Plug 'cocopon/vaffle.vim'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
@@ -21,6 +20,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'windwp/nvim-autopairs'
 call plug#end()
 
@@ -88,7 +88,6 @@ EOF
 " }}}
 
 " Plugin settings: {{{
-let g:vaffle_show_hidden_files = 1
 let g:rooter_silent_chdir = 1
 let g:indent_blankline_filetype_exclude = ['help','vaffle','markdown']
 let g:indent_blankline_use_treesitter = v:true
@@ -116,7 +115,6 @@ nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <silent> <Esc> :nohlsearch<cr>
-nnoremap <silent> - :call vaffle#init(expand('%'))<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <leader>u :MundoToggle<cr>
