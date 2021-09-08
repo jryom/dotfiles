@@ -35,6 +35,7 @@ bindkey '^Z' ctrl-z
 enable-fzf-tab
 
 source "$HOME/.config/zsh/aliases"
+source "$HOME/Documents/Dotfiles/zsh"
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'

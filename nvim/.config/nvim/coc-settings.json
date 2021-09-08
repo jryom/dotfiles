@@ -1,13 +1,16 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "go",
+    "html",
     "javascript",
     "javascriptreact",
-    "typescript",
-    "typescriptreact",
     "json",
     "jsonc",
-    "css",
-    "markdown"
+    "markdown",
+    "python",
+    "typescript",
+    "typescriptreact"
   ],
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.listOfWorkspaceEdit": "location",
@@ -22,8 +25,6 @@
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.level": "warning",
-  "diagnostic.maxWindowHeight": 100,
-  "diagnostic.maxWindowWidth": 150,
   "diagnostic.warningSign": "",
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
@@ -40,10 +41,11 @@
       ]
     }
   },
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.formatting.provider": "black",
   "snippets.extends": {
     "typescriptreact": ["javascript"],
     "typescript": ["javascript"]
   },
-  "suggest.maxPreviewWidth": 150,
   "tsserver.formatOnType": true
 }

@@ -1,8 +1,8 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 source "$HOME/.config/zsh/env"
-PATH="/usr/local/bin/:$PATH"
-SUDO_ASKPASS="$HOME/.config/scripts/askpass" \
+export PATH="/usr/local/bin/:$PATH"
+export SUDO_ASKPASS="$HOME/.config/scripts/askpass" \
 
 set -ex
 
@@ -13,7 +13,7 @@ eval "$(fnm env)"
 
 brew update
 brew upgrade --greedy --force
-HOMEBREW_CLEANUP_MAX_AGE_DAYS=60
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=60
 brew cleanup
 
 fnm install --lts && fnm use lts-latest && fnm default lts-latest

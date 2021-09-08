@@ -4,6 +4,7 @@ Plug 'asheq/close-buffers.vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'cormacrelf/dark-notify'
 Plug 'honza/vim-snippets'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -14,6 +15,7 @@ Plug 'romainl/vim-qf'
 Plug 'sainnhe/edge'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
+Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
@@ -43,6 +45,7 @@ set matchpairs+=<:>
 set mouse=a
 set number relativenumber
 set rtp+=/usr/local/opt/fzf
+set expandtab
 set scrolloff=8
 set shiftround
 set shortmess+=actFTWI
@@ -111,6 +114,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
+nnoremap <c-w>m :MaximizerToggle<cr>
 nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
@@ -121,7 +125,9 @@ nnoremap <leader>u :MundoToggle<cr>
 nnoremap <leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
 xnoremap <leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 nnoremap <leader>g :silent grep<Space>
+nnoremap <leader>m :MarkdownPreviewToggle<cr>
 map <leader>w <cmd>HopWord<cr>
+map <leader>s <cmd>HopLineStart<cr>
 xmap ga <plug>(EasyAlign)
 
 " close-buffers
