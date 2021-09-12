@@ -21,17 +21,40 @@
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
   },
+  "diagnostic.floatConfig": {
+    "maxHeight": 500,
+    "maxWidth": 100
+  },
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.level": "warning",
   "diagnostic.warningSign": "",
   "eslint.autoFixOnSave": true,
+  "git.addGBlameToVirtualText": true,
+  "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
   "languageserver": {
     "graphql": {
       "command": "graphql-lsp",
-      "args": ["server", "-m", "stream"],
+      "args": [
+        "server",
+        "-m",
+        "stream"
+      ],
+      "filetypes": [
+        "typescript",
+        "typescriptreact",
+        "graphql",
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "tailwindcss": {
+      "command": "tailwindcss-language-server",
+      "args": [
+        "--stdio"
+      ],
       "filetypes": [
         "typescript",
         "typescriptreact",
@@ -44,8 +67,12 @@
   "python.pythonPath": "/usr/local/bin/python3",
   "python.formatting.provider": "black",
   "snippets.extends": {
-    "typescriptreact": ["javascript"],
-    "typescript": ["javascript"]
+    "typescriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
   },
   "tsserver.formatOnType": true
 }
