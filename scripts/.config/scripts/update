@@ -20,7 +20,7 @@ fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
 installed="$(npm ls --global --json --depth 0 | jq '.dependencies | length')"
 required="$(wc -l < $HOME/.confg/npm/npm-global-packages | xargs)"
-if (( $installed < $required )); then npm install -g $(cat "$HOME/.confg/npm/npm-global-packages" | tr '\n' ' '); fi
+if (( $installed < $required )); then npm install -g $(cat "$HOME/.config/npm/npm-global-packages" | tr '\n' ' '); fi
 
 for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
 do
