@@ -13,7 +13,8 @@ FZF_THEME_LIGHT='--color=fg:#4b505b,bg:#fafafa,hl:#5079be
 --color=fg+:#4b505b,bg+:#fafafa,hl+:#3a8b84
 --color=info:#88909f,prompt:#d05858,pointer:#b05ccc
 --color=marker:#608e32,spinner:#d05858,header:#3a8b84'
-FZF_DEFAULT_COMMAND="rg --files --hidden"
+FZF_DEFAULT_COMMAND="rg --files"
+FZF_CTRL_T_COMMAND="rg --files"
 FZF_DEFAULT_OPTS="--ansi $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "$FZF_THEME_DARK" || echo "$FZF_THEME_LIGHT")"
 HISTFILE=~/Documents/Dotfiles/zsh-history
 HISTFILESIZE=1000000
