@@ -44,6 +44,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
 zstyle ':fzf-tab:*' default-color $'\033[30m'
 zstyle ':fzf-tab:*' show-group full
+zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 
 source "$HOME/.config/zsh/functions"
 
