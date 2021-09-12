@@ -1,10 +1,12 @@
+@tailwindcss/language-server
 alfred-currency-conversion
-kill-port
 graphql
 graphql-language-service-cli
+kill-port
 neovim
 npm
 npm-check-updates
 pure-prompt
+rustywind
 typescript
 yarn
