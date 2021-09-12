@@ -19,6 +19,7 @@ Plug 'szw/vim-maximizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -50,6 +51,7 @@ set scrolloff=8
 set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
+set pumblend=12 winblend=12
 set splitbelow splitright
 set termguicolors
 set undofile
