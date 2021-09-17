@@ -31,10 +31,11 @@ command! Up execute 'PlugUpgrade | PlugUpdate'
 command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
 
 set colorcolumn=999
-set foldminlines=3
-set foldlevelstart=99
+set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=99
 set foldmethod=expr
+set foldminlines=3
 set gdefault
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
@@ -45,13 +46,12 @@ set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set number relativenumber
+set pumblend=12 winblend=12
 set rtp+=/usr/local/opt/fzf
-set expandtab
 set scrolloff=8
 set shiftround
 set shortmess+=actFTWI
-set signcolumn=yes
-set pumblend=12 winblend=12
+set signcolumn=number
 set splitbelow splitright
 set termguicolors
 set undofile
@@ -95,6 +95,7 @@ EOF
 " Plugin settings: {{{
 let g:rooter_silent_chdir = 1
 let g:indent_blankline_filetype_exclude = ['help','vaffle','markdown']
+let g:indent_blankline_char = '▏'
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:coc_global_extensions = [
@@ -102,7 +103,6 @@ let g:coc_global_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-eslint',
       \ 'coc-html',
-      \ 'coc-git',
       \ 'coc-json',
       \ 'coc-prettier',
       \ 'coc-snippets',
@@ -130,6 +130,7 @@ nnoremap <leader>g :silent grep<Space>
 nnoremap <leader>m :MarkdownPreviewToggle<cr>
 map <leader>w <cmd>HopWord<cr>
 map <leader>s <cmd>HopLineStart<cr>
+nnoremap <leader><leader> :update<cr>
 xmap ga <plug>(EasyAlign)
 
 " close-buffers
@@ -147,8 +148,8 @@ nmap gd <plug>(coc-definition)
 nnoremap gh :call CocAction('doHover')<cr>
 nnoremap <leader>c :CocCommand<cr>
 nnoremap <leader>l :CocList<cr>
-nmap [d <plug>(coc-diagnostic-prev)
-nmap ]d <plug>(coc-diagnostic-next)
+nmap <leader>p <plug>(coc-diagnostic-prev)
+nmap <leader>n <plug>(coc-diagnostic-next)
 nmap <leader>f <plug>(coc-format)
 xmap <leader>f <plug>(coc-format-selected)
 nmap <leader>a <plug>(coc-codeaction)

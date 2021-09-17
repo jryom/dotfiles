@@ -14,6 +14,7 @@
   ],
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.listOfWorkspaceEdit": "location",
+  "coc.preferences.willSaveHandlerTimeout": 5000,
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
     "sh": "shellcheck"
@@ -31,17 +32,12 @@
   "diagnostic.level": "warning",
   "diagnostic.warningSign": "",
   "eslint.autoFixOnSave": true,
-  "git.addGBlameToVirtualText": true,
   "highlight.colorNames.enable": false,
   "html.validate.scripts": true,
   "languageserver": {
     "graphql": {
       "command": "graphql-lsp",
-      "args": [
-        "server",
-        "-m",
-        "stream"
-      ],
+      "args": ["server", "-m", "stream"],
       "filetypes": [
         "typescript",
         "typescriptreact",
@@ -52,9 +48,7 @@
     },
     "tailwindcss": {
       "command": "tailwindcss-language-server",
-      "args": [
-        "--stdio"
-      ],
+      "args": ["--stdio"],
       "filetypes": [
         "typescript",
         "typescriptreact",
@@ -67,12 +61,8 @@
   "python.pythonPath": "/usr/local/bin/python3",
   "python.formatting.provider": "black",
   "snippets.extends": {
-    "typescriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
+    "typescriptreact": ["javascript"],
+    "typescript": ["javascript"]
   },
   "tsserver.formatOnType": true
 }
