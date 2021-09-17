@@ -86,7 +86,7 @@ shift + alt - n: if [[ "$( yabai -m query --spaces --display | jq '.[-1].index' 
                  fi; \
                    yabai -m window --focus last
 
-# send window to new first/last desktop on monitor
+# send window to new first/last space on monitor
 shift + alt - b: yabai -m space --create && \
                  query="$(yabai -m query --spaces --display \
                  | jq 'map(select(."native-fullscreen" == 0))')" && \
@@ -101,7 +101,7 @@ shift + alt - e: yabai -m space --create && \
                  yabai -m window --space "$index" && \
                  yabai -m space --focus "$index"
 
-# send window to desktop and follow focus
+# send window to space and follow focus
 shift + alt - 1: yabai -m window --space 1 && yabai -m space --focus 1
 shift + alt - 2: yabai -m window --space 2 && yabai -m space --focus 2
 shift + alt - 3: yabai -m window --space 3 && yabai -m space --focus 3
@@ -112,18 +112,18 @@ shift + alt - 6: yabai -m window --space 6 && yabai -m space --focus 6
 # send window to monitor and follow focus
 shift + alt - m: begin; yabai -m window --display prev && yabai -m display --focus prev; end || begin; yabai -m window --display next && yabai -m display --focus next; end
 
-# send desktop to monitor and follow focus
+# send space to monitor and follow focus
 shift + ctrl - m: yabai -m space --display next || yabai -m space --display prev
 
-# move desktop
+# move space
 shift + ctrl - p: [[ "$(yabai -m query --spaces --display | jq '.[0].index')" -lt "$(yabai -m query --spaces --space | jq '.index')" ]] && yabai -m space --move prev
 shift + ctrl - n: [[ "$(yabai -m query --spaces --display | jq '.[-1].index')" -gt "$(yabai -m query --spaces --space | jq '.index')" ]] && yabai -m space --move next
 
-# move desktop to first/last index of monitor
+# move space to first/last index of monitor
 shift + ctrl - b: yabai -m space --move "$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[0].index')"
 shift + ctrl - e: yabai -m space --move "$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')"
 
-# focus desktop
+# focus space
 shift + ctrl - h: yabai -m space --focus prev
 shift + ctrl - l: yabai -m space --focus next
 shift + ctrl - 1: yabai -m space --focus 1
@@ -132,9 +132,15 @@ shift + ctrl - 3: yabai -m space --focus 3
 shift + ctrl - 4: yabai -m space --focus 4
 shift + ctrl - 5: yabai -m space --focus 5
 shift + ctrl - 6: yabai -m space --focus 6
+shift + ctrl - 7: yabai -m space --focus 7
+shift + ctrl - 8: yabai -m space --focus 8
+shift + ctrl - 9: yabai -m space --focus 9
 
-# create desktop
+# create space
 shift + ctrl - c: yabai -m space --create && index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && yabai -m space --focus "$index"
 
-# destroy desktop
-shift + ctrl - x: yabai -m space --destroy
+# destroy space
+shift + ctrl - w: yabai -m space --destroy
+
+# destroy all empty spaces
+shift + ctrl - x: zsh -c "$HOME/.config/yabai/yabai-destroy_empty_spaces.zsh"
