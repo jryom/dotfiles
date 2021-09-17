@@ -28,6 +28,8 @@ eval "$(fnm env)"
 
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
+bindkey "^p" history-search-backward
+bindkey "^n" history-search-forward
 bindkey 'ç' fzf-cd-widget
 bindkey '^l' autosuggest-accept
 bindkey '^[[Z' reverse-menu-complete
