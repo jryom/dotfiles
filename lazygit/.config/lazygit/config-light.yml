@@ -3,7 +3,7 @@ git:
     colorArg: always
     pager: delta --paging=never
   pull:
-    mode: 'rebase'
+    mode: "rebase"
 
 gui:
   showCommandLog: false
@@ -11,20 +11,19 @@ gui:
   skipstashwarning: true
   skipunstagelinewarning: false
   theme:
-    lightTheme: true
     activeBorderColor:
-      - black
+      - white
       - bold
     inactiveBorderColor:
-      - white
+      - "#CFC1BA"
 
 startuppopupversion: 1
-notARepository: 'skip'
+notARepository: "skip"
 keybinding:
-    files:
-      commitChanges: 'C'
-      commitChangesWithEditor: 'c'
-      toggleTreeView: 't'
-    commits:
-      renameCommit: 'R'
-      renameCommitWithEditor: 'r'
+  files:
+    commitChanges: "C"
+    commitChangesWithEditor: "c"
+    toggleTreeView: "t"
+  commits:
+    renameCommit: "R"
+    renameCommitWithEditor: "r"

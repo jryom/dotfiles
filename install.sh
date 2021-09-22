@@ -90,7 +90,7 @@ antibody bundle < "$script_path/bin/zsh-plugins" > ~/.zsh_plugins
 
 curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim --headless +PlugInstall +qa
+nvim --headless +PackerInstall +qa
 
 brew services start koekeishiya/formulae/yabai
 brew services start koekeishiya/formulae/skhd

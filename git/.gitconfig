@@ -42,5 +42,5 @@
 
 [delta]
 	line-numbers = true
-	syntax-theme = $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "OneHalfDark" || echo "OneHalfLight")
+	syntax-theme = $([[ "$DARK_MODE_ACTIVE" = 1 ]] && echo "gruvbox-dark" || echo "gruvbox-light")
 	hunk-header-style = omit
