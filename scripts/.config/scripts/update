@@ -31,4 +31,4 @@ tldr --update
 
 antibody update
 
-sudo softwareupdate --install --all --restart --agree-to-license
+sudo softwareupdate --install --all --agree-to-license
