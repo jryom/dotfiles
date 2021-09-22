@@ -1,12 +1,17 @@
 @tailwindcss/language-server
 alfred-currency-conversion
+eslint_d
 graphql
 graphql-language-service-cli
 kill-port
 neovim
 npm
 npm-check-updates
+prettier
 pure-prompt
 rustywind
 typescript
+typescript-language-server
+vim-language-server
+vscode-langservers-extracted
 yarn
