@@ -1,4 +1,3 @@
-local cmp = require("cmp")
 local lspconfig = require("lspconfig")
 local null_ls = require("null-ls")
 
@@ -16,29 +15,6 @@ null_ls.config({
     null_ls.builtins.formatting.stylelint,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.trim_whitespace,
-  },
-})
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<C-l>"] = cmp.mapping.confirm({
-      select = true,
-    }),
-  },
-  sources = {
-    { name = "path" },
-    { name = "vsnip" },
-    { name = "nvim_lsp" },
-    { name = "buffer" },
   },
 })
 
@@ -95,6 +71,7 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
   end
 end
 
+lspconfig["cssls"].setup({ on_attach = on_attach })
 lspconfig["graphql"].setup({ on_attach = on_attach })
 lspconfig["html"].setup({ on_attach = on_attach })
 lspconfig["jsonls"].setup({ on_attach = on_attach })

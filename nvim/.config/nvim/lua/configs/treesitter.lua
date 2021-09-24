@@ -1,0 +1,37 @@
+return {
+  "nvim-treesitter/nvim-treesitter",
+  run = ":TSUpdate",
+  config = function()
+    require("nvim-treesitter.configs").setup({
+      autopairs = { enable = true },
+      ensure_installed = {
+        "bash",
+        "comment",
+        "css",
+        "dockerfile",
+        "go",
+        "graphql",
+        "hjson",
+        "html",
+        "javascript",
+        "java",
+        "jsdoc",
+        "json",
+        "json5",
+        "jsonc",
+        "lua",
+        "python",
+        "query",
+        "regex",
+        "svelte",
+        "tsx",
+        "toml",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+      highlight = { enable = true },
+      indent = { enable = true },
+    })
+  end,
+}
