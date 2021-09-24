@@ -44,12 +44,12 @@ vim.cmd([[
   augroup END
  ]])
 
-vim.g.rooter_silent_chdir = 1
-vim.g.indent_blankline_filetype_exclude = { "help", "markdown" }
-vim.g.indent_blankline_char = "▏"
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.vsnip_snippet_dir = "~/.config/nvim/snippets"
-vim.g.gitblame_date_format = "%r"
-vim.g.Hexokinase_virtualText = "▮"
 vim.g.Hexokinase_optInPatterns = "full_hex,rgb,rgba,hsl,hsla"
+vim.g.Hexokinase_virtualText = "▮"
+vim.g.gitblame_date_format = "%r"
+vim.g.indent_blankline_char = "▏"
+vim.g.indent_blankline_filetype_exclude = { "help", "markdown" }
+vim.g.indent_blankline_show_trailing_blankline_indent = false
+vim.g.indent_blankline_use_treesitter = true
+vim.g.rooter_silent_chdir = 1
+vim.g.vsnip_snippet_dir = "~/.config/nvim/snippets"
