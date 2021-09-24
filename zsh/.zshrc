@@ -51,3 +51,8 @@ zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 source "$HOME/.config/zsh/functions"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -e "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
+# END_KITTY_SHELL_INTEGRATION
