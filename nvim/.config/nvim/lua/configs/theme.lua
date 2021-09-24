@@ -26,13 +26,10 @@ return {
     config = function()
       local isDarkMode = string.match(vim.fn.system("defaults read -g AppleInterfaceStyle"), "Dark")
         == "Dark"
-      vim.g.zenbones_dim_noncurrent_window = true
-      vim.g.zenflesh_darkness = "warm"
-      vim.g.zenflesh_lighten_noncurrent_window = true
-      vim.cmd(isDarkMode and "colo zenflesh-lush" or "color zenbones-lush")
+      vim.cmd(isDarkMode and "colo zenflesh" or "color zenbones")
     end,
   },
-  
+
   {
     "cormacrelf/dark-notify",
     event = "CursorHold",
@@ -40,9 +37,9 @@ return {
       require("dark_notify").run({
         onchange = function(mode)
           if vim.g.colors_name == nil then
-            vim.cmd(mode == "dark" and "colo zenflesh-lush" or "color zenbones-lush")
+            vim.cmd(mode == "dark" and "colo zenflesh" or "colo zenbones")
             require("plenary.reload").reload_module("lualine", true)
-            require("lualine").setup(getLualineOpts(mode))
+            require("lualine").setup(getLualineOpts(mode == "dark"))
           end
         end,
       })

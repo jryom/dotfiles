@@ -31,25 +31,29 @@ local on_attach = function(client, bufnr)
 
   local opts = { noremap = true, silent = true }
 
-  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<space>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "<space>p", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<space>n", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
+  buf_set_keymap("n", "<leader>q", "<cmd>TroubleToggle lsp_document_diagnostics<cr>", opts)
+  buf_set_keymap("n", "<leader>l", "<cmd>TroubleToggle loclist<cr>", opts)
+  buf_set_keymap("n", "<leader>q", "<cmd>TroubleToggle quickfix<cr>", opts)
+  buf_set_keymap("n", "<leader>d", "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", opts)
+  buf_set_keymap("n", "<leader>t", "<cmd>TroubleToggle<cr>", opts)
+  buf_set_keymap("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
+  buf_set_keymap("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>", opts)
+
   vim.cmd([[
-		augroup Format
-			au! * <buffer>
-			au BufWritePre <buffer> lua vim.lsp.buf.formatting(nil, 1000)
-		augroup END
-	]])
+    augroup Format
+      au! * <buffer>
+      au BufWritePre <buffer> lua vim.lsp.buf.formatting(nil, 1000)
+    augroup END
+   ]])
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
