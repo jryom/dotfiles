@@ -1,0 +1,71 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "go",
+    "html",
+    "javascript",
+    "lua",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "python",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.listOfWorkspaceEdit": "location",
+  "coc.preferences.willSaveHandlerTimeout": 5000,
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic.floatConfig": {
+    "maxHeight": 500,
+    "maxWidth": 100
+  },
+  "diagnostic.errorSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.level": "warning",
+  "diagnostic.enableSign": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.warningSign": "",
+  "eslint.autoFixOnSave": true,
+  "html.validate.scripts": true,
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": [
+        "typescript",
+        "typescriptreact",
+        "graphql",
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "tailwindcss": {
+      "command": "tailwindcss-language-server",
+      "args": ["--stdio"],
+      "filetypes": [
+        "typescript",
+        "typescriptreact",
+        "graphql",
+        "javascript",
+        "javascriptreact"
+      ]
+    }
+  },
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.formatting.provider": "black",
+  "snippets.extends": {
+    "typescriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  },
+  "tsserver.formatOnType": true
+}

@@ -91,9 +91,10 @@ cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficie
 
 antibody bundle <"$script_path/bin/zsh-plugins" >~/.zsh_plugins
 
-curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim --headless +PackerInstall +qa
+rm -rf ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 brew services start koekeishiya/formulae/yabai
 brew services start koekeishiya/formulae/skhd

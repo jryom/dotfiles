@@ -1,8 +1,7 @@
 return require("packer").startup({
-  function()
+  function(use)
     use({
-      "jose-elias-alvarez/null-ls.nvim",
-      "lewis6991/impatient.nvim",
+      "junegunn/fzf.vim",
       "neovim/nvim-lspconfig",
       "nvim-lua/plenary.nvim",
       "tpope/vim-commentary",
@@ -12,10 +11,8 @@ return require("packer").startup({
       "tpope/vim-vinegar",
       "wbthomason/packer.nvim",
 
-      require("configs.cmp"),
-      require("configs.telescope"),
-      require("configs.theme"),
-      require("configs.treesitter"),
+      require("theme"),
+      require("treesitter"),
 
       { "asheq/close-buffers.vim", cmd = "Bdelete" },
       { "bronson/vim-visual-star-search", keys = "*" },
@@ -113,24 +110,24 @@ return require("packer").startup({
       },
 
       {
-        "folke/trouble.nvim",
-        cmd = { "Trouble", "TroubleToggle" },
+        "neoclide/coc.nvim",
+        branch = "release",
         config = function()
-          require("trouble").setup({
-            fold_open = "v",
-            fold_closed = ">",
-            indent_lines = false,
-            signs = {
-              error = "error",
-              warning = "warn",
-            },
-            use_lsp_diagnostic_signs = false,
-          })
+          vim.g.coc_global_extensions = {
+            "coc-css",
+            "coc-diagnostic",
+            "coc-eslint",
+            "coc-html",
+            "coc-json",
+            "coc-lua",
+            "coc-prettier",
+            "coc-snippets",
+            "coc-styled-components",
+            "coc-stylelintplus",
+            "coc-tsserver",
+          }
         end,
       },
     })
   end,
-  config = {
-    compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
-  },
 })
