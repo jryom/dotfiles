@@ -2,12 +2,16 @@
 
 source "$HOME/.config/zsh/env"
 export PATH="/usr/local/bin/:$PATH"
-export SUDO_ASKPASS="$HOME/.config/scripts/askpass" \
+export SUDO_ASKPASS="$HOME/.config/scripts/askpass"
 
 set -ex
 
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
 
 eval "$(fnm env)"
 
@@ -19,11 +23,10 @@ brew cleanup
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
 installed="$(npm ls --global --json --depth 0 | jq '.dependencies | length')"
-required="$(wc -l < $HOME/.confg/npm/npm-global-packages | xargs)"
-if (( $installed < $required )); then npm install -g $(cat "$HOME/.config/npm/npm-global-packages" | tr '\n' ' '); fi
+required="$(wc -l <$HOME/.config/npm/npm-global-packages | xargs)"
+if (("$installed" < "$required")); then npm install -g $(cat "$HOME/.config/npm/npm-global-packages" | tr '\n' ' '); fi
 
-for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
-do
+for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2); do
 	npm -g install "$package"
 done
 
