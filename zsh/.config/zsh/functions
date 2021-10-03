@@ -3,14 +3,12 @@
 lfwrapper () {
   tmp="$(mktemp)"
   columns="$(tput cols)"
-  size="tiny"
+  size="small"
 
-  if [ $columns -gt 200 ]; then
+  if [ $columns -gt 120 ]; then
     size="large"
-  elif [ $columns -gt 120 ]; then
-    size="medium"
   elif [ $columns -gt 80 ]; then
-    size="small"
+    size="medium"
   fi
 
   lf -command "$size" -last-dir-path="$tmp"
@@ -64,8 +62,4 @@ v() {
 
 g() {
   zAndLaunch lazygit $1
-}
-
-b() {
-  btm --color $( defaults read -g AppleInterfaceStyle &>/dev/null && echo 'default' || echo 'default-light' )
 }

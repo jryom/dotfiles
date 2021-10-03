@@ -13,7 +13,6 @@ set shell zsh
 set shellopts '-eu:--shwordsplit'
 set ifs "\n"
 set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
-set dircounts
 set info 'size'
 
 set hidden
@@ -51,10 +50,8 @@ cmd trash %set -f; trash $fx
 
 map <delete> trash
 
-cmd tiny :set nopreview; set ratios 1; set nodrawbox
+cmd small :set nopreview; set ratios 1; set nodrawbox
 
-cmd small :set ratios 2:3
+cmd medium :set ratios 2:3
 
-cmd medium :set ratios 1:2:3
-
-cmd large :set ratios 1:2:3:5
+cmd large :set ratios 2:4:4
