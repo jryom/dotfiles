@@ -1,32 +1,57 @@
 #!/usr/bin/env zsh
 
-setopt ALL_EXPORT
-setopt AUTO_CD
-setopt AUTO_PUSHD
-setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_NO_DUPS
-setopt INC_APPEND_HISTORY
-setopt MENU_COMPLETE
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_MINUS
+setopt all_export
+setopt always_to_end
+setopt append_history
+setopt auto_cd
+setopt auto_menu
+setopt auto_pushd
+setopt complete_in_word
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt inc_append_history
+setopt menu_complete
+setopt pushd_ignore_dups
+setopt pushd_minus
 
 set -o vi
 
 source "$HOME/.config/zsh/env"
 
-autoload -U compinit && compinit;
+autoload -Uz compinit
+autoload -U colors && colors
+compinit
 
 source $HOME/.zsh_plugins
 source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
 
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+zstyle ':compinstall' filename '~/.zshrc'
+zstyle ':completion:*' completer _expand _complete _correct _approximate _history
+zstyle ':completion:*' file-list all
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' users root
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+
+zmodload zsh/complist
 
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
@@ -34,23 +59,16 @@ bindkey 'ç' fzf-cd-widget
 bindkey '^l' autosuggest-accept
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^Z' ctrl-z
-enable-fzf-tab
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 source "$HOME/.config/zsh/aliases"
 source "$HOME/Documents/Dotfiles/zsh"
 
-zstyle ":completion:*:git-checkout:*" sort false
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
-zstyle ':fzf-tab:*' default-color $'\033[30m'
-zstyle ':fzf-tab:*' show-group full
-zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 
 source "$HOME/.config/zsh/functions"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION
