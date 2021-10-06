@@ -1,10 +1,13 @@
 return require("packer").startup({
   function(use)
     use({
+
       "junegunn/fzf.vim",
       "neovim/nvim-lspconfig",
       "nvim-lua/plenary.nvim",
+      "romainl/vim-qf",
       "tpope/vim-commentary",
+      "tpope/vim-rhubarb",
       "tpope/vim-sleuth",
       "tpope/vim-surround",
       "tpope/vim-unimpaired",
@@ -17,14 +20,20 @@ return require("packer").startup({
       { "asheq/close-buffers.vim", cmd = "Bdelete" },
       { "bronson/vim-visual-star-search", keys = "*" },
       { "junegunn/vim-easy-align", keys = { "<Plug>(EasyAlign)" } },
-      { "phaazon/hop.nvim", cmd = { "HopWord", "HopLineStart" } },
-      { "romainl/vim-qf", cmd = "qf_qf_toggle" },
+      { "phaazon/hop.nvim", cmd = { "HopWord", "HopLineStart", "HopChar2" } },
       { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
       { "szw/vim-maximizer", cmd = "MaximizerToggle" },
       { "tpope/vim-fugitive", event = "CursorHold" },
       { "tpope/vim-repeat", event = "CursorHold" },
-      { "tpope/vim-rhubarb", cmd = "GBrowse" },
       { "windwp/nvim-ts-autotag", event = "CursorHold" },
+
+      {
+        "dstein64/nvim-scrollview",
+        config = function()
+          vim.cmd("highlight link ScrollView PMenuSBar")
+          vim.g.scrollview_winblend = 70
+        end,
+      },
 
       {
         "rmagatti/auto-session",
@@ -39,14 +48,6 @@ return require("packer").startup({
         "airblade/vim-rooter",
         config = function()
           vim.g.rooter_silent_chdir = 1
-        end,
-      },
-
-      {
-        "f-person/git-blame.nvim",
-        event = "CursorHold",
-        config = function()
-          vim.g.gitblame_date_format = "%r"
         end,
       },
 
@@ -99,11 +100,47 @@ return require("packer").startup({
         "lewis6991/gitsigns.nvim",
         config = function()
           require("gitsigns").setup({
+            current_line_blame = true,
+            current_line_blame_opts = {
+              delay = 100,
+            },
+            current_line_blame_formatter = function(name, blame_info, opts)
+              if blame_info.author == name then
+                blame_info.author = "You"
+              end
+
+              local text
+              if blame_info.author == "Not Committed Yet" then
+                text = blame_info.author
+              else
+                local date_time
+
+                if opts.relative_time then
+                  date_time = require("gitsigns.util").get_relative_time(
+                    tonumber(blame_info["author_time"])
+                  )
+                else
+                  date_time = os.date("%Y-%m-%d", tonumber(blame_info["author_time"]))
+                end
+
+                text = string.format(
+                  "      %s | %s | %s",
+                  blame_info.author,
+                  date_time,
+                  blame_info.summary
+                )
+              end
+
+              return { { " " .. text, "GitSignsCurrentLineBlame" } }
+            end,
+            current_line_blame_formatter_opts = {
+              relative_time = true,
+            },
             signs = {
-              add = { text = "▍" },
-              change = { text = "▍" },
-              delete = { text = "▁" },
-              topdelete = { text = "▔" },
+              add = { text = "+" },
+              change = { text = "~" },
+              delete = { text = "_" },
+              topdelete = { text = "‾" },
             },
           })
         end,

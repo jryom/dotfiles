@@ -14,6 +14,9 @@ return {
     config = function()
       require("dark_notify").run({
         onchange = function(mode)
+          if vim.g.colors_name == nil then
+            vim.cmd(mode == "dark" and "colo zenflesh" or "colo zenbones")
+          end
           vim.cmd([[
             highlight! link       CocErrorHighlight     DiagnosticUnderlineError
             highlight! link       CocHintHighlight      DiagnosticUnderlineHint
@@ -23,10 +26,8 @@ return {
             highlight! link       CocHintVirtualText    DiagnosticHint
             highlight! link       CocInfoVirtualText    DiagnosticInformation
             highlight! link       CocWarningVirtualText DiagnosticWarn
+            highlight! link       ScrollView            PMenuSBar
           ]])
-          if vim.g.colors_name == nil then
-            vim.cmd(mode == "dark" and "colo zenflesh" or "colo zenbones")
-          end
         end,
       })
     end,

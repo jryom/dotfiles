@@ -4,9 +4,9 @@
 
 set colorcolumn=999
 set expandtab
+set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=99
-set foldmethod=expr
 set foldminlines=3
 set gdefault
 set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -24,7 +24,7 @@ set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
 set splitbelow splitright
-set pumblend=15 winblend=15
+set pumblend=10 winblend=10
 set termguicolors
 set undofile
 set updatetime=200
@@ -48,6 +48,8 @@ let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6, 'border': 'sharp' 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:rooter_silent_chdir = 1
 
+command! Up execute 'PackerSync'
+
 " Keymaps: {{{
 let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
@@ -65,6 +67,7 @@ nnoremap <leader>g :silent grep<Space>
 nnoremap <leader>m :MarkdownPreviewToggle<cr>
 map <leader>w <cmd>HopWord<cr>
 map <leader>s <cmd>HopLineStart<cr>
+map s <cmd>HopChar2<cr>
 nnoremap <leader><leader> :update<cr>
 xmap ga <plug>(EasyAlign)
 
