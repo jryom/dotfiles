@@ -108,8 +108,17 @@ nnoremap <silent> <leader>o :Files<cr>
 nnoremap <silent> <leader>b :Buffers <cr>
 
 " tabs
-nnoremap <silent> <C-t> :tabnew %<cr>
-nnoremap <silent> <C-q> :tabclose<cr>
+nnoremap <silent> <C-t>n :tabnew %<cr>
+nnoremap <silent> <C-t>c :tabclose<cr>
+nnoremap <silent> <C-t>1 1gt
+nnoremap <silent> <C-t>2 2gt
+nnoremap <silent> <C-t>3 3gt
+nnoremap <silent> <C-t>4 4gt
+nnoremap <silent> <C-t>5 5gt
+nnoremap <silent> <C-t>6 6gt
+nnoremap <silent> <C-t>7 7gt
+nnoremap <silent> <C-t>8 8gt
+nnoremap <silent> <C-t>9 9gt
 
 " unimpaired on non-US layouts
 nmap <Left> [
