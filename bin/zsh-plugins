@@ -4,7 +4,7 @@ ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
 sindresorhus/pure
 zpm-zsh/autoenv
-lincheney/fzf-tab-completion path:zsh
+aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting

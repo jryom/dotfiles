@@ -29,6 +29,12 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' fzf-search-display true
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose true
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' default-color $'\033[37m'
+zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
+zstyle ':fzf-tab:*' fzf-flags '--color=hl:cyan'
 
 autoload -Uz compinit
 compinit
@@ -40,6 +46,8 @@ eval "$(fnm env)"
 
 source $HOME/.zsh_plugins
 
+enable-fzf-tab
+
 zmodload zsh/complist
 
 bindkey "^p" history-search-backward
@@ -48,10 +56,6 @@ bindkey 'ç' fzf-cd-widget
 bindkey '^l' autosuggest-accept
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^Z' ctrl-z
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
 
 source "$HOME/.config/zsh/aliases"
 source "$HOME/Documents/Dotfiles/zsh"
