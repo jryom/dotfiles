@@ -40,6 +40,10 @@ augroup autocommands
   autocmd BufWritePre * %s/\s\+$//e
   autocmd SessionLoadPost,VimResized * wincmd =
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
+  autocmd VimEnter * nested
+    \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
+    \   source Session.vim |
+    \ endif
 augroup END
 
 " Plugin settings: {{{
@@ -70,6 +74,7 @@ map <leader>s <cmd>HopLineStart<cr>
 map s <cmd>HopChar2<cr>
 nnoremap <leader><leader> :update<cr>
 xmap ga <plug>(EasyAlign)
+nnoremap <leader>ts :Obsession<cr>
 
 " close-buffers
 nnoremap Q  :Bdelete menu<cr>

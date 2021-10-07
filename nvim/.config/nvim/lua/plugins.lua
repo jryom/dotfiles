@@ -7,6 +7,7 @@ return require("packer").startup({
       "nvim-lua/plenary.nvim",
       "romainl/vim-qf",
       "tpope/vim-commentary",
+      "tpope/vim-obsession",
       "tpope/vim-rhubarb",
       "tpope/vim-sleuth",
       "tpope/vim-surround",
@@ -31,16 +32,8 @@ return require("packer").startup({
         "dstein64/nvim-scrollview",
         config = function()
           vim.cmd("highlight link ScrollView PMenuSBar")
-          vim.g.scrollview_winblend = 70
-        end,
-      },
-
-      {
-        "rmagatti/auto-session",
-        config = function()
-          require("auto-session").setup({
-            log_level = "error",
-          })
+          vim.g.scrollview_winblend = 75
+          vim.g.scrollview_auto_mouse = 0
         end,
       },
 
