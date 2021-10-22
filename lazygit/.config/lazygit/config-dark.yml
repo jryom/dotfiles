@@ -1,4 +1,5 @@
 git:
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=short {{branchName}} --'
   paging:
     colorArg: always
     pager: delta --paging=never
