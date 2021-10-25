@@ -61,5 +61,15 @@ v() {
 }
 
 g() {
-  zAndLaunch lazygit $1
+  export LG_CONFIG_FILE=~/.config/lazygit/config-shared.yml
+
+  LG_CONFIG_FILE+=,
+
+  if [ $DARK_MODE_ACTIVE ]; then
+    LG_CONFIG_FILE+=~/.config/lazygit/config-dark.yml
+  else
+    LG_CONFIG_FILE+=~/.config/lazygit/config-light.yml
+  fi
+
+  zAndLaunch lazygit "$1"
 }

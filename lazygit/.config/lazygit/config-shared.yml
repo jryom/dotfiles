@@ -1,0 +1,24 @@
+git:
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=short {{branchName}} --'
+  paging:
+    colorArg: always
+    pager: delta --paging=never
+  pull:
+    mode: "rebase"
+
+gui:
+  showCommandLog: false
+  showFileTree: true
+  skipstashwarning: true
+  skipunstagelinewarning: false
+
+startuppopupversion: 1
+notARepository: "skip"
+keybinding:
+  files:
+    commitChanges: "C"
+    commitChangesWithEditor: "c"
+    toggleTreeView: "t"
+  commits:
+    renameCommit: "R"
+    renameCommitWithEditor: "r"
