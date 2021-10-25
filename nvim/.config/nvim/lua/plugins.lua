@@ -2,14 +2,15 @@ return require("packer").startup({
   function(use)
     use({
 
+      "joosepalviste/nvim-ts-context-commentstring",
       "junegunn/fzf.vim",
-      "neovim/nvim-lspconfig",
       "nvim-lua/plenary.nvim",
       "romainl/vim-qf",
+      "sheerun/vim-polyglot",
+      "sindrets/diffview.nvim",
       "tpope/vim-commentary",
       "tpope/vim-obsession",
       "tpope/vim-rhubarb",
-      "tpope/vim-sleuth",
       "tpope/vim-surround",
       "tpope/vim-unimpaired",
       "tpope/vim-vinegar",
@@ -32,7 +33,7 @@ return require("packer").startup({
         "dstein64/nvim-scrollview",
         config = function()
           vim.cmd("highlight link ScrollView PMenuSBar")
-          vim.g.scrollview_winblend = 75
+          vim.g.scrollview_winblend = 85
           vim.g.scrollview_auto_mouse = 0
         end,
       },
@@ -59,7 +60,7 @@ return require("packer").startup({
         event = "CursorHold",
         config = function()
           vim.g.indent_blankline_char = "▏"
-          vim.g.indent_blankline_filetype_exclude = { "help", "markdown" }
+          vim.g.indent_blankline_filetype_exclude = { "help", "markdown", "man" }
           vim.g.indent_blankline_show_trailing_blankline_indent = false
           vim.g.indent_blankline_use_treesitter = true
         end,

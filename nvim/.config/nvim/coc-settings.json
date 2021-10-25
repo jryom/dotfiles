@@ -70,5 +70,6 @@
     "typescriptreact": ["javascript"],
     "typescript": ["javascript"]
   },
+  "suggest.removeDuplicateItems": true,
   "tsserver.formatOnType": true
 }
