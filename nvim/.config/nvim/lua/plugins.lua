@@ -30,15 +30,6 @@ return require("packer").startup({
       { "windwp/nvim-ts-autotag", event = "CursorHold" },
 
       {
-        "dstein64/nvim-scrollview",
-        config = function()
-          vim.cmd("highlight link ScrollView PMenuSBar")
-          vim.g.scrollview_winblend = 85
-          vim.g.scrollview_auto_mouse = 0
-        end,
-      },
-
-      {
         "airblade/vim-rooter",
         config = function()
           vim.g.rooter_silent_chdir = 1
