@@ -38,6 +38,7 @@ augroup autocommands
   autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   autocmd BufWritePre * %s/\s\+$//e
   autocmd SessionLoadPost,VimResized * wincmd =
+  autocmd TermOpen * setlocal nonumber norelativenumber
   autocmd WinEnter,BufWinEnter * setlocal cursorline | autocmd WinLeave * setlocal nocursorline
   autocmd VimEnter * nested
     \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
@@ -47,7 +48,7 @@ augroup END
 
 " Plugin settings: {{{
 let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6, 'border': 'sharp' } }
+let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:rooter_silent_chdir = 1
 
