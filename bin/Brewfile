@@ -79,7 +79,7 @@ cask "spotify"
 cask "sublime-merge"
 
 mas "Dark Reader for Safari", id: 1438243180
+mas "NextDNS", id: 1464122853
 mas "Noizio", id: 928871589
 mas "Tampermonkey", id: 1482490089
-mas "Tailscale", id: 1475387142
 mas "Vimari", id: 1480933944
