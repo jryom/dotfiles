@@ -1,13 +1,6 @@
 return {
   "rktjmp/lush.nvim",
-  {
-    "mcchrish/zenbones.nvim",
-    config = function()
-      local isDarkMode = string.match(vim.fn.system("defaults read -g AppleInterfaceStyle"), "Dark")
-        == "Dark"
-      vim.cmd(isDarkMode and "colo zenflesh" or "color zenbones")
-    end,
-  },
+  "mcchrish/zenbones.nvim",
 
   {
     "cormacrelf/dark-notify",
@@ -15,9 +8,6 @@ return {
     config = function()
       require("dark_notify").run({
         onchange = function(mode)
-          if vim.g.colors_name == nil then
-            vim.cmd(mode == "dark" and "colo zenflesh" or "colo zenbones")
-          end
           vim.cmd([[
             highlight! link       CocErrorHighlight     DiagnosticUnderlineError
             highlight! link       CocHintHighlight      DiagnosticUnderlineHint

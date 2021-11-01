@@ -28,6 +28,9 @@ set termguicolors
 set undofile
 set updatetime=200
 
+if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
+colorscheme zenbones
+
 augroup autocommands
   autocmd!
   autocmd BufEnter * :syntax sync fromstart
