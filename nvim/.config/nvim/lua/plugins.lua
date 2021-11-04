@@ -22,12 +22,19 @@ return require("packer").startup({
       { "asheq/close-buffers.vim", cmd = "Bdelete" },
       { "bronson/vim-visual-star-search", keys = "*" },
       { "junegunn/vim-easy-align", keys = { "<Plug>(EasyAlign)" } },
-      { "phaazon/hop.nvim", cmd = { "HopWord", "HopLineStart", "HopChar2" } },
       { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
       { "szw/vim-maximizer", cmd = "MaximizerToggle" },
       { "tpope/vim-fugitive", event = "CursorHold" },
       { "tpope/vim-repeat", event = "CursorHold" },
       { "windwp/nvim-ts-autotag", event = "CursorHold" },
+
+      {
+        "phaazon/hop.nvim",
+        cmd = { "HopWord", "HopLineStart", "HopChar2" },
+        config = function()
+          require("hop").setup()
+        end,
+      },
 
       {
         "airblade/vim-rooter",
