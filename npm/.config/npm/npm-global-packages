@@ -7,7 +7,6 @@ neovim
 npm
 npm-check-updates
 prettier
-pure-prompt
 rustywind
 typescript
 typescript-language-server
