@@ -78,6 +78,7 @@ map s <cmd>HopChar2<cr>
 nnoremap <leader><leader> :update<cr>
 xmap ga <plug>(EasyAlign)
 nnoremap <leader>ts :Obsession<cr>
+nnoremap <silent> gx :execute 'silent! !open ' . shellescape(expand('<cWORD>'), 1)<cr>
 
 " close-buffers
 nnoremap Q  :Bdelete menu<cr>
@@ -88,7 +89,15 @@ nnoremap Qt :Bdelete this<cr>
 nnoremap Qs :Bdelete select<cr>
 
 " coc
-inoremap <silent><expr> <C-l> pumvisible() ? "\<C-y>" : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : coc#refresh()
+function s:complete()
+   if !pumvisible() || get(complete_info(), 'selected', -1) < 0
+      return coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : coc#refresh()
+   else
+      return "\<C-y>"
+   endif
+endfunction
+
+inoremap <silent><expr> <C-l> <SID>complete()
 inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
 nmap gd <plug>(coc-definition)
 nnoremap gh :call CocAction('doHover')<cr>

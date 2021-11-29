@@ -2,6 +2,7 @@ return require("packer").startup({
   function(use)
     use({
 
+      "honza/vim-snippets",
       "joosepalviste/nvim-ts-context-commentstring",
       "junegunn/fzf.vim",
       "nvim-lua/plenary.nvim",
