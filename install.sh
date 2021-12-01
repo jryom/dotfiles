@@ -54,7 +54,7 @@ fi
 
 for file in $script_path/*; do
   if [ -d ${file} ]; then
-    stow --no-folding --target $HOME --dir $script_path -R "$(basename $file)"
+    stow --no-folding --target $HOME --dir $script_path -R "$(basename $file)" --ignore "\.DS_Store"
   fi
 done
 
