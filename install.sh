@@ -45,7 +45,7 @@ fi
 
 if ! command -v brew >/dev/null; then
   curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-  export PATH="/usr/local/bin:$PATH"
+  export PATH="/opt/homebrew/bin:$PATH"
 fi
 
 if ! brew bundle check --file="$script_path/bin/Brewfile" >/dev/null; then
@@ -77,7 +77,7 @@ fnm install --lts && fnm use lts-latest && fnm default lts-latest
 npm install --no-progress -g $(cat $HOME/.config/npm/npm-global-packages | tr '\n' ' ')
 
 # Use custom zsh install rather than bundled version
-! [[ "$( which zsh )" = "/usr/local/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+! [[ "$( which zsh )" = "/opt/homebrew/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
 
 for f in $(zsh -i -c compaudit)
 do

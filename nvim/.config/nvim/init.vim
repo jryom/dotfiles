@@ -18,7 +18,7 @@ set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set number relativenumber
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
