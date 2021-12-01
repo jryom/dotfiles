@@ -68,9 +68,6 @@ echo y | "$(brew --prefix)"/opt/fzf/install
 
 python3 -m pip install --user --upgrade pip pynvim
 
-# zsh completions
-gh completion -s zsh > /usr/local/share/zsh/site-functions/_gh
-
 eval "$(fnm env)"
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
@@ -78,11 +75,6 @@ npm install --no-progress -g $(cat $HOME/.config/npm/npm-global-packages | tr '\
 
 # Use custom zsh install rather than bundled version
 ! [[ "$( which zsh )" = "/opt/homebrew/bin/zsh" ]] && sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
-
-for f in $(zsh -i -c compaudit)
-do
-  sudo chmod -R 755 $f
-done
 
 # Use touchID for sudo permission
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
