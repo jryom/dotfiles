@@ -1,3 +1,9 @@
+puts "Install XCode? y or n"
+xcode = STDIN.gets.chomp
+
+puts "Install Docker? y or n"
+docker = STDIN.gets.chomp
+
 tap "beeftornado/rmtree"
 tap "clementtsang/bottom"
 tap "cormacrelf/tap"
@@ -60,7 +66,7 @@ cask "appcleaner"
 cask "bartender"
 cask "browserstacklocal"
 cask "choosy"
-cask "docker"
+cask "dropbox"
 cask "firefox"
 cask "font-iosevka"
 cask "google-chrome"
@@ -82,4 +88,11 @@ mas "NextDNS", id: 1464122853
 mas "Noizio", id: 928871589
 mas "Tampermonkey", id: 1482490089
 mas "Vimari", id: 1480933944
-mas "Xcode", id: 497799835
+
+if xcode == "y"
+  mas "Xcode", id: 497799835
+end
+
+if docker == "y"
+  cask "docker"
+end

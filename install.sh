@@ -48,9 +48,7 @@ if ! command -v brew >/dev/null; then
   export PATH="/opt/homebrew/bin:$PATH"
 fi
 
-if ! brew bundle check --file="$script_path/bin/Brewfile" >/dev/null; then
-  brew bundle install --file="$script_path/bin/Brewfile" --force --no-lock
-fi
+brew bundle install --file="$script_path/bin/Brewfile" --force --no-lock
 
 for file in $script_path/*; do
   if [ -d ${file} ]; then
