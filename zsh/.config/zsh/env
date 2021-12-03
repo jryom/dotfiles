@@ -2,7 +2,7 @@
 
 BAT_STYLE="full"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
-BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo 'gruvbox-dark' || echo 'gruvbox-light')"
+BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo 'TwoDark' || echo 'GitHub')"
 EDITOR="nvim"
 FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
 FZF_THEME='--color=fg:7,bg:0,hl:6
