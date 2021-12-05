@@ -8,6 +8,7 @@ cmd - y: killall yabai && killall skhd
 shift + ctrl - d: dark-mode
 shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + ctrl - s: zsh -c -i "$HOME/.config/skhd/cycle-layouts.sh"
+shift + ctrl - f: yabai -m space --layout float
  shift + cmd - f: yabai -m window --toggle native-fullscreen
          alt - 0: yabai -m space --balance && yabai -m space --padding abs:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING && yabai -m space --gap abs:$WM_SPACING
          alt - r: yabai -m space --rotate 90
