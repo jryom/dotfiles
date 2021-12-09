@@ -26,14 +26,18 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
 defaults write com.apple.dock tilesize -int 48
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
 defaults write com.apple.finder CreateDesktop 0
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder _FXSortFoldersFirst -bool YES
 defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
+defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
 killall Dock
 
 if ! type xcode-select >&- && xpath=$( xcode-select --print-path ) &&

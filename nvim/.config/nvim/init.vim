@@ -27,6 +27,7 @@ set pumblend=10 winblend=10
 set termguicolors
 set undofile
 set updatetime=200
+set wildignore+=.DS_Store,.git,.vim
 
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
 colorscheme zenbones

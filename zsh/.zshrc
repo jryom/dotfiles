@@ -41,6 +41,7 @@ compinit
 
 source $(brew --prefix)/etc/profile.d/z.sh
 eval "$(fnm env)"
+eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -60,7 +61,6 @@ bindkey '^Z' ctrl-z
 source "$HOME/.config/zsh/aliases"
 source "$HOME/Documents/Dotfiles/zsh"
 source "$HOME/.config/zsh/functions"
-
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -e "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
