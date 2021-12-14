@@ -81,6 +81,9 @@ npm install --no-progress -g $(cat $HOME/.config/npm/npm-global-packages | tr '\
 # Use touchID for sudo permission
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
+### Install custom keyboard layout
+cp -r "$script_path/bin/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
+
 antibody bundle < "$script_path/bin/zsh-plugins" > ~/.zsh_plugins
 
 rm -rf ~/.local/share/nvim/site/pack/packer/start/packer.nvim
