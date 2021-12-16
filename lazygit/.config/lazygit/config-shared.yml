@@ -9,6 +9,7 @@ git:
 gui:
   showCommandLog: false
   showFileTree: true
+  sidePanelWidth: 0.25
   skipstashwarning: true
   skipunstagelinewarning: false
 

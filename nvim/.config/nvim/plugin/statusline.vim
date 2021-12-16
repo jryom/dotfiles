@@ -83,10 +83,10 @@ function! RenderStatusLine() abort
   setlocal statusline+=%l/%L:%-2.c%{'\ '}
 
   if b:active == 1
-    setlocal statusline+=%#TSDanger#%{Errors()}
-    setlocal statusline+=%#TSWarning#%{Warnings()}
-    setlocal statusline+=%#TSNote#%{Info()}
-    setlocal statusline+=%#TSNote#%{Hints()}
+    setlocal statusline+=%#DiagnosticVirtualTextError#%{Errors()}
+    setlocal statusline+=%#DiagnosticVirtualTextWarn#%{Warnings()}
+    setlocal statusline+=%#DiagnosticVirtualTextInfo#%{Info()}
+    setlocal statusline+=%#DiagnosticVirtualTextHint#%{Hints()}
   endif
 endfunction
 

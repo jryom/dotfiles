@@ -5,13 +5,22 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 yabai -m signal --add event=space_changed action="zsh ~/.config/yabai/yabai-destroy_empty_spaces.zsh"
 
+yabai -m rule --add manage=off app="^Ableton"
+yabai -m rule --add manage=off app="^Archive Utility"
+yabai -m rule --add manage=off app="^Finder*"
+yabai -m rule --add manage=off app="^IINA"
+yabai -m rule --add manage=off app="^Installer*"
+yabai -m rule --add manage=off app="^System Preferences*"
+yabai -m rule --add manage=off app="^iStat*"
+
 yabai -m config layout                     bsp
-yabai -m config auto_balance               on
 
 yabai -m config top_padding                $WM_SPACING
 yabai -m config bottom_padding             $WM_SPACING
 yabai -m config left_padding               $WM_SPACING
 yabai -m config right_padding              $WM_SPACING
 yabai -m config window_gap                 $WM_SPACING
+
+yabai -m config window_origin_display      focused
 
 yabai -m config normal_window_opacity      0.85

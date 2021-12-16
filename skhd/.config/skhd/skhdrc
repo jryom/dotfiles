@@ -1,9 +1,10 @@
 # vi: ft=config
 
-# launch bindings
+# launch and OS bindings
 ctrl + alt + cmd - k: /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/Code
 ctrl + alt + cmd - n: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
 ctrl + alt + cmd - d: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
+ctrl + alt + cmd - e: alias ejectall='osascript -e "tell application \"Finder\" to eject (every disk whose ejectable is true)"'
 
 cmd - y: killall yabai && killall skhd
 

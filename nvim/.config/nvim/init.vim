@@ -11,7 +11,6 @@ set foldminlines=3
 set gdefault
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-set hidden
 set hlsearch
 set ignorecase smartcase
 set inccommand=split
@@ -23,7 +22,6 @@ set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
 set splitbelow splitright
-set pumblend=10 winblend=10
 set termguicolors
 set undofile
 set updatetime=200
@@ -63,7 +61,6 @@ let mapleader = ' '
 nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap <c-w>m :MaximizerToggle<cr>
-nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
 nnoremap <silent> <Esc> :nohlsearch<cr>
