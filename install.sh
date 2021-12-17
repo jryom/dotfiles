@@ -81,8 +81,9 @@ npm install --no-progress -g $(cat $HOME/.config/npm/npm-global-packages | tr '\
 # Use touchID for sudo permission
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
-### Install custom keyboard layout
+### Install custom keyboard layout and CLI tool
 cp -r "$script_path/bin/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
+sudo ln -sf "$script_path/bin/keyboardSwitcher" "/usr/local/bin/keyboardSwitcher"
 
 antibody bundle < "$script_path/bin/zsh-plugins" > ~/.zsh_plugins
 
