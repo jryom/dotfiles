@@ -33,5 +33,3 @@ done
 tldr --update
 
 antibody update
-
-sudo softwareupdate --install --all --agree-to-license
