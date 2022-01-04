@@ -3,6 +3,7 @@ eslint_d
 graphql
 graphql-language-service-cli
 kill-port
+markdownlint-cli
 neovim
 npm
 npm-check-updates
