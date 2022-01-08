@@ -4,14 +4,15 @@
     "go",
     "html",
     "javascript",
-    "lua",
     "javascriptreact",
     "json",
     "jsonc",
+    "lua",
     "markdown",
     "python",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "yaml"
   ],
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.listOfWorkspaceEdit": "location",
@@ -71,5 +72,6 @@
     "typescript": ["javascript"]
   },
   "suggest.removeDuplicateItems": true,
-  "tsserver.formatOnType": true
+  "tsserver.formatOnType": true,
+  "yaml.format.enable": true
 }

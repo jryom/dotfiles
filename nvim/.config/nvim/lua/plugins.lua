@@ -155,6 +155,7 @@ return require("packer").startup({
             "coc-styled-components",
             "coc-stylelintplus",
             "coc-tsserver",
+            "coc-yaml",
           }
         end,
       },
