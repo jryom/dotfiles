@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+updateScreenHeight
+
 sudo yabai --load-sa
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
@@ -23,4 +25,5 @@ yabai -m config window_gap                 $WM_SPACING
 
 yabai -m config window_origin_display      focused
 
-yabai -m config normal_window_opacity      0.85
+yabai -m config normal_window_opacity      $WM_OPACITY
+yabai -m config window_opacity             on
