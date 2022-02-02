@@ -1,5 +1,4 @@
 djui/alias-tips
-mafredri/zsh-async
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
 zpm-zsh/autoenv

@@ -5,7 +5,9 @@ return require("packer").startup({
       "honza/vim-snippets",
       "joosepalviste/nvim-ts-context-commentstring",
       "junegunn/fzf.vim",
+      "mcchrish/zenbones.nvim",
       "nvim-lua/plenary.nvim",
+      "rktjmp/lush.nvim",
       "romainl/vim-qf",
       "sheerun/vim-polyglot",
       "sindrets/diffview.nvim",
@@ -17,9 +19,6 @@ return require("packer").startup({
       "tpope/vim-vinegar",
       "wbthomason/packer.nvim",
 
-      require("theme"),
-      require("treesitter"),
-
       { "asheq/close-buffers.vim", cmd = "Bdelete" },
       { "bronson/vim-visual-star-search", keys = "*" },
       { "junegunn/vim-easy-align", keys = { "<Plug>(EasyAlign)" } },
@@ -28,6 +27,14 @@ return require("packer").startup({
       { "tpope/vim-fugitive", event = "CursorHold" },
       { "tpope/vim-repeat", event = "CursorHold" },
       { "windwp/nvim-ts-autotag", event = "CursorHold" },
+
+      {
+        "cormacrelf/dark-notify",
+        event = "CursorHold",
+        config = function()
+          require("dark_notify").run()
+        end,
+      },
 
       {
         "phaazon/hop.nvim",
@@ -78,7 +85,6 @@ return require("packer").startup({
       {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
-        cmd = "MarkdownPreview",
       },
 
       {
@@ -86,6 +92,25 @@ return require("packer").startup({
         event = "InsertEnter",
         config = function()
           require("nvim-autopairs").setup()
+        end,
+      },
+
+      {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+          require("nvim-treesitter.configs").setup({
+            autopairs = { enable = true },
+            autotag = {
+              enable = true,
+            },
+            context_commentstring = {
+              enable = true,
+            },
+            ensure_installed = "maintained",
+            highlight = { enable = true },
+            indent = { enable = true },
+          })
         end,
       },
 

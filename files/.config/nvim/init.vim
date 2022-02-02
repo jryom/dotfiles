@@ -1,6 +1,4 @@
 :lua require("plugins")
-:lua require("theme")
-:lua require("treesitter")
 
 set colorcolumn=999
 set expandtab
@@ -73,7 +71,7 @@ nnoremap <leader>m :MarkdownPreviewToggle<cr>
 map <leader>w <cmd>HopWord<cr>
 map <leader>s <cmd>HopLineStart<cr>
 map s <cmd>HopChar2<cr>
-nnoremap <leader><leader> :update<cr>
+nnoremap <leader><leader> :write<cr>
 xmap ga <plug>(EasyAlign)
 nnoremap <leader>ts :Obsession<cr>
 nnoremap <silent> gx :execute 'silent! !open ' . shellescape(expand('<cWORD>'), 1)<cr>

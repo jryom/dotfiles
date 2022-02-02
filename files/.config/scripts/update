@@ -4,8 +4,6 @@ source "$HOME/.config/zsh/env"
 export PATH="/usr/local/bin/:$PATH"
 export SUDO_ASKPASS="$HOME/.config/scripts/askpass"
 
-set -e
-
 sudo -v
 while true; do
   sudo -n true
