@@ -1,0 +1,11 @@
+colorscheme auto
+
+set smoothscroll true
+set allowautofocus false
+set modeindicatormodes {"normal":"false"}
+set newtab https://app.raindrop.io/my/0
+
+bind J tabnext
+bind K tabprev
+bind d scrollpage 0.5
+bind u scrollpage -0.5
