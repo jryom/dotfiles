@@ -21,7 +21,6 @@ alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk w
 alias n="cd $HOME/Documents/Notes && $EDITOR -c 'Explore'"
 alias sz="source $HOME/.zshrc && clear"
 alias up="$HOME/.config/scripts/update"
-alias vim="$EDITOR"
 
 alias ga="git add"
 alias gs="git status --show-stash --verbose --untracked-files --column"

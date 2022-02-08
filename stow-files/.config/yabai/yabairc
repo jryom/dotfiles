@@ -10,10 +10,13 @@ yabai -m signal --add event=space_changed action="zsh ~/.config/yabai/yabai-dest
 yabai -m rule --add manage=off app="^Ableton"
 yabai -m rule --add manage=off app="^Archive Utility"
 yabai -m rule --add manage=off app="^Finder*"
-yabai -m rule --add manage=off app="^IINA"
+yabai -m rule --add manage=off app="IINA"
 yabai -m rule --add manage=off app="^Installer*"
-yabai -m rule --add manage=off app="^System Preferences*"
-yabai -m rule --add manage=off app="^iStat*"
+yabai -m rule --add manage=off app="System Preferences"
+yabai -m rule --add manage=off app="System Information"
+yabai -m rule --add manage=off app="Notification Center"
+yabai -m rule --add manage=off app="Notification"
+yabai -m rule --add manage=off app="iStat*"
 
 yabai -m config layout                     bsp
 

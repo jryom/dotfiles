@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Disable Gatekeeper if active
-if spctl --status > /dev/null; then
+if spctl --status >/dev/null; then
   sudo spctl --master-disable
 fi
 
@@ -28,16 +28,17 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
 defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
 killall Dock
 
-if ! type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
-   test -d "${xpath}" && test -x "${xpath}"; then
-   echo "Command line tools not installed. Install and run script again."
-   xcode-select --install
-   EXIT
+if ! type xcode-select >&- &&
+  XPATH="$(xcode-select --print-path)" &&
+  test -d "$XPATH" && test -x "$XPATH"; then
+  echo "Command line tools not installed. Install and run script again."
+  xcode-select --install
+  exit
 fi
 
 # Use touchID for sudo permission
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
-### Install custom keyboard layout and CLI tool
-cp -r "$SCRIPT_PATH/bin/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
-sudo ln -sf "$SCRIPT_PATH/bin/keyboardSwitcher" "/usr/local/bin/keyboardSwitcher"
+# Install custom keyboard layout and CLI tool
+cp -r "$DOT_DIR/bin/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
+sudo ln -sf "$DOT_DIR/bin/keyboardSwitcher" "/usr/local/bin/keyboardSwitcher"
