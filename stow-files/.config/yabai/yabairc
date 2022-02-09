@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-updateScreenHeight
+export WM_SPACING=$(updateWMSpacing)
 
 sudo yabai --load-sa
 
