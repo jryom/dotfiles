@@ -9,3 +9,4 @@ bind J tabnext
 bind K tabprev
 bind d scrollpage 0.5
 bind u scrollpage -0.5
+unbind <C-b>
