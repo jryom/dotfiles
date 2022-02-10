@@ -15,7 +15,7 @@ fi
 
 echo y | "$(brew --prefix)"/opt/fzf/install
 
-python3 -m pip install --user --upgrade pip pynvim
+python3 -m pip install --user --upgrade pip pynvim black
 
 eval "$(fnm env)"
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
