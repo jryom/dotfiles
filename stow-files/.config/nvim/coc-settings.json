@@ -1,4 +1,5 @@
 {
+  "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "go",
@@ -9,43 +10,39 @@
     "jsonc",
     "lua",
     "markdown",
+    "ruby",
     "python",
     "sh",
     "typescript",
     "typescriptreact",
     "yaml"
   ],
-  "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.listOfWorkspaceEdit": "location",
   "coc.preferences.willSaveHandlerTimeout": 5000,
   "diagnostic-languageserver.filetypes": {
-    "vim": "vint",
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "vim": "vint"
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
   },
+  "diagnostic.enableSign": true,
+  "diagnostic.errorSign": "",
   "diagnostic.floatConfig": {
     "maxHeight": 500,
     "maxWidth": 150
   },
-  "signature.floatConfig": {
-    "maxWidth": 150
-  },
-  "diagnostic.errorSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.level": "warning",
-  "diagnostic.enableSign": true,
   "diagnostic.warningSign": "",
-  "eslint.autoFixOnSave": true,
   "dialog.maxWidth": 80,
-  "notification.maxWidth": 60,
+  "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
   "languageserver": {
     "graphql": {
-      "command": "graphql-lsp",
       "args": ["server", "-m", "stream"],
+      "command": "graphql-lsp",
       "filetypes": [
         "typescript",
         "typescriptreact",
@@ -55,8 +52,8 @@
       ]
     },
     "tailwindcss": {
-      "command": "tailwindcss-language-server",
       "args": ["--stdio"],
+      "command": "tailwindcss-language-server",
       "filetypes": [
         "typescript",
         "typescriptreact",
@@ -66,12 +63,18 @@
       ]
     }
   },
-  "python.pythonPath": "/usr/local/bin/python3",
+  "notification.maxWidth": 60,
   "python.formatting.provider": "black",
-  "snippets.extends": {
-    "typescriptreact": ["javascript"],
-    "typescript": ["javascript"]
+  "python.pythonPath": "/usr/local/bin/python3",
+  "signature.floatConfig": {
+    "maxWidth": 150
   },
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "typescriptreact": ["javascript"]
+  },
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
   "suggest.removeDuplicateItems": true,
   "tsserver.formatOnType": true,
   "yaml.format.enable": true
