@@ -7,7 +7,6 @@ return require("packer").startup({
       "junegunn/fzf.vim",
       "mcchrish/zenbones.nvim",
       "nvim-lua/plenary.nvim",
-      "rktjmp/lush.nvim",
       "romainl/vim-qf",
       "sheerun/vim-polyglot",
       "sindrets/diffview.nvim",
@@ -69,16 +68,6 @@ return require("packer").startup({
           vim.g.indent_blankline_filetype_exclude = { "help", "markdown", "man" }
           vim.g.indent_blankline_show_trailing_blankline_indent = false
           vim.g.indent_blankline_use_treesitter = true
-        end,
-      },
-
-      {
-        "tversteeg/registers.nvim",
-        event = "InsertEnter",
-        keys = '"',
-        config = function()
-          vim.g.registers_window_border = "single"
-          vim.g.registers_window_max_width = 150
         end,
       },
 

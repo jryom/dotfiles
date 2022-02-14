@@ -26,6 +26,7 @@ set updatetime=200
 set wildignore+=.DS_Store,.git,.vim
 
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
+let g:zenbones_compat = 1
 colorscheme zenbones
 
 augroup autocommands
