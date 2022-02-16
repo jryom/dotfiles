@@ -1,3 +1,6 @@
+sanitize tridactyllocal tridactylsync
+guiset_quiet hoverlink right
+
 colorscheme auto
 
 set smoothscroll true
@@ -11,8 +14,12 @@ bind d scrollpage 0.5
 bind u scrollpage -0.5
 unbind <C-b>
 
+bind <C-f> fillcmdline find
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 bind <Escape> nohlsearch
+
+bind <C-g> fillcmdline open github
+bind <C-y> fillcmdline open youtube

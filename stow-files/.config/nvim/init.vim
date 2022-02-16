@@ -23,7 +23,6 @@ set splitbelow splitright
 set termguicolors
 set undofile
 set updatetime=200
-set wildignore+=.DS_Store,.git,.vim
 
 if len(systemlist('defaults read -g AppleInterfaceStyle'))==1 | set bg=dark | else | set bg=light | endif
 let g:zenbones_compat = 1
@@ -97,7 +96,7 @@ endfunction
 inoremap <silent><expr> <C-l> <SID>complete()
 inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : coc#refresh()
 nmap gd <plug>(coc-definition)
-nnoremap gh :call CocAction('doHover')<cr>
+nnoremap gh :call CocActionAsync('doHover')<cr>
 nnoremap <leader>c :CocCommand<cr>
 nnoremap <leader>l :CocList<cr>
 nmap <leader>p <plug>(coc-diagnostic-prev)
