@@ -39,7 +39,7 @@ zstyle ':fzf-tab:*' fzf-flags '--color=hl:cyan'
 autoload -Uz compinit
 compinit
 
-source $(brew --prefix)/etc/profile.d/z.sh
+eval "$(zoxide init zsh)"
 eval "$(fnm env)"
 eval "$(rbenv init -)"
 

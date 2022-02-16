@@ -55,7 +55,7 @@ brew "vint"
 brew "watchexec"
 brew "watchman"
 brew "yabai"
-brew "z"
+brew "zoxide"
 brew "zsh"
 
 cask_args force: true
