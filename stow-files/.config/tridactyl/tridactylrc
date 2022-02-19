@@ -1,5 +1,6 @@
 sanitize tridactyllocal tridactylsync
-guiset_quiet hoverlink right
+
+guiset hoverlink right
 
 colorscheme auto
 

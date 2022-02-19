@@ -5,6 +5,7 @@ export WM_SPACING=$(updateWMSpacing)
 sudo yabai --load-sa
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=display_added action='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
 
 yabai -m rule --add manage=off app="^Ableton"
 yabai -m rule --add manage=off app="^Archive Utility"
