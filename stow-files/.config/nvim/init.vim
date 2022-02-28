@@ -117,9 +117,13 @@ nnoremap <silent> <leader>b :Buffers <cr>
 
 " tabs
 nnoremap <silent> <C-t>n :tabnew %<cr>
+nnoremap <silent> <C-t><C-n> :tabnew %<cr>
 nnoremap <silent> <C-t>c :tabclose<cr>
-nnoremap <silent> <C-t><left> :tabprevious<cr>
-nnoremap <silent> <C-t><right> :tabnext<cr>
+nnoremap <silent> <C-t><C-c> :tabclose<cr>
+nnoremap <silent> <C-t>h :tabprevious<cr>
+nnoremap <silent> <C-t><C-h> :tabprevious<cr>
+nnoremap <silent> <C-t>l :tabnext<cr>
+nnoremap <silent> <C-t><C-l> :tabnext<cr>
 nnoremap <silent> <C-t>1 1gt
 nnoremap <silent> <C-t>2 2gt
 nnoremap <silent> <C-t>3 3gt
@@ -129,15 +133,6 @@ nnoremap <silent> <C-t>6 6gt
 nnoremap <silent> <C-t>7 7gt
 nnoremap <silent> <C-t>8 8gt
 nnoremap <silent> <C-t>9 9gt
-nnoremap <silent> ¡ 1gt
-nnoremap <silent> “ 2gt
-nnoremap <silent> § 3gt
-nnoremap <silent> £ 4gt
-nnoremap <silent> ∞ 5gt
-nnoremap <silent> ™ 6gt
-nnoremap <silent> ¶ 7gt
-nnoremap <silent> [ 8gt
-nnoremap <silent> ] 9gt
 
 " unimpaired on non-US layouts
 nmap <Left> [
