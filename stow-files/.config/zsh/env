@@ -4,6 +4,7 @@ BAT_STYLE="full"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
 BAT_THEME="ansi"
 EDITOR="nvim"
+ESCDELAY=10 # https://github.com/junegunn/fzf.vim/issues/248#issuecomment-263042373
 FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
 FZF_THEME='--color=fg:7,bg:0,hl:6
 --color=fg+:7,bg+:8,hl+:3

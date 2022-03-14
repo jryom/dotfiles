@@ -11,8 +11,8 @@ set newtab https://app.raindrop.io/my/0
 
 bind J tabnext
 bind K tabprev
-bind d scrollpage 0.5
-bind u scrollpage -0.5
+unbind d
+bind dd tabclose
 unbind <C-b>
 
 bind <C-f> fillcmdline find

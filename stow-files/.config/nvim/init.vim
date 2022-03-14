@@ -48,7 +48,6 @@ augroup END
 
 " Plugin settings: {{{
 let g:fzf_preview_window = []
-let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:rooter_silent_chdir = 1
 
