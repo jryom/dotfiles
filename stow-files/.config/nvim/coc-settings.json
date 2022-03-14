@@ -39,30 +39,6 @@
   "dialog.maxWidth": 80,
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
-  "languageserver": {
-    "graphql": {
-      "args": ["server", "-m", "stream"],
-      "command": "graphql-lsp",
-      "filetypes": [
-        "typescript",
-        "typescriptreact",
-        "graphql",
-        "javascript",
-        "javascriptreact"
-      ]
-    },
-    "tailwindcss": {
-      "args": ["--stdio"],
-      "command": "tailwindcss-language-server",
-      "filetypes": [
-        "typescript",
-        "typescriptreact",
-        "graphql",
-        "javascript",
-        "javascriptreact"
-      ]
-    }
-  },
   "notification.maxWidth": 60,
   "python.formatting.provider": "black",
   "python.pythonPath": "/usr/local/bin/python3",

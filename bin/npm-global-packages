@@ -1,14 +1,10 @@
-@tailwindcss/language-server
 eslint_d
-graphql
-graphql-language-service-cli
 kill-port
 markdownlint-cli
 neovim
 npm
 npm-check-updates
 prettier
-rustywind
 typescript
 typescript-language-server
 vscode-langservers-extracted
