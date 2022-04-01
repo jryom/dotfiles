@@ -15,7 +15,6 @@ set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set number relativenumber
-set rtp+=/opt/homebrew/opt/fzf
 set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
@@ -47,8 +46,6 @@ augroup autocommands
 augroup END
 
 " Plugin settings: {{{
-let g:fzf_preview_window = []
-let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:rooter_silent_chdir = 1
 
 command! Up execute 'PackerSync'
@@ -106,13 +103,11 @@ nmap <leader>a <plug>(coc-codeaction)
 nmap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
 nmap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 
-" fzf
-command! -bang -nargs=* RgOnlyLines call fzf#vim#grep('rg '.shellescape(<q-args>), 1, fzf#vim#with_preview({'options':'--delimiter : --nth 3..'}), <bang>0)
-nnoremap <silent> <leader>I :Rg <cr>
-nnoremap <silent> <leader>i :RgOnlyLines <cr>
-xnoremap <silent> <leader>i "fy :Rg <C-R>f<cr>
-nnoremap <silent> <leader>o :Files<cr>
-nnoremap <silent> <leader>b :Buffers <cr>
+" telescope
+xnoremap <silent> <leader>i "fy :lua require("telescope.builtin").grep_string({search=vim.fn.getreg('f')})<cr>
+nnoremap <silent> <leader>i <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>o <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
 
 " tabs
 nnoremap <silent> <C-t>n :tabnew %<cr>
