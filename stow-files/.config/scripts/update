@@ -28,8 +28,6 @@ fi
 
 brew update
 brew upgrade --greedy --force
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=60
-brew cleanup
 
 tldr --update
 

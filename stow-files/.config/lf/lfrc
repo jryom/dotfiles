@@ -28,6 +28,17 @@ map <c-z> :quit
 
 map ? :doc
 
+map <c-z> $ kill -STOP $PPID
+
+map R ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename"
+}}
+
 # dedicated keys for file opener actions
 map o &mimeopen $f
 map O $mimeopen --ask $f

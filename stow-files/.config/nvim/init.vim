@@ -57,6 +57,7 @@ nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
 nnoremap <c-w>m :MaximizerToggle<cr>
 xnoremap < <gv
 xnoremap > >gv
+nnoremap gt <C-]>
 nnoremap <silent> <Esc> :nohlsearch<cr>
 nmap <silent> <leader>q <Plug>(qf_qf_toggle)
 nnoremap <leader>u :MundoToggle<cr>
@@ -64,9 +65,8 @@ nnoremap <leader>r :%s/<C-r><C-w>//c <Left><Left><Left>
 xnoremap <leader>r "sy:%s/<C-r>s//c <Left><Left><Left>
 nnoremap <leader>g :silent grep<Space>
 nnoremap <leader>m :MarkdownPreviewToggle<cr>
-map <leader>w <cmd>HopWord<cr>
-map <leader>s <cmd>HopLineStart<cr>
-map s <cmd>HopChar2<cr>
+map s <cmd>HopWord<cr>
+map gl <cmd>HopLineStart<cr>
 nnoremap <leader><leader> :write<cr>
 xmap ga <plug>(EasyAlign)
 nnoremap <leader>ts :Obsession<cr>
