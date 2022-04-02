@@ -5,6 +5,7 @@ return require("packer").startup({
       "honza/vim-snippets",
       "joosepalviste/nvim-ts-context-commentstring",
       "mcchrish/zenbones.nvim",
+      "nathom/filetype.nvim",
       "nvim-lua/plenary.nvim",
       "romainl/vim-qf",
       "sheerun/vim-polyglot",
