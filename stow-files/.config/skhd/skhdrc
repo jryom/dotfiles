@@ -6,7 +6,7 @@ ctrl + alt + cmd - n: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Application
 ctrl + alt + cmd - d: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
 ctrl + alt + cmd - e: alias ejectall='osascript -e "tell application \"Finder\" to eject (every disk whose ejectable is true)"'
 
-cmd - y: launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" && launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"
+cmd - y: pkill yabai & pkill skhd
 
 # misc single commands
 shift + ctrl - d: dark-mode
