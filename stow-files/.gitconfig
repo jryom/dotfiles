@@ -30,6 +30,17 @@
 [diff]
 	algorithm = patience
 	indentHeuristic = true
+	tool = difftastic
+	external = difft
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+	difftool = true
 
 [mergetool "nvim"]
 	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
