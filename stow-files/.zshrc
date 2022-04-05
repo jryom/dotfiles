@@ -36,8 +36,12 @@ zstyle ':fzf-tab:*' default-color $'\033[37m'
 zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 zstyle ':fzf-tab:*' fzf-flags '--color=hl:cyan'
 
+# https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 eval "$(zoxide init zsh)"
 eval "$(fnm env)"
