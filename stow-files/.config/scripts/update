@@ -15,7 +15,7 @@ eval "$(fnm env)"
 
 set -x
 
-INSTALLED=($(npm ls --json -g | jq -r '.dependencies | keys[]' | tr '\n' ' '))
+INSTALLED=$(npm ls --json -g | jq -r '.dependencies | keys[]' | tr '\n' ' ')
 UPGRADE_COMMAND="$(ncu --global | grep "." | grep "npm -g install" | tail -1)"
 
 if fnm install --lts 2>&1 | grep "already"; then

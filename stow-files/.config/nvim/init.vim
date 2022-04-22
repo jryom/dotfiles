@@ -1,3 +1,4 @@
+:lua require('impatient')
 :lua require("plugins")
 
 set colorcolumn=999
@@ -15,6 +16,7 @@ set inccommand=split
 set matchpairs+=<:>
 set mouse=a
 set number relativenumber
+set noshowmode
 set shiftround
 set shortmess+=actFTWI
 set signcolumn=yes
