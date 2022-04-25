@@ -13,5 +13,5 @@ done 2>/dev/null &
 DOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
 
 export DOT_DIR
-source "$DOT_DIR/install-scripts/macos.sh"
-source "$DOT_DIR/install-scripts/dependencies.sh"
+source "$DOT_DIR/bin/install-scripts/macos.sh"
+source "$DOT_DIR/bin/install-scripts/dependencies.sh"

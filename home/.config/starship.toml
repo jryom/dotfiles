@@ -11,6 +11,7 @@ $character"""
 
 [directory]
 style = "blue"
+truncation_length = 8
 
 [character]
 success_symbol = "[❯](purple)"

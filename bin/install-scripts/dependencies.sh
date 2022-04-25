@@ -7,7 +7,7 @@ fi
 
 brew bundle install --file="$DOT_DIR/bin/Brewfile" --force --no-lock
 
-stow --restow --no-folding --target $HOME --dir $DOT_DIR --ignore "\.DS_Store" stow-files
+stow --restow --no-folding --target $HOME --dir $DOT_DIR --ignore "\.DS_Store" home
 
 if [ ! -f /private/etc/sudoers.d/yabai ]; then
   sudo zsh -c "echo '$(whoami) ALL = (root) NOPASSWD: $(which yabai) --load-sa' >> /private/etc/sudoers.d/yabai"

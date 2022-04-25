@@ -13,5 +13,5 @@ export \
   KITTY_THEME_DARK="zenbones-dark" \
   KITTY_THEME_LIGHT="zenbones-light" \
   WM_SPACING=$(cat /tmp/screen_height) \
-  WM_OPACITY=0.7
+  WM_OPACITY=0.8
 
