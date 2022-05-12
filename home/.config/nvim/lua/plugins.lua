@@ -36,7 +36,7 @@ require("packer").startup({
           require("auto-session").setup({ log_level = "error" })
         end,
       },
-      { "romainl/vim-qf", keys = { "<space>q" } },
+      { "romainl/vim-qf", event = "CursorHold" },
       { "sheerun/vim-polyglot" },
       { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
       { "sindrets/diffview.nvim", cmd = { "DiffviewOpen", "DiffviewFileHistory" } },

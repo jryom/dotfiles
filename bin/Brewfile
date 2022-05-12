@@ -1,9 +1,3 @@
-puts "Install XCode? y or n"
-xcode = STDIN.gets.chomp
-
-puts "Install Docker? y or n"
-docker = STDIN.gets.chomp
-
 tap "beeftornado/rmtree"
 tap "clementtsang/bottom"
 tap "cormacrelf/tap"
@@ -87,10 +81,10 @@ mas "Noizio", id: 928871589
 mas "Tampermonkey", id: 1482490089
 mas "Vimari", id: 1480933944
 
-if xcode == "y"
+if ENV["XCODE"]
   mas "Xcode", id: 497799835
 end
 
-if docker == "y"
+if ENV["DOCKER"]
   cask "docker"
 end

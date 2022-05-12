@@ -14,15 +14,9 @@ shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
 shift + ctrl - s: zsh -c -i "$HOME/.config/skhd/cycle-layouts.sh"
 shift + ctrl - f: yabai -m space --layout float
  shift + cmd - f: yabai -m window --toggle native-fullscreen
-         alt - 0: yabai -m space --balance && yabai -m space --padding abs:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING && yabai -m space --gap abs:$WM_SPACING
+         alt - 0: yabai -m space --balance
          alt - a: yabai -m config auto_balance $([ "$(yabai -m config auto_balance)" = off ] && echo "on" || echo "off")
          alt - r: yabai -m space --rotate 90
- alt + shift - s: yabai -m space --padding rel:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING:-$WM_SPACING
-         alt - s: yabai -m space --padding rel:$WM_SPACING:$WM_SPACING:$WM_SPACING:$WM_SPACING
- alt + shift - v: yabai -m space --padding rel:0:0:-$WM_SPACING:-$WM_SPACING
-         alt - v: yabai -m space --padding rel:0:0:$WM_SPACING:$WM_SPACING
- alt + shift - g: yabai -m space --gap rel:-$WM_SPACING
-         alt - g: yabai -m space --gap rel:$WM_SPACING
          alt - x: yabai -m space --mirror x-axis
          alt - y: yabai -m space --mirror y-axis
 

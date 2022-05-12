@@ -1,11 +1,7 @@
-eslint_d
 kill-port
-markdownlint-cli
 neovim
 npm
 npm-check-updates
 prettier
 typescript
-typescript-language-server
-vscode-langservers-extracted
 yarn

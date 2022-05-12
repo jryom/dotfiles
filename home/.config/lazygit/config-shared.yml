@@ -1,3 +1,7 @@
+notARepository: "skip"
+promptToReturnFromSubprocess: false
+startuppopupversion: 1
+
 git:
   branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
   paging:
@@ -12,8 +16,6 @@ gui:
   skipstashwarning: true
   skipunstagelinewarning: false
 
-startuppopupversion: 1
-notARepository: "skip"
 keybinding:
   files:
     commitChanges: "C"

@@ -8,7 +8,7 @@ return function()
       enable = true,
     },
     ensure_installed = "all",
-    ignore_install = { "phpdoc" },
+    ignore_install = { "phpdoc", "ocaml" },
     highlight = { enable = true },
     indent = { enable = true },
   })
