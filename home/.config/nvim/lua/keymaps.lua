@@ -64,11 +64,11 @@ map("n", "gd", "<plug>(coc-definition)", { silent = true })
 map("i", "<C-l>", "v:lua.complete()", { expr = true, silent = true })
 map("i", "<C-n>", 'pumvisible() ? "\\<C-n>" : coc#refresh()', { silent = true, expr = true })
 
--- telescope
-map("x", "<space>i", "\"fy :lua require('telescope.builtin').grep_string({search=vim.fn.getreg('f')})<cr>")
-map("n", "<space>i", "<cmd>Telescope live_grep<cr>")
-map("n", "<space>o", "<cmd>Telescope find_files<cr>")
-map("n", "<space>b", "<cmd>Telescope buffers<cr>")
+-- fzf
+map("x", "<space>i", '"fy :FzfLua grep_visual <C-R>f<cr>')
+map("n", "<space>i", ":FzfLua grep_project<cr>")
+map("n", "<space>o", ":FzfLua files<cr>")
+map("n", "<space>b", ":FzfLua buffers<cr>")
 
 -- tabs
 map("n", "<C-t>n", ":tabnew %<cr>")

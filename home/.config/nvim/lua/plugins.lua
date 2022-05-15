@@ -28,7 +28,7 @@ require("packer").startup({
       { "neoclide/coc.nvim", branch = "release", config = require("plugin-configs/coc"), event = "CursorHold" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-lualine/lualine.nvim", config = require("plugin-configs/lualine") },
-      { "nvim-telescope/telescope.nvim", config = require("plugin-configs/telescope"), cmd = "Telescope" },
+      { "ibhagwan/fzf-lua", config = require("plugin-configs/fzf"), cmd = "FzfLua" },
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs/treesitter") },
       {
         "rmagatti/auto-session",
