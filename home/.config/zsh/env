@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 BAT_STYLE="full"
-BAT_THEME="ansi"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
+BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo 'ansi' || echo 'GitHub')"
 EDITOR="nvim"
 ESCDELAY=0
 FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
@@ -13,6 +13,9 @@ FZF_THEME='--color=fg:7,bg:0,hl:6
 FZF_CTRL_T_COMMAND="rg --files"
 FZF_DEFAULT_COMMAND="rg --files"
 FZF_DEFAULT_OPTS="$FZF_THEME"
+GIT_CONFIG_COUNT=1
+GIT_CONFIG_KEY_0="delta.syntax-theme"
+GIT_CONFIG_VALUE_0="$BAT_THEME"
 HISTFILE=~/Documents/Dotfiles/zsh-history
 HISTSIZE=655360
 HISTTIMEFORMAT="[%F %T] "

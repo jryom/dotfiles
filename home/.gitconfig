@@ -30,14 +30,6 @@
 [diff]
 	algorithm = patience
 	indentHeuristic = true
-	tool = difftastic
-	external = difft
-
-[difftool]
-	prompt = false
-
-[difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
 
 [pager]
 	difftool = true
@@ -50,3 +42,8 @@
 
 [mergetool]
 	prompt = false
+
+[delta]
+	side-by-side = true
+	line-numbers = true
+	hunk-header-style = omit

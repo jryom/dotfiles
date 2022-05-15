@@ -6,6 +6,7 @@ git:
   branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
   paging:
     colorArg: always
+    pager: delta --paging=never
   pull:
     mode: "rebase"
 
