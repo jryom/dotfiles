@@ -28,6 +28,8 @@ map <c-z> :quit
 
 map ? :doc
 
+map <esc> :quit
+
 map <c-z> $ kill -STOP $PPID
 
 map R ${{

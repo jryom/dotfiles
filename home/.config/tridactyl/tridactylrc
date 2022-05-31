@@ -9,6 +9,8 @@ set allowautofocus false
 set modeindicatormodes {"normal":"false"}
 set newtab https://app.raindrop.io/my/0
 
+autocmd DocStart devdocs.io mode ignore
+
 set editorcmd /opt/homebrew/bin/kitty -- /opt/homebrew/bin/nvim %f
 
 bind J tabnext

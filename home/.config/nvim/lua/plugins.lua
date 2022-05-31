@@ -23,7 +23,7 @@ require("packer").startup({
       { "lewis6991/impatient.nvim" },
       { "lukas-reineke/indent-blankline.nvim", config = require("plugin-configs/indent-blankline") },
       { "mcauleypenney/tidy.nvim", event = "BufWritePre" },
-      { "mcchrish/zenbones.nvim", config = require("plugin-configs/zenbones") },
+      { "mcchrish/zenbones.nvim", config = require("plugin-configs/zenbones"), requires = "rktjmp/lush.nvim" },
       { "nathom/filetype.nvim" },
       { "neoclide/coc.nvim", branch = "release", config = require("plugin-configs/coc"), event = "CursorHold" },
       { "nvim-lua/plenary.nvim" },

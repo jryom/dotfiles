@@ -5,8 +5,6 @@ lfwrapper () {
   columns="$(tput cols)"
   size="small"
 
-  echo $columns
-
   if [ $columns -gt 200 ]; then
     size="large"
   elif [ $columns -gt 100 ]; then

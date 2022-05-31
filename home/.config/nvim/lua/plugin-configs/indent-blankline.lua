@@ -1,6 +1,4 @@
 return function()
-  vim.opt.list = true
-
   require("indent_blankline").setup({
     char = "▏",
     filetype_exclude = { "help", "markdown", "man" },

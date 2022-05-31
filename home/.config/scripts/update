@@ -15,15 +15,17 @@ eval "$(fnm env)"
 
 set -x
 
-INSTALLED=$(npm ls --json -g | jq -r '.dependencies | keys[]' | tr '\n' ' ')
-UPGRADE_COMMAND="$(ncu --global | grep "." | grep "npm -g install" | tail -1)"
+INSTALLED=$(npm ls --json --location=global | jq -r '.dependencies | keys[]' | tr '\n' ' ')
+UPGRADE_COMMAND="$(ncu --global | grep "." | grep "npm --location=global install" | tail -1)"
 
 if fnm install --lts 2>&1 | grep "already"; then
-  bash -c "$UPGRADE_COMMAND" || true
+  if [ ! -z "$UPGRADE_COMMAND" ]; then
+    bash -c "$UPGRADE_COMMAND"
+  fi
 else
   fnm use lts-latest
   fnm default lts-latest
-  npm --global --no-audit install "${INSTALLED[@]}"
+  npm --location=global --no-audit install "${INSTALLED[@]}"
 fi
 
 brew update

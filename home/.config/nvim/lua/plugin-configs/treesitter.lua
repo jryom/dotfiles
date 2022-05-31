@@ -10,6 +10,6 @@ return function()
     ensure_installed = "all",
     ignore_install = { "phpdoc", "ocaml" },
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = { enable = true, disable = "yaml" },
   })
 end
