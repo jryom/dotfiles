@@ -16,7 +16,11 @@ require("packer").startup({
         end,
       },
       { "honza/vim-snippets" },
-      { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" },
+      {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && yarn install",
+        config = require("plugin-configs/markdown-preview"),
+      },
       { "joosepalviste/nvim-ts-context-commentstring", event = "CursorHold" },
       { "junegunn/vim-easy-align", keys = { "<Plug>(EasyAlign)" } },
       { "lewis6991/gitsigns.nvim", config = require("plugin-configs/gitsigns") },
