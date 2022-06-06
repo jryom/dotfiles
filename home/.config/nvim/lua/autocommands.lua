@@ -2,7 +2,6 @@ local group = vim.api.nvim_create_augroup("ac", {})
 
 -- close floating windows before closing as they will otherwise mess up session restoration
 vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-  pattern = { "*" },
   callback = function()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local config = vim.api.nvim_win_get_config(win)
@@ -15,13 +14,11 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*" },
   command = "syntax sync fromstart",
   group = group,
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "*" },
   command = "if &buftype == 'help' | wincmd L | endif",
   group = group,
 })
@@ -57,13 +54,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
-  pattern = { "*" },
   command = [[exe ":norm! \<C-W>="]],
   group = group,
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
-  pattern = { "*" },
   command = "setlocal cursorline | autocmd WinLeave * setlocal nocursorline",
   group = group,
 })

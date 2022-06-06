@@ -21,6 +21,7 @@ vim.opt.matchpairs:append("<:>")
 vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.sessionoptions:remove("blank")
 vim.opt.shiftround = true
 vim.opt.shortmess:append("actFTWI")
 vim.opt.showmode = false

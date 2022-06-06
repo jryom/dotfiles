@@ -7,6 +7,7 @@ tap "koekeishiya/formulae"
 tap "ojford/formulae"
 
 brew "act"
+brew "actionlint"
 brew "antibody"
 brew "bat"
 brew "bottom"

@@ -1,4 +1,5 @@
 {
+  "Lua.diagnostics.globals": ["vim"],
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
@@ -17,7 +18,6 @@
     "typescriptreact",
     "yaml"
   ],
-  "coc.preferences.listOfWorkspaceEdit": "location",
   "coc.preferences.willSaveHandlerTimeout": 5000,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
@@ -28,8 +28,8 @@
   },
   "diagnostic-languageserver.formatters": {
     "shfmt": {
-      "command": "shfmt",
-      "args": ["-i", "2"]
+      "args": ["-i", "2"],
+      "command": "shfmt"
     }
   },
   "diagnostic.enableSign": true,
