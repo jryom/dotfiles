@@ -1,7 +1,9 @@
+awk-language-server
 kill-port
 neovim
 npm
 npm-check-updates
 prettier
+prettier-plugin-awk
 typescript
 yarn

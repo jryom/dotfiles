@@ -2,6 +2,7 @@
   "Lua.diagnostics.globals": ["vim"],
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnSaveFiletypes": [
+    "awk",
     "css",
     "go",
     "html",
@@ -19,11 +20,19 @@
     "yaml"
   ],
   "coc.preferences.willSaveHandlerTimeout": 5000,
+  "languageserver": {
+    "awk": {
+      "command": "awk-language-server",
+      "args": [],
+      "filetypes": ["awk"]
+    }
+  },
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
     "vim": "vint"
   },
   "diagnostic-languageserver.formatFiletypes": {
+    "awk": "prettier",
     "sh": "shfmt"
   },
   "diagnostic-languageserver.formatters": {
