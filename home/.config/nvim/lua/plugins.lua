@@ -54,7 +54,7 @@ require("packer").startup({
       },
       { "romainl/vim-qf", event = "CursorHold" },
       { "sheerun/vim-polyglot" },
-      { "simnalamburt/vim-mundo", cmd = "MundoToggle" },
+      { "mbbill/undotree", cmd = "UndotreeToggle" },
       { "sindrets/diffview.nvim", cmd = { "DiffviewOpen", "DiffviewFileHistory" } },
       { "sindrets/winshift.nvim", cmd = "WinShift" },
       { "sqve/sort.nvim", cmd = "Sort" },

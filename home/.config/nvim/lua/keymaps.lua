@@ -18,7 +18,7 @@ map("x", "*", 'y/<C-R>=escape(@","/")<cr><cr>')
 -- various plugin mappings
 map("x", "ga", "<plug>(EasyAlign)")
 map("n", "<space>m", ":MarkdownPreviewToggle<cr>")
-map("n", "<space>u", ":MundoToggle<cr>")
+map("n", "<space>u", ":UndotreeToggle<cr>")
 map("n", "<space>q", "<plug>(qf_qf_toggle)")
 
 -- close-buffers
