@@ -55,6 +55,7 @@
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
   "notification.maxWidth": 60,
+  "prettier.proseWrap": "always",
   "python.formatting.provider": "black",
   "python.pythonPath": "/usr/local/bin/python3",
   "signature.floatConfig": {
