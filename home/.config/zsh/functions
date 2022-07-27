@@ -65,7 +65,7 @@ g() {
 
   LG_CONFIG_FILE+=,
 
-  if [ $DARK_MODE_ACTIVE ]; then
+  if [ $DARK_MODE_ACTIVE = 1 ]; then
     LG_CONFIG_FILE+=~/.config/lazygit/config-dark.yml
   else
     LG_CONFIG_FILE+=~/.config/lazygit/config-light.yml

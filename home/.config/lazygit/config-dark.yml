@@ -4,3 +4,5 @@ gui:
       - bold
     inactiveBorderColor:
       - "#3E3834"
+    selectedLineBgColor:
+      - "#25211F"
