@@ -40,5 +40,5 @@ fi
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
 # Install custom keyboard layout and CLI tool
-cp -r "$DOT_DIR/bin/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
+cp -r "$DOT_DIR/etc/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
 sudo ln -sf "$DOT_DIR/bin/keyboardSwitcher" "/usr/local/bin/keyboardSwitcher"
