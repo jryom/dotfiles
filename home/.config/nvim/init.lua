@@ -31,4 +31,3 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.undofile = true
-vim.opt.updatetime = 200

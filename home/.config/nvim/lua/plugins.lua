@@ -7,6 +7,10 @@ require("packer").startup({
           vim.g.rooter_silent_chdir = 1
         end,
       },
+      {
+        "antoinemadec/fixcursorhold.nvim",
+        config = function() vim.g.cursorhold_updatetime = 100 end,
+      },
       { "asheq/close-buffers.vim", cmd = "Bdelete" },
       {
         "cormacrelf/dark-notify",
