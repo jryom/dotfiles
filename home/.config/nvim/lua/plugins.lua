@@ -3,9 +3,7 @@ require("packer").startup({
     use({
       {
         "airblade/vim-rooter",
-        config = function()
-          vim.g.rooter_silent_chdir = 1
-        end,
+        config = function() vim.g.rooter_silent_chdir = 1 end,
       },
       {
         "antoinemadec/fixcursorhold.nvim",
@@ -15,16 +13,12 @@ require("packer").startup({
       {
         "cormacrelf/dark-notify",
         event = "CursorHold",
-        config = function()
-          require("dark_notify").run()
-        end,
+        config = function() require("dark_notify").run() end,
       },
       {
         "https://gitlab.com/yorickpeterse/nvim-pqf",
         event = "QuickFixCmdPre",
-        config = function()
-          require("pqf").setup()
-        end,
+        config = function() require("pqf").setup() end,
       },
       { "honza/vim-snippets" },
       {
@@ -48,9 +42,7 @@ require("packer").startup({
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs.treesitter") },
       {
         "rmagatti/auto-session",
-        config = function()
-          require("auto-session").setup({ log_level = "error" })
-        end,
+        config = function() require("auto-session").setup({ log_level = "error" }) end,
       },
       { "romainl/vim-qf", event = "CursorHold" },
       { "sheerun/vim-polyglot" },
@@ -69,17 +61,13 @@ require("packer").startup({
         "tversteeg/registers.nvim",
         keys = { '"' },
         event = "InsertEnter",
-        config = function()
-          vim.g.registers_delay = 500
-        end,
+        config = function() vim.g.registers_delay = 500 end,
       },
       { "wbthomason/packer.nvim" },
       {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        config = function()
-          require("nvim-autopairs").setup()
-        end,
+        config = function() require("nvim-autopairs").setup() end,
       },
       { "wellle/targets.vim", event = "CursorHold" },
       { "windwp/nvim-ts-autotag", event = "CursorHold" },
