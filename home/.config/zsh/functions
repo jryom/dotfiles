@@ -42,22 +42,22 @@ cd() {
   builtin cd "$@"
 }
 
-zAndLaunch() {
+jAndLaunch() {
   if [ -d "$2" ] || [ -f "$2" ]; then
     print -Pn "\e]0;%~: $1\a" && $1 "$2"
   elif [ -z "$2" ]; then
     print -Pn "\e]0;%~: $1\a" && $1
   else
-    z "$2" && print -Pn "\e]0;%~: $1\a" && $1
+    j "$2" && print -Pn "\e]0;%~: $1\a" && $1
   fi
 }
 
 l() {
-  zAndLaunch lfwrapper $1
+  jAndLaunch lfwrapper $1
 }
 
 v() {
-  zAndLaunch $EDITOR $1
+  jAndLaunch $EDITOR $1
 }
 
 g() {
@@ -71,5 +71,5 @@ g() {
     LG_CONFIG_FILE+=~/.config/lazygit/config-light.yml
   fi
 
-  zAndLaunch lazygit "$1"
+  jAndLaunch lazygit "$1"
 }

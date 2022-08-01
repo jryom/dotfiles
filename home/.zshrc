@@ -43,7 +43,7 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 eval "$(fnm env)"
 eval "$(rbenv init -)"
 
