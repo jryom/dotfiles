@@ -57,12 +57,6 @@ require("packer").startup({
       { "tpope/vim-surround", event = "CursorHold" },
       { "tpope/vim-unimpaired", event = "CursorHold" },
       { "tpope/vim-vinegar", event = "CursorHold" },
-      {
-        "tversteeg/registers.nvim",
-        keys = { '"' },
-        event = "InsertEnter",
-        config = function() vim.g.registers_delay = 500 end,
-      },
       { "wbthomason/packer.nvim" },
       {
         "windwp/nvim-autopairs",
