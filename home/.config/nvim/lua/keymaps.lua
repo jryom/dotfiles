@@ -1,7 +1,5 @@
 local map = vim.keymap.set
-local termcodes = function(string)
-  return vim.api.nvim_replace_termcodes(string, true, true, true)
-end
+local termcodes = function(string) return vim.api.nvim_replace_termcodes(string, true, true, true) end
 
 map("n", "j", "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { expr = true })
 map("n", "k", "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { expr = true })
@@ -14,11 +12,17 @@ map("x", "<space>r", '"sy:%s/<C-r>s//c <Left><Left><Left>')
 map("n", "<space>g", ":silent grep<Space>")
 map("n", "<space><space>", ":write<cr>")
 map("x", "*", 'y/<C-R>=escape(@","/")<cr><cr>')
+map("x", "p", "pgvy")
+map("n", "c", '"_c')
+map("v", "c", '"_c')
+map("n", "C", '"_C')
+map("v", "C", '"_C')
 
 -- various plugin mappings
 map("x", "ga", "<plug>(EasyAlign)")
 map("n", "<space>m", ":MarkdownPreviewToggle<cr>")
 map("n", "<space>u", ":UndotreeToggle<cr>")
+map("n", "<C-w>m", ":WinShift<cr>", { silent = true })
 map("n", "<space>q", "<plug>(qf_qf_toggle)")
 
 -- close-buffers
@@ -29,11 +33,11 @@ map("n", "Qo", ":Bdelete other<cr>")
 map("n", "Qt", ":Bdelete this<cr>")
 map("n", "Qs", ":Bdelete select<cr>")
 
+-- coc.nvim
 function expand_snippet()
   return termcodes("<C-r>") .. [[=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])]] .. termcodes("<cr>")
 end
 
--- coc.nvim
 function complete()
   if vim.fn.pumvisible() == 0 or vim.fn.complete_info({ "selected" }).selected < 0 then
     if vim.fn["coc#expandableOrJumpable"]() then
@@ -59,16 +63,12 @@ map("n", "<space>n", "<plug>(coc-diagnostic-next)", { silent = true })
 map("n", "<space>p", "<plug>(coc-diagnostic-prev)", { silent = true })
 map("n", "<space>l", ":CocList<cr>", { silent = true })
 map("n", "<space>c", ":CocCommand<cr>", { silent = true })
-map("n", "gh", ":call CocActionAsync('doHover')<cr>", { silent = true })
-map("n", "gd", "<plug>(coc-definition)", { silent = true })
-map("i", "<C-l>", "v:lua.complete()", { expr = true, silent = true })
-map("i", "<C-n>", 'pumvisible() ? "\\<C-n>" : coc#refresh()', { silent = true, expr = true })
-map("n", "<C-w>m", ":WinShift<cr>", { silent = true })
-map("x", "p", "pgvy")
-map("n", "c", '"_c')
-map("v", "c", '"_c')
-map("n", "C", '"_C')
-map("v", "C", '"_C')
+map("n", "<space>h", ":call CocActionAsync('doHover')<cr>", { silent = true })
+map("n", "<space>d", "<plug>(coc-definition)", { silent = true })
+map("n", "<space>t", "<plug>(coc-type-definition)", { silent = true })
+map("i", "<C-l>", "coc#pum#visible() ? coc#pum#confirm() : v:lua.complete()", { expr = true, silent = true })
+map("i", "<C-n>", "coc#pum#visible() ? coc#pum#next(1) : coc#refresh()", { silent = true, expr = true })
+map("i", "<C-p>", "coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()", { silent = true, expr = true })
 
 -- fzf
 map("x", "<space>i", '"fy :FzfLua grep_visual <C-R>f<cr>')
