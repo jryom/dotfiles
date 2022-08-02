@@ -1,7 +1,3 @@
-local exists, impatient = pcall(require, "impatient")
-if exists then
-  impatient.enable_profile()
-end
 require("plugins")
 require("autocommands")
 require("keymaps")
