@@ -3,10 +3,6 @@ require("autocommands")
 require("keymaps")
 
 vim.opt.expandtab = true
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldminlines = 3
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
