@@ -20,13 +20,6 @@
     "yaml"
   ],
   "coc.preferences.willSaveHandlerTimeout": 5000,
-  "languageserver": {
-    "awk": {
-      "command": "awk-language-server",
-      "args": [],
-      "filetypes": ["awk"]
-    }
-  },
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
     "vim": "vint"
@@ -54,6 +47,14 @@
   "dialog.maxWidth": 80,
   "eslint.autoFixOnSave": true,
   "html.validate.scripts": true,
+  "languageserver": {
+    "awk": {
+      "args": [],
+      "command": "awk-language-server",
+      "filetypes": ["awk"]
+    }
+  },
+  "notification.disabledProgressSources": ["*"],
   "notification.maxWidth": 60,
   "prettier.proseWrap": "always",
   "python.formatting.provider": "black",
