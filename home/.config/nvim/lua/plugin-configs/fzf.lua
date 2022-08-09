@@ -1,6 +1,11 @@
 return function()
   local actions = require("fzf-lua.actions")
+  local history_dir = vim.fn.expand("~/.local/share/nvim")
+
   require("fzf-lua").setup({
+    fzf_opts = {
+      ["--history"] = history_dir .. "/" .. "fzf_history",
+    },
     winopts = {
       height = 0.8,
       width = 0.8,
