@@ -1,24 +1,17 @@
 #!/usr/bin/env zsh
 
-setopt all_export
 setopt always_to_end
-setopt append_history
 setopt auto_cd
-setopt auto_menu
 setopt auto_pushd
 setopt complete_in_word
 setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_find_no_dups
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
 setopt menu_complete
 setopt pushd_ignore_dups
-setopt pushd_minus
 
 set -o vi
 

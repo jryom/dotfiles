@@ -1,24 +1,9 @@
 # vi: ft=gitignore
 
-*.swo
-*.swp
 .DS_Store
-.DS_Store?
-.Spotlight-V100
 .Trashes
-._*
-.env
-.nvimlog
-.undodir
-.vim/coc-settings.json
-.vscode
 .in
 .out
-Thumbs.db
-build
-ehthumbs.db
-ncp-debug.log
-node_modules
-npm-debug.log
-webpack-assets.json
+.vim/coc-settings.json
 Session.vim
+node_modules

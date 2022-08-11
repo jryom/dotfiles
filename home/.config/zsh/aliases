@@ -11,9 +11,8 @@ alias mv="mv -iv"
 alias reset="tput reset"
 alias clear="reset"
 
-alias ejectall="osascript -e 'tell application \"Finder\" to eject (every disk whose ejectable is true)'"
 alias n="cd $HOME/Documents/Notes && $EDITOR -c 'Explore'"
-alias sz="source $HOME/.zshrc && clear"
+alias sz="source $HOME/.zshrc && reset"
 alias up="$HOME/.config/scripts/update"
 
 alias y="yarn"
