@@ -47,3 +47,12 @@
 	side-by-side = true
 	line-numbers = true
 	hunk-header-style = omit
+
+[color "grep"]
+	linenumber = green
+	filename = blue
+	match = bold yellow
+
+[grep]
+	linenumber = true
+	heading = true
