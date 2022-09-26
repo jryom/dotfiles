@@ -1,17 +1,16 @@
 return function()
   require("lualine").setup({
     options = {
+      component_separators = { left = "|", right = "" },
       icons_enabled = false,
       section_separators = { left = "", right = "" },
-      component_separators = { left = "|", right = "" },
-      disabled_filetypes = {},
     },
     sections = {
       lualine_b = {
         "branch",
         "diff",
       },
-      lualine_c = { { "filename", path = 1 } },
+      lualine_c = { "filename" },
       lualine_x = { "g:coc_status" },
       lualine_y = { "filetype" },
       lualine_z = {

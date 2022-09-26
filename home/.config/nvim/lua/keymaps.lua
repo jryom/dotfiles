@@ -11,7 +11,6 @@ map("n", "<space>r", ":%s/<C-r><C-w>//c <Left><Left><Left>")
 map("x", "<space>r", '"sy:%s/<C-r>s//c <Left><Left><Left>')
 map("n", "<space>g", ":silent grep<Space>")
 map("n", "<space><space>", ":write<cr>")
-map("x", "*", 'y/<C-R>=escape(@","/")<cr><cr>')
 map("x", "p", "pgvy")
 map("n", "c", '"_c')
 map("v", "c", '"_c')
@@ -20,9 +19,7 @@ map("v", "C", '"_C')
 
 -- various plugin mappings
 map("x", "ga", "<plug>(EasyAlign)")
-map("n", "<space>m", ":MarkdownPreviewToggle<cr>")
 map("n", "<space>u", ":UndotreeToggle<cr>")
-map("n", "<C-w>m", ":WinShift<cr>", { silent = true })
 map("n", "<space>q", "<plug>(qf_qf_toggle)")
 
 -- close-buffers
@@ -54,27 +51,38 @@ function complete()
   end
 end
 
+local silent = { silent = true }
+map("n", "<space>a", "<plug>(coc-codeaction)", silent)
+map("x", "<space>f", "<plug>(coc-format-selected)", silent)
+map("n", "<space>f", "<plug>(coc-format)", silent)
+map("n", "<space>n", "<plug>(coc-diagnostic-next)", silent)
+map("n", "<space>p", "<plug>(coc-diagnostic-prev)", silent)
+map("n", "<space>l", ":CocList<cr>", silent)
+map("n", "<space>c", ":CocCommand<cr>", silent)
+map("n", "<space>h", ":call CocActionAsync('doHover')<cr>", silent)
+map("n", "<space>d", "<plug>(coc-definition)", silent)
+map("n", "<space>t", "<plug>(coc-type-definition)", silent)
+
 map("n", "J", "coc#float#has_scroll() ? coc#float#scroll(1) : 'J'", { silent = true, expr = true })
 map("n", "K", "coc#float#has_scroll() ? coc#float#scroll(0) : 'K'", { silent = true, expr = true })
-map("n", "<space>a", "<Plug>(coc-codeaction)", { silent = true })
-map("x", "<space>f", "<plug>(coc-format-selected)", { silent = true })
-map("n", "<space>f", "<plug>(coc-format)", { silent = true })
-map("n", "<space>n", "<plug>(coc-diagnostic-next)", { silent = true })
-map("n", "<space>p", "<plug>(coc-diagnostic-prev)", { silent = true })
-map("n", "<space>l", ":CocList<cr>", { silent = true })
-map("n", "<space>c", ":CocCommand<cr>", { silent = true })
-map("n", "<space>h", ":call CocActionAsync('doHover')<cr>", { silent = true })
-map("n", "<space>d", "<plug>(coc-definition)", { silent = true })
-map("n", "<space>t", "<plug>(coc-type-definition)", { silent = true })
-map("i", "<C-l>", "coc#pum#visible() ? coc#pum#confirm() : v:lua.complete()", { expr = true, silent = true })
-map("i", "<C-n>", "coc#pum#visible() ? coc#pum#next(1) : coc#refresh()", { silent = true, expr = true })
-map("i", "<C-p>", "coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()", { silent = true, expr = true })
+
+local opts = { expr = true, silent = true, replace_keycodes = false }
+map("i", "<C-l>", "coc#pum#visible() ? coc#pum#confirm() : v:lua.complete()", opts)
+map("i", "<C-n>", "coc#pum#visible() ? coc#pum#next(1) : coc#refresh()", opts)
+map("i", "<C-p>", "coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()", opts)
+map("i", "<C-j>", "coc#pum#visible() ? coc#pum#next(1) : coc#refresh()", opts)
+map("i", "<C-k>", "coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()", opts)
 
 -- fzf
 map("x", "<space>i", '"fy :FzfLua grep_visual <C-R>f<cr>')
 map("n", "<space>i", ":FzfLua grep_project<cr>")
 map("n", "<space>o", ":FzfLua files<cr>")
 map("n", "<space>b", ":FzfLua buffers<cr>")
+map(
+  "n",
+  "<space>s",
+  ":lua require('fzf-lua').grep_curbuf({prompt='Buffer ',winopts={height=0.1,split='belowright new | resize 10',preview={hidden='hidden'}}})<cr>"
+)
 
 -- tabs
 map("n", "<C-t>n", ":tabnew %<cr>")
@@ -85,15 +93,6 @@ map("n", "<C-t>h", ":tabprevious<cr>")
 map("n", "<C-t><C-h>", ":tabprevious<cr>")
 map("n", "<C-t>l", ":tabnext<cr>")
 map("n", "<C-t><C-l>", ":tabnext<cr>")
-map("n", "<C-t>1", "1gt")
-map("n", "<C-t>2", "2gt")
-map("n", "<C-t>3", "3gt")
-map("n", "<C-t>4", "4gt")
-map("n", "<C-t>5", "5gt")
-map("n", "<C-t>6", "6gt")
-map("n", "<C-t>7", "7gt")
-map("n", "<C-t>8", "8gt")
-map("n", "<C-t>9", "9gt")
 
 -- unimpaired on non-US layouts
 map("n", "<left>", "[")

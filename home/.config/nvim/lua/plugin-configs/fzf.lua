@@ -7,14 +7,11 @@ return function()
       ["--history"] = history_dir .. "/" .. "fzf_history",
     },
     winopts = {
-      height = 0.8,
-      width = 0.8,
-      row = 0.4,
-      col = 0.5,
+      height = 0.6,
+      width = 0.7,
       preview = {
-        wrap = "wrap",
         vertical = "down:0%",
-        horizontal = "right:50%",
+        horizontal = "right:40%",
         flip_columns = 180,
         scrollchars = { "▌" },
         winopts = {

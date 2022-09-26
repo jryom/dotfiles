@@ -11,7 +11,7 @@ require("packer").startup({
       { "junegunn/vim-easy-align" },
       { "lewis6991/gitsigns.nvim", config = require("plugin-configs.gitsigns") },
       { "lukas-reineke/indent-blankline.nvim", config = require("plugin-configs.indent-blankline") },
-      { "mbbill/undotree" },
+      { "mbbill/undotree", config = function() vim.g.undotree_HelpLine = 0 end },
       { "mcauleypenney/tidy.nvim" },
       { "mcchrish/zenbones.nvim", config = require("plugin-configs.zenbones") },
       { "neoclide/coc.nvim", branch = "release", config = require("plugin-configs.coc") },
@@ -28,7 +28,7 @@ require("packer").startup({
       { "tpope/vim-unimpaired" },
       { "tpope/vim-vinegar" },
       { "wbthomason/packer.nvim" },
-      { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup() end },
+      { "windwp/nvim-autopairs", config = require("plugin-configs.nvim-autopairs") },
       { "windwp/nvim-ts-autotag" },
     })
   end,

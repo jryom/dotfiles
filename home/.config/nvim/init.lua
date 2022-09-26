@@ -10,7 +10,6 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.matchpairs:append("<:>")
-vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.sessionoptions:remove("blank")
