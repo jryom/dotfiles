@@ -56,7 +56,6 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey '^Z' ctrl-z
 
 source "$HOME/.config/zsh/aliases"
-source "$HOME/Documents/Dotfiles/zsh"
 source "$HOME/.config/zsh/functions"
 
 # BEGIN_KITTY_SHELL_INTEGRATION
