@@ -40,12 +40,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "plugins.lua" },
-  command = "source <afile> | PackerSync",
-  group = group,
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*nvim/*.lua" },
   command = "source <afile> | PackerCompile",
   group = group,
