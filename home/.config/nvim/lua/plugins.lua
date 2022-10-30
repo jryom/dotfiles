@@ -19,6 +19,7 @@ require("packer").startup({
       { "nvim-lualine/lualine.nvim", config = require("plugin-configs.lualine") },
       { "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim", config = require("plugin-configs.spectre") },
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs.treesitter") },
+      { "puremourning/vimspector", setup = require("plugin-configs.vimspector") },
       { "rmagatti/auto-session", config = function() require("auto-session").setup({ log_level = "error" }) end },
       { "romainl/vim-qf" },
       { "sheerun/vim-polyglot" },

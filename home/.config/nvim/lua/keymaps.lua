@@ -165,3 +165,32 @@ map("o", "<right>", "]")
 map("x", "<right>", "]")
 --
 
+-- Vimspector
+hydra({
+  name = "VIMSPECTOR",
+  mode = "n",
+  config = {
+    invoke_on_body = true,
+    foreign_keys = "run",
+    on_enter = function() require("lualine").refresh() end,
+  },
+  body = "<space>d",
+  heads = {
+    { "c", "<Plug>VimspectorContinue", { desc = " " } },
+    { "s", "<Plug>VimspectorStop", { desc = " ", exit = true } },
+    { "r", "<Plug>VimspectorRestart", { desc = " ", exit = true } },
+    { "h", "<Plug>VimspectorPause", { desc = " " } },
+    { "b", "<Plug>VimspectorToggleBreakpoint", { desc = " " } },
+    { "p", "<Plug>VimspectorJumpToPreviousBreakpoint", { desc = " " } },
+    { "n", "<Plug>VimspectorJumpToNextBreakpoint", { desc = " " } },
+    { "B", ":VimspectorBreakpoints<cr>", { desc = " " } },
+    { "f", "<Plug>VimspectorAddFunctionBreakpoint", { desc = " " } },
+    { "i", "<Plug>VimspectorStepInto", { desc = " " } },
+    { "o", "<Plug>VimspectorStepOver", { desc = " " } },
+    { "O", "<Plug>VimspectorStepOut", { desc = " " } },
+    { "j", "j^", { desc = false } },
+    { "k", "k^", { desc = false } },
+    { "<esc>", nil, { desc = false, exit = true } },
+  },
+})
+--
