@@ -27,11 +27,24 @@ return function()
       },
     },
     files = {
+      file_icons = false,
       prompt = "Files ",
     },
     grep = {
+      file_icons = false,
       no_header = true,
       prompt = "Grep ",
+    },
+    git = {
+      icons = {
+        ["M"] = { icon = "𝒎" },
+        ["D"] = { icon = "𝒅" },
+        ["A"] = { icon = "𝒂" },
+        ["R"] = { icon = "𝒓" },
+        ["C"] = { icon = "𝙘" },
+        ["T"] = { icon = "𝙩" },
+        ["?"] = { icon = "𝙪" },
+      },
     },
     buffers = {
       prompt = "Buffers ",

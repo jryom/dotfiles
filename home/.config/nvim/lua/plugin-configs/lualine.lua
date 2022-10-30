@@ -12,7 +12,7 @@ return function()
       },
       lualine_c = { "filename" },
       lualine_x = { "g:coc_status" },
-      lualine_y = { "filetype" },
+      lualine_y = { { "filetype", colored = false } },
       lualine_z = {
         "%l/%L:%-2.c",
         {
