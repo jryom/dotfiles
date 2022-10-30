@@ -2,6 +2,7 @@ require("packer").startup({
   function(use)
     use({
       { "airblade/vim-rooter", config = function() vim.g.rooter_silent_chdir = 1 end },
+      { "anuvyklack/hydra.nvim" },
       { "asheq/close-buffers.vim" },
       { "cormacrelf/dark-notify", config = function() require("dark_notify").run() end },
       { "honza/vim-snippets" },
