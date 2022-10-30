@@ -1,6 +1,7 @@
 djui/alias-tips
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/gnu-utils
+ohmyzsh/ohmyzsh path:plugins/ssh-agent
 zpm-zsh/autoenv
 aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions

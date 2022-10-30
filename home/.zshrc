@@ -28,6 +28,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' default-color $'\033[37m'
 zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 zstyle ':fzf-tab:*' fzf-flags '--color=hl:cyan'
+zstyle ':omz:plugins:ssh-agent' quiet yes
 
 # https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit
