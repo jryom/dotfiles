@@ -25,7 +25,7 @@ RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
 SAVEHIST=${HISTSIZE}
 VISUAL="$EDITOR"
 
-PATH=/usr/local/bin:$PATH
+PATH="$(brew --prefix)/bin":$PATH
 PATH+=:node_modules/.bin/
 PATH+=:$(find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':')
 PATH+=$(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))")
