@@ -16,6 +16,7 @@ require("packer").startup({
       { "mcchrish/zenbones.nvim", config = require("plugin-configs.zenbones") },
       { "neoclide/coc.nvim", branch = "release", config = require("plugin-configs.coc") },
       { "nvim-lualine/lualine.nvim", config = require("plugin-configs.lualine") },
+      { "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim", config = require("plugin-configs.spectre") },
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs.treesitter") },
       { "rmagatti/auto-session", config = function() require("auto-session").setup({ log_level = "error" }) end },
       { "romainl/vim-qf" },

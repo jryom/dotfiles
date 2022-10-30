@@ -21,6 +21,15 @@ map("v", "C", '"_C')
 map("x", "ga", "<plug>(EasyAlign)")
 map("n", "<space>u", ":UndotreeToggle<cr>")
 map("n", "<space>q", "<plug>(qf_qf_toggle)")
+map("n", "<space>s", "<cmd>lua require('spectre').open()<CR>", { silent = true })
+map(
+  "x",
+  "<space>s",
+  '"vy :lua require("spectre").open({ is_insert_mode=false,search_text=vim.fn.getreg("v") })<CR>',
+  { silent = true }
+)
+
+--
 
 -- close-buffers
 map("n", "Q", ":Bdelete menu<cr>")
@@ -29,6 +38,7 @@ map("n", "Qh", ":Bdelete hidden<cr>")
 map("n", "Qo", ":Bdelete other<cr>")
 map("n", "Qt", ":Bdelete this<cr>")
 map("n", "Qs", ":Bdelete select<cr>")
+--
 
 -- coc.nvim
 function expand_snippet()
