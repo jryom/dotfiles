@@ -7,17 +7,9 @@ return function()
       ["--history"] = history_dir .. "/" .. "fzf_history",
     },
     winopts = {
-      height = 0.6,
-      width = 0.7,
       preview = {
-        vertical = "down:0%",
-        horizontal = "right:40%",
-        flip_columns = 180,
         scrollchars = { "▌" },
-        winopts = {
-          number = false,
-          cursorline = false,
-        },
+        winopts = { cursorline = false },
       },
     },
     keymap = {
