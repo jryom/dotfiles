@@ -15,7 +15,6 @@ eval "$(fnm env)"
 
 set -x
 
-INSTALLED=$(npm ls --json --location=global | jq -r '.dependencies | keys[]' | tr '\n' ' ')
 UPGRADE_COMMAND="$(ncu --global | grep "." | grep "npm --location=global install" | tail -1)"
 
 if fnm install --lts 2>&1 | grep "already"; then
@@ -23,6 +22,7 @@ if fnm install --lts 2>&1 | grep "already"; then
     bash -c "$UPGRADE_COMMAND"
   fi
 else
+  INSTALLED=$(npm ls --json --location=global | jq -r '.dependencies | keys[]' | tr '\n' ' ')
   fnm use lts-latest
   fnm default lts-latest
   npm --location=global --no-audit install "${INSTALLED[@]}"

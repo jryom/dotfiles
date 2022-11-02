@@ -16,6 +16,7 @@ require("packer").startup({
       { "mcauleypenney/tidy.nvim" },
       { "mcchrish/zenbones.nvim", config = require("plugin-configs.zenbones") },
       { "neoclide/coc.nvim", branch = "release", config = require("plugin-configs.coc") },
+      { "nvchad/nvim-colorizer.lua", config = require("plugin-configs.colorizer") },
       { "nvim-lualine/lualine.nvim", config = require("plugin-configs.lualine") },
       { "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim", config = require("plugin-configs.spectre") },
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs.treesitter") },
