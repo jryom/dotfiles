@@ -8,8 +8,6 @@ map("x", "<", "<gv")
 map("x", ">", ">gv")
 map("n", "gt", "<C-]>")
 map("n", "<esc>", ":nohlsearch<cr>")
-map("n", "<space>r", ":%s/<C-r><C-w>//c <Left><Left><Left>")
-map("x", "<space>r", '"sy:%s/<C-r>s//c <Left><Left><Left>')
 map("n", "<space>g", ":silent grep<Space>")
 map("n", "<space><space>", ":write<cr>")
 map("x", "p", "pgvy")
@@ -29,7 +27,6 @@ map(
   '"vy :lua require("spectre").open({ is_insert_mode=false,search_text=vim.fn.getreg("v") })<CR>',
   { silent = true }
 )
---
 
 -- close-buffers
 map("n", "Q", ":Bdelete menu<cr>")
@@ -38,7 +35,6 @@ map("n", "Qh", ":Bdelete hidden<cr>")
 map("n", "Qo", ":Bdelete other<cr>")
 map("n", "Qt", ":Bdelete this<cr>")
 map("n", "Qs", ":Bdelete select<cr>")
---
 
 -- coc.nvim
 function showDocumentation()
@@ -50,6 +46,24 @@ function showDocumentation()
     endif
   ]])
 end
+map(
+  "n",
+  "K",
+  "coc#float#has_scroll() ? coc#float#scroll(0) : ':lua showDocumentation()<cr>'",
+  { silent = true, expr = true }
+)
+
+function renameWord()
+  vim.cmd([[
+    if CocAction('hasProvider', 'rename')
+      exec "norm \<plug>(coc-rename)"
+    else
+      call feedkeys(":%s/\<C-r>\<C-w>//c \<Left>\<Left>\<Left>")
+    endif
+  ]])
+end
+map("n", "<space>r", ":lua renameWord()<cr>")
+map("x", "<space>r", '"sy:%s/<C-r>s//c <Left><Left><Left>')
 
 function expand_snippet()
   return termcodes("<C-r>") .. [[=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])]] .. termcodes("<cr>")
@@ -73,14 +87,10 @@ end
 
 local silent = { silent = true }
 map("x", "<space>f", "<plug>(coc-format-selected)", silent)
-
+map("n", "<space>f", "<plug>(coc-format)", silent)
+map("n", "<space>n", "<plug>(coc-diagnostic-next)", silent)
+map("n", "<space>p", "<plug>(coc-diagnostic-prev)", silent)
 map("n", "J", "coc#float#has_scroll() ? coc#float#scroll(1) : 'J'", { silent = true, expr = true })
-map(
-  "n",
-  "K",
-  "coc#float#has_scroll() ? coc#float#scroll(0) : ':lua showDocumentation()<cr>'",
-  { silent = true, expr = true }
-)
 
 local opts = { expr = true, silent = true, replace_keycodes = false }
 map("i", "<C-l>", "coc#pum#visible() ? coc#pum#confirm() : v:lua.complete()", opts)
@@ -99,51 +109,23 @@ hydra({
   },
   body = "<space>c",
   heads = {
-    { "D", "<plug>(coc-declaration)" },
-    { "R", "<plug>(coc-references)" },
-    { "a", "<plug>(coc-codeaction)" },
-    { "c", "<cmd>CocCommand<cr>" },
-    { "d", "<plug>(coc-definition)" },
-    { "f", "<plug>(coc-format)" },
-    { "gc", ":CocConfig<cr>" },
-    { "gg", ":CocLocalConfig<cr>" },
-    { "gr", "<plug>(coc-refactor)" },
-    { "l", ":CocList<cr>" },
-    { "n", "<plug>(coc-diagnostic-next)" },
-    { "p", "<plug>(coc-diagnostic-prev)" },
-    { "r", "<plug>(coc-rename)" },
-    { "t", "<plug>(coc-type-definition)" },
+    { "d", "<plug>(coc-definition)", { desc = "Goto definition" } },
+    { "t", "<plug>(coc-type-definition)", { desc = "Goto type definition" } },
+    { "D", "<plug>(coc-declaration)", { desc = "Goto declaration" } },
+    { "r", "<plug>(coc-references)", { desc = "References" } },
+    { "a", "<plug>(coc-codeaction)", { desc = "Code action" } },
+    { "c", "<cmd>CocCommand<cr>", { desc = "Commands" } },
+    { "R", "<plug>(coc-refactor)", { desc = "Refactor" } },
+    { "l", ":CocList<cr>", { desc = "List" } },
   },
 })
---
 
 -- fzf
 map("x", "<space>i", '"vy :FzfLua grep_visual <C-R>v<cr>')
 map("n", "<space>i", ":FzfLua grep_project<cr>")
 map("n", "<space>o", ":FzfLua files<cr>")
 map("n", "<space>b", ":FzfLua buffers<cr>")
-hydra({
-  name = "FZF",
-  mode = { "n", "x" },
-  config = {
-    exit = true,
-    invoke_on_body = true,
-    foreign_keys = "run",
-    on_enter = function() require("lualine").refresh() end,
-  },
-  body = "<space>f",
-  heads = {
-    { "o", ":FzfLua files<cr>", { mode = "n" } },
-    { "b", ":FzfLua buffers<cr>", { mode = "n" } },
-    { "i", ":FzfLua grep_project<cr>", { mode = "n" } },
-    { "s", '"fy :FzfLua grep_visual <C-R>f<cr>' },
-    { "gs", '"fy :FzfLua git_status <C-R>f<cr>' },
-    { "gc", '"fy :FzfLua git_commits <C-R>f<cr>' },
-    { "gb", '"fy :FzfLua git_branches <C-R>f<cr>' },
-    { "k", '"fy :FzfLua keymaps <C-R>f<cr>' },
-  },
-})
---
+map("n", "<space>h", ":FzfLua help_tags<cr>")
 
 -- tabs
 map("n", "<C-t>n", ":tabnew %<cr>")
@@ -154,7 +136,6 @@ map("n", "<C-t>h", ":tabprevious<cr>")
 map("n", "<C-t><C-h>", ":tabprevious<cr>")
 map("n", "<C-t>l", ":tabnext<cr>")
 map("n", "<C-t><C-l>", ":tabnext<cr>")
---
 
 -- unimpaired on non-US layouts
 map("n", "<left>", "[")
@@ -163,7 +144,6 @@ map("x", "<left>", "[")
 map("n", "<right>", "]")
 map("o", "<right>", "]")
 map("x", "<right>", "]")
---
 
 -- Vimspector
 hydra({
@@ -193,4 +173,3 @@ hydra({
     { "<esc>", nil, { desc = false, exit = true } },
   },
 })
---

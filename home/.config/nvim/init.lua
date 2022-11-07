@@ -3,6 +3,7 @@ require("autocommands")
 require("keymaps")
 
 vim.opt.expandtab = true
+vim.opt.fillchars = "eob: "
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
