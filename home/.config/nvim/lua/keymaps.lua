@@ -21,6 +21,7 @@ map("x", "ga", "<plug>(EasyAlign)")
 map("n", "<space>u", ":UndotreeToggle<cr>")
 map("n", "<space>q", "<plug>(qf_qf_toggle)")
 map("n", "<space>s", "<cmd>lua require('spectre').open()<CR>", { silent = true })
+map("n", "-", "<cmd>execute 'e ' .. expand('%:p:h')<CR>", { noremap = true })
 map(
   "x",
   "<space>s",
