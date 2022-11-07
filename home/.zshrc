@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 setopt always_to_end
 setopt auto_cd
 setopt auto_pushd
@@ -30,12 +34,12 @@ zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
 zstyle ':fzf-tab:*' fzf-flags '--color=hl:cyan'
 zstyle ':omz:plugins:ssh-agent' quiet yes
 
-# https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
   compinit
-done
-compinit -C
+else
+  compinit -C
+fi
 
 eval "$(zoxide init zsh --cmd j)"
 eval "$(fnm env)"
@@ -63,4 +67,4 @@ source "$HOME/.config/zsh/functions"
 if test -e "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-eval "$(starship init zsh)"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
