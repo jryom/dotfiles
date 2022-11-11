@@ -20,6 +20,7 @@ require("packer").startup({
       { "nvim-lualine/lualine.nvim", config = require("plugin-configs.lualine") },
       { "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim", config = require("plugin-configs.spectre") },
       { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugin-configs.treesitter") },
+      { "petertriho/nvim-scrollbar", config = require("plugin-configs.nvim-scrollbar") },
       { "puremourning/vimspector", setup = require("plugin-configs.vimspector") },
       { "rmagatti/auto-session", config = function() require("auto-session").setup({ log_level = "error" }) end },
       { "romainl/vim-qf" },
@@ -31,7 +32,9 @@ require("packer").startup({
       { "tpope/vim-rhubarb" },
       { "tpope/vim-surround" },
       { "tpope/vim-unimpaired" },
+      { "tversteeg/registers.nvim", config = require("plugin-configs.registers") },
       { "wbthomason/packer.nvim" },
+      { "wellle/targets.vim" },
       { "windwp/nvim-autopairs", config = require("plugin-configs.nvim-autopairs") },
       { "windwp/nvim-ts-autotag" },
     })

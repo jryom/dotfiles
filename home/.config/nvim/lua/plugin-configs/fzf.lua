@@ -7,9 +7,9 @@ return function()
       ["--history"] = history_dir .. "/" .. "fzf_history",
     },
     winopts = {
-      preview = {
-        scrollchars = { "▌" },
-        winopts = { cursorline = false },
+      hl = {
+        border = "FloatBorder",
+        scrollborder_f = "NonText",
       },
     },
     keymap = {

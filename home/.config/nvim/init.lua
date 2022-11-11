@@ -12,7 +12,6 @@ vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
-vim.opt.relativenumber = true
 vim.opt.sessionoptions:remove("blank")
 vim.opt.shiftround = true
 vim.opt.shortmess:append("actFTWI")

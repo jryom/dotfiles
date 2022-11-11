@@ -38,7 +38,7 @@ map("n", "Qt", ":Bdelete this<cr>")
 map("n", "Qs", ":Bdelete select<cr>")
 
 -- coc.nvim
-function showDocumentation()
+function ShowDocumentation()
   vim.cmd([[
     if CocAction('hasProvider', 'hover')
       call CocActionAsync('doHover')
@@ -50,11 +50,11 @@ end
 map(
   "n",
   "K",
-  "coc#float#has_scroll() ? coc#float#scroll(0) : ':lua showDocumentation()<cr>'",
+  "coc#float#has_scroll() ? coc#float#scroll(0) : ':lua ShowDocumentation()<cr>'",
   { silent = true, expr = true }
 )
 
-function renameWord()
+function RenameWord()
   vim.cmd([[
     if CocAction('hasProvider', 'rename')
       exec "norm \<plug>(coc-rename)"
@@ -63,23 +63,23 @@ function renameWord()
     endif
   ]])
 end
-map("n", "<space>r", ":lua renameWord()<cr>")
+map("n", "<space>r", ":lua RenameWord()<cr>")
 map("x", "<space>r", '"sy:%s/<C-r>s//c <Left><Left><Left>')
 
-function expand_snippet()
+function Expand_snippet()
   return termcodes("<C-r>") .. [[=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])]] .. termcodes("<cr>")
 end
 
-function complete()
+function Complete()
   if vim.fn.pumvisible() == 0 or vim.fn.complete_info({ "selected" }).selected < 0 then
     if vim.fn["coc#expandableOrJumpable"]() then
-      return expand_snippet()
+      return Expand_snippet()
     else
       return vim.fn["coc#refresh"]()
     end
   else
     if vim.fn["coc#expandableOrJumpable"]() then
-      return expand_snippet()
+      return Expand_snippet()
     else
       return termcodes("<C-y>")
     end

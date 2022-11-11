@@ -1,36 +1,31 @@
 {
   "Lua.diagnostics.globals": ["vim"],
-  "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnType": true,
   "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.formatOnSave": true,
   "coc.preferences.willSaveHandlerTimeout": 5000,
-  "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck",
-    "vim": "vint"
-  },
   "diagnostic-languageserver.formatFiletypes": {
     "awk": "prettier",
-    "sh": "shfmt"
+    "lua": "stylua"
   },
   "diagnostic-languageserver.formatters": {
-    "shfmt": {
-      "args": ["-i", "2"],
-      "command": "shfmt"
+    "stylua": {
+      "args": [
+        "--search-parent-directories",
+        "--stdin-filepath",
+        "%filepath",
+        "--",
+        "-"
+      ],
+      "command": "stylua"
     }
   },
-  "diagnostic.enableSign": true,
+  "diagnostic-languageserver.linters": { "eslint": {} },
+  "diagnostic-languageserver.mergeConfig": true,
   "diagnostic.errorSign": "",
-  "diagnostic.floatConfig": {
-    "maxHeight": 500,
-    "maxWidth": 150
-  },
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
-  "diagnostic.level": "warning",
   "diagnostic.warningSign": "",
-  "dialog.maxWidth": 80,
   "eslint.autoFixOnSave": true,
-  "html.validate.scripts": true,
   "languageserver": {
     "awk": {
       "args": [],
@@ -38,20 +33,12 @@
       "filetypes": ["awk"]
     }
   },
-  "notification.disabledProgressSources": ["*"],
-  "notification.maxWidth": 60,
   "prettier.proseWrap": "always",
-  "python.formatting.provider": "black",
-  "python.pythonPath": "/usr/local/bin/python3",
-  "signature.floatConfig": {
-    "maxWidth": 150
-  },
   "snippets.extends": {
     "typescript": ["javascript"],
     "typescriptreact": ["javascript"]
   },
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
-  "suggest.removeDuplicateItems": true,
   "yaml.format.enable": true
 }

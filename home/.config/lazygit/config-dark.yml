@@ -3,6 +3,6 @@ gui:
     activeBorderColor:
       - bold
     inactiveBorderColor:
-      - "#3E3834"
+      - "#5f5650"
     selectedLineBgColor:
-      - "#25211F"
+      - "#332d2b"

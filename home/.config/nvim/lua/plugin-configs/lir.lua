@@ -19,7 +19,7 @@ return function()
       ["<C-t>"] = actions.tabedit,
       ["q"] = actions.quit,
       ["d"] = actions.mkdir,
-      ["n"] = actions.touch,
+      ["a"] = actions.touch,
       ["r"] = actions.rename,
       ["Y"] = actions.yank_path,
       ["D"] = actions.delete,
