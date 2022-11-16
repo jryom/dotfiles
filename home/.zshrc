@@ -47,7 +47,7 @@ eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $HOME/.zsh_plugins
+eval "$(sheldon source)"
 
 enable-fzf-tab
 

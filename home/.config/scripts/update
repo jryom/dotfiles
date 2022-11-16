@@ -33,4 +33,4 @@ brew upgrade --greedy --force
 
 tldr --update
 
-antibody update
+sheldon lock --update

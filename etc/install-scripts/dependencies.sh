@@ -2,7 +2,7 @@
 
 if ! command -v brew >/dev/null; then
   curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-  export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="$(brew --prefix)/bin:$PATH"
 fi
 
 brew bundle install --file="$DOT_DIR/etc/Brewfile" --force --no-lock
@@ -23,10 +23,8 @@ fnm install --lts && fnm use lts-latest && fnm default lts-latest
 npm install --no-progress --global $(cat ""$DOT_DIR/etc/npm-global-packages | tr '\n' ' ')
 
 # Use custom zsh install rather than bundled version
-! [[ "$(which zsh)" = "/opt/homebrew/bin/zsh" ]] &&
-  sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
-
-antibody bundle <"$DOT_DIR/etc/zsh-plugins" >~/.zsh_plugins
+! [[ "$(which zsh)" = "$(brew --prefix)/bin/zsh" ]] &&
+  sudo dscl . -create /Users/$USER UserShell "$(brew --prefix)/bin/zsh"
 
 brew services start koekeishiya/formulae/yabai
 brew services start koekeishiya/formulae/skhd
