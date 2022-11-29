@@ -11,13 +11,13 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  command = "syntax sync fromstart",
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  command = "if &buftype == 'help' | wincmd L | endif",
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  command = "if &buftype == 'help' | wincmd L | endif",
+vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+  command = "if getfsize(expand('%')) > 100 * 1024 | syntax off | endif",
   group = group,
 })
 
