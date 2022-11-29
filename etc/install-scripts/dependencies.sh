@@ -29,8 +29,6 @@ npm install --no-progress --global $(cat ""$DOT_DIR/etc/npm-global-packages | tr
 brew services start koekeishiya/formulae/yabai
 brew services start koekeishiya/formulae/skhd
 
-curl -fsSl https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh -o /tmp/trinativeinstall.sh && sh /tmp/trinativeinstall.sh
-
 rm -rf ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
