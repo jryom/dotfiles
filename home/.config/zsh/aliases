@@ -10,7 +10,7 @@ alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias reset="tput reset"
 alias clear="reset"
-alias ssh="kitty +kitten ssh"
+alias s="kitty +kitten ssh"
 alias ggrep="git rev-list --all | xargs git grep --break"
 
 alias n="cd $HOME/Documents/Notes && $EDITOR -c 'Explore'"
