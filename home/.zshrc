@@ -23,11 +23,8 @@ source "$HOME/.config/zsh/env"
 
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' fzf-search-display true
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose true
-zstyle ":completion:*:git-checkout:*" sort false
-zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' default-color $'\033[37m'
 zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down'
@@ -49,6 +46,9 @@ eval "$(rbenv init -)"
 
 eval "$(sheldon source)"
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(regexp brackets pattern cursor line)
+ZSH_HIGHLIGHT_REGEXP+=('^[[:blank:][:space:]]*('${(j:|:)${(k)ABBR_REGULAR_USER_ABBREVIATIONS}}')$' fg=green,underline)
+
 enable-fzf-tab
 
 zmodload zsh/complist
@@ -60,7 +60,7 @@ bindkey '^l' autosuggest-accept
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^Z' ctrl-z
 
-source "$HOME/.config/zsh/aliases"
+alias -- -="cd -"
 source "$HOME/.config/zsh/functions"
 
 # BEGIN_KITTY_SHELL_INTEGRATION

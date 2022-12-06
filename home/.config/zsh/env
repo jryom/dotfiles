@@ -3,9 +3,10 @@
 BAT_STYLE="full"
 DARK_MODE_ACTIVE=$(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
 BAT_THEME="$([[ $DARK_MODE_ACTIVE = 1 ]] && echo 'ansi' || echo 'GitHub')"
+CLICOLOR=1
 EDITOR="nvim"
 ESCDELAY=0
-FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}'"
+FZF_CTRL_T_OPTS="--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --sceme=path"
 FZF_THEME='--color=fg:7,bg:0,hl:6
 --color=fg+:7,bg+:8,hl+:3
 --color=info:15,prompt:1,pointer:5
@@ -24,8 +25,14 @@ LC_ALL="en_US.UTF-8"
 RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
 SAVEHIST=${HISTSIZE}
 VISUAL="$EDITOR"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-PATH="$(brew --prefix)/bin":$PATH
-PATH+=:node_modules/.bin/
-PATH+=:$(find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':')
-PATH+=$(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))")
+infopath+=("/opt/homebrew/share/info")
+manpath+=("$(brew --prefix)/share/man")
+path=("$(brew --prefix)/opt" $path)
+path=("$(brew --prefix)/sbin" $path)
+path=("$(brew --prefix)/bin" $path)
+path+=('node_modules/.bin')
+path+=($(find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':'))
+path+=($(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))"))
+fpath+=("/opt/homebrew/opt/git-extras/share/git-extras")

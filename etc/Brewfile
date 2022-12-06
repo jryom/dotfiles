@@ -8,6 +8,7 @@ tap "ojford/formulae"
 
 brew "act"
 brew "actionlint"
+brew "bash"
 brew "bat"
 brew "brew-rmtree"
 brew "coreutils"

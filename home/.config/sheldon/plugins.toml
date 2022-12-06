@@ -3,9 +3,6 @@ shell = "zsh"
 [plugins.powerlevel10k]
 github = 'romkatv/powerlevel10k'
 
-[plugins.alias-tips]
-github = 'djui/alias-tips'
-
 [plugins.autoenv]
 github = 'zpm-zsh/autoenv'
 
@@ -20,6 +17,15 @@ github = 'zsh-users/zsh-completions'
 
 [plugins.zsh-highlighting]
 github = 'zsh-users/zsh-syntax-highlighting'
+
+[plugins.zsh-abbr]
+github = 'olets/zsh-abbr'
+
+[plugins.zsh-npm-scripts-autocomplete]
+github = 'grigorii-zander/zsh-npm-scripts-autocomplete'
+
+[plugins.ugit]
+github = 'bhupesh-v/ugit'
 
 [plugins.ohmyzsh]
 github = 'ohmyzsh/ohmyzsh'

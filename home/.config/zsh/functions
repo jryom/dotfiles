@@ -34,7 +34,6 @@ ctrl-z () {
   fi
 }
 zle -N ctrl-z
-bindkey '^Z' ctrl-z
 
 # Allow passing dir/filename to cd
 cd() {

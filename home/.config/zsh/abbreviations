@@ -1,0 +1,9 @@
+abbr ggrep="git rev-list --all | xargs git grep --break"
+abbr ll="exa -lagh --git --group-directories-first"
+abbr n='cd "~/Documents/Notes" && nvim -c "Explore"'
+abbr s="kitty +kitten ssh"
+abbr sz="source /Users/dkJeRyJe/.zshrc && reset"
+abbr up="~/.config/scripts/update"
+abbr y="yarn"
+abbr ya="yarn add"
+abbr yad="yarn add -D"

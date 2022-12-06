@@ -28,14 +28,6 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
 defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
 killall Dock
 
-if ! type xcode-select >&- &&
-  XPATH="$(xcode-select --print-path)" &&
-  test -d "$XPATH" && test -x "$XPATH"; then
-  echo "Command line tools not installed. Install and run script again."
-  xcode-select --install
-  exit
-fi
-
 # Use touchID for sudo permission
 cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
 
