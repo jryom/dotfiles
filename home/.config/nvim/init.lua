@@ -22,3 +22,9 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.undofile = true
+
+vim.cmd.inoreabbrev({
+  "<expr>",
+  "date",
+  "strftime('%Y.%m.%d, %A, %H:%M')",
+})

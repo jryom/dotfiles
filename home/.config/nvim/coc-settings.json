@@ -19,7 +19,9 @@
       "command": "stylua"
     }
   },
-  "diagnostic-languageserver.linters": { "eslint": {} },
+  "diagnostic-languageserver.linters": {
+    "eslint": {}
+  },
   "diagnostic-languageserver.mergeConfig": true,
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "",
@@ -40,5 +42,10 @@
   },
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
+  "toml.formatter.reorderKeys": true,
+  "toml.schema.associations": {
+    "^(.*(/|\\\\)\\.?starship\\.toml)$": "https://starship.rs/config-schema.json"
+  },
+  "toml.schema.links": true,
   "yaml.format.enable": true
 }

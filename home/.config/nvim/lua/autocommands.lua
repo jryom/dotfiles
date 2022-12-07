@@ -27,6 +27,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   group = group,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*nvim/*.lua" },
+  command = "source <afile> | PackerCompile",
+  group = group,
+})
+
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
   command = [[exe ":norm! \<C-W>="]],
   group = group,

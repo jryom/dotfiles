@@ -1,7 +1,7 @@
 return function()
   require("scrollbar").setup({
     handle = { highlight = "StatusLine" },
-    handlers = { gitsigns = true },
+    handlers = { gitsigns = true, cursor = false },
     marks = {
       GitAdd = {
         text = "│",

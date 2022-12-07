@@ -17,7 +17,18 @@ return function()
         "branch",
         "diff",
       },
-      lualine_c = { "filename" },
+      lualine_c = {
+        {
+          "filename",
+          newfile_status = true,
+          path = 1,
+          symbols = {
+            modified = " ",
+            readonly = " ",
+            unnamed = " ",
+          },
+        },
+      },
       lualine_x = { "g:coc_status" },
       lualine_y = { { "filetype", colored = false } },
       lualine_z = {

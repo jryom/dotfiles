@@ -3,9 +3,6 @@ return function()
   local history_dir = vim.fn.expand("~/.local/share/nvim")
 
   require("fzf-lua").setup({
-    fzf_opts = {
-      ["--history"] = history_dir .. "/" .. "fzf_history",
-    },
     winopts = {
       hl = {
         border = "FloatBorder",
@@ -19,10 +16,17 @@ return function()
       },
     },
     files = {
+      fzf_opts = {
+        ["--history"] = history_dir .. "/" .. "fzf_files_history",
+        ["--scheme"] = "path",
+      },
       file_icons = false,
       prompt = "Files ",
     },
     grep = {
+      fzf_opts = {
+        ["--history"] = history_dir .. "/" .. "fzf_grep_history",
+      },
       file_icons = false,
       no_header = true,
       prompt = "Grep ",
