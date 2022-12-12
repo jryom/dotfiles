@@ -1,36 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-source "$HOME/.config/zsh/env"
-export PATH="/usr/local/bin/:$PATH"
-export SUDO_ASKPASS="$HOME/.config/scripts/askpass"
+set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
 
 sudo -v
-while true; do
-  sudo -n true
-  sleep 60
-  kill -0 "$$" || exit
-done 2>/dev/null &
 
-eval "$(fnm env)"
+set UPGRADE_COMMAND (ncu --global | grep "." | grep "npm --location=global install" | tail -1)
 
-set -x
-
-UPGRADE_COMMAND="$(ncu --global | grep "." | grep "npm --location=global install" | tail -1)"
-
-if fnm install --lts 2>&1 | grep "already"; then
-  if [ ! -z "$UPGRADE_COMMAND" ]; then
-    bash -c "$UPGRADE_COMMAND"
-  fi
-else
-  INSTALLED=$(npm ls --json --location=global | jq -r '.dependencies | keys[]' | tr '\n' ' ')
-  fnm use lts-latest
-  fnm default lts-latest
-  npm --location=global --no-audit install "${INSTALLED[@]}"
-fi
+if test (nvm install --lts 2>&1 | grep --invert-match "installing")
+    if test ! -z "$UPGRADE_COMMAND"
+        fish -c "$UPGRADE_COMMAND"
+    end
+end
 
 brew update
 brew upgrade --greedy --force
 
 tldr --update
-
-sheldon lock --update

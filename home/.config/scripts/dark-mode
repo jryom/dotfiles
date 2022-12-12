@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-theme=$([[ "$argv" = "light" ]] && echo "$KITTY_THEME_LIGHT" || echo "$KITTY_THEME_DARK")
+theme=$([[ "$argv" = "light" ]] && echo "zenbones-light" || echo "zenbones-dark")
 kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty/themes/$theme.conf
 ln -sf ~/.config/kitty/themes/$theme.conf ~/.config/kitty/theme.conf

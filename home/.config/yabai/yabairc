@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env fish
 
-export WM_SPACING=$(updateWMSpacing)
+set -U WM_SPACING (updateWindowManagerSpacing)
 
 sudo yabai --load-sa
 
@@ -14,15 +14,15 @@ yabai -m rule --add manage=off app="System Preferences"
 yabai -m rule --add manage=off app="System Information"
 yabai -m rule --add manage=off app="iStat*"
 
-yabai -m config layout                     bsp
+yabai -m config layout bsp
 
-yabai -m config top_padding                $WM_SPACING
-yabai -m config bottom_padding             $WM_SPACING
-yabai -m config left_padding               $WM_SPACING
-yabai -m config right_padding              $WM_SPACING
-yabai -m config window_gap                 $WM_SPACING
+yabai -m config top_padding $WM_SPACING
+yabai -m config bottom_padding $WM_SPACING
+yabai -m config left_padding $WM_SPACING
+yabai -m config right_padding $WM_SPACING
+yabai -m config window_gap $WM_SPACING
 
-yabai -m config window_origin_display      focused
+yabai -m config window_origin_display focused
 
-yabai -m config normal_window_opacity      $WM_OPACITY
-yabai -m config window_opacity             on
+yabai -m config normal_window_opacity $WM_OPACITY
+yabai -m config window_opacity on

@@ -5,9 +5,13 @@
   "coc.preferences.willSaveHandlerTimeout": 5000,
   "diagnostic-languageserver.formatFiletypes": {
     "awk": "prettier",
-    "lua": "stylua"
+    "lua": "stylua",
+    "fish": "fish-indent"
   },
   "diagnostic-languageserver.formatters": {
+    "fish-indent": {
+      "command": "fish_indent"
+    },
     "stylua": {
       "args": [
         "--search-parent-directories",

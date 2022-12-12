@@ -17,14 +17,11 @@ echo y | "$(brew --prefix)"/opt/fzf/install
 
 python3 -m pip install --user --upgrade pynvim black
 
-eval "$(fnm env)"
-fnm install --lts && fnm use lts-latest && fnm default lts-latest
+echo $(which fish) | sudo tee -a /etc/shells
+chsh -s $(which fish)
+sudo dscl . -create /Users/$USER UserShell $(which fish)
 
-npm install --no-progress --global $(cat ""$DOT_DIR/etc/npm-global-packages | tr '\n' ' ')
-
-# Use custom zsh install rather than bundled version
-! [[ "$(which zsh)" = "$(brew --prefix)/bin/zsh" ]] &&
-  sudo dscl . -create /Users/$USER UserShell "$(brew --prefix)/bin/zsh"
+fish -c 'fisher update'
 
 brew services start koekeishiya/formulae/yabai
 brew services start koekeishiya/formulae/skhd
