@@ -1,7 +1,7 @@
 fish_add_path --prepend "$(brew --prefix)/opt" "$(brew --prefix)/sbin" "$(brew --prefix)/bin"
 fish_add_path --append 'node_modules/.bin' $(find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':') $(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))")
 
-set -gx WM_OPACITY "0.8"
+set -gx WM_OPACITY "0.9"
 
 if status is-interactive
     set -U fish_greeting

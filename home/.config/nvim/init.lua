@@ -25,6 +25,6 @@ vim.opt.undofile = true
 
 vim.cmd.inoreabbrev({
   "<expr>",
-  "date",
-  "strftime('%Y.%m.%d, %A, %H:%M')",
+  "DATE",
+  "strftime('%Y.%m.%d | %A | %H:%M')",
 })

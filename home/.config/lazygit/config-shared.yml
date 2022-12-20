@@ -3,7 +3,10 @@ promptToReturnFromSubprocess: false
 startuppopupversion: 1
 
 git:
-  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
+  branchLogCmd:
+    'git log --graph --color=always --abbrev-commit --decorate --date=relative
+    --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)|
+    %C(cyan)%ad%C(white))" {{branchName}} --'
   paging:
     colorArg: always
     pager: delta --paging=never
@@ -16,6 +19,8 @@ gui:
   sidePanelWidth: 0.25
   skipstashwarning: true
   skipunstagelinewarning: false
+  authorColors:
+    "*": "blue"
 
 keybinding:
   files:
