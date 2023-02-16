@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
 
-set -ex
+if ! command -v brew >/dev/null; then
+  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
 
-# Ask for the sudo permission and keep valid until EOF
-sudo -v
-while true; do
-  sudo -n true
-  sleep 60
-  kill -0 "$$" || exit
-done 2>/dev/null &
+brew install just
 
-DOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
-
-export DOT_DIR
-source "$DOT_DIR/etc/install-scripts/macos.sh"
-source "$DOT_DIR/etc/install-scripts/dependencies.sh"
+just install
