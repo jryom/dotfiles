@@ -10,6 +10,7 @@ set hidden
 set drawbox
 set incsearch
 set previewer ~/.config/lf/pv.sh
+set dirpreviews
 
 map x $$f
 map X !$f
@@ -51,6 +52,6 @@ map <delete> trash
 
 cmd small :set nopreview; set ratios 1; set nodrawbox
 
-cmd medium :set ratios 2:3
+cmd medium :set ratios 2:4
 
-cmd large :set ratios 2:4:4
+cmd large :set ratios 1:3

@@ -51,7 +51,6 @@
 	prompt = false
 
 [delta]
-	side-by-side = !bash -c "[[ $(tput cols) -gt 180 ]] && echo true || echo false"
 	line-numbers = true
 	hunk-header-style = omit
 

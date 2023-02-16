@@ -11,6 +11,7 @@ $line_break\
 $jobs\
 $sudo\
 $character"""
+command_timeout=1000
 
 [directory]
 before_repo_root_style = "bright-white"

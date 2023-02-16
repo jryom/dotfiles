@@ -7,3 +7,5 @@ gui:
       - "#baa69c"
     selectedLineBgColor:
       - "#E9E4E2"
+    selectedRangeBgColor:
+      - underline

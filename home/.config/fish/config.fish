@@ -1,7 +1,7 @@
 fish_add_path --prepend "$(brew --prefix)/opt" "$(brew --prefix)/sbin" "$(brew --prefix)/bin"
 fish_add_path --append 'node_modules/.bin' $(find $HOME/Library/Python -maxdepth 2 -type d | tr '\n' ':') $(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))")
 
-set -gx WM_OPACITY "0.9"
+set -gx WM_OPACITY "0.85"
 
 if status is-interactive
     set -U fish_greeting
@@ -21,8 +21,8 @@ if status is-interactive
     set -gx FZF_CTRL_T_COMMAND "rg --files"
     set -gx FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --sceme path"
     set -gx FZF_DEFAULT_COMMAND "rg --files"
-    set -gx FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6'
-    set -gx FZF_DEFAULT_OPTS "$FZF_THEME"
+    set -gx FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
+    set -gx FZF_DEFAULT_OPTS "$FZF_THEME --no-separator --info hidden"
     set -gx FZF_COMPLETE 1
     set -gx FZF_LEGACY_KEYBINDINGS 0
     set -gx FZF_ENABLE_OPEN_PREVIEW 1
@@ -113,6 +113,12 @@ if status is-interactive
             set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
         else
             set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
+        end
+
+        if test (tput cols) -ge 150
+            set -gx DELTA_FEATURES "+side-by-side"
+        else
+            set -gx DELTA_FEATURES -side-by-side
         end
 
         j_and_launch lazygit "$argv[1]"
