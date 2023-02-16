@@ -34,8 +34,6 @@ if status is-interactive
     set -gx MANPATH $MANPATH "$(brew --prefix)/share/man"
     set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
     set -gx VISUAL "$EDITOR"
-    set -U nvm_default_packages kill-port neovim npm npm-check-updates prettier typescript yarn
-    set -U nvm_default_version lts
     set -gx fzf_fd_opts --color never
 
     ### Abbreviations

@@ -4,12 +4,12 @@ set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
 
 sudo -v
 
-set UPGRADE_COMMAND (ncu --global | grep "." | grep "npm --location=global install" | tail -1)
+set UPGRADE_COMMAND "$(ncu --global | grep "npm -g install")"
 
-if test (nvm install --lts 2>&1 | grep --invert-match "installing")
-    if test ! -z "$UPGRADE_COMMAND"
-        fish -c "$UPGRADE_COMMAND"
-    end
+fnm install --lts
+
+if test ! -z "$UPGRADE_COMMAND"
+    fish -c "$UPGRADE_COMMAND"
 end
 
 brew update
