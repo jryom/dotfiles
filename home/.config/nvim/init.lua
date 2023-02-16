@@ -1,20 +1,20 @@
-require("plugins")
+require("plugin")
 require("autocommands")
-require("keymaps")
 
+vim.opt.cmdheight = 0
 vim.opt.expandtab = true
 vim.opt.fillchars = "eob: "
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
-vim.opt.sessionoptions:remove("blank")
+vim.opt.scrolloff = 5
+vim.opt.sessionoptions = { "buffers", "folds", "tabpages" }
 vim.opt.shiftround = true
-vim.opt.shortmess:append("actFTWI")
+vim.opt.shortmess:append("ctFTI")
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true

@@ -3,3 +3,4 @@
 theme=$([[ "$argv" = "light" ]] && echo "zenbones-light" || echo "zenbones-dark")
 kitty @ --to unix:/tmp/mykitty set-colors -a -c ~/.config/kitty/themes/$theme.conf
 ln -sf ~/.config/kitty/themes/$theme.conf ~/.config/kitty/theme.conf
+echo "$argv" > /tmp/dark-mode
