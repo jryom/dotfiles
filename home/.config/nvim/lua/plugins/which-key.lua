@@ -89,7 +89,13 @@ return {
         f = { "<cmd>FzfLua blines<cr>", "Search in file" },
         H = { "<cmd>FzfLua help_tags<cr>", "Help" },
         i = {
-          { "<cmd>FzfLua grep_project<cr>", "Search in project", mode = "n" },
+          {
+            function()
+              require("fzf-lua").grep({ search = "", fzf_opts = { ["--nth"] = "2..", ["--delimiter"] = ":" } })
+            end,
+            "Search in project",
+            mode = "n",
+          },
           { '"vy :FzfLua grep_visual <C-R>v<cr>', "Search selection in project", mode = "x" },
         },
         o = { "<cmd>FzfLua files<cr>", "Open file" },
