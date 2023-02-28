@@ -1,5 +1,6 @@
 require("plugin")
 require("autocommands")
+require("tabline")
 
 vim.opt.cmdheight = 0
 vim.opt.expandtab = true
@@ -11,6 +12,7 @@ vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 vim.opt.sessionoptions = { "buffers", "folds", "tabpages" }
 vim.opt.shiftround = true
