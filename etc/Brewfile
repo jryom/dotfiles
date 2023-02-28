@@ -79,6 +79,7 @@ cask "sonos"
 cask "spaceid"
 cask "spotify"
 cask "sublime-merge"
+cask "sync"
 
 mas "Dark Reader for Safari", id: 1438243180
 mas "NextDNS", id: 1464122853
