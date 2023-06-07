@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 layout=$(yabai -m query --spaces --space | jq '.type')
 

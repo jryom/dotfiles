@@ -2,16 +2,15 @@
 
 # launch and OS bindings
 ctrl + alt + cmd - k: /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/Code
-ctrl + alt + cmd - n: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
-ctrl + alt + cmd - d: echo "launch zsh -ci \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
-ctrl + alt + cmd - e: alias ejectall='osascript -e "tell application \"Finder\" to eject (every disk whose ejectable is true)"'
+ctrl + alt + cmd - n: echo "launch sh -c \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
+ctrl + alt + cmd - d: echo "launch sh -c \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
 
 cmd - y: pkill yabai & pkill skhd
 
 # misc single commands
 shift + ctrl - d: dark-mode
 shift + ctrl - j: yabai -m display --focus next || yabai -m display --focus prev
-shift + ctrl - s: zsh -c -i "$HOME/.config/skhd/cycle-layouts.sh"
+shift + ctrl - s: sh -c "$HOME/.config/skhd/cycle-layouts.sh"
 shift + ctrl - f: yabai -m space --layout float
  shift + cmd - f: yabai -m window --toggle native-fullscreen
          alt - 0: yabai -m space --balance
@@ -20,13 +19,7 @@ shift + ctrl - f: yabai -m space --layout float
          alt - y: yabai -m space --mirror y-axis
 
 # toggle transparency
-alt - t: if test (yabai -m config normal_window_opacity) -eq $WM_OPACITY; \
-           yabai -m config normal_window_opacity 1.0 && \
-           yabai -m config window_opacity off; \
-         else; \
-           yabai -m config window_opacity on && \
-           yabai -m config normal_window_opacity $WM_OPACITY; \
-         end 
+alt - t: [[ "$(yabai -m config window_opacity)" == on ]] && yabai -m config window_opacity off || yabai -m config window_opacity on
 
 # various window commands
 shift + alt - f: yabai -m window --toggle zoom-fullscreen
@@ -50,14 +43,14 @@ shift + cmd - k: yabai -m window --swap north
 shift + cmd - l: yabai -m window --swap east
 
 # resize windows
-shift + alt - left:         yabai -m window --resize left:-(math $WM_SPACING x 5):0
-shift + alt + ctrl - left:  yabai -m window --resize left:(math $WM_SPACING x 5):0
-shift + alt - right:        yabai -m window --resize right:(math $WM_SPACING x 5):0
-shift + alt + ctrl - right: yabai -m window --resize right:-(math $WM_SPACING x 5):0
-shift + alt - up:           yabai -m window --resize top:0:-(math $WM_SPACING x 5)
-shift + alt + ctrl - up:    yabai -m window --resize top:0:(math $WM_SPACING x 5)
-shift + alt - down:         yabai -m window --resize bottom:0:(math $WM_SPACING x 5)
-shift + alt + ctrl - down:  yabai -m window --resize bottom:0:-(math$WM_SPACING x 5)
+# shift + alt - left:         yabai -m window --resize left:-(math $WM_SPACING x 5):0
+# shift + alt + ctrl - left:  yabai -m window --resize left:(math $WM_SPACING x 5):0
+# shift + alt - right:        yabai -m window --resize right:(math $WM_SPACING x 5):0
+# shift + alt + ctrl - right: yabai -m window --resize right:-(math $WM_SPACING x 5):0
+# shift + alt - up:           yabai -m window --resize top:0:-(math $WM_SPACING x 5)
+# shift + alt + ctrl - up:    yabai -m window --resize top:0:(math $WM_SPACING x 5)
+# shift + alt - down:         yabai -m window --resize bottom:0:(math $WM_SPACING x 5)
+# shift + alt + ctrl - down:  yabai -m window --resize bottom:0:-(math$WM_SPACING x 5)
 
 # set window insert
 cmd + alt - k: yabai -m window --insert north
@@ -66,43 +59,40 @@ cmd + alt - l: yabai -m window --insert east
 cmd + alt - j: yabai -m window --insert south
 
 # send window to prev/next space, create new space if first/last index
-shift + alt - p: if test (yabai -m query --spaces --display | jq '.[0].index') -lt (yabai -m query --spaces --space | jq '.index'); \
-                   yabai -m window --space prev && yabai -m space --focus prev; \
-                 else; \
-                   yabai -m space --create && \
-                   set index (yabai -m query --spaces --display \
-                   | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
-                   yabai -m window --space "$index" && yabai -m space --focus "$index"; \
-                   yabai -m space --move "$(yabai -m query --spaces --display | jq '.[0].index')"; \
-                 end; yabai -m window --focus last
+shift + alt - p: if [ "$(yabai -m query --spaces --display | jq '.[0].index')" -lt "$(yabai -m query --spaces --space | jq '.index')" ]; then \
+                      yabai -m window --space prev && \
+                      yabai -m space --focus prev; \
+                    else \
+                      yabai -m space --create && \
+                      index=$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
+                      yabai -m window --space "$index" && \
+                      yabai -m space --focus "$index" && \
+                      yabai -m space --move "$(yabai -m query --spaces --display | jq '.[0].index')"; \
+                    fi && yabai -m window --focus last
 
-shift + alt - n: if test (yabai -m query --spaces --display | jq '.[-1].index') -gt \
-                   (yabai -m query --spaces --space | jq '.index'); \
-                   yabai -m window --space next && \
-                   yabai -m space --focus next; \
-                 else; \
-                   yabai -m space --create && \
-                   set index (yabai -m query --spaces --display \
-                   | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
-                   yabai -m window --space "$index" && \
-                   yabai -m space --focus "$index"; \
-                 end; yabai -m window --focus last
+shift + alt - n: if [ "$(yabai -m query --spaces --display | jq '.[-1].index')" -gt "$(yabai -m query --spaces --space | jq '.index')" ]; then \
+                    yabai -m window --space next && \
+                    yabai -m space --focus next; \
+                  else \
+                    yabai -m space --create && \
+                    index=$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
+                    yabai -m window --space "$index" && \
+                    yabai -m space --focus "$index"; \
+                  fi && yabai -m window --focus last
 
 # send window to new first/last space on monitor
 shift + alt - b: yabai -m space --create && \
-                 set query (yabai -m query --spaces --display \
-                 | jq 'map(select(."is-native-fullscreen" == false))') && \
-                 set last (echo $query | jq '.[-1].index') && \
-                 set first (echo $query | jq '.[0].index') && \
-                 yabai -m window --space "$last" && \
-                 yabai -m space --focus "$last" && \
-                 yabai -m space --move "$first"
+                  query=$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))') && \
+                  last=$(echo "$query" | jq '.[-1].index') && \
+                  first=$(echo "$query" | jq '.[0].index') && \
+                  yabai -m window --space "$last" && \
+                  yabai -m space --focus "$last" && \
+                  yabai -m space --move "$first"
 
 shift + alt - e: yabai -m space --create && \
-                 set index (yabai -m query --spaces --display \
-                 | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
-                 yabai -m window --space "$index" && \
-                 yabai -m space --focus "$index"
+                  index=$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && \
+                  yabai -m window --space "$index" && \
+                  yabai -m space --focus "$index"
 
 # send window to space and follow focus
 shift + alt - 1: yabai -m window --space 1 && yabai -m space --focus 1
@@ -113,14 +103,14 @@ shift + alt - 5: yabai -m window --space 5 && yabai -m space --focus 5
 shift + alt - 6: yabai -m window --space 6 && yabai -m space --focus 6
 
 # send window to monitor and follow focus
-shift + alt - m: begin; yabai -m window --display prev && yabai -m display --focus prev; end || begin; yabai -m window --display next && yabai -m display --focus next; end
+shift + alt - m: { yabai -m window --display prev && yabai -m display --focus prev; } || { yabai -m window --display next && yabai -m display --focus next; }
 
 # send space to monitor and follow focus
 shift + ctrl - m: yabai -m space --display next || yabai -m space --display prev
 
 # move space
-shift + ctrl - p: if test (yabai -m query --spaces --display | jq '.[0].index') -lt (yabai -m query --spaces --space | jq '.index'); yabai -m space --move prev; end
-shift + ctrl - n: if test (yabai -m query --spaces --display | jq '.[-1].index') -gt (yabai -m query --spaces --space | jq '.index'); yabai -m space --move next; end
+shift + ctrl - p: if [ "$(yabai -m query --spaces --display | jq '.[0].index')" -lt "$(yabai -m query --spaces --space | jq '.index')" ]; then yabai -m space --move prev; fi
+shift + ctrl - n: if [ "$(yabai -m query --spaces --display | jq '.[-1].index')" -gt "$(yabai -m query --spaces --space | jq '.index')" ]; then yabai -m space --move next; fi
 
 # move space to first/last index of monitor
 shift + ctrl - b: yabai -m space --move "$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[0].index')"
@@ -140,8 +130,8 @@ shift + ctrl - 8: yabai -m space --focus 8
 shift + ctrl - 9: yabai -m space --focus 9
 
 # create space and focus it
-shift + ctrl - c: yabai -m space --create && set index (yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && yabai -m space --focus "$index"
+shift + ctrl - c: yabai -m space --create && index=$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index') && yabai -m space --focus "$index"
 
 # destroy space
 shift + ctrl - w: yabai -m space --destroy
-shift + ctrl - q: zsh -c -i "$HOME/.config/yabai/yabai-destroy_empty_spaces.zsh"
+shift + ctrl - q: zsh -c "$HOME/.config/yabai/yabai-destroy_empty_spaces.zsh"
