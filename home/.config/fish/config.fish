@@ -110,4 +110,9 @@ if status is-interactive
     fzf_configure_bindings --directory=\ct --variables=\e\cv
 end
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
+    eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" hook $argv | source
 end
+# <<< conda initialize <<<
