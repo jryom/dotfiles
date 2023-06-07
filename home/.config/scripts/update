@@ -12,6 +12,6 @@ if test ! -z "$UPGRADE_COMMAND"
     fish -c "$UPGRADE_COMMAND"
 end
 
-brew upgrade --greedy --force
+brew upgrade
 
 tldr --update
