@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "jose-elias-alvarez/null-ls.nvim",
@@ -27,6 +27,7 @@ return {
       "html",
       "jsonls",
       "lua_ls",
+      "pyright",
       "taplo",
       "tsserver",
       "yamlls",
@@ -159,6 +160,7 @@ return {
         null_ls.builtins.diagnostics.stylelint,
         null_ls.builtins.diagnostics.tsc,
         null_ls.builtins.diagnostics.zsh,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.just,
         null_ls.builtins.formatting.prettier,

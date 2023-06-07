@@ -9,6 +9,11 @@ return {
     end
 
     lualine.setup({
+      extensions = {
+        "fugitive",
+        "man",
+        "trouble",
+      },
       options = {
         component_separators = { left = "|", right = "" },
         globalstatus = true,

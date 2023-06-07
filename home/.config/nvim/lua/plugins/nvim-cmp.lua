@@ -51,6 +51,7 @@ return {
       },
       sources = {
         { name = "nvim_lsp_signature_help" },
+        { name = "copilot" },
         { name = "luasnip", keyword_length = 2 },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
@@ -80,7 +81,7 @@ return {
           if luasnip.expand_or_jumpable() and not cmp.visible() then
             luasnip.expand_or_jump()
           else
-            cmp.mapping.confirm({ select = true })()
+            cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })()
           end
         end,
         ["<C-p>"] = cmp.mapping(function(fallback)

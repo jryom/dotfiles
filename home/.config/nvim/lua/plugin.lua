@@ -14,11 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  checker = {
-    enabled = true,
-    notify = true,
-    frequency = 3600,
-  },
   ui = {
     size = { width = 142, height = 0.8 },
   },

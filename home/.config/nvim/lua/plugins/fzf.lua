@@ -32,8 +32,8 @@ return {
       },
       keymap = {
         builtin = {
-          ["K"] = "preview-page-up",
-          ["J"] = "preview-page-down",
+          ["shift-K"] = "preview-page-up",
+          ["shift-J"] = "preview-page-down",
         },
       },
       files = {

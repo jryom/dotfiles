@@ -19,7 +19,7 @@ npm:
     npm install -g $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
 
 pip:
-    python3 -m pip install --user --upgrade pynvim black
+    python3 -m pip install --user --upgrade pynvim black pyright
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
