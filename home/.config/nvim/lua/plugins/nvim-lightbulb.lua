@@ -2,13 +2,8 @@ return {
   "kosayoda/nvim-lightbulb",
   event = "CursorHold",
   config = function()
+    vim.fn.sign_define("LightBulbSign", { text = " ", texthl = "LspDiagnosticsDefaultInformation" })
     require("nvim-lightbulb").setup({
-      sign = { enabled = false },
-      virtual_text = {
-        enabled = true,
-        text = "  ",
-        hl_mode = "combine",
-      },
       autocmd = {
         enabled = true,
         pattern = { "*" },

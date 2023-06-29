@@ -6,6 +6,8 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     "lukas-reineke/lsp-format.nvim",
     "nvim-lua/plenary.nvim",
+    "hoffs/omnisharp-extended-lsp.nvim",
+    { "j-hui/fidget.nvim", tag = "legacy" },
   },
   config = function()
     vim.diagnostic.config({
@@ -14,44 +16,18 @@ return {
       virtual_text = false,
     })
 
-    local additional_server_filetypes = {
-      graphql = {
-        "typescript",
-      },
-    }
-
-    local servers = {
-      "cssls",
-      "eslint",
-      "graphql",
-      "html",
-      "jsonls",
-      "lua_ls",
-      "pyright",
-      "taplo",
-      "tsserver",
-      "yamlls",
-    }
-
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    local lspconfig = require("lspconfig")
+    local lsp = require("lspconfig")
     local lspformat = require("lsp-format")
     local map = require("which-key").register
     local null_ls = require("null-ls")
     local json_schemas = require("schemastore").json.schemas({})
+    require("fidget").setup({})
 
     lspformat.setup({ sync = true })
 
-    local signs = { Error = "𝐞", Warn = "𝐰", Hint = "𝐡", Info = "𝐢" }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
-
     local on_attach = function(client, bufnr)
-      if client.name ~= "tsserver" then
-        lspformat.on_attach(client)
-      end
+      lspformat.on_attach(client)
 
       if client.name == "eslint" then
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -98,54 +74,87 @@ return {
       })
     end
 
+    local default_config = { capabilities = capabilities, on_attach = on_attach }
+
+    lsp.cssls.setup(default_config)
+    lsp.eslint.setup(default_config)
+    lsp.html.setup(default_config)
+    lsp.pyright.setup(default_config)
+    lsp.taplo.setup(default_config)
+    lsp.yamlls.setup(default_config)
+
+    local function extend_config(extension)
+      return vim.tbl_deep_extend("force", default_config, extension)
+    end
+
+    lsp.graphql.setup(extend_config({ filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } }))
+
+    lsp.tsserver.setup(extend_config({
+      on_init = function(client)
+        if client.server_capabilities then
+          client.server_capabilities.documentFormattingProvider = false
+        end
+      end,
+    }))
+
+    lsp.lua_ls.setup(extend_config({
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          format = {
+            enable = false,
+          },
+          diagnostics = {
+            globals = {
+              "vim",
+            },
+          },
+        },
+      },
+    }))
+
     local yaml_schemas = {}
     vim.tbl_map(function(schema)
       yaml_schemas[schema.url] = schema.fileMatch
     end, json_schemas)
 
-    local function get_default_filenames(server)
-      if type(lspconfig[server]) == "table" then
-        return lspconfig[server].document_config.default_config.filetypes
-      end
-    end
-
-    for _, lsp in ipairs(servers) do
-      local filetypes = get_default_filenames(lsp)
-      for _, v in ipairs(additional_server_filetypes[lsp] or {}) do
-        table.insert(filetypes, v)
-      end
-
-      lspconfig[lsp].setup({
-        capabilities = capabilities,
-        filetypes = filetypes,
-        on_attach = on_attach,
-        settings = {
-          yaml = {
-            format = {
-              enable = true,
-            },
-            schemas = yaml_schemas,
+    lsp.jsonls.setup(extend_config({
+      settings = {
+        yaml = {
+          format = {
+            enable = true,
           },
-          json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-          },
-          Lua = {
-            runtime = {
-              version = "LuaJIT",
-            },
-            format = {
-              enable = false,
-            },
-            diagnostics = {
-              globals = {
-                "vim",
-              },
-            },
-          },
+          schemas = yaml_schemas,
         },
-      })
-    end
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    }))
+
+    lsp.omnisharp.setup(extend_config({
+      cmd = {
+        "mono",
+        vim.fn.expand("~/.omnisharp/omnisharp-mono/OmniSharp.exe"),
+        "--loglevel",
+        "warning",
+        "--languageserver",
+        "--hostPID",
+        tostring(vim.fn.getpid()),
+      },
+      handlers = {
+        ["textDocument/definition"] = require("omnisharp_extended").handler,
+      },
+      on_init = function(client)
+        if client.server_capabilities then
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.semanticTokensProvider = false
+        end
+      end,
+    }))
 
     null_ls.setup({
       on_attach = on_attach,
@@ -161,6 +170,7 @@ return {
         null_ls.builtins.diagnostics.tsc,
         null_ls.builtins.diagnostics.zsh,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.csharpier,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.formatting.just,
         null_ls.builtins.formatting.prettier,

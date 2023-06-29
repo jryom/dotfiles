@@ -19,7 +19,7 @@ npm:
     npm install -g $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
 
 pip:
-    python3 -m pip install --user --upgrade pynvim black pyright
+    python3 -m pip install --user --upgrade pynvim black pyright neovim-remote
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
@@ -37,6 +37,8 @@ fish-globals:
 
     fish_add_path --prepend "$brew_prefix/opt" "$brew_prefix/sbin" "$brew_prefix/bin"
     fish_add_path --append 'node_modules/.bin'
+    fish_add_path --append "$HOME/.dotnet/tools"
+    fish_add_path --append "/Library/Frameworks/Mono.framework/Versions/Current/bin"
     fish_add_path $PYENV_ROOT/bin
 
     set -U fish_key_bindings fish_vi_key_bindings
