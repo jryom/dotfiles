@@ -7,7 +7,6 @@ return {
         enabled = true,
         backend = { "builtin" },
         builtin = {
-          anchor = "NW",
           border = "rounded",
           relative = "cursor",
           win_options = {

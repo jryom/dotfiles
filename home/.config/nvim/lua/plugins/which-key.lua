@@ -22,23 +22,22 @@ return {
     })
 
     map({
-      name = "Various mappings",
       C = { { '"_C', "", mode = "x" }, { '"_C', "", mode = "n" } },
       c = { { '"_c', "", mode = "x" }, { '"_c', "", mode = "n" } },
       gt = { "<C-]>", "Go to tag" },
       j = { "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", "Next visual line", expr = true },
       k = { "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", "Previous visual line", expr = true },
       p = { "pgvy", "Paste and yank content", mode = "x" },
-      ["<esc>"] = { "<cmd>nohlsearch<cr>", "Disable search highlight" },
+      ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
       ["-"] = { "<cmd>execute 'e ' .. expand('%:p:h')<CR>", "NvimTree" },
       ["<space>"] = {
-        ["<space>"] = { "<cmd>update<cr>", "Update file" },
-        L = { "<cmd>Lazy<cr>", "Lazy" },
-        u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
+        ["<space>"] = { ":update<cr>", "Update file" },
+        L = { ":Lazy<cr>", "Lazy" },
+        u = { ":UndotreeToggle<cr>", "Undotree" },
         s = {
-          { "<cmd>lua require('spectre').open_visual({select_word = true})<CR>", "Spectre", mode = "n" },
+          { ":lua require('spectre').open_visual({select_word = true})<CR>", "Spectre", mode = "n" },
           {
             '"vy :lua require("spectre").open({ is_insert_mode=false,search_text=vim.fn.getreg("v") })<CR>',
             "Spectre",
@@ -51,35 +50,33 @@ return {
     map({
       name = "Close buffers",
       Q = {
-        a = { "<cmd>Bdelete all<cr>", "Delete all buffers" },
-        h = { "<cmd>Bdelete hidden<cr>", "Delete hidden buffers" },
-        o = { "<cmd>Bdelete other<cr>", "Delete other buffers" },
-        t = { "<cmd>Bdelete this<cr>", "Delete this buffer" },
+        a = { ":Bdelete all<cr>", "Delete all buffers" },
+        h = { ":Bdelete hidden<cr>", "Delete hidden buffers" },
+        o = { ":Bdelete other<cr>", "Delete other buffers" },
+        t = { ":Bdelete this<cr>", "Delete this buffer" },
       },
     })
 
     map({
       name = "Tabs",
       ["<C-t>"] = {
-        h = { "<cmd>tabprev<cr>", "Previous tab" },
-        l = { "<cmd>tabnext<cr>", "Next tab" },
-        n = { "<cmd>tabnew<cr>", "New tab" },
-        c = { "<cmd>tabclose<cr>", "Close tab" },
-        H = { "<cmd>-tabmove<cr>", "Move tab left" },
-        L = { "<cmd>tabmove<cr>", "Move tab right" },
+        h = { ":tabprev<cr>", "Previous tab" },
+        l = { ":tabnext<cr>", "Next tab" },
+        n = { ":tabnew<cr>", "New tab" },
+        c = { ":tabclose<cr>", "Close tab" },
+        H = { ":-tabmove<cr>", "Move tab left" },
+        L = { ":tabmove<cr>", "Move tab right" },
       },
     })
 
     map({
-      ["s"] = { "<cmd>HopChar1<cr>", "Hop word" },
-      ["gw"] = { "<cmd>HopWord<cr>", "Hop word" },
     })
 
     map({
       ["<space>g"] = {
         name = "Git",
-        h = { "<cmd>DiffviewFileHistory %<cr>", "View current file history" },
-        d = { "<cmd>DiffviewOpen<cr>", "Open diffview" },
+        n = { ":Gitsigns next_hunk<cr>", "Next hunk" },
+        p = { ":Gitsigns prev_hunk<cr>", "Previous hunk" },
       },
     })
 

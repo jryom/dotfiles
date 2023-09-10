@@ -9,9 +9,6 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
-        progress = {
-          enabled = false,
-        },
       },
       routes = {
         {
@@ -39,11 +36,11 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { pattern = "^:", icon = "", lang = "vim" },
-          search_down = { kind = "search", pattern = "^/", icon = "󱎸 ", lang = "regex" },
-          filter = { pattern = "^:%s*!", icon = "", lang = "bash" },
-          lua = { pattern = "^:%s*lua%s+", icon = "", lang = "lua" },
-          help = { pattern = "", icon = "" },
+          cmdline = { icon = "" },
+          search_down = { icon = "" },
+          filter = { icon = "" },
+          lua = { icon = "" },
+          help = { icon = "" },
         },
       },
     })

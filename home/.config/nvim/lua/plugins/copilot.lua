@@ -1,7 +1,7 @@
 return {
   "zbirenbaum/copilot.lua",
   dependencies = "zbirenbaum/copilot-cmp",
-  event = "VeryLazy",
+  event = "InsertEnter",
   config = function()
     require("copilot").setup({
       suggestion = { enabled = false },

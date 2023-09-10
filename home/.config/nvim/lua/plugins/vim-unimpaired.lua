@@ -1,6 +1,6 @@
 return {
   "tpope/vim-unimpaired",
-  keys = { "<left>", "<right>", "[", "]" },
+  event = "VeryLazy",
   config = function()
     vim.keymap.set("n", "<left>", "[", { remap = true })
     vim.keymap.set("o", "<left>", "[", { remap = true })

@@ -2,8 +2,14 @@
 
 layout=$(yabai -m query --spaces --space | jq '.type')
 
-if [[ $layout == *"bsp"* ]]; then
-  yabai -m space --layout stack
-else
-  yabai -m space --layout bsp
-fi
+case "$layout" in
+  *"float"*)
+    yabai -m space --layout stack
+    ;;
+  *"stack"*)
+    yabai -m space --layout bsp
+    ;;
+  *)
+    yabai -m space --layout float
+    ;;
+esac

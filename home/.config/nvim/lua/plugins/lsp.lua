@@ -35,7 +35,6 @@ return {
 
       map({
         buffer = bufnr,
-        name = "LSP",
         K = { vim.lsp.buf.hover, "Show docs" },
         ["<space>"] = {
           p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
@@ -45,16 +44,16 @@ return {
             { '"sy:%s/<C-r>s//c <Left><Left><Left>', "Replace selection", mode = "x" },
           },
           q = {
-            "<cmd>TroubleToggle workspace_diagnostics<cr>",
+            ":TroubleToggle workspace_diagnostics<cr>",
             "Diagnostics",
           },
           l = {
             name = "LSP",
             a = { vim.lsp.buf.code_action, "Code action" },
             q = { vim.diagnostic.setloclist, "Send diagnostics to quickfix" },
-            d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Go to definition" },
+            d = { ":TroubleToggle lsp_definitions<cr>", "Go to definition" },
             D = { vim.lsp.buf.declaration, "Go to declaration" },
-            i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Go to implementation" },
+            i = { ":TroubleToggle lsp_implementations<cr>", "Go to implementation" },
             f = {
               {
                 mode = "n",
@@ -64,12 +63,12 @@ return {
                 "Format buffer",
               },
             },
-            r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-            t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Go to type definition" },
-            I = { "<cmd>LspInfo<cr>", "Info" },
-            L = { "<cmd>LspLog<cr>", "Log" },
-            S = { "<cmd>LspStop<cr>", "Stop" },
-            R = { "<cmd>LspRestart<cr>", "Restart" },
+            r = { ":TroubleToggle lsp_references<cr>", "References" },
+            t = { ":TroubleToggle lsp_type_definitions<cr>", "Go to type definition" },
+            I = { ":LspInfo<cr>", "Info" },
+            L = { ":LspLog<cr>", "Log" },
+            S = { ":LspStop<cr>", "Stop" },
+            R = { ":LspRestart<cr>", "Restart" },
           },
         },
       })

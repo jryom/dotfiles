@@ -30,6 +30,7 @@ brew "git"
 brew "git-delta"
 brew "git-lfs"
 brew "gnu-sed"
+brew "gopls"
 brew "hadolint"
 brew "hub"
 brew "jq"
@@ -97,4 +98,3 @@ end
 if ENV["DOCKER"]
   cask "docker"
 end
-
