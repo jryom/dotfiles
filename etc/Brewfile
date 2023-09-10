@@ -16,6 +16,7 @@ brew "dark-mode"
 brew "dark-notify"
 brew "direnv"
 brew "dotenv-linter"
+brew "efm-langserver"
 brew "erdtree"
 brew "exa"
 brew "fd"
@@ -96,3 +97,4 @@ end
 if ENV["DOCKER"]
   cask "docker"
 end
+

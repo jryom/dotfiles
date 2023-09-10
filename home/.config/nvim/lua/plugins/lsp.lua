@@ -2,12 +2,11 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost" },
   dependencies = {
+    "creativenull/efmls-configs-nvim",
+    "hoffs/omnisharp-extended-lsp.nvim",
     "hrsh7th/cmp-nvim-lsp",
-    "jose-elias-alvarez/null-ls.nvim",
     "lukas-reineke/lsp-format.nvim",
     "nvim-lua/plenary.nvim",
-    "hoffs/omnisharp-extended-lsp.nvim",
-    { "j-hui/fidget.nvim", tag = "legacy" },
   },
   config = function()
     vim.diagnostic.config({
@@ -20,9 +19,7 @@ return {
     local lsp = require("lspconfig")
     local lspformat = require("lsp-format")
     local map = require("which-key").register
-    local null_ls = require("null-ls")
     local json_schemas = require("schemastore").json.schemas({})
-    require("fidget").setup({})
 
     lspformat.setup({ sync = true })
 
@@ -69,6 +66,10 @@ return {
             },
             r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
             t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Go to type definition" },
+            I = { "<cmd>LspInfo<cr>", "Info" },
+            L = { "<cmd>LspLog<cr>", "Log" },
+            S = { "<cmd>LspStop<cr>", "Stop" },
+            R = { "<cmd>LspRestart<cr>", "Restart" },
           },
         },
       })
@@ -78,6 +79,7 @@ return {
 
     lsp.cssls.setup(default_config)
     lsp.eslint.setup(default_config)
+    lsp.gopls.setup(default_config)
     lsp.html.setup(default_config)
     lsp.pyright.setup(default_config)
     lsp.taplo.setup(default_config)
@@ -88,6 +90,32 @@ return {
     end
 
     lsp.graphql.setup(extend_config({ filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } }))
+
+    local prettier = require("efmls-configs.formatters.prettier_d")
+    local shfmt = require("efmls-configs.formatters.shfmt")
+    local shellcheck = require("efmls-configs.linters.shellcheck")
+    lsp.efm.setup(extend_config({
+      init_options = { documentFormatting = true },
+      settings = {
+        languages = {
+          bash = { shellcheck },
+          cs = { { formatCommand = "dotnet dotnet-csharpier", formatStdin = true } },
+          fish = { require("efmls-configs.formatters.fish_indent"), shfmt },
+          go = { require("efmls-configs.formatters.gofmt"), require("efmls-configs.formatters.goimports") },
+          grahql = { prettier },
+          html = { prettier },
+          javascript = { prettier },
+          javascriptreact = { prettier },
+          json = { prettier },
+          lua = { require("efmls-configs.formatters.stylua") },
+          markdown = { prettier },
+          sh = { shellcheck, shfmt },
+          typescript = { prettier },
+          typescriptreact = { prettier },
+          yaml = { prettier, require("efmls-configs.linters.actionlint") },
+        },
+      },
+    }))
 
     lsp.tsserver.setup(extend_config({
       on_init = function(client)
@@ -121,6 +149,9 @@ return {
     end, json_schemas)
 
     lsp.jsonls.setup(extend_config({
+      init_options = {
+        provideFormatter = false,
+      },
       settings = {
         yaml = {
           format = {
@@ -155,31 +186,5 @@ return {
         end
       end,
     }))
-
-    null_ls.setup({
-      on_attach = on_attach,
-      sources = {
-        null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.diagnostics.actionlint,
-        null_ls.builtins.diagnostics.commitlint,
-        null_ls.builtins.diagnostics.dotenv_linter,
-        null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.diagnostics.hadolint,
-        null_ls.builtins.diagnostics.shellcheck,
-        null_ls.builtins.diagnostics.stylelint,
-        null_ls.builtins.diagnostics.tsc,
-        null_ls.builtins.diagnostics.zsh,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.csharpier,
-        null_ls.builtins.formatting.fish_indent,
-        null_ls.builtins.formatting.just,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.stylelint,
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.tidy,
-        null_ls.builtins.formatting.trim_newlines,
-        null_ls.builtins.formatting.trim_whitespace,
-      },
-    })
   end,
 }
