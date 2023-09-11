@@ -1,6 +1,6 @@
 return {
   "jackmort/chatgpt.nvim",
-  cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTCompleteCode" },
+  cmd = { "ChatGPT", "ChatGPTEditWithInstruction", "ChatGPTRun" },
   config = function()
     require("chatgpt").setup()
   end,

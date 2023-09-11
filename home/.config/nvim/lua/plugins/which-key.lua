@@ -115,6 +115,23 @@ return {
         p = { "<Plug>VimspectorJumpToPreviousBreakpoint", "Previous breakpoint" },
         r = { "<Plug>VimspectorRestart", "Restart" },
         s = { "<Plug>VimspectorStop", "Stop" },
+      ["<space>"] = {
+        c = {
+          name = "ChatGPT",
+          c = { ":ChatGPT<CR>", "ChatGPT" },
+          e = { ":ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
+          g = { ":ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+          t = { ":ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+          k = { ":ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+          d = { ":ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+          a = { ":ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+          o = { ":ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+          s = { ":ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+          f = { ":ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+          x = { ":ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+          r = { ":ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+          l = { ":ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+        },
       },
     })
   end,
