@@ -167,10 +167,8 @@ return {
 
     lsp.omnisharp.setup(extend_config({
       cmd = {
-        "mono",
-        vim.fn.expand("~/.omnisharp/omnisharp-mono/OmniSharp.exe"),
-        "--loglevel",
-        "warning",
+        "dotnet",
+        vim.fn.expand("~/.omnisharp/omnisharp-osx-arm64-net6.0/OmniSharp.dll"),
         "--languageserver",
         "--hostPID",
         tostring(vim.fn.getpid()),
