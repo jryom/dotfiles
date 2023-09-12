@@ -31,7 +31,7 @@ return {
       ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
-      ["-"] = { "<cmd>execute 'e ' .. expand('%:p:h')<CR>", "NvimTree" },
+      ["-"] = { ":Oil<CR>", "File browser" },
       ["<space>"] = {
         ["<space>"] = { ":update<cr>", "Update file" },
         L = { ":Lazy<cr>", "Lazy" },

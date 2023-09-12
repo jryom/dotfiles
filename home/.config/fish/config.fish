@@ -11,7 +11,7 @@ if status is-interactive
 
     abbr ggrep "git rev-list --all | xargs git grep --break"
     abbr ll "exa -lagh --git --group-directories-first"
-    abbr n cd '~/Documents/Notes && nvim -c Explore'
+    abbr n cd '~/Documents/Notes && nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
     abbr y yarn
