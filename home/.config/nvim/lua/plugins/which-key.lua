@@ -70,6 +70,23 @@ return {
     })
 
     map({
+      name = "FZF",
+      ["<space>"] = {
+        b = { ":FzfLua buffers<cr>", "Buffers" },
+        f = { ":FzfLua blines<cr>", "Search in file" },
+        H = { ":FzfLua help_tags<cr>", "Help" },
+        i = {
+          {
+            function()
+              require("fzf-lua").grep({ search = "", fzf_opts = { ["--nth"] = "2..", ["--delimiter"] = ":" } })
+            end,
+            "Search in project",
+            mode = "n",
+          },
+          { '"vy :FzfLua grep_visual <C-R>v<cr>', "Search selection in project", mode = "x" },
+        },
+        o = { ":FzfLua files<cr>", "Open file" },
+      },
     })
 
     map({
