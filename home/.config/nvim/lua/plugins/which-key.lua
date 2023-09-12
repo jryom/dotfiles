@@ -101,20 +101,6 @@ return {
     })
 
     map({
-      ["<space>d"] = {
-        name = "Debugger",
-        B = { "<Plug>VimspectorBreakpoints", "Breakpoints" },
-        O = { "<Plug>VimspectorStepOut", "Step out" },
-        b = { "<Plug>VimspectorToggleBreakpoint", "Toggle breakpoint" },
-        c = { "<Plug>VimspectorContinue", "Continue" },
-        f = { "<Plug>VimspectorAddFunctionBreakpoint", "Function breakpoint" },
-        h = { "<Plug>VimspectorPause", "Pause" },
-        i = { "<Plug>VimspectorStepInto", "Step into" },
-        n = { "<Plug>VimspectorJumpToNextBreakpoint", "Next breakpoint" },
-        o = { "<Plug>VimspectorStepOver", "Step over" },
-        p = { "<Plug>VimspectorJumpToPreviousBreakpoint", "Previous breakpoint" },
-        r = { "<Plug>VimspectorRestart", "Restart" },
-        s = { "<Plug>VimspectorStop", "Stop" },
       ["<space>"] = {
         c = {
           name = "ChatGPT",
