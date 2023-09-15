@@ -3,12 +3,8 @@ return {
   cmd = "FzfLua",
   config = function()
     local history_dir = vim.fn.expand("~/.local/share/nvim")
+    local actions = require("fzf-lua.actions")
     require("fzf-lua").setup({
-      winopts = {
-        hl = {
-          scrollborder_f = "NonText",
-        },
-      },
       keymap = {
         builtin = {
           ["<C-u>"] = "preview-page-up",
@@ -26,6 +22,11 @@ return {
           ["--history"] = history_dir .. "/" .. "fzf_grep_history",
         },
         no_header = true,
+      },
+      helptags = {
+        actions = {
+          ["default"] = actions.help_vert,
+        },
       },
     })
   end,
