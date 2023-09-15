@@ -74,7 +74,7 @@ return {
       ["<space>"] = {
         b = { ":FzfLua buffers<cr>", "Buffers" },
         f = { ":FzfLua blines<cr>", "Search in file" },
-        H = { ":FzfLua help_tags<cr>", "Help" },
+        h = { ":FzfLua help_tags<cr>", "Help" },
         i = {
           {
             function()
