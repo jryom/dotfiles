@@ -21,6 +21,7 @@ vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
+vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.undofile = true

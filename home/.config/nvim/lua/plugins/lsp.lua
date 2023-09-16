@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "lukas-reineke/lsp-format.nvim",
     "nvim-lua/plenary.nvim",
+    "pmizio/typescript-tools.nvim",
   },
   config = function()
     vim.diagnostic.config({
@@ -116,12 +117,14 @@ return {
       },
     }))
 
-    lsp.tsserver.setup(extend_config({
-      on_init = function(client)
-        if client.server_capabilities then
-          client.server_capabilities.documentFormattingProvider = false
-        end
-      end,
+    require("typescript-tools").setup(extend_config({
+      settings = {
+        expose_as_code_action = "all",
+        tsserver_plugins = {},
+        tsserver_format_options = {},
+        tsserver_file_preferences = {},
+        complete_function_calls = false,
+      },
     }))
 
     lsp.lua_ls.setup(extend_config({
