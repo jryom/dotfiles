@@ -47,7 +47,6 @@ fish-globals:
     set -U fish_cursor_replace_one underscore
     set -U fish_cursor_visual block
 
-
     set -U fish_greeting
     set -Ux BAT_STYLE full
     set -Ux CLICOLOR 1
@@ -96,6 +95,16 @@ fish-globals:
     set -U fish_pager_color_selected_completion white
     set -U fish_pager_color_selected_description white
     set -U fish_pager_color_selected_prefix red
+
+    echo "Update OpenAI API key? y/n"
+    read choice
+    if test "$choice" = "y"
+        echo "Enter OpenAI API"
+        read api_key
+        set -Ux OPENAI_API_KEY "$api_key"
+        set -Ux OPENAI_KEY "$api_key"
+    end
+
     exit 0
 
 system-preferences:
