@@ -1,4 +1,5 @@
 return {
   "mcauley-penney/tidy.nvim",
-  config = true,
+  event = "BufWritePre",
+  config = {},
 }

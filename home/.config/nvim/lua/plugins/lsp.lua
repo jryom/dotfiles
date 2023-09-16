@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPost" },
+  event = "BufReadPost",
   dependencies = {
     "creativenull/efmls-configs-nvim",
     "hoffs/omnisharp-extended-lsp.nvim",

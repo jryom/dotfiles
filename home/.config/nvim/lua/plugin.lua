@@ -14,9 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  ui = {
-    size = { width = 142, height = 0.8 },
-  },
   performance = {
     rtp = {
       disabled_plugins = {

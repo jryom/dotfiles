@@ -24,7 +24,6 @@ if status is-interactive
 
     ssh-add -l &>/dev/null || ssh-add 2>/dev/null
     zoxide init fish --cmd j | source
-    starship init fish | source
     direnv hook fish | source
 
     ### Functions
@@ -110,9 +109,4 @@ if status is-interactive
     fzf_configure_bindings --directory=\ct --variables=\e\cv
 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
-    eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" hook $argv | source
-end
-# <<< conda initialize <<<
+starship init fish | source

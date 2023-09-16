@@ -1,1 +1,0 @@
-return { "sheerun/vim-polyglot" }

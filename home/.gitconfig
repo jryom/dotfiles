@@ -21,6 +21,7 @@
 	autoStash = true
 
 [core]
+	pager = delta
 	excludesfile = ~/.gitignore_global
 
 [remote "origin"]
@@ -35,17 +36,16 @@
 	pager = true
 
 [diff]
-	algorithm = patience
-	indentHeuristic = true
+	colorMoved = default
 
 [pager]
 	difftool = true
 
-[mergetool "nvim"]
-	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[interactive]
+	diffFilter = delta --color-only
 
 [merge]
-	tool = nvim
+	conflictstyle = diff3
 
 [mergetool]
 	prompt = false
@@ -53,6 +53,7 @@
 [delta]
 	line-numbers = true
 	hunk-header-style = omit
+	navigate = true
 
 [color "grep"]
 	linenumber = green
@@ -68,5 +69,6 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
 [init]
 	defaultBranch = main

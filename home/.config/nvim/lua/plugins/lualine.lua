@@ -3,20 +3,10 @@ return {
   event = "VeryLazy",
   config = function()
     local lualine = require("lualine")
-    local fg = function(name)
-      local hl = vim.api.nvim_get_hl_by_name(name, true)
-      return "#" .. hl.foreground
-    end
 
     lualine.setup({
-      extensions = {
-        "fugitive",
-        "man",
-        "trouble",
-      },
       options = {
         component_separators = { left = "|", right = "" },
-        icons_enabled = false,
         section_separators = { left = "", right = "" },
       },
       sections = {
@@ -28,10 +18,7 @@ return {
             end,
           },
         },
-        lualine_b = {
-          "branch",
-          "diff",
-        },
+        lualine_b = { "branch" },
         lualine_c = {
           {
             "filename",
@@ -39,23 +26,7 @@ return {
             path = 1,
           },
         },
-        lualine_x = {
-          {
-            require("noice").api.status.mode.get,
-            cond = require("noice").api.status.mode.has,
-            color = { fg = fg("DiagnosticWarn") },
-          },
-          {
-            require("noice").api.status.search.get,
-            cond = require("noice").api.status.search.has,
-            color = { fg = fg("DiagnosticInfo") },
-          },
-          {
-            require("lazy.status").updates,
-            cond = require("lazy.status").has_updates,
-            color = { fg = fg("DiagnosticHint") },
-          },
-        },
+        lualine_x = {},
         lualine_y = { "filetype" },
         lualine_z = {
           "%l/%L:%-2.c",
