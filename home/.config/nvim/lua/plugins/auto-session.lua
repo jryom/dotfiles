@@ -1,4 +1,9 @@
 return {
   "rmagatti/auto-session",
-  opts = { log_level = "error" },
+  opts = {
+    auto_session_suppress_dirs = {
+      "~/Documents/Notes",
+    },
+    log_level = "error",
+  },
 }
