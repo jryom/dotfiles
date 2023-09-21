@@ -1,6 +1,8 @@
 return {
   "stevearc/oil.nvim",
-  cmd = "Oil",
+  keys = {
+    { "-", ":Oil<CR>", desc = "File browser", silent = true },
+  },
   opts = {
     keymaps = {
       ["?"] = "actions.show_help",

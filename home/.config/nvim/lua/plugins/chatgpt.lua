@@ -1,6 +1,101 @@
 return {
   "jackmort/chatgpt.nvim",
-  cmd = { "ChatGPT", "ChatGPTEditWithInstruction", "ChatGPTRun" },
+  init = function()
+    local map = require("which-key").register
+    map({ ["<space>c"] = { name = "ChatGPT" } })
+  end,
+  keys = {
+    {
+      "<space>cc",
+      ":ChatGPT<CR>",
+      desc = "ChatGPT",
+      silent = true,
+    },
+    {
+      "<space>ce",
+      ":ChatGPTEditWithInstruction<CR>",
+      desc = "Edit with instruction",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cg",
+      ":ChatGPTRun grammar_correction<CR>",
+      desc = "Grammar Correction",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>ct",
+      ":ChatGPTRun translate<CR>",
+      desc = "Translate",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>ck",
+      ":ChatGPTRun keywords<CR>",
+      desc = "Keywords",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cd",
+      ":ChatGPTRun docstring<CR>",
+      desc = "Docstring",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>ca",
+      ":ChatGPTRun add_tests<CR>",
+      desc = "Add Tests",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>co",
+      ":ChatGPTRun optimize_code<CR>",
+      desc = "Optimize Code",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cs",
+      ":ChatGPTRun summarize<CR>",
+      desc = "Summarize",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cf",
+      ":ChatGPTRun fix_bugs<CR>",
+      desc = "Fix Bugs",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cx",
+      ":ChatGPTRun explain_code<CR>",
+      desc = "Explain Code",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cr",
+      ":ChatGPTRun roxygen_edit<CR>",
+      desc = "Roxygen Edit",
+      mode = { "n", "v" },
+      silent = true,
+    },
+    {
+      "<space>cl",
+      ":ChatGPTRun code_readability_analysis<CR>",
+      desc = "Code Readability Analysis",
+      mode = { "n", "v" },
+      silent = true,
+    },
+  },
   opts = {},
   dependencies = {
     "muniftanjim/nui.nvim",

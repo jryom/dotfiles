@@ -1,6 +1,8 @@
 return {
   "mbbill/undotree",
-  cmd = "UndotreeToggle",
+  keys = {
+    { "<space>u", ":UndotreeToggle<cr>", desc = "Undotree", silent = true },
+  },
   config = function()
     vim.g.undotree_DiffAutoOpen = 0
     vim.g.undotree_HelpLine = 0

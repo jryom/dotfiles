@@ -82,6 +82,7 @@ return {
     lsp.gopls.setup(default_config)
     lsp.html.setup(default_config)
     lsp.pyright.setup(default_config)
+    lsp.rust_analyzer.setup(default_config)
     lsp.taplo.setup(default_config)
     lsp.yamlls.setup(default_config)
 
