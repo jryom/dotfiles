@@ -4,13 +4,9 @@ set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
 
 sudo -v
 
-set UPGRADE_COMMAND "$(ncu --global | grep "npm -g install")"
-
 fnm install --lts
 
-if test ! -z "$UPGRADE_COMMAND"
-    fish -c "$UPGRADE_COMMAND"
-end
+pnpm update --global
 
 brew upgrade
 

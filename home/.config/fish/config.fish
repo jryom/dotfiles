@@ -16,7 +16,14 @@ if status is-interactive
     abbr up "$HOME/.config/scripts/update"
     abbr y yarn
     abbr ya yarn add
-    abbr yad yarn add -D
+    abbr yad yarn add --save-dev
+    abbr p pnpm
+    abbr pi pnpm install
+    abbr pu pnpm update --latest
+    abbr pui pnpm update --interactive --latest
+    abbr pa pnpm add --save-exact
+    abbr pad pnpm add --save-dev --save-exact
+    abbr pag pnpm add --global
     abbr gcn git commit --no-verify
     abbr sc "source ~/.config/fish/config.fish"
 

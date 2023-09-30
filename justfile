@@ -2,7 +2,7 @@
 
 default: install
 
-install: gatekeeper system-preferences keyboard-layout touch-id brew stow node npm pip fisher misc
+install: gatekeeper system-preferences keyboard-layout touch-id brew stow node pnpm pip fisher misc
 
 stow:
     stow --restow --target $HOME --dir {{ justfile_directory() }} --ignore "\.DS_Store" home
@@ -15,8 +15,8 @@ node:
     fnm use lts-latest
     fnm default lts-latest
 
-npm:
-    npm install -g $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
+pnpm:
+    pnpm add --global $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
 
 pip:
     python3 -m pip install --user --upgrade pynvim black pyright neovim-remote
@@ -36,10 +36,11 @@ fish-globals:
     set -U PYENV_ROOT $HOME/.pyenv
 
     fish_add_path --prepend "$brew_prefix/opt" "$brew_prefix/sbin" "$brew_prefix/bin"
-    fish_add_path --append 'node_modules/.bin'
-    fish_add_path --append "$HOME/.dotnet/tools"
-    fish_add_path --append "/Library/Frameworks/Mono.framework/Versions/Current/bin"
-    fish_add_path $PYENV_ROOT/bin
+    fish_add_path './node_modules/.bin'
+    fish_add_path "$HOME/.dotnet/tools"
+    fish_add_path "/Library/Frameworks/Mono.framework/Versions/Current/bin"
+    fish_add_path "$HOME/.pnpm"
+    fish_add_path "$PYENV_ROOT/bin"
 
     set -U fish_key_bindings fish_vi_key_bindings
     set -U fish_cursor_default block
@@ -65,6 +66,7 @@ fish-globals:
     set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
     set -Ux KEYTIMEOUT 1
     set -Ux MANPATH $MANPATH "$brew_prefix/share/man"
+    set -Ux PNPM_HOME "$HOME/.pnpm"
     set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
     set -Ux VISUAL "$EDITOR"
     set -Ux fzf_fd_opts --color never
