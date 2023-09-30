@@ -2,7 +2,7 @@
 
 default: install
 
-install: gatekeeper system-preferences keyboard-layout touch-id brew stow node pnpm pip fisher misc
+install: gatekeeper system-preferences keyboard-layout touch-id brew fish-globals stow node pnpm pip fisher misc
 
 stow:
     stow --restow --target $HOME --dir {{ justfile_directory() }} --ignore "\.DS_Store" home
@@ -19,7 +19,7 @@ pnpm:
     pnpm add --global $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
 
 pip:
-    python3 -m pip install --user --upgrade pynvim black pyright neovim-remote
+    python3 -m pip install --user --upgrade pynvim black pyright neovim-remote shell-gpt
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
@@ -35,10 +35,9 @@ fish-globals:
     set -U brew_prefix (brew --prefix)
     set -U PYENV_ROOT $HOME/.pyenv
 
+    fish_add_path "$(python3 -c "import site; print(site.USER_BASE)")/bin"
     fish_add_path --prepend "$brew_prefix/opt" "$brew_prefix/sbin" "$brew_prefix/bin"
     fish_add_path './node_modules/.bin'
-    fish_add_path "$HOME/.dotnet/tools"
-    fish_add_path "/Library/Frameworks/Mono.framework/Versions/Current/bin"
     fish_add_path "$HOME/.pnpm"
     fish_add_path "$PYENV_ROOT/bin"
 
@@ -113,12 +112,12 @@ system-preferences:
     defaults write -g AppleSpacesSwitchOnActivate -bool false
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
     defaults write NSGlobalDomain InitialKeyRepeat -int 15
-    defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
     defaults write NSGlobalDomain KeyRepeat -int 2
+    defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
     defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
     defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
-    defaults write com.apple.finder FXRemoveOldTrashItems -bool true
     defaults write com.apple.LaunchServices LSQuarantine -bool false
+    defaults write com.apple.TextEdit RichText -bool false
     defaults write com.apple.dock autohide -bool true
     defaults write com.apple.dock autohide-delay -float 0
     defaults write com.apple.dock autohide-time-modifier -float 0.2
@@ -128,15 +127,15 @@ system-preferences:
     defaults write com.apple.dock tilesize -int 48
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
-    defaults write com.apple.finder CreateDesktop 0
     defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
     defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+    defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+    defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
     defaults write com.apple.finder ShowPathbar -bool true
     defaults write com.apple.finder ShowStatusBar -bool true
     defaults write com.apple.finder _FXSortFoldersFirst -bool YES
     defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
     defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
-    defaults write com.apple.TextEdit RichText -bool false
     killall Dock
 
 touch-id:

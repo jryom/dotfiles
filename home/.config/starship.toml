@@ -62,10 +62,10 @@ style = "bold yellow"
 
 [sudo]
 disabled = false
-format = '[𝐬]($style) '
-style = 'bold yellow'
+format = '[sudo]($style) '
+style = 'bold italic red'
 
 [character]
-error_symbol = "[❰](red)"
+error_symbol = "[❱](bold red)"
 success_symbol = "[❱](bright-white)"
 vimcmd_symbol = "[❰](bright-white)"

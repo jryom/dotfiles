@@ -1,4 +1,4 @@
---glob=!**/{*.lock,yarn*.log,package-lock.json,report*.json,test-report.xml,*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache}
+--glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache}
 --glob=!**/{*.asmdef,*.asset,*.sln,Assets/Packages,*.unity,*.meta}
 --glob=!**/{.git,.next,.undodir,coverage,.cache,dist,migrations,node_modules,vendor,__pycache__,Pods,*\.xc*,build,out}/**
 --colors=match:fg:yellow

@@ -9,14 +9,19 @@ if status is-interactive
 
     ### Abbreviations
 
+    fish_add_path --append './node_modules/.bin'
+
     abbr ggrep "git rev-list --all | xargs git grep --break"
-    abbr ll "exa -lagh --git --group-directories-first"
+    abbr ll "gls --group-directories-first --color=always -Ahl"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
+    abbr sc "source ~/.config/fish/config.fish"
+
     abbr y yarn
     abbr ya yarn add
     abbr yad yarn add --save-dev
+
     abbr p pnpm
     abbr pi pnpm install
     abbr pu pnpm update --latest
@@ -24,8 +29,12 @@ if status is-interactive
     abbr pa pnpm add --save-exact
     abbr pad pnpm add --save-dev --save-exact
     abbr pag pnpm add --global
+
     abbr gcn git commit --no-verify
-    abbr sc "source ~/.config/fish/config.fish"
+
+    abbr --set-cursor ai sgpt \"%\"
+    abbr --set-cursor ais sgpt --shell \"%\"
+    abbr --set-cursor aic sgpt --code \"%\"
 
     ### Init calls
 
