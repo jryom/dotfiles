@@ -29,13 +29,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
   group = group,
 })
-
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  callback = function()
-    vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { link = "Comment" })
-    vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { link = "FloatBorder" })
-    vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { link = "FloatBorder" })
-    vim.api.nvim_set_hl(0, "NoiceVirtualText", { link = "DiagnosticVirtualTextInfo" })
-  end,
-  group = group,
-})

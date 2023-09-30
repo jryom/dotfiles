@@ -2,12 +2,12 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = "windwp/nvim-ts-autotag",
   build = ":TSUpdate",
-  event = "BufReadPost",
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
     require("nvim-treesitter.configs").setup({
       auto_install = true,
-      autopairs = { enable = true },
       autotag = { enable = true },
+      ensure_installed = { "lua" },
       context_commentstring = { enable = true, enable_autocmd = false },
       highlight = {
         enable = true,
@@ -20,6 +20,7 @@ return {
         end,
       },
       indent = { enable = true, disable = "yaml" },
+      matchup = { enable = true, disable_virtual_text = true },
     })
   end,
 }

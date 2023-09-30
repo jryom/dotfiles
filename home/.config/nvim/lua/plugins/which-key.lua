@@ -4,6 +4,9 @@ return {
   opts = {
     show_help = false,
     show_keys = false,
+    window = {
+      winblend = 8,
+    },
   },
   init = function()
     vim.o.timeout = true
@@ -11,6 +14,8 @@ return {
 
     local map = require("which-key").register
 
+    map({ ["<space>d"] = { name = "Generate docs" } })
+    map({ ["<space>a"] = { name = "AI" } })
     map({
       gt = { "<C-]>", "Go to tag" },
       j = { "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", "Next visual line", expr = true },
@@ -18,7 +23,6 @@ return {
       ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
-      ["<space><space>"] = { ":update<cr>", "Update file" },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
       ["<C-t>"] = {
         h = { ":tabprev<cr>", "Previous tab" },

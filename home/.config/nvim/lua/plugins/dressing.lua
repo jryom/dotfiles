@@ -9,7 +9,7 @@ return {
         border = "rounded",
         relative = "cursor",
         win_options = {
-          winblend = 10,
+          winblend = 8,
         },
         min_width = { 1, 0 },
         min_height = { 1, 0 },

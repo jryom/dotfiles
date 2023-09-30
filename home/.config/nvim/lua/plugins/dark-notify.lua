@@ -1,6 +1,6 @@
 return {
   "cormacrelf/dark-notify",
-  event = "CursorHold",
+  event = "VeryLazy",
   config = function()
     require("dark_notify").run()
   end,

@@ -1,10 +1,13 @@
 require("plugin")
 require("autocommands")
-require("tabline")
 
 vim.opt.cmdheight = 0
 vim.opt.expandtab = true
 vim.opt.fillchars = "eob: "
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.hlsearch = true
