@@ -1,7 +1,6 @@
 return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
-    "creativenull/efmls-configs-nvim",
     "lukas-reineke/lsp-format.nvim",
     "neovim/nvim-lspconfig",
     "pmizio/typescript-tools.nvim",
@@ -15,23 +14,13 @@ return {
     })
   end,
   opts = function()
-    local prettier = require("efmls-configs.formatters.prettier")
-    local shellcheck = require("efmls-configs.linters.shellcheck")
-    local shfmt = require("efmls-configs.formatters.shfmt")
-    local lspformat = require("lsp-format")
-
     local on_attach = function(client, bufnr)
       if client.name == "typescript-tools" then
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
       end
 
-      if client.name == "eslint" then
-        client.server_capabilities.documentFormattingProvider = true
-        client.server_capabilities.documentRangeFormattingProvider = true
-      end
-
-      lspformat.on_attach(client)
+      require("lsp-format").on_attach(client)
 
       require("which-key").register({
         buffer = bufnr,
@@ -47,7 +36,6 @@ return {
             d = { ":TroubleToggle lsp_definitions<cr>", "Definition" },
             D = { vim.lsp.buf.declaration, "Declaration" },
             i = { ":TroubleToggle lsp_implementations<cr>", "Implementation" },
-            f = { vim.lsp.buf.format, "Format" },
             r = { ":TroubleToggle lsp_references<cr>", "References" },
             t = { ":TroubleToggle lsp_type_definitions<cr>", "Type definition" },
             I = { ":LspInfo<cr>", "Info" },
@@ -66,37 +54,12 @@ return {
       on_attach = on_attach,
       servers = {
         cssls = {},
-        eslint = {},
         gopls = {},
         graphql = { filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } },
         html = {},
         pyright = {},
         taplo = {},
         yamlls = {},
-        efm = {
-          init_options = { documentFormatting = true },
-          settings = {
-            languages = {
-              bash = { shellcheck },
-              cs = { { formatCommand = "dotnet dotnet-csharpier", formatStdin = true } },
-              fish = { require("efmls-configs.formatters.fish_indent"), shfmt },
-              go = { require("efmls-configs.formatters.gofmt"), require("efmls-configs.formatters.goimports") },
-              grahql = { prettier },
-              html = { prettier },
-              javascript = { prettier },
-              javascriptreact = { prettier },
-              json5 = { prettier },
-              jsonc = { prettier },
-              json = { prettier },
-              lua = { require("efmls-configs.formatters.stylua") },
-              markdown = { prettier },
-              sh = { shellcheck, shfmt },
-              typescript = { prettier },
-              typescriptreact = { prettier },
-              yaml = { prettier, require("efmls-configs.linters.actionlint") },
-            },
-          },
-        },
         jsonls = {
           init_options = { provideFormatter = false },
           settings = {
