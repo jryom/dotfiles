@@ -2,7 +2,6 @@ return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
     "creativenull/efmls-configs-nvim",
-    -- "hoffs/omnisharp-extended-lsp.nvim",
     "lukas-reineke/lsp-format.nvim",
     "neovim/nvim-lspconfig",
     "pmizio/typescript-tools.nvim",
@@ -123,24 +122,6 @@ return {
             },
           },
         },
-        --   omnisharp = {
-        --     cmd = {
-        --       "dotnet",
-        --       vim.fn.expand("~/.omnisharp/omnisharp-osx-arm64-net6.0/OmniSharp.dll"),
-        --       "--languageserver",
-        --       "--hostPID",
-        --       tostring(vim.fn.getpid()),
-        --     },
-        --     handlers = {
-        --       ["textDocument/definition"] = require("omnisharp_extended").handler,
-        --     },
-        --     on_init = function(client)
-        --       if client.server_capabilities then
-        --         client.server_capabilities.documentFormattingProvider = false
-        --         client.server_capabilities.semanticTokensProvider = false
-        --       end
-        --     end,
-        --   },
       },
     }
   end,
