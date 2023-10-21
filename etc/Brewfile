@@ -81,3 +81,23 @@ end
 if ENV["DOCKER"]
   cask "docker"
 end
+
+if ENV["PERSONAL"]
+  cask "ableton-live-suite"
+  cask "audacity"
+  cask "fabfilter-pro-c"
+  cask "fabfilter-pro-mb"
+  cask "fabfilter-pro-q"
+  cask "fabfilter-pro-r"
+  cask "fabfilter-saturn"
+  cask "fabfilter-timeless"
+  cask "fabfilter-volcano"
+  cask "focusrite-control"
+  cask "iina"
+  cask "ilok-license-manager"
+  cask "native-access"
+  cask "onyx"
+  cask "selfcontrol"
+  cask "softube-central"
+  cask "splice"
+end

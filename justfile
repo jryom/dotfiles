@@ -5,7 +5,7 @@ default: install
 install: gatekeeper system-preferences keyboard-layout touch-id brew fish-globals stow node pnpm pip fisher misc
 
 stow:
-    stow --restow --target $HOME --dir {{ justfile_directory() }} --ignore "\.DS_Store" home
+    stow --no-folding --restow --target $HOME --dir {{ justfile_directory() }} --ignore "\.DS_Store" home
 
 brew:
     brew bundle install --file="{{ justfile_directory() }}/etc/Brewfile" --force --no-lock
@@ -150,3 +150,15 @@ keyboard-layout:
 
 shell:
     cat /etc/shells | grep $(which fish) &>/dev/null || echo $(which fish) | sudo tee -a /etc/shells
+
+init-dotfiles:
+    mkdir "{{ justfile_directory() }}/.git"
+    touch "{{ justfile_directory() }}/.git/.nosync"
+    git init
+    git remote add origin https://github.com/jryom/dotfiles.git
+    git fetch origin
+    git commit --allow-empty -m "init"
+    git add -A
+    git stash
+    git checkout -b main origin/main
+    git stash pop
