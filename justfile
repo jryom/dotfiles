@@ -2,24 +2,27 @@
 
 default: install
 
-install: gatekeeper system-preferences keyboard-layout touch-id brew fish-globals stow node pnpm pip fisher misc
+install: gatekeeper system-preferences touch-id brew pip fish-globals dotbot fisher node pnpm misc
 
-stow:
-    stow --no-folding --restow --target $HOME --dir {{ justfile_directory() }} --ignore "\.DS_Store" home
+dotbot:
+    #!/usr/bin/env fish
+    dotbot --config-file "{{ justfile_directory() }}/etc/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
 
 brew:
     brew bundle install --file="{{ justfile_directory() }}/etc/Brewfile" --force --no-lock
 
 node:
+    #!/usr/bin/env fish
     fnm install --lts
     fnm use lts-latest
     fnm default lts-latest
 
 pnpm:
+    #!/usr/bin/env fish
     pnpm add --global $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
 
 pip:
-    python3 -m pip install --user --upgrade pynvim black pyright neovim-remote shell-gpt
+    python3 -m pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
@@ -97,15 +100,6 @@ fish-globals:
     set -U fish_pager_color_selected_description white
     set -U fish_pager_color_selected_prefix red
 
-    echo "Update OpenAI API key? y/n"
-    read choice
-    if test "$choice" = "y"
-        echo "Enter OpenAI API"
-        read api_key
-        set -Ux OPENAI_API_KEY "$api_key"
-        set -Ux OPENAI_KEY "$api_key"
-    end
-
     exit 0
 
 system-preferences:
@@ -143,10 +137,6 @@ touch-id:
 
 gatekeeper:
     if spctl --status >/dev/null; then sudo spctl --master-disable; fi
-
-keyboard-layout:
-    cp -r "{{ justfile_directory() }}/etc/da-no-dead-keys.bundle" "$HOME/Library/Keyboard Layouts"
-    sudo ln -sf "{{ justfile_directory() }}/bin/keyboardSwitcher" "/usr/local/bin/keyboardSwitcher"
 
 shell:
     cat /etc/shells | grep $(which fish) &>/dev/null || echo $(which fish) | sudo tee -a /etc/shells

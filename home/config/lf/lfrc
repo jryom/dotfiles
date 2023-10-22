@@ -6,11 +6,11 @@ set ifs "\n"
 set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
 set info 'size'
 
-set hidden
 set drawbox
 set incsearch
 set previewer ~/.config/lf/pv.sh
 set dirpreviews
+set hiddenfiles ".DS_Store"
 
 map x $$f
 map X !$f

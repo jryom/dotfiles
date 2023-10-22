@@ -3,7 +3,7 @@
 [user]
 	name = Jesper Ryom
 	email = 2834949+jryom@users.noreply.github.com
-	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMhbE+pFOaBOnRRsF/tksT/oQOBY+tUM6IMPtBMTdyuS 2834949+jryom@users.noreply.github.com
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKw0YcDmGZ/I8vRlmuzKc41NeRIVthEy0yzZG0QtOxKF 2834949+jryom@users.noreply.github.com
 
 [commit]
 	gpgsign = true
@@ -22,7 +22,6 @@
 
 [core]
 	pager = delta
-	excludesfile = ~/.gitignore_global
 
 [remote "origin"]
 	prune = true

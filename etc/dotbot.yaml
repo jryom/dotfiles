@@ -1,0 +1,47 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+      force: true
+- clean:
+    ~/:
+       force: true
+    ~/.config:
+      force: true
+      recursive: true
+    ~/.local:
+      force: true
+      recursive: true
+    ~/.ssh:
+      force: true
+      recursive: true
+- create:
+    ~/.ssh:
+      mode: 0700
+    ~/.config/fish:
+- link:
+    ~/:
+      glob: true
+      path: home/**
+      prefix: "."
+    ~/Library/LaunchAgents:
+      glob: true
+      path: launch-agents/**
+    /Applications/YabaiIndicator.app:
+      path: ~/Documents/dotfiles-private/bin/YabaiIndicator.app
+    "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
+      path: etc/da-no-dead-keys.bundle
+    "/usr/local/bin/keyboardSwitcher":
+      path: ~/Documents/dotfiles-private/bin/keyboardSwitcher
+- link:
+    ~/:
+      glob: true
+      path: ~/Documents/dotfiles-private/home-files/**
+      prefix: "."
+- link:
+    ~/.config/gh:
+      path: ~/Documents/dotfiles-private/home-folders/config/gh
+    ~/.config/exercism:
+      path: ~/Documents/dotfiles-private/home-folders/config/exercism
+    ~/.ssh:
+      path: ~/Documents/dotfiles-private/home-folders/ssh
