@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+app_names=(
+  "AlDente"
+  "Bartender 5"
+  "ItsyCal"
+  "MacGPT"
+  "1Password"
+  "MeetingBar"
+  "NextDNS"
+  "SpotMenu"
+  "Tailscale"
+  "YabaiIndicator"
+)
+
+for app_name in "${app_names[@]}"; do
+  open -gjF -a"/Applications/$app_name.app"
+done
