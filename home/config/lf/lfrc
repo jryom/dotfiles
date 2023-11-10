@@ -7,7 +7,8 @@ set info 'size'
 
 set drawbox
 set incsearch
-set previewer ~/.config/lf/pv.sh
+set previewer ~/.config/lf/preview.sh
+set cleaner ~/.config/lf/cleaner.sh
 set dirpreviews
 set hiddenfiles ".DS_Store"
 
@@ -37,7 +38,8 @@ map R ${{
 # text files and a file opener for the rest.
 cmd open ${{
     case $(file --mime-type $f -b) in
-        *) $EDITOR $fx;;
+	image*|audio*|video*) open $fx;;
+	*) $EDITOR $fx;;
     esac
 }}
 
