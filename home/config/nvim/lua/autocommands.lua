@@ -1,8 +1,14 @@
 local group = vim.api.nvim_create_augroup("ac", {})
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
-  pattern = { "*.{eslint,babel,stylelint,prettier}rc" },
-  command = "set ft=json5",
+  pattern = { "*.{eslint,babel,stylelint,prettier,swc}rc" },
+  command = "set ft=json",
+  group = group,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+  pattern = { "*.ain" },
+  command = "set ft=dosini",
   group = group,
 })
 
@@ -22,10 +28,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "vim" },
-  callback = function(args)
-    vim.keymap.set("n", "q", "<C-w>c", { buffer = args.buf })
-  end,
+vim.api.nvim_create_autocmd({ "UIEnter" }, {
+  command = "Rooter",
   group = group,
 })

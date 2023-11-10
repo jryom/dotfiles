@@ -1,5 +1,10 @@
 return {
   "jackmort/chatgpt.nvim",
+  dependencies = {
+    "muniftanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
   keys = function()
     return {
       {
@@ -94,10 +99,8 @@ return {
       },
     }
   end,
-  opts = {},
-  dependencies = {
-    "muniftanjim/nui.nvim",
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+  opts = {
+    openai_params = { model = "gpt-4-1106-preview" },
+    openai_edit_params = { model = "gpt-4-1106-preview" },
   },
 }

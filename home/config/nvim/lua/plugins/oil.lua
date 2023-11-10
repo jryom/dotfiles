@@ -7,21 +7,26 @@ return {
   opts = {
     delete_to_trash = true,
     trash_command = "trash",
+    win_options = {
+      number = false,
+      relativenumber = false,
+      signcolumn = "yes",
+    },
     keymaps = {
       ["?"] = "actions.show_help",
-      ["l"] = "actions.select",
       ["<C-s>"] = "actions.select_vsplit",
       ["<C-h>"] = "actions.select_split",
       ["<C-t>"] = "actions.select_tab",
       ["<C-p>"] = "actions.preview",
       ["q"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
-      ["h"] = "actions.parent",
       ["_"] = "actions.open_cwd",
       ["`"] = "actions.cd",
       ["~"] = "actions.tcd",
       ["gs"] = "actions.change_sort",
       ["g."] = "actions.toggle_hidden",
+      ["l"] = "actions.select",
+      ["h"] = "actions.parent",
     },
     skip_confirm_for_simple_edits = true,
     view_options = {
@@ -34,7 +39,6 @@ return {
             return true
           end
         end
-        return false
       end,
     },
   },

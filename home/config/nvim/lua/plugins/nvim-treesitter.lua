@@ -7,7 +7,7 @@ return {
     require("nvim-treesitter.configs").setup({
       auto_install = true,
       autotag = { enable = true },
-      ensure_installed = { "lua" },
+      ensure_installed = { "lua", "bash", "markdown", "markdown_inline", "regex" },
       context_commentstring = { enable = true, enable_autocmd = false },
       highlight = {
         enable = true,
@@ -20,7 +20,6 @@ return {
         end,
       },
       indent = { enable = true, disable = "yaml" },
-      matchup = { enable = true, disable_virtual_text = true },
     })
   end,
 }

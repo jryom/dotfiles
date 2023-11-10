@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  lazy = true,
   init = function()
     vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "TextChanged", "TextChangedI" }, {
       callback = function()
@@ -11,11 +12,9 @@ return {
     require("lint").linters_by_ft = {
       dockerfile = { "hadolint" },
       gitcommit = { "commitlint" },
-      javascript = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      typescript = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
+      markdown = { "markdownlint" },
       yaml = { "actionlint" },
+      zsh = { "zsh" },
     }
   end,
 }

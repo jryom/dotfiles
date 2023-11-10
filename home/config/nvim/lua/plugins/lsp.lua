@@ -20,24 +20,33 @@ return {
         client.server_capabilities.documentRangeFormattingProvider = false
       end
 
+      if client.name == "eslint" then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+        client.server_capabilities.documentFormattingProvider = true
+        client.server_capabilities.documentRangeFormattingProvider = true
+      end
+
       require("lsp-format").on_attach(client)
 
       require("which-key").register({
         buffer = bufnr,
         K = { vim.lsp.buf.hover, "Show docs" },
         ["<space>"] = {
-          p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
-          n = { vim.diagnostic.goto_next, "Next diagnostic" },
           r = { vim.lsp.buf.rename, "Rename word" },
           l = {
             name = "LSP",
             a = { vim.lsp.buf.code_action, "Actions" },
             q = { vim.diagnostic.setloclist, "Diagnostics to quickfix" },
-            d = { ":TroubleToggle lsp_definitions<cr>", "Definition" },
+            d = { ":Telescope lsp_definitions<cr>", "Definition" },
             D = { vim.lsp.buf.declaration, "Declaration" },
-            i = { ":TroubleToggle lsp_implementations<cr>", "Implementation" },
-            r = { ":TroubleToggle lsp_references<cr>", "References" },
-            t = { ":TroubleToggle lsp_type_definitions<cr>", "Type definition" },
+            i = { ":Telescope lsp_implementations<cr>", "Implementation" },
+            r = { ":Telescope lsp_references<cr>", "References" },
+            t = { ":Telescope lsp_type_definitions<cr>", "Type definition" },
+            s = { ":Telescope lsp_document_symbols<cr>", "Document symbols" },
+            w = { ":Telescope lsp_workspace_symbols<cr>", "Workspace symbols" },
             I = { ":LspInfo<cr>", "Info" },
             L = { ":LspLog<cr>", "Log" },
             S = { ":LspStop<cr>", "Stop" },
@@ -53,12 +62,18 @@ return {
       default_mappings = false,
       on_attach = on_attach,
       servers = {
+        ansiblels = {},
+        bashls = {},
         cssls = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        eslint = {},
         gopls = {},
         graphql = { filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } },
         html = {},
         pyright = {},
         taplo = {},
+        terraformls = {},
         yamlls = {},
         jsonls = {
           init_options = { provideFormatter = false },

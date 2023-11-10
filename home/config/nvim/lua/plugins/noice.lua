@@ -2,6 +2,7 @@ return {
   "folke/noice.nvim",
   dependencies = "muniftanjim/nui.nvim",
   event = "VeryLazy",
+  keys = { { "<space>M", ":Noice telescope<cr>", desc = "Messages", silent = true } },
   opts = {
     lsp = {
       override = {
@@ -12,11 +13,7 @@ return {
     },
     routes = {
       {
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "written",
-        },
+        filter = { find = "written" },
         opts = { skip = true },
       },
       {
@@ -32,15 +29,16 @@ return {
       long_message_to_split = true,
       command_palette = true,
       lsp_doc_border = true,
-      inc_rename = true,
     },
+    popupmenu = { backend = "cmp" },
     cmdline = {
       format = {
-        cmdline = { icon = "" },
-        search_down = { icon = "" },
-        filter = { icon = "" },
-        lua = { icon = "" },
-        help = { icon = "" },
+        command = { pattern = "^:", icon = "", lang = "vim", title = "" },
+        search_down = false,
+        search_up = false,
+        filter = false,
+        lua = false,
+        help = false,
       },
     },
   },

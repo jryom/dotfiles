@@ -1,10 +1,12 @@
 return {
   "rmagatti/auto-session",
   opts = {
-    auto_session_suppress_dirs = {
-      "~/Documents/Notes",
-    },
-    session_lens = { load_on_setup = false },
+    auto_restore_enabled = true,
+    auto_save_enabled = true,
+    auto_session_create_enabled = true,
+    auto_session_suppress_dirs = { "~/Documents/Notes" },
+    auto_session_use_git_branch = true,
     log_level = "error",
+    session_lens = { load_on_setup = false },
   },
 }

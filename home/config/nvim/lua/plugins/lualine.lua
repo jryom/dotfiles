@@ -1,59 +1,39 @@
+local function isWiderThan(cols)
+  return function()
+    return vim.fn.winwidth(0) > cols
+  end
+end
+
+local cwd = function()
+  local cwd = vim.loop.cwd()
+  local home = os.getenv("HOME")
+
+  return cwd:gsub(home, "~"):gsub("~/Code/", "")
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  dependencies = {
-    "b0o/incline.nvim",
-    opts = {
-      window = {
-        options = {
-          winblend = 30,
-        },
-      },
-      hide = { cursorline = "focused_win" },
-      ignore = {
-        filetypes = { "oil" },
-      },
-      render = function(props)
-        local bufname = vim.api.nvim_buf_get_name(props.buf)
-        local res = bufname ~= "" and vim.fn.fnamemodify(bufname, ":.") or "[No Name]"
-        if vim.api.nvim_buf_get_option(props.buf, "modified") then
-          res = res .. " [+]"
-        end
-        return res
-      end,
-    },
-  },
   opts = {
     options = {
-      globalstatus = true,
-      component_separators = { left = "|", right = "" },
+      component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = { "branch" },
-      lualine_c = {
-        {
-          "filename",
-          newfile_status = true,
-          path = 1,
-        },
-      },
+    inactive_sections = {
+      lualine_a = { { cwd, cond = isWiderThan(120) } },
+      lualine_c = { { "filename", shorting_target = 10, path = 1 } },
       lualine_x = {},
-      lualine_y = { "filetype" },
-      lualine_z = {
-        "%l/%L:%-2.c",
-        {
-          "diagnostics",
-          diagnostics_color = {
-            error = "DiagnosticVirtualTextError",
-            warn = "DiagnosticVirtualTextWarn",
-            info = "DiagnosticVirtualTextInfo",
-            hint = "DiagnosticVirtualTextHint",
-          },
-          symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
-        },
-      },
+    },
+    sections = {
+      lualine_a = { { cwd, cond = isWiderThan(120) } },
+      lualine_b = {},
+      lualine_c = { { "filename", shorting_target = 10, path = 1 } },
+      lualine_x = { { "diagnostics", symbols = { error = "E", warn = "W", info = "I", hint = "H" } } },
+      lualine_y = { {
+        "filetype",
+        cond = isWiderThan(140),
+      } },
+      lualine_z = { { "%l/%L", cond = isWiderThan(90) } },
     },
   },
 }

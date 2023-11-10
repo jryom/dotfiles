@@ -4,9 +4,6 @@ return {
   opts = {
     show_help = false,
     show_keys = false,
-    window = {
-      winblend = 8,
-    },
   },
   init = function()
     vim.o.timeout = true
@@ -14,9 +11,11 @@ return {
 
     local map = require("which-key").register
 
-    map({ ["<space>d"] = { name = "Generate docs" } })
-    map({ ["<space>a"] = { name = "AI" } })
     map({
+      -- Prefixes
+      { "<space>", { name = "Git" } },
+      { ["<space>a"] = { name = "AI" } },
+
       gt = { "<C-]>", "Go to tag" },
       j = { "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", "Next visual line", expr = true },
       k = { "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", "Previous visual line", expr = true },
@@ -24,6 +23,11 @@ return {
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
+      ["<space>m"] = { ":!(gh markdown-preview % &); sleep 3; kill $\\!<cr>", "Markdown preview", silent = false },
+      ["<space>"] = {
+        p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
+        n = { vim.diagnostic.goto_next, "Next diagnostic" },
+      },
       ["<C-t>"] = {
         h = { ":tabprev<cr>", "Previous tab" },
         l = { ":tabnext<cr>", "Next tab" },

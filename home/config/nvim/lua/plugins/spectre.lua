@@ -2,11 +2,16 @@ return {
   "nvim-pack/nvim-spectre",
   dependencies = "nvim-lua/plenary.nvim",
   keys = {
-    { "<space>s", ":lua require('spectre').open_visual({select_word = true})<CR>", desc = "Spectre", silent = true },
+    {
+      "<space>s",
+      ":lua require('spectre').open_visual({select_word = true})<CR>",
+      desc = "Find and replace",
+      silent = true,
+    },
     {
       "<space>s",
       '"vy :lua require("spectre").open({ is_insert_mode=false,search_text=vim.fn.getreg("v") })<CR>',
-      desc = "Spectre",
+      desc = "Find and replace",
       silent = true,
       mode = "x",
     },
