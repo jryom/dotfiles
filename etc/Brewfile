@@ -1,10 +1,17 @@
+tap "beeftornado/rmtree"
+tap "cormacrelf/tap"
+tap "hashicorp/tap"
+tap "hashicorp/tap"
+tap "homebrew/cask-fonts"
+tap "jonaslu/tools"
+tap "koekeishiya/formulae"
+
 brew "actionlint"
 brew "bash"
-brew "bat"
 brew "beeftornado/rmtree/brew-rmtree"
 brew "coreutils"
-brew "dark-mode"
 brew "cormacrelf/tap/dark-notify"
+brew "dark-mode"
 brew "direnv"
 brew "dotenv-linter"
 brew "fd"
@@ -20,9 +27,15 @@ brew "git-lfs"
 brew "gnu-sed"
 brew "gopls"
 brew "hadolint"
+brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform-ls"
 brew "hub"
+brew "jonaslu/tools/ain"
 brew "jq"
 brew "just"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+brew "lazydocker"
 brew "lazygit"
 brew "lf"
 brew "lua-language-server"
@@ -39,7 +52,6 @@ brew "rbenv"
 brew "ripgrep"
 brew "shellcheck"
 brew "shfmt"
-brew "koekeishiya/formulae/skhd"
 brew "so"
 brew "starship"
 brew "stylua"
@@ -47,7 +59,6 @@ brew "tldr"
 brew "trash"
 brew "tree"
 brew "watchexec"
-brew "koekeishiya/formulae/yabai"
 brew "yamllint"
 brew "zoxide"
 
@@ -57,28 +68,24 @@ cask "aldente"
 cask "appcleaner"
 cask "bartender"
 cask "choosy"
+cask "docker"
 cask "firefox"
+cask "google-chrome"
 cask "homebrew/cask-fonts/font-iosevka"
 cask "homebrew/cask-fonts/font-symbols-only-nerd-font"
-cask "google-chrome"
 cask "istat-menus"
 cask "itsycal"
 cask "keepingyouawake"
 cask "kitty"
+cask "meetingbar"
 cask "sonos"
 cask "spotify"
-cask "sublime-merge"
 
 mas "Dark Reader for Safari", id: 1438243180
 mas "NextDNS", id: 1464122853
-mas "Noizio", id: 928871589
 
 if ENV["XCODE"]
   mas "Xcode", id: 497799835
-end
-
-if ENV["DOCKER"]
-  cask "docker"
 end
 
 if ENV["PERSONAL"]
