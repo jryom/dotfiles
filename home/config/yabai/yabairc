@@ -1,13 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 updateWindowManagerSpacing() {
-  echo $(
-    system_profiler SPDisplaysDataType | grep "Looks like" | awk '{print int($6/60)}'
-    system_profiler SPDisplaysDataType | grep Resolution | awk '{print int($4/120)}'
-  )
+  echo "$(
+    system_profiler SPDisplaysDataType | grep "Looks like" | awk '{print int($6/60)}' ||
+      system_profiler SPDisplaysDataType | grep Resolution | awk '{print int($4/120)}'
+  )"
 }
 
-export WM_SPACING=$(updateWindowManagerSpacing)
+export WM_SPACING="$(updateWindowManagerSpacing)"
 
 sudo yabai --load-sa
 

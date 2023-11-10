@@ -134,4 +134,4 @@ shift + ctrl - c: yabai -m space --create && index=$(yabai -m query --spaces --d
 
 # destroy space
 shift + ctrl - w: yabai -m space --destroy
-shift + ctrl - q: zsh -c "$HOME/.config/yabai/yabai-destroy_empty_spaces.zsh"
+shift + ctrl - q: bash -c "$HOME/.config/yabai/yabai-destroy_empty_spaces.sh"

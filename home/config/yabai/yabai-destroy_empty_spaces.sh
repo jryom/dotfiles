@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 yabai -m query --spaces | \
   jq -re 'map(select(."is-native-fullscreen" == false and ."windows" == [] and ."is-visible" == false) | .index) | reverse | join("\n")' | \

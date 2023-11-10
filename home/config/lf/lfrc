@@ -1,7 +1,6 @@
-# vi: ft=zsh
+# vi: ft=bash
 
-set shell zsh
-set shellopts '-eu:--shwordsplit'
+set shell bash
 set ifs "\n"
 set promptfmt "\033[34;1m%w/\033[0m\033[1m%f\033[0m"
 set info 'size'

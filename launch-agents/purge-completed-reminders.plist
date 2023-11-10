@@ -12,7 +12,7 @@
 	<string>Background</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>zsh</string>
+		<string>bash</string>
 		<string>-c</string>
 		<string>osascript $HOME/.config/scripts/purge-completed-reminders.AppleScript</string>
 	</array>

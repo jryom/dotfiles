@@ -28,7 +28,7 @@ misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
     -yabai --start-service
     -skhd --start-service
-    if [ ! -f /private/etc/sudoers.d/yabai ]; then sudo zsh -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  >> /private/etc/sudoers.d/yabai"; fi
+    if [ ! -f /private/etc/sudoers.d/yabai ]; then sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  >> /private/etc/sudoers.d/yabai"; fi
 
 fisher:
     fish -c 'fisher update'
@@ -140,6 +140,8 @@ gatekeeper:
 
 shell:
     cat /etc/shells | grep $(which fish) &>/dev/null || echo $(which fish) | sudo tee -a /etc/shells
+    cat /etc/shells | grep $(which bash) &>/dev/null || echo $(which bash) | sudo tee -a /etc/shells
+    chsh -s $(which bash)
 
 init-dotfiles:
     mkdir "{{ justfile_directory() }}/.git"

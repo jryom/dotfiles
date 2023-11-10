@@ -10,7 +10,7 @@
 	<string>Background</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>zsh</string>
+		<string>bash</string>
 		<string>-c</string>
 		<string>$HOME/.config/scripts/dark-notify</string>
 	</array>

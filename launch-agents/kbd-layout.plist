@@ -6,7 +6,7 @@
 	<string>local.kbd-layout</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>zsh</string>
+		<string>bash</string>
 		<string>-ci</string>
 		<string>keyboardSwitcher select "da-no-dead-keys"</string>
 	</array>
