@@ -20,6 +20,8 @@ if status is-interactive
     abbr up "$HOME/.config/scripts/update"
     abbr sc "source ~/.config/fish/config.fish"
 
+    abbr delete_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD)  --json databaseId  -q '.[].databaseId' |  xargs -IID gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE'
+
     abbr y yarn
     abbr ya yarn add
     abbr yad yarn add --save-dev
