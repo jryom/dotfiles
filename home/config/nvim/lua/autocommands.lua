@@ -29,6 +29,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
-  command = "Rooter",
+  callback = function(data)
+    local root = require("mini.misc").find_root(data.buf, { ".git", "package.json" })
+    if root ~= nil then
+      vim.fn.chdir(root)
+    end
+  end,
   group = group,
 })
