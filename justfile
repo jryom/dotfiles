@@ -2,7 +2,7 @@
 
 default: install
 
-install: gatekeeper system-preferences touch-id brew pip fish-globals dotbot fisher node pnpm misc
+install: gatekeeper system-preferences touch-id brew gh pip fish-globals dotbot fisher node pnpm misc
 
 dotbot:
     #!/usr/bin/env fish
@@ -10,6 +10,12 @@ dotbot:
 
 brew:
     brew bundle install --file="{{ justfile_directory() }}/etc/Brewfile" --force --no-lock
+
+gh:
+    #!/usr/bin/env bash
+    while IFS= read -r line; do
+        gh extension install --force "$line"
+    done < "{{ justfile_directory() }}/etc/gh_extensions"
 
 node:
     #!/usr/bin/env fish
