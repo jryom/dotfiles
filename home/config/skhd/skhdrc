@@ -2,8 +2,11 @@
 
 # launch and OS bindings
 ctrl + alt + cmd - k: /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/Code
-ctrl + alt + cmd - n: echo "launch sh -c \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
-ctrl + alt + cmd - d: echo "launch sh -c \"nvim -c 'Explore'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
+ctrl + alt + cmd - n: echo "launch sh -c \"nvim -c 'Oil'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
+ctrl + alt + cmd - d: echo "launch sh -c \"nvim -c 'Oil'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
+ctrl + alt + cmd - m: open /System/Applications/Messages.app
+ctrl + alt + cmd - r: open /System/Applications/Reminders.app
+ctrl + alt + cmd - b: open /Applications/Firefox.app
 
 cmd - y: pkill yabai & pkill skhd
 

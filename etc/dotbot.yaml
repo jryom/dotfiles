@@ -5,7 +5,7 @@
       force: true
 - clean:
     ~/:
-       force: true
+      force: true
     ~/.config:
       force: true
       recursive: true
@@ -27,21 +27,21 @@
     ~/Library/LaunchAgents:
       glob: true
       path: launch-agents/**
-    /Applications/YabaiIndicator.app:
-      path: ~/Documents/dotfiles-private/bin/YabaiIndicator.app
     "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
       path: etc/da-no-dead-keys.bundle
     "/usr/local/bin/keyboardSwitcher":
       path: ~/Documents/dotfiles-private/bin/keyboardSwitcher
-- link:
-    ~/:
+    /Applications:
       glob: true
-      path: ~/Documents/dotfiles-private/home-files/**
-      prefix: "."
-- link:
+      path: ~/Documents/dotfiles-private/bin/Applications/**
     ~/.config/gh:
       path: ~/Documents/dotfiles-private/home-folders/config/gh
     ~/.config/exercism:
       path: ~/Documents/dotfiles-private/home-folders/config/exercism
     ~/.ssh:
       path: ~/Documents/dotfiles-private/home-folders/ssh
+- link:
+    ~/:
+      glob: true
+      path: ~/Documents/dotfiles-private/home-files/**
+      prefix: "."

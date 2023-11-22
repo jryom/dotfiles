@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-PATH="/usr/local/bin:$PATH"
-
-dark-notify -c "$HOME/.config/scripts/dark-mode"
+/opt/homebrew/bin/dark-notify -c "$HOME/.config/scripts/dark-mode"

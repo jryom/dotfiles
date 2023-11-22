@@ -19,7 +19,7 @@ node:
 
 pnpm:
     #!/usr/bin/env fish
-    pnpm add --global $(cat "{{ justfile_directory() }}/etc/global_node_modules" | tr "\n" " ")
+    pnpm add --global (cat "{{ justfile_directory() }}/etc/global_node_modules")
 
 pip:
     python3 -m pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
@@ -28,7 +28,7 @@ misc:
     echo y | "$(brew --prefix)"/opt/fzf/install
     -yabai --start-service
     -skhd --start-service
-    if [ ! -f /private/etc/sudoers.d/yabai ]; then sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  >> /private/etc/sudoers.d/yabai"; fi
+    sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  > /private/etc/sudoers.d/yabai"
 
 fisher:
     fish -c 'fisher update'

@@ -1,6 +1,16 @@
---glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache}
+# vi: ft=sh
+
+# TS/JS
+--glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,node_modules/**,.next/**}
+# Binaries and other filetypes
+--glob=!**/{*.snap,*.sql,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache}
+# Unity
 --glob=!**/{*.asmdef,*.asset,*.sln,Assets/Packages,*.unity,*.meta}
---glob=!**/{.git,.next,.undodir,coverage,.cache,dist,migrations,node_modules,vendor,__pycache__,Pods,*\.xc*,build,out}/**
+# Fish
+--glob=!**/{fish_history}
+# Universally ignored folders
+--glob=!**/{.git,.undodir,coverage,.cache,dist,migrations,vendor,__pycache__,Pods,*\.xc*,build,out,ssh}/**
+
 --colors=match:fg:yellow
 --colors=match:style:bold
 --colors=path:fg:blue

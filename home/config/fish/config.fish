@@ -1,3 +1,5 @@
+source ~/.config/fish/env.fish
+
 if status is-interactive
     set -gx DARK_MODE_ACTIVE $(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
     if [ $DARK_MODE_ACTIVE = 1 ]
@@ -124,5 +126,7 @@ if status is-interactive
 
     fzf_configure_bindings --directory=\ct --variables=\e\cv
 end
+
+fnm env --use-on-cd | source
 
 starship init fish | source
