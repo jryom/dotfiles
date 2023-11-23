@@ -11,10 +11,14 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>bash</string>
-		<string>-c</string>
+		<string>-ic</string>
 		<string>$HOME/.config/scripts/dark-notify</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/local.dark-mode.stderr</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/local.dark-mode.stdout</string>
 </dict>
 </plist>

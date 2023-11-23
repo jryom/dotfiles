@@ -49,11 +49,6 @@
 [mergetool]
 	prompt = false
 
-[delta]
-	line-numbers = true
-	hunk-header-style = omit
-	navigate = true
-
 [color "grep"]
 	linenumber = green
 	filename = blue

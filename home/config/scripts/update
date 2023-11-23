@@ -8,6 +8,6 @@ fnm install --lts
 
 pnpm update --global
 
-brew upgrade
+brew upgrade --greedy
 
 tldr --update

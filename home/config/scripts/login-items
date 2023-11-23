@@ -7,7 +7,6 @@ app_names=(
   "MacGPT"
   "NextDNS"
   "Stats"
-  "Tailscale"
   "YabaiIndicator"
 )
 

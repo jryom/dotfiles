@@ -31,7 +31,7 @@ pip:
     python3 -m pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
 
 misc:
-    echo y | "$(brew --prefix)"/opt/fzf/install
+    echo y | "$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
     -yabai --start-service
     -skhd --start-service
     sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  > /private/etc/sudoers.d/yabai"
