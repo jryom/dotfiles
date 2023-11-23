@@ -5,9 +5,8 @@ app_names=(
   "Bartender 5"
   "ItsyCal"
   "MacGPT"
-  "MeetingBar"
   "NextDNS"
-  "SpotMenu"
+  "Stats"
   "Tailscale"
   "YabaiIndicator"
 )

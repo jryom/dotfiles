@@ -25,7 +25,7 @@ yabai -m rule --add manage=off app='Messages'
 yabai -m rule --add manage=off app='SoundID'
 yabai -m rule --add manage=off app='System Information'
 yabai -m rule --add manage=off app='System Settings'
-yabai -m rule --add manage=off app='iStat'
+yabai -m rule --add manage=off app='Stats'
 
 yabai -m config layout bsp
 
