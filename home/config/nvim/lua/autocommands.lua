@@ -1,5 +1,11 @@
 local group = vim.api.nvim_create_augroup("ac", {})
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typescript,typescriptreact",
+  group = group,
+  command = "compiler tsc | setlocal makeprg=npx\\ tsc\\ --pretty\\ false",
+})
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   pattern = { "*.{eslint,babel,stylelint,prettier,swc}rc" },
   command = "set ft=json",
