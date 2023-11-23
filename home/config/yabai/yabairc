@@ -40,3 +40,35 @@ yabai -m config window_origin_display focused
 yabai -m config normal_window_opacity 0.9
 yabai -m config window_opacity on
 yabai -m config window_opacity_duration 0.1
+
+yabai -m config window_opacity_duration 0.1
+
+events=(
+  "display_added"
+  "display_removed"
+  "display_resized"
+  "mission_control_exit"
+  "space_changed"
+  "space_created"
+  "space_destroyed"
+)
+
+window_events=(
+  "application_hidden"
+  "application_visible"
+  "window_created"
+  "window_deminimized"
+  "window_destroyed"
+  "window_focused"
+  "window_minimized"
+  "window_moved"
+  "window_resized"
+)
+
+for event in "${events[@]}"; do
+  yabai -m signal --add event="$event" action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
+done
+
+for event in "${window_events[@]}"; do
+  yabai -m signal --add event="$event" action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+done
