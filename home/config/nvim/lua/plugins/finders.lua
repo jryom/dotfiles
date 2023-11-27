@@ -20,16 +20,10 @@ return {
       local actions = require("telescope.actions")
       require("telescope").setup({
         pickers = {
-          find_files = {
-            previewer = false,
-          },
+          find_files = { previewer = false },
           buffers = {
             previewer = false,
-            mappings = {
-              i = {
-                ["<c-d>"] = actions.delete_buffer,
-              },
-            },
+            mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
           },
           help_tags = {
             mappings = {

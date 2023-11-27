@@ -8,10 +8,7 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-    },
+    opts = {},
   },
 
   {
@@ -51,7 +48,6 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
             local kind = require("lspkind").cmp_format({
-              preset = "codicons",
               symbol_map = { Copilot = "" },
               mode = "symbol_text",
               maxwidth = 50,

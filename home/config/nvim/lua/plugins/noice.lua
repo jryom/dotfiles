@@ -33,7 +33,7 @@ return {
     popupmenu = { backend = "cmp" },
     cmdline = {
       format = {
-        command = { pattern = "^:", icon = "", lang = "vim", title = "" },
+        cmdline = { icon = "", title = "" },
         search_down = false,
         search_up = false,
         filter = false,

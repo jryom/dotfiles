@@ -6,7 +6,6 @@ return {
   },
   opts = {
     delete_to_trash = true,
-    trash_command = "trash",
     win_options = {
       number = false,
       relativenumber = false,

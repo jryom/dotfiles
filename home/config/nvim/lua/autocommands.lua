@@ -33,13 +33,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   command = "setlocal suffixesadd+=.js,.ts,.tsx,.jsx",
   group = group,
 })
-
-vim.api.nvim_create_autocmd({ "UIEnter" }, {
-  callback = function(data)
-    local root = require("mini.misc").find_root(data.buf, { ".git", "package.json" })
-    if root ~= nil then
-      vim.fn.chdir(root)
-    end
-  end,
-  group = group,
-})

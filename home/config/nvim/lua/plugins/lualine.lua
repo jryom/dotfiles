@@ -25,7 +25,7 @@ return {
       lualine_x = {},
     },
     sections = {
-      lualine_a = { { cwd, cond = isWiderThan(120) } },
+      lualine_a = { { cwd, cond = isWiderThan(130) } },
       lualine_b = {},
       lualine_c = { { "filename", shorting_target = 10, path = 1 } },
       lualine_x = { { "diagnostics", symbols = { error = "E", warn = "W", info = "I", hint = "H" } } },

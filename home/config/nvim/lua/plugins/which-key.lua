@@ -35,6 +35,7 @@ return {
         c = { ":tabclose<cr>", "Close tab" },
         H = { ":-tabmove<cr>", "Move tab left" },
         L = { ":tabmove<cr>", "Move tab right" },
+        s = { ":tab split<cr>", "Tab split" },
       },
     })
   end,

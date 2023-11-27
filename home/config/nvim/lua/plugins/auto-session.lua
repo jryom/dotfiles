@@ -5,7 +5,6 @@ return {
     auto_save_enabled = true,
     auto_session_create_enabled = true,
     auto_session_suppress_dirs = { "~/Documents/Notes" },
-    auto_session_use_git_branch = true,
     log_level = "error",
     session_lens = { load_on_setup = false },
   },
