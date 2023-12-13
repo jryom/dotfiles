@@ -4,6 +4,13 @@ return {
     "lukas-reineke/lsp-format.nvim",
     "neovim/nvim-lspconfig",
     "pmizio/typescript-tools.nvim",
+    {
+      "rrethy/vim-illuminate",
+      event = "VeryLazy",
+      config = function()
+        require("illuminate").configure({ providers = { "lsp" }, min_count_to_highlight = 2 })
+      end,
+    },
   },
   event = { "BufReadPre", "BufNewFile" },
   init = function()
@@ -14,6 +21,12 @@ return {
     })
   end,
   opts = function()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
     local on_attach = function(client, bufnr)
       if client.name == "typescript-tools" then
         client.server_capabilities.documentFormattingProvider = false
@@ -59,6 +72,7 @@ return {
     require("typescript-tools").setup({ on_attach = on_attach, settings = { expose_as_code_actions = "all" } })
 
     return {
+      capabilities = capabilities,
       default_mappings = false,
       on_attach = on_attach,
       servers = {
@@ -72,7 +86,7 @@ return {
         graphql = { filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } },
         html = {},
         pyright = {},
-        taplo = {},
+        -- taplo = {} -- https://github.com/tamasfe/taplo/issues/431,
         terraformls = {},
         yamlls = {},
         jsonls = {

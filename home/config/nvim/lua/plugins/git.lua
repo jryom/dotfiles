@@ -42,7 +42,7 @@ return {
         silent = true,
       },
     },
-    opts = { current_line_blame_formatter_opts = { relative_time = true } },
+    opts = { current_line_blame_formatter_opts = { relative_time = true }, current_line_blame = true },
   },
 
   {
@@ -62,7 +62,6 @@ return {
       },
     },
     opts = {
-      enhanced_diff_hl = true,
       file_panel = {
         listing_style = "list",
       },

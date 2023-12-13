@@ -1,9 +1,8 @@
 local group = vim.api.nvim_create_augroup("ac", {})
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "typescript,typescriptreact",
+vim.api.nvim_create_autocmd("TermOpen", {
   group = group,
-  command = "compiler tsc | setlocal makeprg=npx\\ tsc\\ --pretty\\ false",
+  command = "setlocal foldmethod=manual",
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
@@ -19,7 +18,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
-  command = [[exe ":norm! \<C-W>="]],
+  command = [[exe "silent norm! \<C-W>="]],
   group = group,
 })
 
@@ -31,5 +30,19 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   command = "setlocal suffixesadd+=.js,.ts,.tsx,.jsx",
+  group = group,
+})
+
+vim.api.nvim_create_autocmd({ "DirChanged", "SessionLoadPost", "UIEnter" }, {
+  callback = function()
+    local cwd = function()
+      local cwd = vim.loop.cwd()
+      local home = os.getenv("HOME")
+
+      return cwd:gsub(home, "~"):gsub("~/Code/", "")
+    end
+
+    vim.opt.titlestring = "nvim " .. cwd()
+  end,
   group = group,
 })

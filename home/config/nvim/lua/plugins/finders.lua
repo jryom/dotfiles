@@ -7,6 +7,7 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     cmd = "Telescope",
+    event = "VeryLazy",
     keys = {
       { "<space>b", ":Telescope buffers<cr>", desc = "Buffers", silent = true },
       { "<space>f", ":Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer", silent = true },
@@ -54,6 +55,7 @@ return {
 
   {
     "ibhagwan/fzf-lua",
+    event = "VeryLazy",
     keys = {
       {
         "<space>i",
@@ -93,5 +95,45 @@ return {
         no_header = true,
       },
     },
+  },
+
+  {
+    "stevearc/oil.nvim",
+    cmd = "Oil",
+    event = "VeryLazy",
+    keys = {
+      { "-", ":Oil<CR>", desc = "File browser", silent = true },
+      { "<C-h>", ":Oil<CR>", desc = "File browser", silent = true },
+    },
+    opts = {
+      default_file_explorer = true,
+      delete_to_trash = true,
+      win_options = {
+        number = false,
+        relativenumber = false,
+        signcolumn = "yes",
+      },
+      keymaps = {
+        ["q"] = "actions.close",
+        ["<C-l>"] = "actions.select",
+        ["<C-h>"] = "actions.parent",
+        ["<C-k>"] = "k",
+        ["<C-j>"] = "j",
+      },
+      skip_confirm_for_simple_edits = true,
+      view_options = {
+        show_hidden = true,
+        is_always_hidden = function(name)
+          return name == ".."
+        end,
+      },
+    },
+  },
+
+  {
+    "chrishrb/gx.nvim",
+    event = { "VeryLazy" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
   },
 }

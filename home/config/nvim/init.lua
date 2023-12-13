@@ -1,10 +1,12 @@
 vim.opt.cmdheight = 0
 vim.opt.confirm = true
 vim.opt.expandtab = true
-vim.opt.fillchars = "eob: "
+vim.opt.fillchars = [[eob: ]]
+vim.opt.foldenable = true
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
+vim.opt.foldlevelstart = 99
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.hlsearch = true
@@ -12,8 +14,8 @@ vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.linebreak = true
 vim.opt.matchpairs:append("<:>")
-vim.opt.scrolloff = 5
-vim.opt.sessionoptions = { "buffers", "tabpages", "folds", "localoptions" }
+vim.opt.number = true
+vim.opt.sessionoptions = { "buffers", "tabpages", "folds" }
 vim.opt.shiftround = true
 vim.opt.shortmess:append("ctFTI")
 vim.opt.showmode = false
@@ -24,6 +26,7 @@ vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
+vim.opt.title = true
 vim.opt.undofile = true
 vim.opt.wrap = true
 

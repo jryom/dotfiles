@@ -8,7 +8,7 @@ return {
 
       local mode = Utils:read_file("/tmp/dark-mode")
 
-      if string.find(mode, "dark") then
+      if type(mode) == "string" and string.find(mode, "dark") then
         vim.opt.background = "dark"
       else
         vim.opt.background = "light"
