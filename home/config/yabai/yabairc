@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 updateWindowManagerSpacing() {
-  output=$(system_profiler SPDisplaysDataType | grep "Looks like" | awk '{print int($6/60)}' | awk '{$1=$1};1')
+  output=$(system_profiler SPDisplaysDataType | grep "Looks like" | awk '{print int($6/60)}' | awk '{$1=$1};1' | head -n 1)
   if [ -z "$output" ]; then
-    output=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print int($4/120)}' | awk '{$1=$1};1')
+    output=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print int($4/120)}' | awk '{$1=$1};1' | head -n 1)
   fi
   echo "$output"
 }
@@ -25,7 +25,7 @@ yabai -m rule --add manage=off app='Messages'
 yabai -m rule --add manage=off app='SoundID'
 yabai -m rule --add manage=off app='System Information'
 yabai -m rule --add manage=off app='System Settings'
-yabai -m rule --add manage=off app='Stats'
+yabai -m rule --add manage=off app='iStat'
 
 yabai -m config layout bsp
 
@@ -53,22 +53,6 @@ events=(
   "space_destroyed"
 )
 
-window_events=(
-  "application_hidden"
-  "application_visible"
-  "window_created"
-  "window_deminimized"
-  "window_destroyed"
-  "window_focused"
-  "window_minimized"
-  "window_moved"
-  "window_resized"
-)
-
 for event in "${events[@]}"; do
   yabai -m signal --add event="$event" action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
-done
-
-for event in "${window_events[@]}"; do
-  yabai -m signal --add event="$event" action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
 done
