@@ -45,6 +45,7 @@ if status is-interactive
     ssh-add -l &>/dev/null || ssh-add 2>/dev/null
     zoxide init fish --cmd j | source
     direnv hook fish | source
+    rtx activate fish | source
 
     ### Functions
 
@@ -128,7 +129,5 @@ if status is-interactive
 
     fzf_configure_bindings --directory=\ct --variables=\e\cv
 end
-
-fnm env --use-on-cd | source
 
 starship init fish | source

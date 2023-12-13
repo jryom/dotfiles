@@ -17,18 +17,16 @@ gh:
         gh extension install --force "$line"
     done < "{{ justfile_directory() }}/etc/gh_extensions"
 
-node:
-    #!/usr/bin/env fish
-    fnm install --lts
-    fnm use lts-latest
-    fnm default lts-latest
+rtx:
+    brew install rtx
+    rtx install --yes
 
 pnpm:
     #!/usr/bin/env fish
     pnpm add --global (cat "{{ justfile_directory() }}/etc/global_node_modules")
 
 pip:
-    python3 -m pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
+    pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
@@ -42,13 +40,11 @@ fisher:
 fish-globals:
     #!/usr/bin/env fish
     set -U brew_prefix (brew --prefix)
-    set -U PYENV_ROOT $HOME/.pyenv
 
     fish_add_path "$(python3 -c "import site; print(site.USER_BASE)")/bin"
     fish_add_path --prepend "$brew_prefix/opt" "$brew_prefix/sbin" "$brew_prefix/bin"
     fish_add_path './node_modules/.bin'
     fish_add_path "$HOME/.pnpm"
-    fish_add_path "$PYENV_ROOT/bin"
 
     set -U fish_key_bindings fish_vi_key_bindings
     set -U fish_cursor_default block

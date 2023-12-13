@@ -4,7 +4,9 @@ set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
 
 sudo -v
 
-fnm install --lts
+rtx upgrade
+
+rtx prune
 
 pnpm update --global
 
