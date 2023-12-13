@@ -1,8 +1,6 @@
-black
 dotbot
 neovim-remote
 pip
 pynvim
-pyright
 shell-gpt
-tiktoken
+virtualfish

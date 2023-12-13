@@ -37,6 +37,9 @@ misc:
 fisher:
     fish -c 'fisher update'
 
+virtualfish:
+    vf install auto_activation
+
 fish-globals:
     #!/usr/bin/env fish
     set -U brew_prefix (brew --prefix)
