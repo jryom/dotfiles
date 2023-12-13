@@ -2,11 +2,15 @@
 
 default: install
 
-install: gatekeeper system-preferences touch-id brew gh pip fish-globals dotbot fisher node pnpm misc
+install: gatekeeper system-preferences touch-id homebrew rtx brew gh pip fish-globals dotbot fisher virtualfish pnpm misc
 
 dotbot:
     #!/usr/bin/env fish
     dotbot --config-file "{{ justfile_directory() }}/etc/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
+
+homebrew:
+    #!/usr/bin/env bash
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew:
     brew bundle install --file="{{ justfile_directory() }}/etc/Brewfile" --force --no-lock
@@ -26,7 +30,8 @@ pnpm:
     pnpm add --global (cat "{{ justfile_directory() }}/etc/global_node_modules")
 
 pip:
-    pip install --user --upgrade $(cat "{{ justfile_directory() }}/etc/pip_packages" | tr "\n" " ")
+    #!/usr/bin/env fish
+    pip install --upgrade --requirement "{{ justfile_directory() }}/etc/requirements.txt"
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
@@ -35,27 +40,24 @@ misc:
     sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  > /private/etc/sudoers.d/yabai"
 
 fisher:
-    fish -c 'fisher update'
+    #!/usr/bin/env fish
+    fisher update
 
 virtualfish:
+    #!/usr/bin/env fish
     vf install auto_activation
 
 fish-globals:
     #!/usr/bin/env fish
-    set -U brew_prefix (brew --prefix)
-
-    fish_add_path "$(python3 -c "import site; print(site.USER_BASE)")/bin"
-    fish_add_path --prepend "$brew_prefix/opt" "$brew_prefix/sbin" "$brew_prefix/bin"
-    fish_add_path './node_modules/.bin'
-    fish_add_path "$HOME/.pnpm"
-
     set -U fish_key_bindings fish_vi_key_bindings
     set -U fish_cursor_default block
     set -U fish_cursor_insert line
     set -U fish_cursor_replace_one underscore
     set -U fish_cursor_visual block
 
+    set -U brew_prefix (brew --prefix)
     set -U fish_greeting
+    set -Ux fzf_fd_opts --color never
     set -Ux BAT_STYLE full
     set -Ux CLICOLOR 1
     set -Ux EDITOR nvim
@@ -64,10 +66,10 @@ fish-globals:
     set -Ux FZF_CTRL_T_COMMAND "rg --files"
     set -Ux FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --sceme path"
     set -Ux FZF_DEFAULT_COMMAND "rg --files"
-    set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
     set -Ux FZF_DEFAULT_OPTS "$FZF_THEME --no-separator --info hidden"
     set -Ux FZF_ENABLE_OPEN_PREVIEW 1
     set -Ux FZF_LEGACY_KEYBINDINGS 0
+    set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
     set -Ux GIT_CONFIG_COUNT 1
     set -Ux GIT_CONFIG_KEY_0 "delta.syntax-theme"
     set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
@@ -76,7 +78,13 @@ fish-globals:
     set -Ux PNPM_HOME "$HOME/.pnpm"
     set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
     set -Ux VISUAL "$EDITOR"
-    set -Ux fzf_fd_opts --color never
+
+    fish_add_path $(python3 -c "import site; print(site.USER_BASE)")/bin
+    fish_add_path --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin
+    fish_add_path ./node_modules/.bin
+    fish_add_path $HOME/.pnpm
+    fish_add_path $HOME/go/bin
+    fish_add_path $brew_prefix/opt/postgresql@16/bin
 
     # Colors
     set -U fish_color_autosuggestion brblack -d
@@ -213,7 +221,7 @@ system-preferences:
     killall Dock
 
 touch-id:
-    cat /etc/pam.d/sudo | grep "pam_tid.so" || sudo gsed -i '3 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo
+    cat /etc/pam.d/sudo | grep "pam_tid.so" || echo 'auth       sufficient     pam_tid.so' | sudo tee /etc/pam.d/sudo
 
 gatekeeper:
     if spctl --status >/dev/null; then sudo spctl --master-disable; fi
