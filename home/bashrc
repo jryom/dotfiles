@@ -1,3 +1,5 @@
 export PATH=/opt/homebrew/bin:$PATH
 
+eval "$(zoxide init bash --cmd j)"
+
 set -o vi
