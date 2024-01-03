@@ -29,6 +29,14 @@
       path: launch-agents/**
     "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
       path: etc/da-no-dead-keys.bundle
+- link:
+    ~/:
+      glob: true
+      path: ~/Documents/dotfiles-private/home-files/**
+      prefix: "."
+    ~/Library/LaunchAgents:
+      glob: true
+      path: ~/Documents/dotfiles-private/launch-agents/**
     "/usr/local/bin/keyboardSwitcher":
       path: ~/Documents/dotfiles-private/bin/keyboardSwitcher
     /Applications:
@@ -40,8 +48,3 @@
       path: ~/Documents/dotfiles-private/home-folders/config/exercism
     ~/.ssh:
       path: ~/Documents/dotfiles-private/home-folders/ssh
-- link:
-    ~/:
-      glob: true
-      path: ~/Documents/dotfiles-private/home-files/**
-      prefix: "."
