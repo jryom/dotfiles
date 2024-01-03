@@ -24,11 +24,14 @@
       glob: true
       path: home/**
       prefix: "."
+    /etc:
+      glob: true
+      path: etc/**
     ~/Library/LaunchAgents:
       glob: true
       path: launch-agents/**
     "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
-      path: etc/da-no-dead-keys.bundle
+      path: configs/da-no-dead-keys.bundle
 - link:
     ~/:
       glob: true

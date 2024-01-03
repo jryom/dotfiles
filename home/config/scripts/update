@@ -4,9 +4,9 @@ set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
 
 sudo -v
 
-rtx upgrade
+mise upgrade
 
-rtx prune
+mise prune
 
 pnpm update --global
 

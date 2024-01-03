@@ -2,36 +2,36 @@
 
 default: install
 
-install: gatekeeper system-preferences touch-id homebrew rtx brew gh pip fish-globals dotbot fisher virtualfish pnpm misc
+install: gatekeeper system-preferences homebrew mise brew gh pip fish-globals dotbot fisher virtualfish pnpm misc
 
 dotbot:
     #!/usr/bin/env fish
-    dotbot --config-file "{{ justfile_directory() }}/etc/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
+    dotbot --config-file "{{ justfile_directory() }}/configs/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
 
 homebrew:
     #!/usr/bin/env bash
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew:
-    brew bundle install --file="{{ justfile_directory() }}/etc/Brewfile" --force --no-lock
+    brew bundle install --file="{{ justfile_directory() }}/configs/Brewfile" --force --no-lock
 
 gh:
     #!/usr/bin/env bash
     while IFS= read -r line; do
         gh extension install --force "$line"
-    done < "{{ justfile_directory() }}/etc/gh_extensions"
+    done < "{{ justfile_directory() }}/configs/gh_extensions"
 
-rtx:
-    brew install rtx
-    rtx install --yes
+mise:
+    brew install mise
+    mise install --yes
 
 pnpm:
     #!/usr/bin/env fish
-    pnpm add --global (cat "{{ justfile_directory() }}/etc/global_node_modules")
+    pnpm add --global (cat "{{ justfile_directory() }}/configs/global_node_modules")
 
 pip:
     #!/usr/bin/env fish
-    pip install --upgrade --requirement "{{ justfile_directory() }}/etc/requirements.txt"
+    pip install --upgrade --requirement "{{ justfile_directory() }}/configs/requirements.txt"
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
@@ -219,9 +219,6 @@ system-preferences:
     defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
     defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
     killall Dock
-
-touch-id:
-    cat /etc/pam.d/sudo | grep "pam_tid.so" || echo 'auth       sufficient     pam_tid.so' | sudo tee /etc/pam.d/sudo
 
 gatekeeper:
     if spctl --status >/dev/null; then sudo spctl --master-disable; fi

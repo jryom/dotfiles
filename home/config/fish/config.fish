@@ -45,7 +45,7 @@ if status is-interactive
     ssh-add -l &>/dev/null || ssh-add 2>/dev/null
     zoxide init fish --cmd j | source
     direnv hook fish | source
-    rtx activate fish | source
+    mise activate fish | source
 
     ### Functions
 
