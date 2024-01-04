@@ -9,15 +9,7 @@
     ~/.config:
       force: true
       recursive: true
-    ~/.local:
-      force: true
-      recursive: true
-    ~/.ssh:
-      force: true
-      recursive: true
 - create:
-    ~/.ssh:
-      mode: 0700
     ~/.config/fish:
 - link:
     ~/:
@@ -32,22 +24,3 @@
       path: launch-agents/**
     "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
       path: configs/da-no-dead-keys.bundle
-- link:
-    ~/:
-      glob: true
-      path: ~/Documents/dotfiles-private/home-files/**
-      prefix: "."
-    ~/Library/LaunchAgents:
-      glob: true
-      path: ~/Documents/dotfiles-private/launch-agents/**
-    "/usr/local/bin/keyboardSwitcher":
-      path: ~/Documents/dotfiles-private/bin/keyboardSwitcher
-    /Applications:
-      glob: true
-      path: ~/Documents/dotfiles-private/bin/Applications/**
-    ~/.config/gh:
-      path: ~/Documents/dotfiles-private/home-folders/config/gh
-    ~/.config/exercism:
-      path: ~/Documents/dotfiles-private/home-folders/config/exercism
-    ~/.ssh:
-      path: ~/Documents/dotfiles-private/home-folders/ssh
