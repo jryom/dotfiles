@@ -26,6 +26,7 @@ yabai -m rule --add manage=off app='SoundID'
 yabai -m rule --add manage=off app='System Information'
 yabai -m rule --add manage=off app='System Settings'
 yabai -m rule --add manage=off app='iStat'
+yabai -m rule --add manage=off app="kitty" title='chatgpt' grid='4:4:1:1:2:2'
 
 yabai -m config layout bsp
 

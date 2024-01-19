@@ -1,14 +1,14 @@
 # vi: ft=config
 
 # launch and OS bindings
-ctrl + alt + cmd - k: /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~/Code
-ctrl + alt + cmd - n: echo "launch sh -c \"nvim -c 'Oil'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Documents/Notes
-ctrl + alt + cmd - d: echo "launch sh -c \"nvim -c 'Oil'\"" | /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --session=- -d ~/Code/dotfiles
+ctrl + alt + cmd - k: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"
+ctrl + alt + cmd - n: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" sh -c "nvim -c 'Oil'"
+ctrl + alt + cmd - d: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code/dotfiles" sh -c "nvim -c 'Oil'"
+ctrl + alt + cmd - g: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title chatgpt sh -c "fish -c chatgpt"
 ctrl + alt + cmd - m: open /System/Applications/Messages.app
 ctrl + alt + cmd - r: open /System/Applications/Reminders.app
 ctrl + alt + cmd - b: open /Applications/Firefox.app
 ctrl + alt + cmd - f: open /System/Library/CoreServices/Finder.app
-
 
 # misc single commands
 shift + ctrl - d: dark-mode

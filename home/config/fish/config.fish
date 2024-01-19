@@ -39,6 +39,8 @@ if status is-interactive
     abbr --set-cursor ai sgpt \"%\"
     abbr --set-cursor ais sgpt --shell \"%\"
     abbr --set-cursor aic sgpt --code \"%\"
+    abbr chat chatgpt
+    abbr gpt chatgpt
 
     ### Init calls
 
