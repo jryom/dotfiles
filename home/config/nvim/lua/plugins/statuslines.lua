@@ -45,8 +45,9 @@ return {
     "b0o/incline.nvim",
     event = "VeryLazy",
     opts = {
-      window = { margin = { vertical = { top = 0, bottom = 0 } }, padding = 0 },
+      hide = { cursorline = "focused_win" },
       ignore = { filetypes = { "oil" } },
+      window = { margin = { vertical = { top = 0, bottom = 0 } }, padding = 0 },
       render = function(props)
         local modified = vim.api.nvim_buf_get_option(props.buf, "modified")
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")

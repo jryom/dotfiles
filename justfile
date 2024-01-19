@@ -148,7 +148,7 @@ fish-globals:
     set -U tide_vi_mode_icon_visual v
 
     ### Left
-    set -U tide_left_prompt_items pwd git node python ruby go terraform newline jobs shlvl direnv character
+    set -U tide_left_prompt_items pwd direnv git node python ruby go terraform newline jobs character
     set -U tide_character_color brwhite
     set -U tide_character_color_failure brred
     set -U tide_left_prompt_frame_enabled false

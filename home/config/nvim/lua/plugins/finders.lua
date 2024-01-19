@@ -6,7 +6,6 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
-    cmd = "Telescope",
     event = "VeryLazy",
     keys = {
       { "<space>b", ":Telescope buffers<cr>", desc = "Buffers", silent = true },

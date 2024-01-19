@@ -79,7 +79,6 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
             local kind = require("lspkind").cmp_format({
-              symbol_map = { Copilot = "" },
               mode = "symbol_text",
               maxwidth = 50,
             })(entry, vim_item)
@@ -90,7 +89,6 @@ return {
           end,
         },
         sources = cmp.config.sources({
-          { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "nvim_lua" },

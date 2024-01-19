@@ -3,7 +3,6 @@ vim.opt.confirm = true
 vim.opt.expandtab = true
 vim.opt.fillchars = [[eob: ]]
 vim.opt.foldenable = true
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldlevelstart = 99
@@ -15,7 +14,8 @@ vim.opt.inccommand = "split"
 vim.opt.linebreak = true
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
-vim.opt.sessionoptions = { "buffers", "tabpages", "folds" }
+vim.opt.relativenumber = true
+vim.opt.sessionoptions = { "buffers", "tabpages" }
 vim.opt.shiftround = true
 vim.opt.shortmess:append("ctFTI")
 vim.opt.showmode = false

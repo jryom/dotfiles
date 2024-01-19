@@ -2,4 +2,6 @@ export PATH=/opt/homebrew/bin:$PATH
 
 eval "$(zoxide init bash --cmd j)"
 
+alias ll="ls -lah"
+
 set -o vi

@@ -9,6 +9,7 @@ return {
     layout = {
       default_direction = "prefer_right",
       placement = "edge",
+      max_width = 0.25,
     },
     nav = {
       preview = true,
