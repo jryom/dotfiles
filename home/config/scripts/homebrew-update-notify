@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 brew update
 
 output=$(brew outdated --verbose)
 
-if [[ -n "$output" ]]; then
+if [ -n "$output" ]; then
   n=3
   message=$(echo "$output" | head -n $n)
   terminal-notifier -message "$message" -title "Homebrew updates available" -group "brew"

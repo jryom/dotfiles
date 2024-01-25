@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 updateWindowManagerSpacing() {
   output=$(system_profiler SPDisplaysDataType | grep "Looks like" | awk '{print int($6/60)}' | awk '{$1=$1};1' | head -n 1)
@@ -46,16 +46,16 @@ yabai -m config window_opacity_duration 0.1
 
 yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" or .\"is-floating\"" || yabai -m window $YABAI_WINDOW_ID --toggle float'
 
-events=(
-  "display_added"
-  "display_removed"
-  "display_resized"
-  "mission_control_exit"
-  "space_changed"
-  "space_created"
-  "space_destroyed"
-)
+events="
+  display_added
+  display_removed
+  display_resized
+  mission_control_exit
+  space_changed
+  space_created
+  space_destroyed
+"
 
-for event in "${events[@]}"; do
+for event in $events; do
   yabai -m signal --add event="$event" action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
 done

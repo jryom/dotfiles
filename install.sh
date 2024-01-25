@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 if ! command -v brew >/dev/null; then
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 if ! pgrep -x "kitty" >/dev/null; then
   kitty --listen-on unix:/tmp/mykitty --single-instance

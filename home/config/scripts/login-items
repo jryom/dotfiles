@@ -1,14 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
-app_names=(
-  "AlDente"
-  "Bartender 5"
-  "ItsyCal"
-  "Maccy"
-  "NextDNS"
-  "YabaiIndicator"
-)
-
-for app_name in "${app_names[@]}"; do
+for app_name in \
+  "AlDente" \
+  "Bartender 5" \
+  "ItsyCal" \
+  "Maccy" \
+  "NextDNS" \
+  "YabaiIndicator"; do
+  echo "$app_name"
   open -gjF -a"/Applications/$app_name.app"
 done

@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 echo "$1" >/tmp/dark-mode
-theme=$([[ "$1" = "light" ]] && echo "zenbones-light" || echo "zenbones-dark")
+theme=$([ "$1" = "light" ] && echo "zenbones-light" || echo "zenbones-dark")
 kitty @ --to unix:/tmp/mykitty set-colors -a -c "$HOME/.config/kitty/themes/$theme.conf"
 ln -sf "$HOME/.config/kitty/themes/$theme.conf" ~/.config/kitty/theme.conf

@@ -10,7 +10,7 @@ dotbot:
     dotbot --config-file "$HOME/Documents/dotfiles-private/configs/dotbot.yaml" --base-directory "$HOME/Documents/dotfiles-private" --quiet
 
 homebrew:
-    #!/usr/bin/env bash
+    #!/usr/bin/env dash
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew:
@@ -227,7 +227,8 @@ gatekeeper:
 shell:
     cat /etc/shells | grep $(which fish) &>/dev/null || echo $(which fish) | sudo tee -a /etc/shells
     cat /etc/shells | grep $(which bash) &>/dev/null || echo $(which bash) | sudo tee -a /etc/shells
-    chsh -s $(which bash)
+    cat /etc/shells | grep $(which dash) &>/dev/null || echo $(which dash) | sudo tee -a /etc/shells
+    chsh -s $(which dash)
 
 init-dotfiles:
     mkdir "{{ justfile_directory() }}/.git"
