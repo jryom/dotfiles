@@ -47,6 +47,7 @@ fisher:
 virtualfish:
     #!/usr/bin/env fish
     vf install auto_activation
+    vf addplugins global_requirements
 
 fish-globals:
     #!/usr/bin/env fish
