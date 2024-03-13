@@ -4,14 +4,16 @@ vim.opt.expandtab = true
 vim.opt.fillchars = [[eob: ]]
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
-vim.opt.foldmethod = "expr"
 vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = "expr"
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.linebreak = true
+vim.opt.list = true
+vim.opt.listchars = "tab:·┈,trail:.,multispace:.,lead: ,extends:▶,precedes:◀,nbsp:˽"
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
 vim.opt.relativenumber = true

@@ -24,7 +24,6 @@ return {
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
-      ["<space>m"] = { ":!(gh markdown-preview % &); sleep 5; kill $\\!<cr>", "Markdown preview", silent = true },
       ["<space>"] = {
         p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
         n = { vim.diagnostic.goto_next, "Next diagnostic" },
