@@ -36,9 +36,9 @@ pip:
 
 misc:
     echo y | "$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
+    sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  > /private/etc/sudoers.d/yabai"
     -yabai --start-service
     -skhd --start-service
-    sudo bash -c "echo '$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa'  > /private/etc/sudoers.d/yabai"
 
 fisher:
     #!/usr/bin/env fish
