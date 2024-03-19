@@ -3,7 +3,6 @@ return {
     "echasnovski/mini.basics",
     key = { { "yo" } },
     opts = {
-      options = { basic = false },
       mappings = {
         option_toggle_prefix = "yo",
       },

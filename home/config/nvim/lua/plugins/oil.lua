@@ -1,7 +1,6 @@
 return {
   "stevearc/oil.nvim",
   cmd = "Oil",
-  event = "VeryLazy",
   keys = {
     { "-", ":Oil<CR>", desc = "File browser", silent = true },
     { "<C-h>", ":Oil<CR>", desc = "File browser", silent = true },

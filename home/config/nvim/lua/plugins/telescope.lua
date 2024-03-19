@@ -1,17 +1,14 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "debugloop/telescope-undo.nvim",
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
-  event = "VeryLazy",
   keys = {
     { "<space>b", ":Telescope buffers<cr>", desc = "Buffers", silent = true },
     { "<space>f", ":Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer", silent = true },
     { "<space>h", ":Telescope help_tags<cr>", desc = "Help", silent = true },
     { "<space>o", ":Telescope find_files<cr>", desc = "Open file", silent = true },
-    { "<leader>u", ":Telescope undo<cr>", desc = "Undo history", silent = true },
     { "<leader>d", ":Telescope diagnostics<cr>", desc = "Diagnostics", silent = true },
     { "<leader>q", ":Telescope quickfix<cr>", desc = "Quickfix", silent = true },
   },
@@ -47,6 +44,5 @@ return {
       },
     })
     require("telescope").load_extension("fzf")
-    require("telescope").load_extension("undo")
   end,
 }

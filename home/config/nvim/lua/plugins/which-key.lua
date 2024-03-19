@@ -17,12 +17,19 @@ return {
       { ["<space>a"] = { name = "AI" } },
       { ["<space>g"] = { name = "Generate annotation" } },
 
+      ["<space>r"] = {
+        function()
+          local command =
+            vim.api.nvim_replace_termcodes('"py:%s///g<left><left><left><c-r>p<right>', false, false, true)
+          vim.api.nvim_feedkeys(command, "n", {})
+        end,
+        "Replace visual selection",
+        mode = "x",
+      },
       gt = { "<C-]>", "Go to tag" },
-      j = { "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", "Next visual line", expr = true },
-      k = { "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", "Previous visual line", expr = true },
       ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
-      [">"] = { ">gv", "Indent", mode = "x" },
-      ["<"] = { "<gv", "Outdent", mode = "x" },
+      [">"] = { { ">gv", "Indent", mode = "x" }, { ">>", "Indent", mode = "n" } },
+      ["<"] = { { "<gv", "Outdent", mode = "x" }, { "<<", "Outdent", mode = "n" } },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
       ["<space>"] = {
         p = { vim.diagnostic.goto_prev, "Previous diagnostic" },

@@ -1,6 +1,5 @@
 return {
   "ibhagwan/fzf-lua",
-  event = "VeryLazy",
   keys = {
     {
       "<space>i",
