@@ -7,6 +7,7 @@ install: gatekeeper system-preferences homebrew mise brew gh pip fish-globals do
 dotbot:
     #!/usr/bin/env fish
     dotbot --config-file "{{ justfile_directory() }}/configs/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
+    brctl download "$HOME/Documents/dotfiles-private"
     dotbot --config-file "$HOME/Documents/dotfiles-private/configs/dotbot.yaml" --base-directory "$HOME/Documents/dotfiles-private" --quiet
 
 homebrew:
