@@ -15,7 +15,10 @@ homebrew:
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew:
-    brew bundle install --file="{{ justfile_directory() }}/configs/Brewfile" --force --no-lock
+    brew bundle install --file="{{ justfile_directory() }}/configs/brewfile" --force --no-lock
+
+brew-personal:
+    brew bundle install --file="{{ justfile_directory() }}/configs/brewfile_personal" --force --no-lock
 
 gh:
     #!/usr/bin/env bash

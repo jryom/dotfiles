@@ -23,7 +23,7 @@ return {
       gitcommit = { "commitlint" },
       markdown = { "markdownlint_cli2" },
       python = { "ruff" },
-      yaml = { "actionlint" },
+      -- yaml = { "actionlint" },
       zsh = { "zsh" },
     }
   end,

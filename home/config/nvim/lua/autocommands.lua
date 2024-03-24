@@ -46,3 +46,11 @@ vim.api.nvim_create_autocmd({ "DirChanged", "SessionLoadPost", "UIEnter" }, {
   end,
   group = group,
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufReadPost", "BufNewFile" }, {
+  group = group,
+  pattern = ".github/*",
+  callback = function()
+    require("lint").try_lint("actionlint")
+  end,
+})
