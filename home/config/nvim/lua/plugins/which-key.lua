@@ -31,9 +31,18 @@ return {
       [">"] = { { ">gv", "Indent", mode = "x" }, { ">>", "Indent", mode = "n" } },
       ["<"] = { { "<gv", "Outdent", mode = "x" }, { "<<", "Outdent", mode = "n" } },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
+      ["<space>S"] = { ":lua require('auto-session').SaveSession()<cr>", "Make session" },
+      ["<space>D"] = { ":lua require('auto-session').DeleteSession()<cr>", "Make session" },
       ["<space>"] = {
         p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
         n = { vim.diagnostic.goto_next, "Next diagnostic" },
+      },
+      f = {
+        function()
+          vim.api.nvim_feedkeys("/", "n", {})
+        end,
+        "Search",
+        mode = "n",
       },
       ["<C-k>"] = {
         {

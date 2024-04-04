@@ -1,24 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
 notARepository: "skip"
 promptToReturnFromSubprocess: false
-startuppopupversion: 1
+disableStartupPopups: true
 
 git:
+  autoFetch: true
   branchLogCmd:
     'git log --graph --color=always --abbrev-commit --decorate --date=relative
     --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)|
     %C(cyan)%ad%C(white))" {{branchName}} --'
+  log:
+    showWholeGraph: false
   paging:
     colorArg: always
     pager: delta --paging=never
-  pull:
-    mode: "rebase"
 
 gui:
+  animateExplosion: false
+  expandFocusedSidePanel: true
+  filterMode: fuzzy
   showCommandLog: false
   showFileTree: true
+  showPanelJumps: false
   sidePanelWidth: 0.25
-  skipstashwarning: true
-  skipunstagelinewarning: false
+  skipRewordInEditorWarning: false
+  skipStashWarning: true
   authorColors:
     "*": "blue"
 

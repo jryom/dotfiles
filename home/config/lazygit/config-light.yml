@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 gui:
   theme:
     activeBorderColor:
@@ -7,5 +8,3 @@ gui:
       - "#d5c9c3"
     selectedLineBgColor:
       - "#E9E4E2"
-    selectedRangeBgColor:
-      - underline

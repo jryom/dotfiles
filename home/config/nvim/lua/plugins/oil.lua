@@ -8,6 +8,7 @@ return {
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
+    experimental_watch_for_changes = true,
     win_options = {
       number = false,
       relativenumber = false,

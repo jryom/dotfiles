@@ -4,19 +4,31 @@ local function my_on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
-  api.config.mappings.default_on_attach(bufnr)
 
-  -- custom mappings
-  vim.keymap.set("n", "h", api.node.navigate.parent, opts("Up"))
-  vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
+  vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Up"))
+  vim.keymap.set("n", "l", function()
+    api.node.open.edit()
+  end, opts("Open"))
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
 return {
   "nvim-tree/nvim-tree.lua",
+  event = "VeryLazy",
   keys = {
-    { "<space>t", ":NvimTreeFindFileToggle<cr>", desc = "Toggle neotree", silent = true },
+    { "<space>t", ":NvimTreeFindFileToggle<cr>", desc = "Toggle tree", silent = true },
   },
+  cmd = { "NvimTreeOpen" },
+  config = function(_, opts)
+    require("nvim-tree").setup(opts)
+
+    local width = vim.api.nvim_get_option("columns")
+    if width > 250 and vim.bo.filetype ~= "gitcommit" then
+      vim.cmd("NvimTreeOpen")
+    else
+      vim.cmd("NvimTreeClose")
+    end
+  end,
   opts = {
     on_attach = my_on_attach,
     hijack_cursor = true,
@@ -24,62 +36,31 @@ return {
     sync_root_with_cwd = true,
     select_prompts = true,
     view = {
-      centralize_selection = false,
       width = {
         min = 30,
         max = 60,
       },
     },
     renderer = {
-      root_folder_label = ":~:s?$?/..?",
       special_files = {},
-      highlight_git = "all",
-      highlight_diagnostics = "all",
       highlight_opened_files = "all",
-      highlight_modified = "all",
       icons = {
         web_devicons = {
           file = { enable = false },
           folder = { enable = false },
         },
-        git_placement = "after",
-        padding = "",
         show = {
           file = false,
           folder = false,
-        },
-        glyphs = {
-          default = "",
-          symlink = "",
-          bookmark = "",
-          modified = "m",
-          git = {
-            unstaged = "∗",
-            staged = "+",
-            renamed = "r",
-            untracked = "∗",
-            deleted = "-",
-            ignored = "i",
-          },
+          folder_arrow = false,
+          git = false,
+          modified = false,
+          diagnostics = false,
+          bookmarks = false,
         },
       },
     },
     update_focused_file = { enable = true },
-    diagnostics = {
-      enable = true,
-      show_on_dirs = true,
-      severity = {
-        min = vim.diagnostic.severity.HINT,
-        max = vim.diagnostic.severity.ERROR,
-      },
-      icons = {
-        hint = "H",
-        info = "I",
-        warning = "W",
-        error = "E",
-      },
-    },
-    modified = { enable = true },
     trash = { cmd = "trash" },
   },
 }

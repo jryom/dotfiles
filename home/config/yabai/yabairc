@@ -12,41 +12,38 @@ export WM_SPACING="$(updateWindowManagerSpacing)"
 
 sudo yabai --load-sa
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# Global settings
+yabai -m config \
+  layout bsp \
+  window_origin_display focused \
+  window_gap "$WM_SPACING" \
+  bottom_padding "$WM_SPACING" \
+  left_padding "$WM_SPACING" \
+  right_padding "$WM_SPACING" \
+  top_padding "$WM_SPACING" \
+  normal_window_opacity 0.8 \
+  window_opacity 0.8 \
+  window_opacity on \
+  window_opacity_duration 0.1 \
+  window_animation_duration 0.1
 
-yabai -m rule --add manage=off app='1Password'
-yabai -m rule --add manage=off app='Activity Monitor'
-yabai -m rule --add manage=off app='Archive Utility'
-yabai -m rule --add manage=off app='Bartender.'
-yabai -m rule --add manage=off app='FaceTime'
-yabai -m rule --add manage=off app='IINA'
-yabai -m rule --add manage=off app='Installer'
-yabai -m rule --add manage=off app='Messages'
-yabai -m rule --add manage=off app='SoundID'
-yabai -m rule --add manage=off app='System Information'
-yabai -m rule --add manage=off app='System Settings'
-yabai -m rule --add manage=off app='iStat'
-yabai -m rule --add manage=off app="kitty" title='chatgpt' grid='8:8:5:0:3:4'
+# Rules
+yabai -m rule \
+  --add manage=off app="kitty" title='chatgpt' grid='8:8:5:0:3:4' \
+  --add manage=off app='1Password' \
+  --add manage=off app='Activity Monitor' \
+  --add manage=off app='Archive Utility' \
+  --add manage=off app='Bartender.' \
+  --add manage=off app='FaceTime' \
+  --add manage=off app='IINA' \
+  --add manage=off app='Installer' \
+  --add manage=off app='Messages' \
+  --add manage=off app='SoundID' \
+  --add manage=off app='System Information' \
+  --add manage=off app='System Settings' \
+  --add manage=off app='iStat'
 
-yabai -m config layout bsp
-
-yabai -m config top_padding "$WM_SPACING"
-yabai -m config bottom_padding "$WM_SPACING"
-yabai -m config left_padding "$WM_SPACING"
-yabai -m config right_padding "$WM_SPACING"
-yabai -m config window_gap "$WM_SPACING"
-
-yabai -m config window_origin_display focused
-
-yabai -m config normal_window_opacity 0.94
-yabai -m config window_opacity on
-yabai -m config window_opacity_duration 0.1
-yabai -m config window_animation_duration 0.1
-
-yabai -m config window_opacity_duration 0.1
-
-yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" or .\"is-floating\"" || yabai -m window $YABAI_WINDOW_ID --toggle float'
-
+# Signals
 events="
   display_added
   display_removed
@@ -60,3 +57,8 @@ events="
 for event in $events; do
   yabai -m signal --add event="$event" action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
 done
+
+yabai -m signal \
+  --add event=dock_did_restart action="sudo yabai --load-sa" \
+  --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" or .\"is-floating\"" || yabai -m window $YABAI_WINDOW_ID --toggle float' \
+  --add event=window_focused action="yabai -m window $YABAI_WINDOW_ID --opacity 1.0; yabai -m window recent --opacity 0.8"

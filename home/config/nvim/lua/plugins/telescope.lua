@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
+  event = "VeryLazy",
   keys = {
     { "<space>b", ":Telescope buffers<cr>", desc = "Buffers", silent = true },
     { "<space>f", ":Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer", silent = true },
@@ -20,6 +21,7 @@ return {
         buffers = {
           previewer = false,
           mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
+          sort_lastused = true,
         },
         help_tags = {
           mappings = {

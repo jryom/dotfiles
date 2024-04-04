@@ -26,6 +26,7 @@ return {
       },
     },
     presets = {
+      bottom_search = true,
       long_message_to_split = true,
       command_palette = true,
       lsp_doc_border = true,
@@ -34,8 +35,7 @@ return {
     cmdline = {
       format = {
         cmdline = { icon = "", title = "" },
-        search_down = false,
-        search_up = false,
+        search_down = { kind = "search", pattern = "", icon = "", lang = "regex" },
         filter = false,
         lua = false,
         help = false,
