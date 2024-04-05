@@ -1,8 +1,7 @@
 source ~/.config/fish/env.fish
 
 if status is-interactive
-    set -gx DARK_MODE_ACTIVE $(defaults read -g AppleInterfaceStyle &>/dev/null && echo 1 || echo 0)
-    if [ $DARK_MODE_ACTIVE = 1 ]
+    if [ "$(cat /tmp/dark-mode)" = dark ]
         set -gx BAT_THEME ansi
     else
         set -gx BAT_THEME GitHub
@@ -96,16 +95,12 @@ if status is-interactive
     function g
         set LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
 
-        if [ "$DARK_MODE_ACTIVE" = 1 ]
-            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
-        else
-            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
-        end
+        set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-$(cat /tmp/dark-mode || 'light').yml"
 
         if test (tput cols) -ge 150
-            set -gx DELTA_FEATURES "+side-by-side"
+            set -gx DFT_DISPLAY side-by-side
         else
-            set -gx DELTA_FEATURES -side-by-side
+            set -gx DFT_DISPLAY inline
         end
 
         j_and_launch lazygit "$argv[1]"

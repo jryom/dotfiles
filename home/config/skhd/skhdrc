@@ -1,5 +1,9 @@
 # vi: ft=config
 
+.blacklist [
+  "Live"
+]
+
 # launch and OS bindings
 ctrl + alt + cmd - k: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"
 ctrl + alt + cmd - n: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" bash -ci "nvim -i 'Oil'"
@@ -15,7 +19,7 @@ shift + ctrl - d: dark-mode
 shift + ctrl - s: sh -c "$HOME/.config/skhd/cycle-layouts.sh"
 shift + ctrl - f: yabai -m space --layout float
  shift + cmd - f: yabai -m window --toggle native-fullscreen
-         cmd - y: pkill yabai & pkill skhd & brew services restart borders
+         cmd - y: pkill yabai & pkill skhd
          alt - t: [[ "$(yabai -m config window_opacity)" == on ]] && yabai -m config window_opacity off || yabai -m config window_opacity on
          alt - 0: yabai -m space --balance
          alt - r: yabai -m space --rotate 90

@@ -66,6 +66,8 @@ fish-globals:
     set -Ux fzf_fd_opts --color never
     set -Ux BAT_STYLE full
     set -Ux CLICOLOR 1
+    set -Ux DFT_COLOR always
+    set -Ux DFT_TAB_WIDTH 2
     set -Ux EDITOR nvim
     set -Ux ESCDELAY 0
     set -Ux FZF_COMPLETE 1
@@ -77,7 +79,6 @@ fish-globals:
     set -Ux FZF_LEGACY_KEYBINDINGS 0
     set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
     set -Ux GIT_CONFIG_COUNT 1
-    set -Ux GIT_CONFIG_KEY_0 "delta.syntax-theme"
     set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
     set -Ux KEYTIMEOUT 1
     set -Ux MANPATH $MANPATH "$brew_prefix/share/man"

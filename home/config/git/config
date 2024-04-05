@@ -1,47 +1,43 @@
 # vi: ft=gitconfig
 
-[user]
-	name = Jesper Ryom
-	email = 2834949+jryom@users.noreply.github.com
-	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3vcuzfD2p7aggLGpt+D2Svnor9F5+/OyzgRtPaVR7g 2834949+jryom@users.noreply.github.com
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	pager = true
+	status = auto
+	ui = true
+
+[color "grep"]
+	filename = blue
+	linenumber = green
+	match = bold yellow
 
 [commit]
 	gpgsign = true
 
+[diff]
+	tool = difftastic
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+	prompt = false
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+
 [gpg]
 	format = ssh
 
-[push]
-	default = current
+[grep]
+	heading = true
+	linenumber = true
 
-[pull]
-	rebase = true
-
-[rebase]
-	autoStash = true
-
-[core]
-	pager = delta
-
-[remote "origin"]
-	prune = true
-
-[color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = true
-	pager = true
-
-[diff]
-	colorMoved = default
-
-[pager]
-	difftool = true
-
-[interactive]
-	diffFilter = delta --color-only
+[init]
+	defaultBranch = main
 
 [merge]
 	conflictstyle = diff3
@@ -49,20 +45,22 @@
 [mergetool]
 	prompt = false
 
-[color "grep"]
-	linenumber = green
-	filename = blue
-	match = bold yellow
+[pager]
+	difftool = true
 
-[grep]
-	linenumber = true
-	heading = true
+[pull]
+	rebase = true
 
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+[push]
+	default = current
 
-[init]
-	defaultBranch = main
+[rebase]
+	autoStash = true
+
+[remote "origin"]
+	prune = true
+
+[user]
+	email = 2834949+jryom@users.noreply.github.com
+	name = Jesper Ryom
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3vcuzfD2p7aggLGpt+D2Svnor9F5+/OyzgRtPaVR7g 2834949+jryom@users.noreply.github.com

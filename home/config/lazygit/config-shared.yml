@@ -13,11 +13,9 @@ git:
   log:
     showWholeGraph: false
   paging:
-    colorArg: always
-    pager: delta --paging=never
+    externalDiffCommand: difft --background "$(cat /tmp/dark-mode || 'light')"
 
 gui:
-  animateExplosion: false
   expandFocusedSidePanel: true
   filterMode: fuzzy
   showCommandLog: false
