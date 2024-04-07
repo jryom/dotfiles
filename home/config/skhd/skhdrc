@@ -6,8 +6,8 @@
 
 # launch and OS bindings
 ctrl + alt + cmd - k: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"
-ctrl + alt + cmd - n: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" bash -ci "nvim -i 'Oil'"
-ctrl + alt + cmd - d: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code/dotfiles" bash -ci "nvim -i 'Oil'"
+ctrl + alt + cmd - n: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"
+ctrl + alt + cmd - d: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code/dotfiles" dash -c "fish -i -c 'nvim -i -c Oil'"
 ctrl + alt + cmd - g: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title chatgpt dash -c "fish -i -c chatgpt"
 ctrl + alt + cmd - m: open /System/Applications/Messages.app
 ctrl + alt + cmd - r: open /System/Applications/Reminders.app
@@ -16,11 +16,11 @@ ctrl + alt + cmd - f: open /System/Library/CoreServices/Finder.app
 
 # misc single commands
 shift + ctrl - d: dark-mode
-shift + ctrl - s: sh -c "$HOME/.config/skhd/cycle-layouts.sh"
+shift + ctrl - s: ~/.config/skhd/cycle_layouts.sh
 shift + ctrl - f: yabai -m space --layout float
  shift + cmd - f: yabai -m window --toggle native-fullscreen
          cmd - y: pkill yabai & pkill skhd
-         alt - t: [[ "$(yabai -m config window_opacity)" == on ]] && yabai -m config window_opacity off || yabai -m config window_opacity on
+         alt - t: if [ "$(yabai -m config window_opacity)" = "on" ]; then yabai -m config window_opacity off; else yabai -m config window_opacity on; fi
          alt - 0: yabai -m space --balance
          alt - r: yabai -m space --rotate 90
          alt - x: yabai -m space --mirror x-axis
@@ -36,7 +36,6 @@ shift + alt - m: { yabai -m window --display prev && yabai -m display --focus pr
 
 # send space to display and follow focus
 shift + ctrl - m: yabai -m space --display next || yabai -m space --display prev
-
 
 # focus window
 alt - h: yabai -m window --focus west || yabai -m window --focus stack.prev || yabai -m space --focus prev
@@ -133,4 +132,4 @@ shift + ctrl - c: yabai -m space --create && index=$(yabai -m query --spaces --d
 
 # destroy space
 shift + ctrl - w: yabai -m space --destroy
-shift + ctrl - q: dash -c "$HOME/.config/yabai/yabai-destroy_empty_spaces.sh"
+shift + ctrl - q: dash -c "$HOME/.config/yabai/destroy_empty_spaces.sh"
