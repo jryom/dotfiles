@@ -25,7 +25,13 @@ return {
     view_options = {
       show_hidden = true,
       is_always_hidden = function(name)
-        return name == ".."
+        local alwaysHidden = { "..", ".DS_Store" }
+        for _, value in ipairs(alwaysHidden) do
+          if name == value then
+            return true
+          end
+        end
+        return false
       end,
     },
   },

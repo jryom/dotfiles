@@ -12,15 +12,15 @@ return {
     local map = require("which-key").register
 
     map({
-      -- Prefixes
-      { "<space>", { name = "Git" } },
+      --- Prefixes
+      { ["<space>g"] = { name = "Git" } },
       { ["<space>a"] = { name = "AI" } },
-      { ["<space>g"] = { name = "Generate annotation" } },
-
+      { ["<space>G"] = { name = "Generate annotation" } },
+      ---
+      ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },
       ["<space>r"] = {
         function()
-          local command =
-            vim.api.nvim_replace_termcodes('"py:%s///g<left><left><left><c-r>p<right>', false, false, true)
+          local command = vim.api.nvim_replace_termcodes('"py:%s///<left><left><c-r>p<right>', false, false, true)
           vim.api.nvim_feedkeys(command, "n", {})
         end,
         "Replace visual selection",
@@ -28,8 +28,8 @@ return {
       },
       gt = { "<C-]>", "Go to tag" },
       ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
-      [">"] = { { ">gv", "Indent", mode = "x" }, { ">>", "Indent", mode = "n" } },
-      ["<"] = { { "<gv", "Outdent", mode = "x" }, { "<<", "Outdent", mode = "n" } },
+      [">"] = { ">gv", "Indent", mode = "x" },
+      ["<"] = { "<gv", "Outdent", mode = "x" },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
       ["<space>S"] = { ":lua require('auto-session').SaveSession()<cr>", "Make session" },
       ["<space>D"] = { ":lua require('auto-session').DeleteSession()<cr>", "Make session" },

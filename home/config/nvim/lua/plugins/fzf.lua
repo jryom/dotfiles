@@ -1,6 +1,12 @@
 return {
   "ibhagwan/fzf-lua",
   keys = {
+    { "<space>b", ":FzfLua buffers<cr>", desc = "Buffers", silent = true },
+    { "<space>f", ":FzfLua grep_curbuf<cr>", desc = "Search in buffer", silent = true },
+    { "<space>h", ":FzfLua helptags<cr>", desc = "Help", silent = true },
+    { "<space>o", ":FzfLua files<cr>", desc = "Open file", silent = true },
+    { "<leader>d", ":FzfLua diagnostics_workspace<cr>", desc = "Diagnostics", silent = true },
+    { "<leader>q", ":FzfLua quickfix<cr>", desc = "Quickfix", silent = true },
     {
       "<space>i",
       ":FzfLua grep_project<cr>",
@@ -23,9 +29,21 @@ return {
       silent = true,
     },
   },
+  config = function(_, opts)
+    require("fzf-lua").setup(opts)
+    vim.api.nvim_set_hl(0, "FzfLuaBufLineNr", { link = "LineNr" })
+    vim.api.nvim_set_hl(0, "FzfLuaCursor", { link = "None" })
+    vim.api.nvim_set_hl(0, "FzfLuaHeaderBind", { link = "Special" })
+    vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Special" })
+    vim.api.nvim_set_hl(0, "FzfLuaTabMarker", { link = "Keyword" })
+    vim.api.nvim_set_hl(0, "FzfLuaTabTitle", { link = "Title" })
+    vim.api.nvim_set_hl(0, "FzfLuaBufFlagAlt", {})
+    vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", {})
+    vim.api.nvim_set_hl(0, "FzfLuaBufName", {})
+    vim.api.nvim_set_hl(0, "FzfLuaBufNr", {})
+  end,
   opts = {
     "telescope",
-    winopts = { preview = { hidden = "hidden" } },
     keymap = {
       builtin = {
         ["<C-u>"] = "preview-page-up",

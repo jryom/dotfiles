@@ -8,7 +8,7 @@ yabai -m config \
   window_origin_display focused \
   window_opacity on \
   active_window_opacity 1.0 \
-  normal_window_opacity 0.8 \
+  normal_window_opacity 0.7 \
   window_opacity_duration 0.1 \
   window_animation_duration 0.1 \
   window_gap 15 \

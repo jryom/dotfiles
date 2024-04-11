@@ -20,10 +20,18 @@ local macro_rec = function()
 end
 
 local treesitter = function()
-  if vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] ~= nil then
+  if
+    vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] ~= nil and vim.api.nvim_win_get_width(0) > 120
+  then
     return vim.bo.filetype .. " (ts)"
   end
   return vim.bo.filetype
+end
+
+local hideBelow = function(columns)
+  return function()
+    return vim.api.nvim_win_get_width(0) > columns
+  end
 end
 
 return {
@@ -34,12 +42,20 @@ return {
       section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { cwd },
-      lualine_b = { "branch" },
-      lualine_c = { { "filename", path = 1 }, macro_rec },
-      lualine_x = { lsp_clients },
-      lualine_y = { treesitter },
-      lualine_z = { "%l/%L" },
+      lualine_a = { { cwd, cond = hideBelow(100) } },
+      lualine_b = { { "branch", cond = hideBelow(140) } },
+      lualine_c = { { "filename", path = 1, shorting_target = 5 }, macro_rec },
+      lualine_x = { { lsp_clients, cond = hideBelow(150) } },
+      lualine_y = { { treesitter, cond = hideBelow(80) } },
+      lualine_z = { { "%l/%L", cond = hideBelow(80) } },
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = { { "filename", path = 1, shorting_target = 5 } },
+      lualine_x = { { "%l/%L", cond = hideBelow(80) } },
+      lualine_y = {},
+      lualine_z = {},
     },
   },
 }

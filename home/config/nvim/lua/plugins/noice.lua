@@ -2,7 +2,6 @@ return {
   "folke/noice.nvim",
   dependencies = "muniftanjim/nui.nvim",
   event = "VeryLazy",
-  keys = { { "<space>M", ":Noice telescope<cr>", desc = "Messages", silent = true } },
   opts = {
     lsp = {
       override = {

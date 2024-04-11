@@ -38,7 +38,7 @@ return {
     view = {
       width = {
         min = 30,
-        max = 60,
+        max = 50,
       },
     },
     renderer = {
