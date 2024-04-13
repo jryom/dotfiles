@@ -14,6 +14,10 @@ ctrl + alt + cmd - r: open /System/Applications/Reminders.app
 ctrl + alt + cmd - b: open /Applications/Firefox.app
 ctrl + alt + cmd - f: open /System/Library/CoreServices/Finder.app
 
+# audio control
+f11: ~/.config/skhd/change_headphones_volume.sh dec 0.05
+f12: ~/.config/skhd/change_headphones_volume.sh inc 0.05
+
 # misc single commands
 shift + ctrl - d: dark-mode
 shift + ctrl - s: ~/.config/skhd/cycle_layouts.sh
@@ -132,4 +136,4 @@ shift + ctrl - c: yabai -m space --create && index=$(yabai -m query --spaces --d
 
 # destroy space
 shift + ctrl - w: yabai -m space --destroy
-shift + ctrl - q: dash -c "$HOME/.config/yabai/destroy_empty_spaces.sh"
+shift + ctrl - q: ~/.config/yabai/destroy_empty_spaces.sh
