@@ -22,20 +22,6 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "VimResized" }, {
-  callback = function()
-    local width = vim.api.nvim_get_option("columns")
-    if width > 250 and vim.bo.filetype ~= "gitcommit" then
-      vim.cmd("NvimTreeOpen")
-    else
-      pcall(function()
-        vim.cmd("NvimTreeClose")
-      end)
-    end
-  end,
-  group = group,
-})
-
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
   command = "setlocal cursorline | autocmd WinLeave * setlocal nocursorline",
   group = group,
@@ -66,13 +52,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufReadPost", "BufNew
   pattern = { "**/.github/**/*.yml" },
   callback = function()
     require("lint").try_lint("actionlint")
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufEnter" }, {
-  group = group,
-  callback = function()
-    local api = require("nvim-tree.api")
-    api.tree.collapse_all(true)
   end,
 })
