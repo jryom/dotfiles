@@ -17,6 +17,7 @@ return {
       { ["<space>a"] = { name = "AI" } },
       { ["<space>G"] = { name = "Generate annotation" } },
       ---
+      ["<D-s>"] = { ":w<cr>", "Markdown preview" },
       ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },
       ["<space>r"] = {
         function()
@@ -36,13 +37,6 @@ return {
       ["<space>"] = {
         p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
         n = { vim.diagnostic.goto_next, "Next diagnostic" },
-      },
-      f = {
-        function()
-          vim.api.nvim_feedkeys("/", "n", {})
-        end,
-        "Search",
-        mode = "n",
       },
       ["<C-k>"] = {
         {

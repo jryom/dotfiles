@@ -1,16 +1,8 @@
-return {
-  {
-    "l3mon4d3/luasnip",
-    event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
-    opts = {},
-  },
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
 
+return {
   {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
@@ -20,12 +12,13 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
       "onsails/lspkind.nvim",
-      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
     },
     opts = function()
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
 
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
@@ -58,7 +51,7 @@ return {
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" },
+          { name = "vsnip" },
           { name = "nvim_lua" },
           { name = "path" },
         }, {
@@ -66,31 +59,31 @@ return {
         }),
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.fn["vsnip#anonymous"](args.body)
           end,
         },
         mapping = {
           ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
           ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_jumpable() and not cmp.visible() then
-              luasnip.expand_or_jump()
+            if vim.fn["vsnip#available"](1) and not cmp.visible() then
+              feedkey("<Plug>(vsnip-expand-or-jump)", "")
             else
               cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
             end
           end, { "i", "c" }),
 
           ["<C-p>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            if vim.fn["vsnip#jumpable"](-1) == 1 then
+              feedkey("<Plug>(vsnip-jump-prev)", "")
             else
               fallback()
             end
           end, { "i" }),
 
           ["<C-n>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            if vim.fn["vsnip#available"](1) == 1 then
+              feedkey("<Plug>(vsnip-expand-or-jump)", "")
             else
               fallback()
             end

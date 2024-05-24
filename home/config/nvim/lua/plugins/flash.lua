@@ -9,9 +9,20 @@ return {
       char = {
         enabled = false,
       },
+      search = {
+        enabled = false,
+      },
     },
   },
   keys = {
+    {
+      "s",
+      mode = { "n", "x", "o" },
+      function()
+        require("flash").jump()
+      end,
+      desc = "Flash",
+    },
     {
       "r",
       mode = "o",

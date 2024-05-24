@@ -46,7 +46,6 @@ return {
 
       require("which-key").register({
         buffer = bufnr,
-        K = { vim.lsp.buf.hover, "Show docs" },
         ["<space>"] = {
           r = { vim.lsp.buf.rename, "Rename word" },
           l = {
@@ -55,6 +54,12 @@ return {
             q = { vim.diagnostic.setloclist, "Diagnostics to quickfix" },
             d = { ":FzfLua lsp_definitions<cr>", "Definition" },
             D = { vim.lsp.buf.declaration, "Declaration" },
+            h = {
+              function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end,
+              "Toggle inlay hints",
+            },
             i = { ":FzfLua lsp_implementations<cr>", "Implementation" },
             r = { ":FzfLua lsp_references<cr>", "References" },
             t = { ":FzfLua lsp_typedefs<cr>", "Type definition" },
@@ -69,7 +74,20 @@ return {
       })
     end
 
-    require("typescript-tools").setup({ on_attach = on_attach, settings = { expose_as_code_actions = "all" } })
+    require("typescript-tools").setup({
+      on_attach = on_attach,
+      settings = {
+        expose_as_code_actions = "all",
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayVariableTypeHints = true,
+        },
+      },
+    })
 
     return {
       capabilities = capabilities,

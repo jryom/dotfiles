@@ -42,11 +42,11 @@ return {
       section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { { cwd, cond = hideBelow(100) } },
-      lualine_b = { { "branch", cond = hideBelow(140) } },
+      lualine_a = { { cwd, cond = hideBelow(150) } },
+      lualine_b = { { "branch", cond = hideBelow(160) } },
       lualine_c = { { "filename", path = 1, shorting_target = 5 }, macro_rec },
       lualine_x = { { lsp_clients, cond = hideBelow(150) } },
-      lualine_y = { { treesitter, cond = hideBelow(80) } },
+      lualine_y = { { treesitter, cond = hideBelow(100) } },
       lualine_z = { { "%l/%L", cond = hideBelow(80) } },
     },
     inactive_sections = {

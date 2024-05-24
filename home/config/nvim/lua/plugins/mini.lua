@@ -17,17 +17,4 @@ return {
     event = "VeryLazy",
     opts = {},
   },
-
-  {
-    "echasnovski/mini.comment",
-    dependencies = "joosepalviste/nvim-ts-context-commentstring",
-    keys = { { "gc", mode = { "x", "n" } }, { "gcc", mode = { "x", "n" } } },
-    opts = {
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-        end,
-      },
-    },
-  },
 }

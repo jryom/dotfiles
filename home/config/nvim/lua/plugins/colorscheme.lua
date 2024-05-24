@@ -3,9 +3,8 @@ require("utils")
 return {
   {
     "mcchrish/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
     config = function()
-      vim.g.zenbones_compat = 1
-
       local mode = Utils:read_file("/tmp/dark-mode")
 
       if type(mode) == "string" and string.find(mode, "dark") then

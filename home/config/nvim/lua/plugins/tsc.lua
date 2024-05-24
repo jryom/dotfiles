@@ -5,6 +5,6 @@ return {
     auto_close_qflist = true,
     auto_start_watch_mode = true,
     enable_progress_notifications = false,
-    flags = { watch = true },
+    flags = { watch = true, noEmit = true },
   },
 }
