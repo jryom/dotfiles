@@ -13,3 +13,5 @@ pnpm update --global
 brew upgrade --greedy
 
 tldr --update
+
+gh extension upgrade --all
