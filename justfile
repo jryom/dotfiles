@@ -2,17 +2,14 @@
 
 default: install
 
-install: gatekeeper system-preferences homebrew mise brew gh pip fish-globals dotbot fisher virtualfish pnpm misc
+install: gatekeeper system-preferences mise brew pip fish-globals dotbot fisher virtualfish pnpm misc gh
 
 dotbot:
     #!/usr/bin/env fish
     dotbot --config-file "{{ justfile_directory() }}/configs/dotbot.yaml" --base-directory "{{ justfile_directory() }}" --quiet
-    brctl download "$HOME/Documents/dotfiles-private"
-    dotbot --config-file "$HOME/Documents/dotfiles-private/configs/dotbot.yaml" --base-directory "$HOME/Documents/dotfiles-private" --quiet
-
-homebrew:
-    #!/usr/bin/env dash
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    set dotfiles_private "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/dotfiles-private"
+    brctl download "$dotfiles_private"
+    dotbot --config-file "$dotfiles_private/configs/dotbot.yaml" --base-directory "$dotfiles_private" --quiet
 
 brew:
     brew bundle install --file="{{ justfile_directory() }}/configs/brewfile" --force --no-lock
@@ -23,10 +20,14 @@ brew-personal:
 gh:
     #!/usr/bin/env bash
     while IFS= read -r line; do
+        echo $line
         gh extension install --force "$line"
     done < "{{ justfile_directory() }}/configs/gh_extensions"
 
 mise:
+    #!/usr/bin/env bash
+    mkdir -p "$HOME/.config/mise"
+    cp "{{ justfile_directory() }}/home/config/mise/config.toml" "$HOME/.config/mise/config.toml"
     brew install mise
     mise install --yes
 
@@ -78,7 +79,6 @@ fish-globals:
     set -Ux FZF_ENABLE_OPEN_PREVIEW 1
     set -Ux FZF_LEGACY_KEYBINDINGS 0
     set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
-    set -Ux GIT_CONFIG_COUNT 1
     set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
     set -Ux KEYTIMEOUT 1
     set -Ux MANPATH $MANPATH "$brew_prefix/share/man"

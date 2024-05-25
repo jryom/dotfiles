@@ -64,3 +64,9 @@
 	email = 2834949+jryom@users.noreply.github.com
 	name = Jesper Ryom
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3vcuzfD2p7aggLGpt+D2Svnor9F5+/OyzgRtPaVR7g 2834949+jryom@users.noreply.github.com
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
