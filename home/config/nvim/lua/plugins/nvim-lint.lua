@@ -22,6 +22,7 @@ return {
       dockerfile = { "hadolint" },
       gitcommit = { "commitlint" },
       markdown = { "markdownlint_cli2" },
+      make = { "checkmake" },
       python = { "ruff" },
       -- yaml = { "actionlint" },
       zsh = { "zsh" },

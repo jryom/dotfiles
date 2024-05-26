@@ -19,6 +19,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.sessionoptions = { "buffers", "tabpages" }
 vim.opt.shiftround = true
+vim.opt.shiftwidth = 2
 vim.opt.shortmess:append("ctFTI")
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
@@ -27,6 +28,7 @@ vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.swapfile = false
+vim.opt.tabstop = 2
 vim.opt.termguicolors = true
 vim.opt.title = true
 vim.opt.undofile = true
