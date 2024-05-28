@@ -22,5 +22,3 @@
     ~/Library/LaunchAgents:
       glob: true
       path: launch-agents/**
-    "~/Library/Keyboard Layouts/da-no-dead-keys.bundle":
-      path: configs/da-no-dead-keys.bundle
