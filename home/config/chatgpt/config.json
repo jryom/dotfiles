@@ -8,7 +8,7 @@
   "conversation": {
     "prompt": "default",
     "context_length": 2,
-    "model": "gpt-4-turbo",
+    "model": "gpt-4o",
     "stream": true,
     "temperature": 0,
     "max_tokens": 1024
