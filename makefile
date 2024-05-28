@@ -11,10 +11,10 @@ brew-personal:
 	brew bundle install --file="$(CURDIR)/configs/brewfile_personal" --force --no-lock
 
 dotbot:
-	@fish -i -c 'dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; \
+	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; \
 	set dotfiles_private "$$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/dotfiles-private"; \
 	brctl download "$$dotfiles_private"; \
-	dotbot --config-file "$$dotfiles_private/configs/dotbot.yaml" --base-directory "$$dotfiles_private" --quiet'
+	sudo dotbot --config-file "$$dotfiles_private/configs/dotbot.yaml" --base-directory "$$dotfiles_private" --quiet'
 
 fisher:
 	@fish -i -c 'fisher update'
