@@ -4,25 +4,25 @@ return {
   opts = {},
   keys = {
     {
-      "<space>ac",
+      "<space>Gc",
       ":Neogen class<cr>",
       desc = "Generate class annotation",
       silent = true,
     },
     {
-      "<space>af",
+      "<space>Gf",
       ":Neogen function<cr>",
       desc = "Generate function annotation",
       silent = true,
     },
     {
-      "<space>aF",
+      "<space>GF",
       ":Neogen file<cr>",
       desc = "Generate file annotation",
       silent = true,
     },
     {
-      "<space>at",
+      "<space>Gt",
       ":Neogen type<cr>",
       desc = "Generate type annotation",
       silent = true,

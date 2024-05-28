@@ -15,7 +15,7 @@ return {
       --- Prefixes
       { ["<space>g"] = { name = "Git" } },
       { ["<space>a"] = { name = "AI" } },
-      { ["<space>G"] = { name = "Generate annotation" } },
+      { ["<space>G"] = { name = "Annotation" } },
       ---
       ["<D-s>"] = { ":w<cr>", "Markdown preview" },
       ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },

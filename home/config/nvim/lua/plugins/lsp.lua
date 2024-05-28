@@ -96,6 +96,7 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
+        biome = {},
         cssls = {},
         dockerls = {},
         docker_compose_language_service = {},
