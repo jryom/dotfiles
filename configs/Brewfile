@@ -65,6 +65,7 @@ cask "1password"
 cask "aldente"
 cask "appcleaner"
 cask "bartender"
+cask "darkmodebuddy"
 cask "docker"
 cask "firefox"
 cask "font-iosevka"
@@ -76,6 +77,8 @@ cask "keepingyouawake"
 cask "kitty"
 cask "sonos"
 cask "spotify"
+cask "spotmenu"
+cask "ukelele"
 
 mas "Dark Reader for Safari", id: 1438243180
 mas "NextDNS", id: 1464122853
