@@ -2,9 +2,8 @@
 
 for app_name in \
   "AlDente" \
-  "Bartender 5" \
+  "Ice" \
   "ItsyCal" \
-  "Maccy" \
   "NextDNS" \
   "YabaiIndicator"; do
   echo "$app_name"
