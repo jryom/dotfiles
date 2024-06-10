@@ -12,7 +12,7 @@ brew-personal:
 
 dotbot:
 	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; \
-	set dotfiles_private "$$HOME/Library/Mobile Documents/com~apple~CloudDocs/Documents/dotfiles-private"; \
+	set dotfiles_private "$$HOME/Documents/dotfiles-private"; \
 	brctl download "$$dotfiles_private"; \
 	sudo dotbot --config-file "$$dotfiles_private/configs/dotbot.yaml" --base-directory "$$dotfiles_private" --quiet'
 
