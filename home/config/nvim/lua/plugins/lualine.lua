@@ -53,7 +53,7 @@ return {
       lualine_a = {},
       lualine_b = {},
       lualine_c = { { "filename", path = 1, shorting_target = 5 } },
-      lualine_x = { { "%l/%L", cond = hideBelow(80) } },
+      lualine_x = {},
       lualine_y = {},
       lualine_z = {},
     },

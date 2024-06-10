@@ -13,11 +13,15 @@ return {
 
     map({
       --- Prefixes
-      { ["<space>g"] = { name = "Git" } },
+      { ["<space>G"] = { name = "Annotate" } },
+      { ["<space>S"] = { name = "Session" } },
       { ["<space>a"] = { name = "AI" } },
-      { ["<space>G"] = { name = "Annotation" } },
+      { ["<space>f"] = { name = "Fzf" } },
+      { ["<space>g"] = { name = "Git" } },
+      { ["<space>t"] = { name = "Test" } },
+      { ["<space>x"] = { name = "Trouble" } },
       ---
-      ["<D-s>"] = { ":w<cr>", "Markdown preview" },
+      ["<D-s>"] = { ":w<cr>", "Write file" },
       ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },
       ["<space>r"] = {
         function()
@@ -32,11 +36,25 @@ return {
       [">"] = { ">gv", "Indent", mode = "x" },
       ["<"] = { "<gv", "Outdent", mode = "x" },
       ["<space>L"] = { ":Lazy<cr>", "Lazy" },
-      ["<space>S"] = { ":lua require('auto-session').SaveSession()<cr>", "Make session" },
-      ["<space>D"] = { ":lua require('auto-session').DeleteSession()<cr>", "Make session" },
+      ["<space>Sc"] = { ":lua require('auto-session').SaveSession()<cr>", "Create" },
+      ["<space>Sd"] = { ":lua require('auto-session').DeleteSession()<cr>", "Delete" },
       ["<space>"] = {
-        p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
-        n = { vim.diagnostic.goto_next, "Next diagnostic" },
+        p = {
+          function()
+            vim.diagnostic.goto_prev({
+              severity = { min = vim.diagnostic.severity.WARN },
+            })
+          end,
+          "Previous diagnostic",
+        },
+        n = {
+          function()
+            vim.diagnostic.goto_next({
+              severity = { min = vim.diagnostic.severity.WARN },
+            })
+          end,
+          "Next diagnostic",
+        },
       },
       ["<C-k>"] = {
         {

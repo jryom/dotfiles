@@ -11,6 +11,7 @@ vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
+vim.opt.iskeyword:remove("_")
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.opt.listchars = "tab:·┈,trail:.,multispace:.,lead: ,extends:▶,precedes:◀,nbsp:˽"
