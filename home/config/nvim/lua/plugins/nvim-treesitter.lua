@@ -17,7 +17,7 @@ return {
           end
         end,
       },
-      indent = { enable = true, disable = "yaml" },
+      indent = { disable = "yaml" },
       matchup = { enable = true },
     })
   end,

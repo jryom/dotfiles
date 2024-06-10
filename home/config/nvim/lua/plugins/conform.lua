@@ -18,6 +18,12 @@ return {
     },
     opts = {
       formatters = {
+        prettier = {
+          require_cwd = true,
+        },
+        biome = {
+          require_cwd = true,
+        },
         shfmt = {
           args = { "-filename", "$FILENAME", "-i", "2" },
         },

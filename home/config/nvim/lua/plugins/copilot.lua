@@ -6,13 +6,30 @@ return {
     { "nvim-lua/plenary.nvim" },
   },
   event = { "BufReadPost", "BufNewFile" },
-  opts = {},
+  init = function()
+    local group = vim.api.nvim_create_augroup("copilot", {})
+    vim.api.nvim_create_autocmd({ "BufEnter" }, {
+      pattern = { "copilot-chat" },
+      command = "vertical resize 80",
+      group = group,
+    })
+  end,
+  opts = {
+    auto_insert_mode = true,
+    auto_follow_cursor = false,
+    clear_chat_on_new_prompt = true,
+    context = "buffers",
+    show_folds = false,
+  },
   keys = {
-    {
-      "<space>ac",
-      ":CopilotChatToggle<CR>",
-      desc = "Copilot Chat",
-      silent = true,
-    },
+    { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
+    { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Write docs", mode = { "n", "x" } },
+    { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "Explain", mode = { "n", "x" } },
+    { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "Fix diagnostic" },
+    { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "Better naming", mode = { "n", "x" } },
+    { "<leader>ao", "<cmd>CopilotChatOptimize<cr>", desc = "Optimize", mode = { "n", "x" } },
+    { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
+    { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review", mode = { "n", "x" } },
+    { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate tests", mode = { "n", "x" } },
   },
 }
