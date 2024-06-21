@@ -16,6 +16,9 @@
       glob: true
       path: home/**
       prefix: "."
+      exclude: [ home/config/nvim ]
+    ~/.config/nvim:
+      path: home/config/nvim
     /etc:
       glob: true
       path: etc/**
