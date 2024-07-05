@@ -25,7 +25,7 @@ return {
       ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },
       ["<space>r"] = {
         function()
-          local command = vim.api.nvim_replace_termcodes('"py:%s///<left><left><c-r>p<right>', false, false, true)
+          local command = vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right>', false, false, true)
           vim.api.nvim_feedkeys(command, "n", {})
         end,
         "Replace visual selection",
@@ -39,22 +39,8 @@ return {
       ["<space>Sc"] = { ":lua require('auto-session').SaveSession()<cr>", "Create" },
       ["<space>Sd"] = { ":lua require('auto-session').DeleteSession()<cr>", "Delete" },
       ["<space>"] = {
-        p = {
-          function()
-            vim.diagnostic.goto_prev({
-              severity = { min = vim.diagnostic.severity.WARN },
-            })
-          end,
-          "Previous diagnostic",
-        },
-        n = {
-          function()
-            vim.diagnostic.goto_next({
-              severity = { min = vim.diagnostic.severity.WARN },
-            })
-          end,
-          "Next diagnostic",
-        },
+        p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
+        n = { vim.diagnostic.goto_next, "Next diagnostic" },
       },
       ["<C-k>"] = {
         {

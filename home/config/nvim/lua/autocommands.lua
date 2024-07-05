@@ -1,5 +1,19 @@
 local group = vim.api.nvim_create_augroup("ac", {})
 
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  group = group,
+  callback = function()
+    vim.cmd("silent! loadview")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost" }, {
+  group = group,
+  callback = function()
+    vim.cmd("silent! mkview")
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
   group = group,
   command = "setlocal foldmethod=manual",

@@ -1,11 +1,20 @@
+function foldtext()
+  local line = vim.fn.getline(vim.v.foldstart)
+  return line .. " "
+end
+
+vim.o.foldtext = "v:lua.foldtext()"
 vim.opt.cmdheight = 0
 vim.opt.confirm = true
 vim.opt.expandtab = true
-vim.opt.fillchars = [[eob: ]]
+vim.opt.fillchars = { eob = " ", fold = " " }
+vim.opt.foldcolumn = "0"
 vim.opt.foldenable = true
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
+vim.opt.foldnestmax = 4
 vim.opt.gdefault = true
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.opt.hlsearch = true
@@ -18,7 +27,7 @@ vim.opt.listchars = "tab:·┈,trail:.,multispace:.,lead: ,extends:▶,precedes:
 vim.opt.matchpairs:append("<:>")
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.sessionoptions = { "buffers", "tabpages" }
+vim.opt.sessionoptions = { "buffers", "folds", "tabpages" }
 vim.opt.shiftround = true
 vim.opt.shiftwidth = 2
 vim.opt.shortmess:append("ctFTI")

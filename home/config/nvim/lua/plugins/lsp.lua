@@ -67,7 +67,7 @@ return {
             i = { ":Trouble lsp_implementations toggle<cr>", "Implementation" },
             r = { ":Trouble lsp_references toggle<cr>", "References" },
             t = { ":Trouble lsp_type_definitions toggle<cr>", "Type definition" },
-            s = { ":Trouble lsp_document_symbols toggle win.position=right<cr>", "Document symbols" },
+            s = { ":Trouble lsp_document_symbols toggle win.position=right win.size=0.15<cr>", "Document symbols" },
             d = { ":Trouble lsp_definitions toggle<cr>", "Definitions" },
             c = { ":Trouble lsp_declarations toggle<cr>", "Declarations" },
             n = { ":Trouble lsp_incoming_calls toggle<cr>", "Incoming calls" },
@@ -100,7 +100,16 @@ return {
         pyright = {},
         -- taplo = {} -- https://github.com/tamasfe/taplo/issues/431,
         terraformls = {},
-        vtsls = {},
+        vtsls = {
+          settings = {
+            vtsls = {
+              autoUseWorkspaceTsdk = true,
+            },
+            typescript = {
+              format = { enable = false },
+            },
+          },
+        },
         yamlls = {},
         jsonls = {
           init_options = { provideFormatter = false },

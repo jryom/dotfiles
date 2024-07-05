@@ -45,6 +45,7 @@ return {
       },
     },
     grep = {
+      RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
       fzf_opts = {
         ["--history"] = vim.fn.expand("~/.local/share/nvim") .. "/" .. "fzf_grep_history",
       },

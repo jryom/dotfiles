@@ -17,7 +17,6 @@ return {
   opts = {
     auto_insert_mode = true,
     auto_follow_cursor = false,
-    clear_chat_on_new_prompt = true,
     context = "buffers",
     show_folds = false,
   },
