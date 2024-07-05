@@ -1,7 +1,8 @@
 export PATH=/opt/homebrew/bin:$PATH
 
-eval "$(zoxide init bash --cmd j)"
+[ -f "$(which zoxide)" ] && eval "$(zoxide init bash --cmd j)"
 
 alias ll="ls -lah"
+alias ..="cd .."
 
 set -o vi

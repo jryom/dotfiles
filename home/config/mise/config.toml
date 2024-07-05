@@ -1,6 +1,3 @@
 [tools]
-go = "latest"
-java = "latest"
 node = "lts"
 python = "latest"
-terraform = "latest"

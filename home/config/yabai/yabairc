@@ -10,12 +10,11 @@ yabai -m config \
   active_window_opacity 1.0 \
   normal_window_opacity 0.7 \
   window_opacity_duration 0.1 \
-  window_animation_duration 0.1 \
-  window_gap 15 \
-  top_padding 15 \
-  right_padding 15 \
-  bottom_padding 15 \
-  left_padding 15
+  window_gap 10 \
+  top_padding 10 \
+  right_padding 10 \
+  bottom_padding 10 \
+  left_padding 10
 
 # Rules
 yabai -m rule --add manage=off app="kitty" title='chatgpt' grid='8:8:5:0:3:4'
@@ -23,6 +22,7 @@ yabai -m rule --add manage=off app='1Password'
 yabai -m rule --add manage=off app='Activity Monitor'
 yabai -m rule --add manage=off app='Archive Utility'
 yabai -m rule --add manage=off app='Bartender.'
+yabai -m rule --add manage=off app='Calculator'
 yabai -m rule --add manage=off app='FaceTime'
 yabai -m rule --add manage=off app='Finder' title='Bin'
 yabai -m rule --add manage=off app='IINA'
@@ -32,6 +32,7 @@ yabai -m rule --add manage=off app='SoundID'
 yabai -m rule --add manage=off app='System Information'
 yabai -m rule --add manage=off app='System Settings'
 yabai -m rule --add manage=off app='iStat'
+yabai -m rule --add opacity=1.0 app='Live'
 
 # Signals
 events="

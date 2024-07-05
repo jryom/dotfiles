@@ -21,6 +21,7 @@ fisher:
 
 fish-globals:
 	@fish -i -c $(CURDIR)/configs/fish_globals.fish
+	@fish -i -c 'vf addplugins auto_activation'
 
 gatekeeper:
 	if spctl --status >/dev/null; then sudo spctl --master-disable; fi
