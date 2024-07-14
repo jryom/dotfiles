@@ -1,15 +1,14 @@
+---@type LazySpec
 return {
   "mfussenegger/nvim-lint",
   lazy = true,
-  init = function()
-    vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "TextChanged", "TextChangedI" }, {
-      callback = function()
-        require("lint").try_lint()
-      end,
-    })
-  end,
   config = function()
+    vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "TextChanged", "TextChangedI" }, {
+      callback = function() require("lint").try_lint() end,
+    })
+
     require("lint").linters.markdownlint_cli2 = {
+      name = "markdownlint-cli2",
       cmd = "markdownlint-cli2",
       ignore_exitcode = true,
       stream = "stderr",
@@ -21,10 +20,9 @@ return {
     require("lint").linters_by_ft = {
       dockerfile = { "hadolint" },
       gitcommit = { "commitlint" },
-      markdown = { "markdownlint_cli2" },
       make = { "checkmake" },
+      markdown = { "markdownlint_cli2" },
       python = { "ruff" },
-      -- yaml = { "actionlint" },
       zsh = { "zsh" },
     }
   end,

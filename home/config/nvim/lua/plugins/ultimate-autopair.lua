@@ -1,5 +1,6 @@
+---@type LazySpec
 return {
   "altermo/ultimate-autopair.nvim",
   event = { "InsertEnter", "CmdlineEnter" },
-  opts = {},
+  config = function() require("ultimate-autopair").setup({}) end,
 }

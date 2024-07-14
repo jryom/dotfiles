@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "asheq/close-buffers.vim",
   keys = {

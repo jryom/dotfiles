@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "kristijanhusak/vim-dadbod-ui",
   dependencies = {

@@ -1,22 +1,21 @@
+---@type LazySpec
 return {
-  {
-    "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    keys = {
-      {
-        "<space>F",
-        function()
-          vim.b.disable_autoformat = not vim.b.disable_autoformat
-          if vim.b.disable_autoformat then
-            return vim.notify("Disabled automatic formatting for buffer")
-          end
-          vim.notify("Enabled automatic formatting enabled for buffer")
-        end,
-        desc = "Toggle autoformatting for buffer",
-        silent = true,
-      },
+  "stevearc/conform.nvim",
+  event = { "BufWritePre" },
+  keys = {
+    {
+      "<space>F",
+      function()
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+        if vim.b.disable_autoformat then return vim.notify("Disabled automatic formatting for buffer") end
+        vim.notify("Enabled automatic formatting enabled for buffer")
+      end,
+      desc = "Toggle autoformatting for buffer",
+      silent = true,
     },
-    opts = {
+  },
+  config = function()
+    require("conform").setup({
       formatters = {
         prettier = {
           require_cwd = true,
@@ -49,11 +48,9 @@ return {
         yaml = { "prettier" },
       },
       format_on_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-          return
-        end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
         return { timeout_ms = 1000, lsp_fallback = true }
       end,
-    },
-  },
+    })
+  end,
 }

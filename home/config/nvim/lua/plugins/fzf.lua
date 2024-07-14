@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
@@ -20,36 +21,37 @@ return {
     },
     {
       "<D-f>",
-      function()
-        require("fzf-lua").grep_visual()
-      end,
+      function() require("fzf-lua").grep_visual() end,
       desc = "Search selection in project",
       mode = "x",
       silent = true,
     },
   },
-  opts = {
-    fzf_colors = true,
-    "telescope",
-    winopts = {
-      preview = {
-        flip_columns = 300,
-        vertical = "up:40%",
-        horizontal = "right:40%",
+  init = function() require("which-key").add({ "<D>", group = "Fzf" }) end,
+  config = function()
+    require("fzf-lua").setup({
+      fzf_colors = true,
+      "telescope",
+      winopts = {
+        preview = {
+          flip_columns = 300,
+          vertical = "up:40%",
+          horizontal = "right:40%",
+        },
       },
-    },
-    keymap = {
-      builtin = {
-        ["<C-u>"] = "preview-page-up",
-        ["<C-d>"] = "preview-page-down",
+      keymap = {
+        builtin = {
+          ["<C-u>"] = "preview-page-up",
+          ["<C-d>"] = "preview-page-down",
+        },
       },
-    },
-    grep = {
-      RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
-      fzf_opts = {
-        ["--history"] = vim.fn.expand("~/.local/share/nvim") .. "/" .. "fzf_grep_history",
+      grep = {
+        RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
+        fzf_opts = {
+          ["--history"] = vim.fn.expand("~/.local/share/nvim") .. "/" .. "fzf_grep_history",
+        },
+        no_header = true,
       },
-      no_header = true,
-    },
-  },
+    })
+  end,
 }

@@ -1,5 +1,6 @@
 require("utils")
 
+---@type LazySpec[]
 return {
   {
     "mcchrish/zenbones.nvim",
@@ -16,11 +17,10 @@ return {
       vim.cmd("colorscheme zenbones")
     end,
   },
+
   {
     "cormacrelf/dark-notify",
     event = "VeryLazy",
-    config = function()
-      require("dark_notify").run()
-    end,
+    config = function() require("dark_notify").run() end,
   },
 }

@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "nvim-neotest/neotest",
   dependencies = {
@@ -10,22 +11,20 @@ return {
   keys = {
     {
       "<space>tr",
-      function()
-        require("neotest").run.run()
-      end,
+      function() require("neotest").run.run() end,
       desc = "Run nearest test",
       silent = true,
     },
     {
       "<space>tw",
-      function()
-        require("neotest").watch.toggle()
-      end,
+      function() require("neotest").watch.toggle() end,
       desc = "Watch mode toggle",
       silent = true,
     },
   },
+  init = function() require("which-key").add({ "<space>t", group = "Test" }) end,
   config = function()
+    ---@diagnostic disable-next-line: missing-fields
     require("neotest").setup({
       adapters = {
         require("neotest-jest")({

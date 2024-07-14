@@ -1,5 +1,7 @@
+---@type LazySpec
 return {
   "chrisgrieser/nvim-early-retirement",
   event = "VeryLazy",
-  opts = { deleteBufferWhenFileDeleted = true },
+  ---@diagnostic disable-next-line: missing-fields
+  config = function() require("early-retirement").setup({ deleteBufferWhenFileDeleted = true }) end,
 }

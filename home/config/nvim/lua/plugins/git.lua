@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
   {
     "lewis6991/gitsigns.nvim",
@@ -42,7 +43,8 @@ return {
         silent = true,
       },
     },
-    opts = { current_line_blame_formatter_opts = { relative_time = true }, current_line_blame = false },
+    init = function() require("which-key").add({ "<space>g", group = "Git" }) end,
+    config = function() require("gitsigns").setup({ current_line_blame = false }) end,
   },
 
   {
@@ -61,12 +63,14 @@ return {
         silent = true,
       },
     },
-    opts = {
-      file_panel = {
-        listing_style = "list",
-      },
-      show_help_hints = false,
-    },
+    config = function()
+      require("diffview").setup({
+        file_panel = {
+          listing_style = "list",
+        },
+        show_help_hints = false,
+      })
+    end,
   },
 
   {
@@ -87,6 +91,6 @@ return {
         mode = { "x", "n" },
       },
     },
-    opts = {},
+    config = function() require("gitlinker").setup() end,
   },
 }

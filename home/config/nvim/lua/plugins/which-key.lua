@@ -1,87 +1,54 @@
+---@type LazySpec
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {
-    show_help = false,
-    show_keys = false,
-  },
-  init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-
-    local map = require("which-key").register
-
-    map({
-      --- Prefixes
-      { ["<space>G"] = { name = "Annotate" } },
-      { ["<space>S"] = { name = "Session" } },
-      { ["<space>a"] = { name = "AI" } },
-      { ["<space>f"] = { name = "Fzf" } },
-      { ["<space>g"] = { name = "Git" } },
-      { ["<space>t"] = { name = "Test" } },
-      { ["<space>x"] = { name = "Trouble" } },
-      ---
-      ["<D-s>"] = { ":w<cr>", "Write file" },
-      ["<space>m"] = { ":!timeout 3s gh markdown-preview %<cr>", "Markdown preview" },
-      ["<space>r"] = {
-        function()
-          local command = vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right>', false, false, true)
-          vim.api.nvim_feedkeys(command, "n", {})
-        end,
-        "Replace visual selection",
-        mode = "x",
+  config = function()
+    require("which-key").setup({
+      preset = "helix",
+      show_help = false,
+      show_keys = false,
+      icons = { rules = false },
+      plugins = {
+        marks = false,
       },
-      gt = { "<C-]>", "Go to tag" },
-      ["<esc>"] = { ":nohlsearch<cr>", "Disable search highlight" },
-      [">"] = { ">gv", "Indent", mode = "x" },
-      ["<"] = { "<gv", "Outdent", mode = "x" },
-      ["<space>L"] = { ":Lazy<cr>", "Lazy" },
-      ["<space>Sc"] = { ":lua require('auto-session').SaveSession()<cr>", "Create" },
-      ["<space>Sd"] = { ":lua require('auto-session').DeleteSession()<cr>", "Delete" },
-      ["<space>"] = {
-        p = { vim.diagnostic.goto_prev, "Previous diagnostic" },
-        n = { vim.diagnostic.goto_next, "Next diagnostic" },
-      },
-      ["<C-k>"] = {
+      spec = {
+        -- Tabs
+        { "<C-t>H", ":-tabmove<cr>", desc = "Move tab left" },
+        { "<C-t>L", ":tabmove<cr>", desc = "Move tab right" },
+        { "<C-t>c", ":tabclose<cr>", desc = "Close tab" },
+        { "<C-t>h", ":tabprev<cr>", desc = "Previous tab" },
+        { "<C-t>l", ":tabnext<cr>", desc = "Next tab" },
+        { "<C-t>n", ":tabnew<cr>", desc = "New tab" },
+        { "<C-t>s", ":tab split<cr>", desc = "Tab split" },
+        -- Misc
+        { "<D-s>", ":w<cr>", desc = "Write file" },
+        { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
+        { "<space>L", ":Lazy<cr>", desc = "Lazy" },
+        { "<space>m", ":!timeout 3s gh markdown-preview %<cr>", desc = "Markdown preview" },
+        { "<space>p", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
+        { "<space>n", vim.diagnostic.goto_next, desc = "Next diagnostic" },
+        { "gt", "<C-]>", desc = "Go to tag" },
+        { "<", "<gv", desc = "Outdent", mode = { "x" } },
+        { ">", ">gv", desc = "Indent", mode = { "x" } },
         {
-          function()
-            vim.cmd.normal("zc")
-          end,
-          "Close fold",
-          mode = "n",
+          "<C-j>",
+          function() vim.cmd("norm! zo") end,
+          desc = "Open fold",
         },
         {
+          "<C-k>",
+          function() vim.cmd("norm! zc") end,
+          desc = "Close fold",
+        },
+        {
+          "<space>r",
           function()
-            vim.cmd.normal("zc")
+            local command = vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right>', false, false, true)
+            vim.api.nvim_feedkeys(command, "n", true)
           end,
-          "Close fold",
+          desc = "Replace visual selection",
           mode = "x",
         },
-      },
-      ["<C-j>"] = {
-        {
-          function()
-            vim.cmd.normal("zo")
-          end,
-          "Open fold",
-          mode = "n",
-        },
-        {
-          function()
-            vim.cmd.normal("zo")
-          end,
-          "Open fold",
-          mode = "x",
-        },
-      },
-      ["<C-t>"] = {
-        h = { ":tabprev<cr>", "Previous tab" },
-        l = { ":tabnext<cr>", "Next tab" },
-        n = { ":tabnew<cr>", "New tab" },
-        c = { ":tabclose<cr>", "Close tab" },
-        H = { ":-tabmove<cr>", "Move tab left" },
-        L = { ":tabmove<cr>", "Move tab right" },
-        s = { ":tab split<cr>", "Tab split" },
       },
     })
   end,

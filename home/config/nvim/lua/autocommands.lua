@@ -2,16 +2,12 @@ local group = vim.api.nvim_create_augroup("ac", {})
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   group = group,
-  callback = function()
-    vim.cmd("silent! loadview")
-  end,
+  callback = function() vim.cmd("silent! loadview") end,
 })
 
 vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost" }, {
   group = group,
-  callback = function()
-    vim.cmd("silent! mkview")
-  end,
+  callback = function() vim.cmd("silent! mkview") end,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -64,7 +60,5 @@ vim.api.nvim_create_autocmd({ "DirChanged", "SessionLoadPost", "UIEnter" }, {
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufReadPost", "BufNewFile" }, {
   group = group,
   pattern = { "**/.github/**/*.yml" },
-  callback = function()
-    require("lint").try_lint("actionlint")
-  end,
+  callback = function() require("lint").try_lint("actionlint") end,
 })

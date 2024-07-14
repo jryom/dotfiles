@@ -2,6 +2,7 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+---@type LazySpec[]
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -17,7 +18,7 @@ return {
       "onsails/lspkind.nvim",
       "rafamadriz/friendly-snippets",
     },
-    opts = function()
+    config = function()
       local cmp = require("cmp")
 
       cmp.setup.cmdline({ "/", "?" }, {
@@ -34,9 +35,10 @@ return {
         }),
       })
 
-      return {
+      require("cmp").setup({
         window = { completion = { col_offset = -3, side_padding = 0 } },
         formatting = {
+          expandable_indicator = true,
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
             local kind = require("lspkind").cmp_format({
@@ -58,9 +60,7 @@ return {
           { name = "buffer", keyword_length = 2, max_item_count = 10 },
         }),
         snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
+          expand = function(args) vim.fn["vsnip#anonymous"](args.body) end,
         },
         mapping = {
           ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -105,7 +105,7 @@ return {
             end
           end, { "i", "c" }),
         },
-      }
+      })
     end,
   },
 }

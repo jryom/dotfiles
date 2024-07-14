@@ -1,6 +1,6 @@
+---@type LazySpec
 return {
   "folke/trouble.nvim",
-  opts = {},
   cmd = "Trouble",
   keys = {
     {
@@ -19,4 +19,6 @@ return {
       desc = "Quickfix List",
     },
   },
+  init = function() require("which-key").add({ "<space>x", group = "Trouble" }) end,
+  config = function() require("trouble").setup() end,
 }

@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "pwntester/octo.nvim",
   dependencies = {
@@ -7,10 +8,12 @@ return {
   cmd = {
     "Octo",
   },
-  opts = {
-    picker = "fzf-lua",
-    file_panel = {
-      use_icons = false,
-    },
-  },
+  config = function()
+    require("octo").setup({
+      picker = "fzf-lua",
+      file_panel = {
+        use_icons = false,
+      },
+    })
+  end,
 }

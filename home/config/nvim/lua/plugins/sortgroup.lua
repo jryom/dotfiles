@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "https://gist.github.com/PeterRincker/582ea9be24a69e6dd8e237eb877b8978",
   name = "sort-group",

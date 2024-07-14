@@ -1,12 +1,15 @@
+---@type LazySpec[]
 return {
   {
     "echasnovski/mini.basics",
     key = { { "yo" } },
-    opts = {
-      mappings = {
-        option_toggle_prefix = "yo",
-      },
-    },
+    config = function()
+      require("mini.basics").setup({
+        mappings = {
+          option_toggle_prefix = "yo",
+        },
+      })
+    end,
   },
   {
     "echasnovski/mini.bracketed",
@@ -14,7 +17,7 @@ return {
       { "<left>", "[", mode = { "n", "x", "o" }, remap = true },
       { "<right>", "]", mode = { "n", "x", "o" }, remap = true },
     },
+    config = function() require("mini.bracketed").setup() end,
     event = "VeryLazy",
-    opts = {},
   },
 }

@@ -1,7 +1,7 @@
+---@type LazySpec
 return {
   "danymat/neogen",
   dependencies = "nvim-treesitter/nvim-treesitter",
-  opts = {},
   keys = {
     {
       "<space>Gc",
@@ -28,4 +28,6 @@ return {
       silent = true,
     },
   },
+  init = function() require("which-key").add({ "<space>G", group = "Annotate" }) end,
+  config = function() require("neogen").setup({}) end,
 }
