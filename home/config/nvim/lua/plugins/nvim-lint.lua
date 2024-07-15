@@ -7,7 +7,9 @@ return {
       callback = function() require("lint").try_lint() end,
     })
 
-    require("lint").linters.markdownlint_cli2 = {
+    local lint = require("lint")
+
+    lint.linters.markdownlint_cli2 = {
       name = "markdownlint-cli2",
       cmd = "markdownlint-cli2",
       ignore_exitcode = true,
@@ -17,13 +19,21 @@ return {
         severity = vim.diagnostic.severity.WARN,
       }),
     }
-    require("lint").linters_by_ft = {
+
+    lint.linters_by_ft = {
       dockerfile = { "hadolint" },
       gitcommit = { "commitlint" },
       make = { "checkmake" },
       markdown = { "markdownlint_cli2" },
       python = { "ruff" },
+      sql = { "sqlfluff" },
       zsh = { "zsh" },
+    }
+
+    lint.linters.sqlfluff.args = {
+      "lint",
+      "--format=json",
+      "--dialect=postgres",
     }
   end,
 }

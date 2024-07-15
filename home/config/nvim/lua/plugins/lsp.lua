@@ -9,6 +9,14 @@ return {
       event = "VeryLazy",
       config = function() require("illuminate").configure({ providers = { "lsp" }, min_count_to_highlight = 2 }) end,
     },
+    {
+      "icholy/lsplinks.nvim",
+      config = function()
+        local lsplinks = require("lsplinks")
+        lsplinks.setup()
+        vim.keymap.set("n", "gx", lsplinks.gx)
+      end,
+    },
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
@@ -65,7 +73,7 @@ return {
         { "<space>lq", vim.diagnostic.setloclist, desc = "Diagnostics to quickfix", buffer = bufnr },
         { "<space>lr", ":Trouble lsp_references toggle<cr>", desc = "References", buffer = bufnr },
         { "<space>lt", ":Trouble lsp_type_definitions toggle<cr>", desc = "Type definition", buffer = bufnr },
-        { "<space>r", "vim.lsp.buf.rename", desc = "Rename word", buffer = bufnr },
+        { "<space>r", vim.lsp.buf.rename, desc = "Rename word", buffer = bufnr },
         {
           "<space>ls",
           ":Trouble lsp_document_symbols toggle win.position=right win.size=0.15<cr>",
@@ -88,7 +96,9 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
-        biome = {},
+        biome = {
+          cmd = { "npx", "exec", "biome", "lsp-proxy" },
+        },
         cssls = {},
         dockerls = {},
         docker_compose_language_service = {},

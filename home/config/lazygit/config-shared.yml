@@ -14,10 +14,14 @@ git:
     showWholeGraph: false
   paging:
     externalDiffCommand: difft --background "$(cat /tmp/dark-mode || 'light')"
+  fetchAll: true
+  autoRefresh: true
+  disableForcePushing: true
 
 gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy
+  showDivergenceFromBaseBranch: arrowAndNumber
   showCommandLog: false
   showFileTree: true
   showPanelJumps: false

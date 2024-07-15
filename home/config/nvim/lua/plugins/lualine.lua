@@ -41,6 +41,7 @@ return {
           { "filename", path = 1, shorting_target = 5 },
           {
             "diagnostics",
+            sources = { "nvim_diagnostic", "nvim_workspace_diagnostic" },
             cond = hideBelow(50),
             symbols = { error = "E", warn = "W", info = "I", hint = "H" },
           },

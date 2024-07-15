@@ -43,6 +43,7 @@ return {
         builtin = {
           ["<C-u>"] = "preview-page-up",
           ["<C-d>"] = "preview-page-down",
+          ["<C-q>"] = "select-all+accept",
         },
       },
       grep = {
