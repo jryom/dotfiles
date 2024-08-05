@@ -10,8 +10,6 @@ if status is-interactive
 
     ### Abbreviations
 
-    fish_add_path --append './node_modules/.bin'
-
     abbr ggrep "git rev-list --all | xargs git grep --break"
     abbr ll "gls --group-directories-first --color=always -Ahl"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'

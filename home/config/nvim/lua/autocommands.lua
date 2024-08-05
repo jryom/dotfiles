@@ -1,15 +1,5 @@
 local group = vim.api.nvim_create_augroup("ac", {})
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  group = group,
-  callback = function() vim.cmd("silent! loadview") end,
-})
-
-vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost" }, {
-  group = group,
-  callback = function() vim.cmd("silent! mkview") end,
-})
-
 vim.api.nvim_create_autocmd("TermOpen", {
   group = group,
   command = "setlocal foldmethod=manual",
@@ -30,6 +20,22 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
   command = [[exe "silent norm! \<C-W>="]],
   group = group,
+})
+
+vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
+  group = group,
+  callback = function()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local win_width = vim.api.nvim_win_get_width(win)
+      if win_width < 120 then
+        vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })
+        vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = win })
+      else
+        vim.api.nvim_set_option_value("number", true, { scope = "local", win = win })
+        vim.api.nvim_set_option_value("relativenumber", true, { scope = "local", win = win })
+      end
+    end
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {

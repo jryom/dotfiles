@@ -45,6 +45,7 @@ vim.opt.undofile = true
 vim.opt.wrap = true
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.cmd.inoreabbrev({
   "<expr>",

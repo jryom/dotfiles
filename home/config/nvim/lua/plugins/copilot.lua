@@ -29,9 +29,12 @@ return {
 
     require("CopilotChat").setup({
       auto_insert_mode = true,
-      auto_follow_cursor = false,
       context = "buffers",
       show_folds = false,
+
+      mappings = {
+        complete = { insert = "" },
+      },
     })
   end,
 }

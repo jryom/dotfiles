@@ -8,6 +8,11 @@ return {
     config = function()
       local mode = Utils:read_file("/tmp/dark-mode")
 
+      vim.g.zenbones_darken_noncurrent_window = true
+      vim.g.zenbones_lighten_noncurrent_window = true
+      vim.g.zenbones_darken_line_nr = 10
+      vim.g.zenbones_lighten_line_nr = 10
+
       if type(mode) == "string" and string.find(mode, "dark") then
         vim.opt.background = "dark"
       else

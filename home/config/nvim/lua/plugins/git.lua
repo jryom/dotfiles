@@ -44,7 +44,15 @@ return {
       },
     },
     init = function() require("which-key").add({ "<space>g", group = "Git" }) end,
-    config = function() require("gitsigns").setup({ current_line_blame = false }) end,
+    config = function()
+      require("gitsigns").setup({
+        current_line_blame = false,
+        signs = {
+          add = { text = "+" },
+          change = { text = "✳" },
+        },
+      })
+    end,
   },
 
   {
