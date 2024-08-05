@@ -29,12 +29,10 @@ set -Ux PNPM_HOME "$HOME/.pnpm"
 set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -Ux VISUAL "$EDITOR"
 
-fish_add_path $(python3 -c "import site; print(site.USER_BASE)")/bin
-fish_add_path --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin
-fish_add_path ./node_modules/.bin
-fish_add_path $HOME/.pnpm
-fish_add_path $HOME/go/bin
-fish_add_path $brew_prefix/opt/postgresql@16/bin
+fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
+fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin
+fish_add_path --universal $HOME/.pnpm
+fish_add_path --universal $HOME/go/bin
 
 # Colors
 set -U fish_color_autosuggestion brblack -d

@@ -97,7 +97,7 @@ return {
         ansiblels = {},
         bashls = {},
         biome = {
-          cmd = { "npx", "exec", "biome", "lsp-proxy" },
+          cmd = { "npx", "biome", "lsp-proxy" },
         },
         cssls = {},
         dockerls = {},
