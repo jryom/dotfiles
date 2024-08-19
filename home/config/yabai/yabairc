@@ -17,7 +17,7 @@ yabai -m config \
   left_padding 10
 
 # Rules
-yabai -m rule --add manage=off app="kitty" title='chatgpt' grid='8:8:5:0:3:4'
+yabai -m rule --add manage=off app="kitty" title='aichat' grid='8:8:5:0:3:4'
 yabai -m rule --add manage=off app='1Password'
 yabai -m rule --add manage=off app='Activity Monitor'
 yabai -m rule --add manage=off app='Archive Utility'

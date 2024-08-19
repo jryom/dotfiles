@@ -8,7 +8,7 @@
 ctrl + alt + cmd - k: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"
 ctrl + alt + cmd - n: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"
 ctrl + alt + cmd - d: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code/dotfiles" dash -c "fish -i -c 'nvim -i -c Oil'"
-ctrl + alt + cmd - g: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title chatgpt dash -c "fish -i -c chatgpt"
+ctrl + alt + cmd - g: ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title aichat dash -c "fish -i -c 'aichat --session default'"
 ctrl + alt + cmd - m: open /System/Applications/Messages.app
 ctrl + alt + cmd - r: open /System/Applications/Reminders.app
 ctrl + alt + cmd - b: open /Applications/Firefox.app
