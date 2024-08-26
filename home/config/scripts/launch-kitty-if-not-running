@@ -1,5 +1,5 @@
 #!/usr/bin/env dash
 
 if ! pgrep -x "kitty" >/dev/null; then
-  kitty --listen-on unix:/tmp/mykitty --single-instance --working-directory "$HOME/Code"
+  kitty --listen-on unix:/tmp/mykitty --working-directory "$HOME/Code"
 fi
