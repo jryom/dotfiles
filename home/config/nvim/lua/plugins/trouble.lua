@@ -20,5 +20,9 @@ return {
     },
   },
   init = function() require("which-key").add({ "<space>x", group = "Trouble" }) end,
-  config = function() require("trouble").setup() end,
+  config = function()
+    require("trouble").setup({
+      auto_close = true,
+    })
+  end,
 }

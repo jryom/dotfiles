@@ -5,6 +5,7 @@ end
 
 vim.o.foldtext = "v:lua.FoldText()"
 vim.opt.cmdheight = 0
+vim.opt.conceallevel = 2
 vim.opt.confirm = true
 vim.opt.expandtab = true
 vim.opt.fillchars = { eob = " ", fold = " " }

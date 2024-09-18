@@ -1,12 +1,10 @@
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = "windwp/nvim-ts-autotag",
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
       auto_install = true,
-      autotag = { enable = true },
       ensure_installed = { "lua", "bash", "markdown", "markdown_inline", "regex" },
       highlight = {
         enable = true,

@@ -21,6 +21,7 @@ return {
         { "<C-t>n", ":tabnew<cr>", desc = "New tab" },
         { "<C-t>s", ":tab split<cr>", desc = "Tab split" },
         -- Misc
+        { "z1", ":set foldlevel=1<cr>", desc = "Set fold level to 1" },
         { "<D-s>", ":w<cr>", desc = "Write file" },
         { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
         { "<space>L", ":Lazy<cr>", desc = "Lazy" },
