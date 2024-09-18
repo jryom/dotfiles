@@ -79,7 +79,6 @@ cask "reminders-menubar"
 cask "sonos"
 cask "spotify"
 cask "spotmenu"
-cask "stats"
 cask "ukelele"
 
 mas "Dark Reader for Safari", id: 1438243180
