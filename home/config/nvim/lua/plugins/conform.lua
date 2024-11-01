@@ -4,7 +4,7 @@ return {
   event = { "BufWritePre" },
   keys = {
     {
-      "<space>F",
+      "yof",
       function()
         vim.b.disable_autoformat = not vim.b.disable_autoformat
         if vim.b.disable_autoformat then return vim.notify("Disabled automatic formatting for buffer") end

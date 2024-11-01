@@ -3,6 +3,7 @@ return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
     "lukas-reineke/lsp-format.nvim",
+    "b0o/schemastore.nvim",
     "neovim/nvim-lspconfig",
     {
       "rrethy/vim-illuminate",
@@ -23,6 +24,14 @@ return {
     vim.diagnostic.config({
       float = { source = true },
       severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.INFO] = "",
+        },
+      },
       virtual_text = false,
     })
 
@@ -59,8 +68,6 @@ return {
           buffer = bufnr,
         },
         { "<space>l", group = "LSP", buffer = bufnr },
-        { "<space>lI", ":LspInfo<cr>", desc = "Info", buffer = bufnr },
-        { "<space>lL", ":LspLog<cr>", desc = "Log", buffer = bufnr },
         { "<space>lR", ":LspRestart<cr>", desc = "Restart", buffer = bufnr },
         { "<space>lS", ":LspStop<cr>", desc = "Stop", buffer = bufnr },
         { "<space>la", vim.lsp.buf.code_action, desc = "Actions", buffer = bufnr },
@@ -68,8 +75,8 @@ return {
         { "<space>ld", ":Trouble lsp_definitions toggle<cr>", desc = "Definitions", buffer = bufnr },
         { "<space>li", ":Trouble lsp_implementations toggle<cr>", desc = "Implementation", buffer = bufnr },
         { "<space>ll", ":Trouble lsp toggle win.position=right<cr>", desc = "All", buffer = bufnr },
-        { "<space>ln", ":Trouble lsp_incoming_calls toggle<cr>", desc = "Incoming calls", buffer = bufnr },
-        { "<space>lo", ":Trouble lsp_outgoing_calls toggle<cr>", desc = "Outgoing calls", buffer = bufnr },
+        { "<space>lI", ":Trouble lsp_incoming_calls toggle<cr>", desc = "Incoming calls", buffer = bufnr },
+        { "<space>lO", ":Trouble lsp_outgoing_calls toggle<cr>", desc = "Outgoing calls", buffer = bufnr },
         { "<space>lq", vim.diagnostic.setloclist, desc = "Diagnostics to quickfix", buffer = bufnr },
         { "<space>lr", ":Trouble lsp_references toggle<cr>", desc = "References", buffer = bufnr },
         { "<space>lt", ":Trouble lsp_type_definitions toggle<cr>", desc = "Type definition", buffer = bufnr },
@@ -96,9 +103,7 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
-        biome = {
-          cmd = { "npx", "biome", "lsp-proxy" },
-        },
+        biome = { cmd = { "npx", "biome", "lsp-proxy" } },
         cssls = {},
         dockerls = {},
         docker_compose_language_service = {},

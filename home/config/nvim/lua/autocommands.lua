@@ -11,12 +11,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
-  pattern = { "*.ain" },
-  command = "set ft=dosini",
-  group = group,
-})
-
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
   command = [[exe "silent norm! \<C-W>="]],
   group = group,
@@ -25,7 +19,14 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
 vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
   group = group,
   callback = function()
+    local excluded_filetypes = { "markdown", "oil" }
+
     for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+      for _, ft in ipairs(excluded_filetypes) do
+        if ft == filetype then return true end
+      end
       local win_width = vim.api.nvim_win_get_width(win)
       if win_width < 120 then
         vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })

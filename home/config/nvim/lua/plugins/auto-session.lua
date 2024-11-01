@@ -8,11 +8,12 @@ return {
       { "<space>Sd", ":lua require('auto-session').DeleteSession()<cr>", desc = "Delete" },
     })
     require("auto-session").setup({
-      auto_restore_enabled = true,
-      auto_restore_lazy_delay_enabled = true,
-      auto_save_enabled = true,
-      auto_session_use_git_branch = true,
+      auto_create = true,
+      auto_restore = true,
+      auto_save = true,
+      lazy_support = true,
       log_level = "error",
+      use_git_branch = true,
     })
   end,
 }
