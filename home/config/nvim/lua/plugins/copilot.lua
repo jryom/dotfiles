@@ -17,9 +17,11 @@ return {
     { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
     { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review", mode = { "n", "x" } },
     { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate tests", mode = { "n", "x" } },
+    { "yop", function() vim.b.copilot_enabled = not vim.b.copilot_enabled end, desc = "Toggle Copilot" },
   },
   init = function() require("which-key").add({ "<leader>a", group = "AI" }) end,
   config = function()
+    vim.b.copilot_enabled = true
     local group = vim.api.nvim_create_augroup("copilot", {})
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
       pattern = { "copilot-chat" },

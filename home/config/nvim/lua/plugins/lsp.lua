@@ -3,6 +3,7 @@ return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
     "lukas-reineke/lsp-format.nvim",
+    "b0o/schemastore.nvim",
     "neovim/nvim-lspconfig",
     {
       "rrethy/vim-illuminate",
@@ -23,6 +24,14 @@ return {
     vim.diagnostic.config({
       float = { source = true },
       severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.INFO] = "",
+        },
+      },
       virtual_text = false,
     })
 
@@ -96,9 +105,7 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
-        biome = {
-          cmd = { "npx", "biome", "lsp-proxy" },
-        },
+        biome = { cmd = { "npx", "biome", "lsp-proxy" } },
         cssls = {},
         dockerls = {},
         docker_compose_language_service = {},

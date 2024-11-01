@@ -11,7 +11,7 @@ return {
         silent = true,
       },
       {
-        "<space>gt",
+        "yog",
         ":Gitsigns toggle_current_line_blame<CR>",
         desc = "Toggle current line blame",
         silent = true,
@@ -46,7 +46,6 @@ return {
     init = function() require("which-key").add({ "<space>g", group = "Git" }) end,
     config = function()
       require("gitsigns").setup({
-        current_line_blame = false,
         signs = {
           add = { text = "+" },
           change = { text = "✳" },

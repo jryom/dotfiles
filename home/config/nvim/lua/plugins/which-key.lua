@@ -5,12 +5,7 @@ return {
   config = function()
     require("which-key").setup({
       preset = "helix",
-      show_help = false,
-      show_keys = false,
       icons = { rules = false },
-      plugins = {
-        marks = false,
-      },
       spec = {
         -- Tabs
         { "<C-t>H", ":-tabmove<cr>", desc = "Move tab left" },
@@ -18,13 +13,11 @@ return {
         { "<C-t>c", ":tabclose<cr>", desc = "Close tab" },
         { "<C-t>h", ":tabprev<cr>", desc = "Previous tab" },
         { "<C-t>l", ":tabnext<cr>", desc = "Next tab" },
-        { "<C-t>n", ":tabnew<cr>", desc = "New tab" },
-        { "<C-t>s", ":tab split<cr>", desc = "Tab split" },
+        { "<C-t>n", ":tab split<cr>", desc = "New tab" },
         -- Misc
         { "z1", ":set foldlevel=1<cr>", desc = "Set fold level to 1" },
         { "<D-s>", ":w<cr>", desc = "Write file" },
         { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
-        { "<space>L", ":Lazy<cr>", desc = "Lazy" },
         { "<space>m", ":!timeout 3s gh markdown-preview %<cr>", desc = "Markdown preview" },
         { "<space>p", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
         { "<space>n", vim.diagnostic.goto_next, desc = "Next diagnostic" },
