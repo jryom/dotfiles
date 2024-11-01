@@ -1,4 +1,6 @@
 # vi: ft=gitconfig
+[core]
+	pager = delta
 
 [color]
 	branch = auto
@@ -8,6 +10,21 @@
 	status = auto
 	ui = true
 
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	hyperlinks = true
+
+[delta "light-mode"]
+	light = true
+	syntax-theme = GitHub
+
+[delta "dark-mode"]
+	dark = true
+	syntax-theme = ansi
+
 [color "grep"]
 	filename = blue
 	linenumber = green
@@ -15,13 +32,6 @@
 
 [commit]
 	gpgsign = true
-
-[diff]
-	tool = difftastic
-
-[difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
-	prompt = false
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -64,9 +74,11 @@
 	email = 2834949+jryom@users.noreply.github.com
 	name = Jesper Ryom
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3vcuzfD2p7aggLGpt+D2Svnor9F5+/OyzgRtPaVR7g 2834949+jryom@users.noreply.github.com
+
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential

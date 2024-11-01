@@ -3,15 +3,17 @@ source ~/.config/fish/env.fish
 if status is-interactive
     if [ "$(cat /tmp/dark-mode)" = dark ]
         set -gx BAT_THEME ansi
+        set -gx DELTA_FEATURES dark-mode
     else
         set -gx BAT_THEME GitHub
+        set -gx DELTA_FEATURES light-mode
     end
     set -gx GIT_CONFIG_VALUE_0 "$BAT_THEME"
 
     ### Abbreviations
 
     abbr ggrep "git rev-list --all | xargs git grep --break"
-    abbr ll "gls --group-directories-first --color=always -Ahl"
+    abbr ll "eza --long --git --group-directories-first"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
@@ -123,4 +125,13 @@ if status is-interactive
     end
 
     fzf_configure_bindings --directory=\ct --variables=\e\cv
+
+    function delta_sidebyside --on-signal WINCH
+        if test "$COLUMNS" -ge 120; and ! contains side-by-side "$DELTA_FEATURES"
+            set --global --export --append DELTA_FEATURES side-by-side
+        else if test "$COLUMNS" -lt 120; and contains side-by-side "$DELTA_FEATURES"
+            set --erase DELTA_FEATURES[(contains --index side-by-side "$DELTA_FEATURES")]
+        end
+    end
+    delta_sidebyside
 end

@@ -13,7 +13,8 @@ git:
   log:
     showWholeGraph: false
   paging:
-    externalDiffCommand: difft --background "$(cat /tmp/dark-mode || 'light')"
+    colorArg: always
+    pager: delta --paging=never "--$(cat /tmp/dark-mode || light)"
   fetchAll: true
   autoRefresh: true
   disableForcePushing: true
