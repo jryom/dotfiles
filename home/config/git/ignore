@@ -5,6 +5,5 @@
 .in
 .out
 .vim/coc-settings.json
-.aider*
 Session.vim
 node_modules

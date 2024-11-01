@@ -1,4 +1,3 @@
-aider-chat
 dotbot
 neovim-remote
 pip
