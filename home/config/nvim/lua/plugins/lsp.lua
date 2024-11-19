@@ -2,14 +2,10 @@
 return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
+    "artemave/workspace-diagnostics.nvim",
     { "lukas-reineke/lsp-format.nvim", version = "*" },
     "b0o/schemastore.nvim",
     { "neovim/nvim-lspconfig", version = "*" },
-    {
-      "rrethy/vim-illuminate",
-      event = "VeryLazy",
-      config = function() require("illuminate").configure({ providers = { "lsp" }, min_count_to_highlight = 2 }) end,
-    },
     {
       "icholy/lsplinks.nvim",
       config = function()
@@ -19,8 +15,24 @@ return {
       end,
     },
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VeryLazy",
   config = function()
+    require("workspace-diagnostics").setup({
+      workspace_files = function()
+        local ignore_list = { "generated", ".md", ".json" }
+        local cwd = vim.fn.getcwd()
+        local workspace_files = vim.fn.split(vim.fn.system("git ls-files " .. cwd), "\n")
+        workspace_files = vim.tbl_filter(function(file)
+          for _, ignore in ipairs(ignore_list) do
+            if file:match(ignore) then return false end
+          end
+          return true
+        end, workspace_files)
+
+        return workspace_files
+      end,
+    })
+
     vim.diagnostic.config({
       float = { source = true },
       severity_sort = true,
@@ -55,18 +67,6 @@ return {
       require("lsp-format").on_attach(client)
 
       require("which-key").add({
-        {
-          "gn",
-          function() require("illuminate").goto_next_reference(true) end,
-          desc = "Goto next reference",
-          buffer = bufnr,
-        },
-        {
-          "gN",
-          function() require("illuminate").goto_prev_reference(true) end,
-          desc = "Goto previous reference",
-          buffer = bufnr,
-        },
         { "<space>l", group = "LSP", buffer = bufnr },
         { "<space>lR", ":LspRestart<cr>", desc = "Restart", buffer = bufnr },
         { "<space>lS", ":LspStop<cr>", desc = "Stop", buffer = bufnr },
@@ -91,6 +91,12 @@ return {
           "<space>lh",
           function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })) end,
           desc = "Toggle inlay hints",
+          buffer = bufnr,
+        },
+        {
+          "<space>lp",
+          function() require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr) end,
+          desc = "Populate workspace diagnostics",
           buffer = bufnr,
         },
       })
@@ -155,5 +161,6 @@ return {
         },
       },
     })
+    vim.cmd("LspStart")
   end,
 }

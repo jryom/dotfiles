@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "asheq/close-buffers.vim",
+  cmd = "Bwipeout",
   keys = {
     { "Qa", ":Bwipeout all<cr>", desc = "Delete all buffers", silent = true },
     { "Qh", ":Bwipeout hidden<cr>", desc = "Delete hidden buffers", silent = true },

@@ -8,6 +8,7 @@ return {
       library = {
         { path = "luvit-meta/library", words = { "vim%.uv" } },
         { path = "lazy.nvim", words = { "LazySpec" } },
+        { path = "snacks.nvim", words = { "snacks" } },
       },
     },
   },

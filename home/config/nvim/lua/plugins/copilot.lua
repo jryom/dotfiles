@@ -7,7 +7,7 @@ return {
     { "github/copilot.vim" },
     { "nvim-lua/plenary.nvim" },
   },
-  event = { "BufReadPost", "BufNewFile" },
+  event = "VeryLazy",
   keys = {
     { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
     { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Write docs", mode = { "n", "x" } },

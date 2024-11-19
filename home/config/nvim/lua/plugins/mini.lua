@@ -2,6 +2,7 @@
 return {
   {
     "echasnovski/mini.basics",
+    event = "VeryLazy",
     key = { { "yo" } },
     config = function()
       require("mini.basics").setup({

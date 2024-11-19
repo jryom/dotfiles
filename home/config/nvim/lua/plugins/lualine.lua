@@ -22,33 +22,42 @@ end
 local macro_rec = function() return vim.fn.reg_recording() end
 
 local hideBelow = function(columns)
-  return function() return vim.api.nvim_win_get_width(0) > columns end
+  return function() return vim.o.columns > columns end
 end
 
 ---@type LazySpec
 return {
   "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   config = function()
+    local utils = require("lualine.utils.utils")
     require("lualine").setup({
       options = {
+        globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
       },
       sections = {
         lualine_a = { { cwd, cond = hideBelow(100) } },
-        lualine_b = { { "branch", cond = hideBelow(160) } },
+        lualine_b = { { "branch", cond = hideBelow(200) } },
         lualine_c = {
           { "filename", path = 1, shorting_target = 5 },
-          {
-            "diagnostics",
-            sources = { "nvim_diagnostic", "nvim_workspace_diagnostic" },
-            cond = hideBelow(50),
-            symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-          },
           macro_rec,
         },
         lualine_x = {
-          { lsp_clients, cond = hideBelow(150) },
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic", "nvim_workspace_diagnostic" },
+            cond = hideBelow(150),
+          },
+          { lsp_clients, cond = hideBelow(200) },
+          {
+            require("lazy.status").updates,
+            cond = require("lazy.status").has_updates,
+            color = {
+              fg = utils.extract_color_from_hllist({ "fg" }, { "DiagnosticInfo" }, "#ffffff"),
+            },
+          },
         },
         lualine_y = { { "filetype", cond = hideBelow(150) } },
         lualine_z = { { "%l/%L", cond = hideBelow(80) } },
