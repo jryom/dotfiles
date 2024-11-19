@@ -2,9 +2,9 @@
 return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
-    "lukas-reineke/lsp-format.nvim",
+    { "lukas-reineke/lsp-format.nvim", version = "*" },
     "b0o/schemastore.nvim",
-    "neovim/nvim-lspconfig",
+    { "neovim/nvim-lspconfig", version = "*" },
     {
       "rrethy/vim-illuminate",
       event = "VeryLazy",

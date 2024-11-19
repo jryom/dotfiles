@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "akinsho/bufferline.nvim",
+  version = "*",
   event = { "TabNew", "TabEnter", "TabEnter" },
   config = function()
     require("bufferline").setup({

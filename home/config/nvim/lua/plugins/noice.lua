@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "folke/noice.nvim",
+  version = "*",
   dependencies = "muniftanjim/nui.nvim",
   event = "VeryLazy",
   config = function()

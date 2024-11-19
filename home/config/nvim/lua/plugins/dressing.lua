@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "stevearc/dressing.nvim",
+  version = "*",
   config = function()
     require("dressing").setup({
       select = {

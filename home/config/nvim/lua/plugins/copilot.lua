@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "copilotc-nvim/copilotchat.nvim",
+  version = "*",
   branch = "canary",
   dependencies = {
     { "github/copilot.vim" },

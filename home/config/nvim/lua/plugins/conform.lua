@@ -2,6 +2,7 @@
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
+  version = "*",
   keys = {
     {
       "yof",

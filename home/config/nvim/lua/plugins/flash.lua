@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "folke/flash.nvim",
+  version = "*",
   event = "VeryLazy",
   keys = {
     {

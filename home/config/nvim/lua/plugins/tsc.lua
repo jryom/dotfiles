@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "dmmulroy/tsc.nvim",
+  version = "*",
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require("tsc").setup({

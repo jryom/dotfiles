@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "folke/trouble.nvim",
+  version = "*",
   cmd = "Trouble",
   keys = {
     {

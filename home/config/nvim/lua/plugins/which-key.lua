@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "folke/which-key.nvim",
+  version = "*",
   event = "VeryLazy",
   config = function()
     require("which-key").setup({

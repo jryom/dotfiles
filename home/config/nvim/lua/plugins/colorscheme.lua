@@ -4,6 +4,7 @@ require("utils")
 return {
   {
     "mcchrish/zenbones.nvim",
+    version = "*",
     dependencies = "rktjmp/lush.nvim",
     config = function()
       local mode = Utils:read_file("/tmp/dark-mode")
