@@ -6,11 +6,6 @@ return {
     "b0o/schemastore.nvim",
     { "neovim/nvim-lspconfig", version = "*" },
     {
-      "rrethy/vim-illuminate",
-      event = "VeryLazy",
-      config = function() require("illuminate").configure({ providers = { "lsp" }, min_count_to_highlight = 2 }) end,
-    },
-    {
       "icholy/lsplinks.nvim",
       config = function()
         local lsplinks = require("lsplinks")
@@ -55,18 +50,6 @@ return {
       require("lsp-format").on_attach(client)
 
       require("which-key").add({
-        {
-          "gn",
-          function() require("illuminate").goto_next_reference(true) end,
-          desc = "Goto next reference",
-          buffer = bufnr,
-        },
-        {
-          "gN",
-          function() require("illuminate").goto_prev_reference(true) end,
-          desc = "Goto previous reference",
-          buffer = bufnr,
-        },
         { "<space>l", group = "LSP", buffer = bufnr },
         { "<space>lR", ":LspRestart<cr>", desc = "Restart", buffer = bufnr },
         { "<space>lS", ":LspStop<cr>", desc = "Stop", buffer = bufnr },
