@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-set -gx SUDO_ASKPASS "$HOME/.config/scripts/askpass"
-
 sudo -v
 
 mise upgrade
