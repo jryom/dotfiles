@@ -4,12 +4,14 @@
 --glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,**/node_modules/**,.next/**,**/generated/**}
 # Binaries and other filetypes
 --glob=!**/{*.snap,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache,*excalidraw}
+# Python
+--glob=!**/{venv}/**
 # Unity
 --glob=!**/{*.asmdef,*.asset,*.sln,Assets/Packages,*.unity,*.meta}
 # Fish
 --glob=!**/{fish_history}
 # Universally ignored folders
---glob=!**/{.git,.undodir,coverage,.cache,dist,migrations,vendor,__pycache__,Pods,*\.xc*,build,out,ssh}/**
+--glob=!**/{.git,.undodir,coverage,.cache,dist,vendor,__pycache__,Pods,*\.xc*,build,out,ssh}/**
 
 --colors=match:fg:yellow
 --colors=match:style:bold
