@@ -17,7 +17,7 @@ return {
         { "<C-t>n", ":tab split<cr>", desc = "New tab" },
         -- Misc
         { "z1", ":set foldlevel=1<cr>", desc = "Set fold level to 1" },
-        { "<D-s>", ":w<cr>", desc = "Write file" },
+        { "<D-s>", ":silent! write<cr>", desc = "Write file" },
         { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
         { "<space>m", ":!timeout 3s gh markdown-preview %<cr>", desc = "Markdown preview" },
         { "<space>p", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },

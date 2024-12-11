@@ -5,6 +5,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "setlocal foldmethod=manual",
 })
 
+vim.api.nvim_create_autocmd("QuitPre", {
+  group = group,
+  command = "Bwipeout hidden",
+})
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   pattern = { "*.{eslint,babel,stylelint,prettier,swc}rc" },
   command = "set ft=json",

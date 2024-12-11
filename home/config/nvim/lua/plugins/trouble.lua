@@ -24,6 +24,20 @@ return {
   config = function()
     require("trouble").setup({
       auto_close = true,
+      modes = {
+        diagnostics = {
+          filter = {
+            any = {
+              {
+                severity = vim.diagnostic.severity.ERROR,
+              },
+              {
+                severity = vim.diagnostic.severity.WARN,
+              },
+            },
+          },
+        },
+      },
     })
   end,
 }

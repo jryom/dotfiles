@@ -23,6 +23,15 @@ return {
         },
         biome = {
           require_cwd = true,
+          args = {
+            "check",
+            "--stdin-file-path",
+            "$FILENAME",
+            "--write",
+            "--unsafe",
+            "--no-errors-on-unmatched",
+            "--skip-errors",
+          },
         },
         shfmt = {
           args = { "-filename", "$FILENAME", "-i", "2" },

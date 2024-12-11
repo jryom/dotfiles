@@ -2,7 +2,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
   version = "*",
-  event = { "BufReadPost", "BufNewFile" },
+  event = "VeryLazy",
   main = "ibl",
   config = function()
     require("ibl").setup({

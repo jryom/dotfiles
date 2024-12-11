@@ -2,6 +2,7 @@
 return {
   "junnplus/lsp-setup.nvim",
   dependencies = {
+    "artemave/workspace-diagnostics.nvim",
     { "lukas-reineke/lsp-format.nvim", version = "*" },
     "b0o/schemastore.nvim",
     { "neovim/nvim-lspconfig", version = "*" },
@@ -14,8 +15,24 @@ return {
       end,
     },
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VeryLazy",
   config = function()
+    require("workspace-diagnostics").setup({
+      workspace_files = function()
+        local ignore_list = { "generated", ".md", ".json" }
+        local cwd = vim.fn.getcwd()
+        local workspace_files = vim.fn.split(vim.fn.system("git ls-files " .. cwd), "\n")
+        workspace_files = vim.tbl_filter(function(file)
+          for _, ignore in ipairs(ignore_list) do
+            if file:match(ignore) then return false end
+          end
+          return true
+        end, workspace_files)
+
+        return workspace_files
+      end,
+    })
+
     vim.diagnostic.config({
       float = { source = true },
       severity_sort = true,
@@ -48,6 +65,8 @@ return {
       end
 
       require("lsp-format").on_attach(client)
+
+      require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
       require("which-key").add({
         { "<space>l", group = "LSP", buffer = bufnr },
@@ -138,5 +157,6 @@ return {
         },
       },
     })
+    vim.cmd("LspStart")
   end,
 }
