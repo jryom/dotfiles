@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
 
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
-      local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+      local filetype = vim.bo[buf].filetype
       for _, ft in ipairs(excluded_filetypes) do
         if ft == filetype then return true end
       end

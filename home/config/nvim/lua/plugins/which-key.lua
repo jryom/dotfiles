@@ -16,6 +16,7 @@ return {
         { "<C-t>l", ":tabnext<cr>", desc = "Next tab" },
         { "<C-t>n", ":tab split<cr>", desc = "New tab" },
         -- Misc
+        { "<space>L", function() require("lazy").home() end, desc = "Set fold level to 1" },
         { "z1", ":set foldlevel=1<cr>", desc = "Set fold level to 1" },
         { "<D-s>", ":w<cr>", desc = "Write file" },
         { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
@@ -38,7 +39,8 @@ return {
         {
           "<space>r",
           function()
-            local command = vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right>', false, false, true)
+            local command =
+              vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right><c-r>p', false, false, true)
             vim.api.nvim_feedkeys(command, "n", true)
           end,
           desc = "Replace visual selection",

@@ -30,13 +30,15 @@ return {
       group = group,
     })
 
-    require("CopilotChat").setup({
-      auto_follow_cursor = false,
-      context = "buffers",
-      show_folds = false,
+    local context = require("CopilotChat.context")
 
-      mappings = {
-        complete = { insert = "" },
+    require("CopilotChat").setup({
+      context = "visible_buffers",
+      mappings = { complete = { insert = "" } },
+      contexts = {
+        visible_buffers = {
+          resolve = function() return context.buffers("visible") end,
+        },
       },
     })
   end,

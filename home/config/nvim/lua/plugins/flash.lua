@@ -2,7 +2,6 @@
 return {
   "folke/flash.nvim",
   version = "*",
-  event = "VeryLazy",
   keys = {
     {
       "s",
