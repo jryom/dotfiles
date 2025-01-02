@@ -38,7 +38,8 @@ return {
         {
           "<space>r",
           function()
-            local command = vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right>', false, false, true)
+            local command =
+              vim.api.nvim_replace_termcodes('"py:%sno///<left><left><c-r>p<right><c-r>p', false, false, true)
             vim.api.nvim_feedkeys(command, "n", true)
           end,
           desc = "Replace visual selection",

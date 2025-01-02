@@ -15,13 +15,7 @@ return {
         ["<C-l>"] = { "snippet_forward", "select_and_accept", "fallback" },
         ["<C-h>"] = { "snippet_backward", "fallback" },
       },
-      windows = {
-        autocomplete = {
-          max_height = 20,
-          selection = "auto_insert",
-        },
-        documentation = { auto_show = true },
-      },
+      completion = { documentation = { auto_show = true } },
     })
   end,
 }
