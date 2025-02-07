@@ -33,6 +33,7 @@ fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
 fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin
 fish_add_path --universal $HOME/.pnpm
 fish_add_path --universal $HOME/go/bin
+fish_add_path --universal $HOME/.local/bin
 
 # Colors
 set -U fish_color_autosuggestion brblack -d

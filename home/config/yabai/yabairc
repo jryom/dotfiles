@@ -9,7 +9,6 @@ yabai -m config \
   window_opacity on \
   active_window_opacity 1.0 \
   normal_window_opacity 0.7 \
-  window_opacity_duration 0.1 \
   window_gap 10 \
   top_padding 10 \
   right_padding 10 \
@@ -17,7 +16,6 @@ yabai -m config \
   left_padding 10
 
 # Rules
-yabai -m rule --add manage=off app="kitty" title='aichat' grid='8:8:5:0:3:4'
 yabai -m rule --add manage=off app='1Password'
 yabai -m rule --add manage=off app='Activity Monitor'
 yabai -m rule --add manage=off app='Archive Utility'
