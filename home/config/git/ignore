@@ -4,6 +4,5 @@
 .Trashes
 .in
 .out
-.vim/coc-settings.json
 Session.vim
 node_modules

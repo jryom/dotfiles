@@ -9,7 +9,6 @@ return {
       bigfile = { enabled = true },
       indent = { enabled = true, chunk = { enabled = true, only_current = true } },
       input = { enabled = true },
-      lazygit = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },

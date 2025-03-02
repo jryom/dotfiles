@@ -1,6 +1,6 @@
 # vi: ft=gitconfig
-[core]
-	pager = delta
+[branch]
+	sort = -committerdate
 
 [color]
 	branch = auto
@@ -10,28 +10,53 @@
 	status = auto
 	ui = true
 
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	navigate = true
-	hyperlinks = true
-
-[delta "light-mode"]
-	light = true
-	syntax-theme = GitHub
-
-[delta "dark-mode"]
-	dark = true
-	syntax-theme = ansi
-
 [color "grep"]
 	filename = blue
 	linenumber = green
 	match = bold yellow
 
+[column]
+	ui = auto
+
 [commit]
 	gpgsign = true
+	verbose = true
+
+[core]
+	fsmonitor = true
+	pager = delta
+	untrackedCache = true
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[delta]
+	navigate = true
+	hyperlinks = true
+
+[delta "dark-mode"]
+	dark = true
+	syntax-theme = ansi
+
+[delta "light-mode"]
+	light = true
+	syntax-theme = GitHub
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -46,11 +71,17 @@
 	heading = true
 	linenumber = true
 
+[help]
+	autocorrect = prompt
+
 [init]
 	defaultBranch = main
 
+[interactive]
+	diffFilter = delta --color-only
+
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [mergetool]
 	prompt = false
@@ -62,23 +93,26 @@
 	rebase = true
 
 [push]
-	default = current
+	autoSetupRemote = true
+	default = simple
+	followTags = true
 
 [rebase]
+	autoSquash = true
 	autoStash = true
+	updateRefs = true
 
 [remote "origin"]
 	prune = true
+
+[rerere]
+	autoupdate = true
+	enabled = true
+
+[tag]
+	sort = version:refname
 
 [user]
 	email = 2834949+jryom@users.noreply.github.com
 	name = Jesper Ryom
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3vcuzfD2p7aggLGpt+D2Svnor9F5+/OyzgRtPaVR7g 2834949+jryom@users.noreply.github.com
-
-[credential "https://github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
