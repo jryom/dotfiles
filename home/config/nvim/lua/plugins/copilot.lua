@@ -7,7 +7,7 @@ return {
     { "github/copilot.vim" },
     { "nvim-lua/plenary.nvim" },
   },
-  event = "VeryLazy",
+  event = { "InsertEnter" },
   keys = {
     { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
     { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Write docs", mode = { "n", "x" } },
@@ -30,16 +30,16 @@ return {
       group = group,
     })
 
-    local context = require("CopilotChat.context")
+    -- local context = require("CopilotChat.context")
 
     require("CopilotChat").setup({
-      context = "visible_buffers",
+      -- context = "visible_buffers",
       mappings = { complete = { insert = "" } },
-      contexts = {
-        visible_buffers = {
-          resolve = function() return context.buffers("visible") end,
-        },
-      },
+      -- contexts = {
+      --   visible_buffers = {
+      --     resolve = function() return context.buffers("visible") end,
+      --   },
+      -- },
     })
   end,
 }

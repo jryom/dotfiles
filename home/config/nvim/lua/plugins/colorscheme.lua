@@ -10,6 +10,39 @@ local overwrite = function()
         LspReferenceText({ gui = "underline" }),
         LspReferenceRead({ gui = "underline" }),
         LspReferenceWrite({ gui = "underline" }),
+        DapUINormal({ link = "Normal" }),
+        DapUIVariable({ link = "Normal" }),
+        DapUIScope({ link = "Constant" }),
+        DapUIType({ link = "Type" }),
+        DapUIValue({ link = "Normal" }),
+        DapUIModifiedValue({ link = "Statement", gui = "bold" }),
+        DapUIDecoration({ link = "Special" }),
+        DapUIThread({ link = "String" }),
+        DapUIStoppedThread({ link = "Error" }),
+        DapUIFrameName({ link = "Normal" }),
+        DapUISource({ link = "Type" }),
+        DapUILineNumber({ link = "LineNr" }),
+        DapUIFloatNormal({ link = "NormalFloat" }),
+        DapUIFloatBorder({ link = "FloatBorder" }),
+        DapUIWatchesEmpty({ link = "Error" }),
+        DapUIWatchesValue({ link = "String" }),
+        DapUIWatchesError({ link = "Error" }),
+        DapUIBreakpointsPath({ link = "Directory" }),
+        DapUIBreakpointsInfo({ link = "String" }),
+        DapUIBreakpointsCurrentLine({ link = "CursorLineNr", gui = "bold" }),
+        DapUIBreakpointsLine({ link = "LineNr" }),
+        DapUIBreakpointsDisabledLine({ link = "Comment" }),
+        DapUICurrentFrameName({ link = "CursorLineNr" }),
+        DapUIStepOver({ link = "Function" }),
+        DapUIStepInto({ link = "Function" }),
+        DapUIStepBack({ link = "Function" }),
+        DapUIStepOut({ link = "Function" }),
+        DapUIStop({ link = "Error" }),
+        DapUIPlayPause({ link = "String" }),
+        DapUIRestart({ link = "String" }),
+        DapUIUnavailable({ link = "Comment" }),
+        DapUIWinSelect({ link = "WildMenu" }),
+        DapUIEndofBuffer({ link = "EndOfBuffer" }),
       }
     end
   )
@@ -40,6 +73,32 @@ return {
 
       vim.cmd("colorscheme zenbones")
       overwrite()
+
+      vim.cmd([[
+        highlight! link DapUIModifiedValue Statement
+        highlight! link DapUIBreakpointsCurrentLine CursorLineNr
+        highlight! link DapUIPlayPause String
+        highlight! link DapUIRestart String
+        highlight! link DapUIStop Error
+        highlight! link DapUIUnavailable Comment
+        highlight! link DapUIStepOver Function
+        highlight! link DapUIStepInto Function
+        highlight! link DapUIStepBack Function
+        highlight! link DapUIStepOut Function
+        highlight! link DapUIScope Constant
+        highlight! link DapUIType Type
+        highlight! link DapUIDecoration Special
+        highlight! link DapUIThread String
+        highlight! link DapUIStoppedThread Error
+        highlight! link DapUISource Type
+        highlight! link DapUILineNumber LineNr
+        highlight! link DapUIFloatBorder FloatBorder
+        highlight! link DapUIWatchesEmpty Error
+        highlight! link DapUIWatchesValue String
+        highlight! link DapUIWatchesError Error
+        highlight! link DapUIBreakpointsPath Directory
+        highlight! link DapUIBreakpointsInfo String
+      ]])
     end,
   },
 

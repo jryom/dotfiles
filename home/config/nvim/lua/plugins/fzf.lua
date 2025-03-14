@@ -32,6 +32,9 @@ return {
     require("fzf-lua").setup({
       fzf_colors = true,
       "telescope",
+      defaults = {
+        file_icons = false,
+      },
       winopts = {
         preview = {
           flip_columns = 300,

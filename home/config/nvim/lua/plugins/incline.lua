@@ -6,7 +6,7 @@ return {
         overlap = { borders = true },
         margin = { vertical = 0 },
       },
-      hide = { cursorline = true },
+      hide = { cursorline = "focused_win" },
     })
   end,
   event = "VeryLazy",

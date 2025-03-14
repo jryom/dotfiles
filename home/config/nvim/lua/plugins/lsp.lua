@@ -1,5 +1,29 @@
 ---@type LazySpec
 return {
+
+  {
+    "wansmer/symbol-usage.nvim",
+    event = "LspAttach",
+    config = function() require("symbol-usage").setup({}) end,
+  },
+
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    priority = 1000,
+    config = function()
+      require("tiny-inline-diagnostic").setup({
+        preset = "minimal",
+        options = {
+          show_source = true,
+          multilines = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
+
   {
     "artemave/workspace-diagnostics.nvim",
     keys = { "<space>lp" },
@@ -30,10 +54,11 @@ return {
   {
     "junnplus/lsp-setup.nvim",
     dependencies = {
-      { "lukas-reineke/lsp-format.nvim", version = "*" },
+      { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
       { "neovim/nvim-lspconfig", version = "*" },
       {
         "icholy/lsplinks.nvim",
+        event = "LspAttach",
         config = function()
           local lsplinks = require("lsplinks")
           lsplinks.setup()
@@ -147,7 +172,7 @@ return {
               yaml = {
                 schemas = require("schemastore").yaml.schemas(),
                 schemaStore = {
-                  enable = false,
+                  enable = true,
                   url = "",
                 },
               },

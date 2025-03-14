@@ -19,6 +19,5 @@ return {
       { "<right>", "]", mode = { "n", "x", "o" }, remap = true },
     },
     config = function() require("mini.bracketed").setup() end,
-    event = "VeryLazy",
   },
 }

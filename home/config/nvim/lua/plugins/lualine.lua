@@ -33,6 +33,7 @@ return {
     local utils = require("lualine.utils.utils")
     require("lualine").setup({
       options = {
+        icons_enabled = false,
         globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },

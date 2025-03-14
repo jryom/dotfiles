@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   dependencies = "rafamadriz/friendly-snippets",
-  event = "VeryLazy",
+  event = { "CmdlineEnter", "InsertEnter" },
   version = "v0.*",
   config = function()
     require("blink.cmp").setup({

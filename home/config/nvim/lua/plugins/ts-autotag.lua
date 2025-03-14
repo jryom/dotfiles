@@ -1,7 +1,8 @@
----@type lazyspec
+---@type LazySpec
 return {
   "windwp/nvim-ts-autotag",
-  event = "VeryLazy",
+  event = "InsertEnter",
+  ft = "typescript",
   config = function()
     require("nvim-ts-autotag").setup({
       opts = {

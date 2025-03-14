@@ -13,6 +13,7 @@ return {
       watch_for_changes = true,
       default_file_explorer = true,
       delete_to_trash = true,
+      columns = {},
       win_options = {
         number = false,
         relativenumber = false,
