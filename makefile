@@ -5,10 +5,10 @@ default: install
 install: homebrew gatekeeper system-preferences mise brew pip fish-globals dotbot fisher virtualfish pnpm misc gh
 
 brew:
-	brew bundle install --file="$(CURDIR)/configs/brewfile" --force --no-lock
+	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
 
 brew-personal:
-	brew bundle install --file="$(CURDIR)/configs/brewfile_personal" --force --no-lock
+	brew bundle install --file="$(CURDIR)/configs/brewfile_personal" --force
 
 dotbot:
 	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; \
@@ -89,7 +89,6 @@ system-preferences:
 	defaults write com.apple.finder ShowPathbar -bool true
 	defaults write com.apple.finder ShowStatusBar -bool true
 	defaults write com.apple.finder _FXSortFoldersFirst -bool YES
-	defaults write com.apple.mail DisableInlineAttachmentViewing -bool yes
 	defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
 	defaults write com.apple.spaces spans-displays -bool true
 

@@ -11,7 +11,7 @@
 # Fish
 --glob=!**/{fish_history}
 # Universally ignored folders
---glob=!**/{.git,.undodir,coverage,.cache,dist,vendor,__pycache__,Pods,*\.xc*,build,out,ssh}/**
+--glob=!**/{.git,.undodir,coverage,.cache,dist,vendor,__pycache__,Pods,*\.xc*,build,out,ssh,.terraform}/**
 
 --colors=match:fg:yellow
 --colors=match:style:bold

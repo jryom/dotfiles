@@ -8,23 +8,6 @@ return {
   },
 
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
-    priority = 1000,
-    config = function()
-      require("tiny-inline-diagnostic").setup({
-        preset = "minimal",
-        options = {
-          show_source = true,
-          multilines = {
-            enabled = true,
-          },
-        },
-      })
-    end,
-  },
-
-  {
     "artemave/workspace-diagnostics.nvim",
     keys = { "<space>lp" },
     config = function()
