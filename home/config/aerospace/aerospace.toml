@@ -1,0 +1,70 @@
+accordion-padding = 30
+after-login-command = []
+after-startup-command = []
+automatically-unhide-macos-hidden-apps = true
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+start-at-login = true
+
+[gaps]
+inner.horizontal = 20
+inner.vertical = 20
+outer.left = 20
+outer.bottom = 20
+outer.top = 20
+outer.right = 20
+
+[mode.main.binding]
+cmd-h = []
+cmd-alt-h = []
+cmd-a = 'reload-config'
+ctrl-shift-d = '''exec-and-forget osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode''''
+ctrl-alt-cmd-k = 'exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"'
+ctrl-alt-cmd-n = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"'''
+ctrl-alt-cmd-g = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title aichat dash -c "fish -i -c 'aichat --session default'"'''
+ctrl-alt-cmd-m = 'exec-and-forget open /System/Applications/Messages.app'
+ctrl-alt-cmd-r = 'exec-and-forget open /System/Applications/Reminders.app'
+ctrl-alt-cmd-b = 'exec-and-forget open /Applications/Firefox.app'
+ctrl-alt-cmd-f = 'exec-and-forget open /System/Library/CoreServices/Finder.app'
+
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+ctrl-shift-alt-l = 'layout tiles accordion'
+ctrl-shift-h = 'workspace prev'
+ctrl-shift-l = 'workspace next'
+
+ctrl-shift-1 = 'workspace 1'
+ctrl-shift-2 = 'workspace 2'
+ctrl-shift-3 = 'workspace 3'
+ctrl-shift-4 = 'workspace 4'
+ctrl-shift-5 = 'workspace 5'
+ctrl-shift-6 = 'workspace 6'
+ctrl-shift-7 = 'workspace 7'
+ctrl-shift-8 = 'workspace 8'
+ctrl-shift-9 = 'workspace 9'
+
+alt-shift-p = 'move-node-to-workspace prev'
+alt-shift-n = 'move-node-to-workspace next'
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
