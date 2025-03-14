@@ -5,7 +5,6 @@ for app_name in \
   "Ice" \
   "ItsyCal" \
   "NextDNS" \
-  "YabaiIndicator"; do
   echo "$app_name"
   open -gjF -a"/Applications/$app_name.app"
 done

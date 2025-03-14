@@ -4,6 +4,8 @@ echo "$1" >/tmp/dark-mode
 
 if [ "$1" = "light" ]; then
   fish -i -c "set -Ux AICHAT_LIGHT_THEME 1"
+  "$HOME/.config/scripts/borders" light
 else
   fish -i -c "set -Ux AICHAT_LIGHT_THEME 0"
+  "$HOME/.config/scripts/borders" dark
 fi
