@@ -1,7 +1,7 @@
 source ~/.config/fish/env.fish
 
 if status is-interactive
-    if [ "$(cat /tmp/dark-mode)" = dark ]
+    if test -f /tmp/dark-mode; and [ "$(cat /tmp/dark-mode)" = dark ]
         set -gx BAT_THEME ansi
         set -gx DELTA_FEATURES dark-mode
     else
@@ -19,7 +19,7 @@ if status is-interactive
     abbr up "$HOME/.config/scripts/update"
     abbr sc "source ~/.config/fish/config.fish"
 
-    abbr delete_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD)  --json databaseId  -q '.[].databaseId' |  xargs -IID -P10 gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE'
+    abbr delete_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId -q '.[].databaseId' | xargs -IID -P10 gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE || true'
 
     abbr y yarn
     abbr ya yarn add
