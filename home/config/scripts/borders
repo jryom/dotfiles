@@ -1,9 +1,0 @@
-#!/usr/bin/env dash
-
-is_dark="$1"
-
-[ -z "$is_dark" ] && is_dark="$([ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ] && echo "dark")"
-
-color="$([ "$is_dark" = "dark" ] && echo "0xbbe6e6e6" || echo "0xbbcccccc")"
-
-borders hidpi=on active_color="$color" inactive_color=0x00 width=9.0 ax_focus=off blacklist="System Settings" &

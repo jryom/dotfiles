@@ -1,8 +1,6 @@
 accordion-padding = 30
-after-login-command = []
-after-startup-command = 'exec-and-forget ~/.config/scripts/borders'
 automatically-unhide-macos-hidden-apps = true
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
