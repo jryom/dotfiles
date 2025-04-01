@@ -8,10 +8,11 @@ return {
     { "nvim-lua/plenary.nvim" },
   },
   event = { "InsertEnter" },
+  build = "make tiktoken",
   keys = {
     { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
     { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Write docs", mode = { "n", "x" } },
-    { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "Fix diagnostic" },
+    { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "Fix diagnostic", mode = { "n", "x" } },
     { "<leader>ao", "<cmd>CopilotChatOptimize<cr>", desc = "Optimize", mode = { "n", "x" } },
     { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
     { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review", mode = { "n", "x" } },
@@ -30,6 +31,8 @@ return {
 
     require("CopilotChat").setup({
       mappings = { complete = { insert = "" } },
+      context = "buffers",
+      model = "claude-3.7-sonnet-thought",
     })
   end,
 }
