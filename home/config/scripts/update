@@ -2,14 +2,16 @@
 
 sudo -v
 
-mise upgrade
+function run_in_parallel
+    set -l cmd $argv[1]
+    set -l label $argv[2]
+    fish -c "$cmd | sed 's/^/[$label] /'" &
+end
 
-mise prune
+run_in_parallel "mise upgrade && mise prune" "mise upgrade && mise prune"
+run_in_parallel "pnpm update --global" "pnpm update --global"
+run_in_parallel "brew upgrade" "brew upgrade"
+run_in_parallel "gh extension upgrade --all" "gh extension upgrade"
 
-pnpm update --global
-
-brew upgrade --greedy
-
-tldr --update
-
-gh extension upgrade --all
+wait
+echo "All tasks completed."

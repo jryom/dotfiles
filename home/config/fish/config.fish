@@ -12,7 +12,7 @@ if status is-interactive
 
     ### Abbreviations
 
-    abbr ggrep "git rev-list --all | xargs git grep --break"
+    abbr gitgrep "git rev-list --all | xargs git grep --break"
     abbr ll "eza --long --git --group-directories-first"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
@@ -24,6 +24,10 @@ if status is-interactive
     abbr y yarn
     abbr ya yarn add
     abbr yad yarn add -D
+
+    abbr tf terraform
+    abbr tfsls terraform state list
+    abbr tfsrm terraform state rm
 
     abbr p pnpm
     abbr pi pnpm install

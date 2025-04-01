@@ -30,7 +30,8 @@ set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -Ux VISUAL "$EDITOR"
 
 fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
-fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin
+fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin /$brew_prefix/opt/grep/libexec/gnubin
+fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/.pnpm
 fish_add_path --universal $HOME/go/bin
 fish_add_path --universal $HOME/.local/bin
@@ -122,7 +123,6 @@ set -U tide_vi_mode_color_default white
 set -U tide_vi_mode_color_insert cyan
 set -U tide_vi_mode_color_replace green
 set -U tide_vi_mode_color_visual yellow
-
 
 ### Right
 set -U tide_right_prompt_items status cmd_duration context toolbox time
