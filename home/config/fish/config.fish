@@ -13,13 +13,15 @@ if status is-interactive
     ### Abbreviations
 
     abbr gitgrep "git rev-list --all | xargs git grep --break"
-    abbr ll "eza --long --git --group-directories-first"
+    abbr ll "ls -halG"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
     abbr sc "source ~/.config/fish/config.fish"
 
-    abbr delete_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId -q '.[].databaseId' | xargs -IID -P10 gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE || true'
+    abbr delete_branch_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId -q '.[].databaseId' | xargs -IID -P10 gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE || true'
+    abbr delete_manual_workflow_runs 'gh run list --user=jryom --event=workflow_dispatch --limit 1000 --json databaseId --jq '.[].databaseId' | xargs -P 20 -I {} bash -c "gh run delete {}"'
+    abbr list_workflow_runs 'gh run list --user=jryom'
 
     abbr y yarn
     abbr ya yarn add
