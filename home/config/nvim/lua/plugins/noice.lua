@@ -12,7 +12,7 @@ return {
         command_palette = true,
         lsp_doc_border = true,
       },
-      popupmenu = { backend = "cmp" },
+      popupmenu = { backend = "nui" },
       cmdline = {
         format = {
           cmdline = { icon = "", title = "" },

@@ -4,10 +4,11 @@ return {
   version = "*",
   branch = "canary",
   dependencies = {
-    { "github/copilot.vim" },
+    { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
   },
   event = { "InsertEnter" },
+  cmd = { "Copilot", "CopilotChat" },
   build = "make tiktoken",
   keys = {
     { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
@@ -21,7 +22,22 @@ return {
   },
   init = function() require("which-key").add({ "<leader>a", group = "AI" }) end,
   config = function()
-    vim.b.copilot_enabled = true
+    require("copilot").setup({
+      suggestion = {
+        auto_trigger = true,
+        hide_during_completion = true,
+        trigger_on_accept = true,
+        keymap = {
+          accept = "<Tab>",
+          accept_word = false,
+          accept_line = false,
+          next = "<Right>",
+          prev = "<Left>",
+          dismiss = "<C-c>",
+        },
+      },
+    })
+
     local group = vim.api.nvim_create_augroup("copilot", {})
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
       pattern = { "copilot-chat" },

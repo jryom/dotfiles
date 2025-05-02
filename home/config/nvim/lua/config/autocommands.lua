@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
         if ft == filetype then return true end
       end
       local win_width = vim.api.nvim_win_get_width(win)
-      if win_width < 120 then
+      if win_width < 100 then
         vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })
         vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = win })
       else

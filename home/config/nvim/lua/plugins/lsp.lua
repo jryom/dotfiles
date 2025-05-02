@@ -4,7 +4,13 @@ return {
   {
     "wansmer/symbol-usage.nvim",
     event = "LspAttach",
-    config = function() require("symbol-usage").setup({}) end,
+    config = function()
+      require("symbol-usage").setup({
+        vt_position = "end_of_line",
+        request_pending_text = "",
+        hl = { link = "LspInlayHint" },
+      })
+    end,
   },
 
   {
@@ -34,20 +40,13 @@ return {
     ft = { "json", "yaml" },
   },
 
+  { "icholy/lsplinks.nvim", ft = "yaml" },
+
   {
     "junnplus/lsp-setup.nvim",
     dependencies = {
       { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
       { "neovim/nvim-lspconfig", version = "*" },
-      {
-        "icholy/lsplinks.nvim",
-        event = "LspAttach",
-        config = function()
-          local lsplinks = require("lsplinks")
-          lsplinks.setup()
-          vim.keymap.set("n", "gx", lsplinks.gx)
-        end,
-      },
     },
     event = "VeryLazy",
     config = function()
@@ -83,6 +82,12 @@ return {
         end
 
         require("lsp-format").on_attach(client)
+
+        if vim.bo[bufnr].filetype == "yaml" then
+          local lsplinks = require("lsplinks")
+          lsplinks.setup()
+          vim.keymap.set("n", "gx", lsplinks.gx, { buffer = bufnr })
+        end
 
         require("which-key").add({
           { "<space>l", group = "LSP", buffer = bufnr },
@@ -140,7 +145,6 @@ return {
           docker_compose_language_service = {},
           eslint = {},
           gopls = {},
-          graphql = { filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" } },
           html = {},
           marksman = {},
           pyright = {},
@@ -159,19 +163,28 @@ return {
           yamlls = {},
           jsonls = {
             init_options = { provideFormatter = false },
-            settings = {
-              yaml = {
-                schemas = require("schemastore").yaml.schemas(),
-                schemaStore = {
-                  enable = true,
-                  url = "",
-                },
-              },
-              json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true },
-              },
-            },
+            settings = function()
+              local ft = vim.bo.filetype
+              if ft == "json" or ft == "yaml" then
+                return {
+                  yaml = {
+                    schemas = require("schemastore").yaml.schemas(),
+                    schemaStore = {
+                      enable = true,
+                      url = "",
+                    },
+                  },
+                  json = {
+                    schemas = require("schemastore").json.schemas(),
+                    validate = { enable = true },
+                  },
+                }
+              end
+              return {
+                yaml = { schemaStore = { enable = false, url = "" } },
+                json = { validate = { enable = true } },
+              }
+            end,
           },
           lua_ls = {
             settings = {
@@ -187,6 +200,7 @@ return {
           },
         },
       })
+      vim.lsp.set_log_level("warn")
       vim.cmd("LspStart")
     end,
   },

@@ -46,7 +46,7 @@ vim.opt.relativenumber = true
 vim.opt.sessionoptions = { "buffers", "tabpages" }
 vim.opt.shiftround = true
 vim.opt.shiftwidth = 2
-vim.opt.shortmess:append("ctFTI")
+vim.opt.shortmess:append("actFTIW")
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
@@ -66,12 +66,35 @@ vim.g.maplocalleader = " "
 vim.cmd.inoreabbrev({
   "<expr>",
   "DATE",
-  "strftime('%Y.%m.%d | %A | %H:%M')",
+  "strftime('%Y-%m-%d')",
+})
+
+vim.cmd.inoreabbrev({
+  "<expr>",
+  "DATETIME",
+  "strftime('%Y-%m-%d | %A | %H:%M')",
 })
 
 require("lazy").setup({
+  ui = {
+    size = {
+      width = 1,
+      height = 1,
+    },
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
   spec = {
     { import = "plugins" },
   },
-  checker = { enabled = true },
 })

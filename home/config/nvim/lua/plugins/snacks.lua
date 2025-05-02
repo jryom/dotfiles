@@ -7,7 +7,7 @@ return {
   config = function()
     require("snacks").setup({
       bigfile = { enabled = true },
-      indent = { enabled = true, chunk = { enabled = true, only_current = true } },
+      indent = { enabled = true, indent = { char = "▏" }, scope = { char = "▏" } },
       input = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = true },

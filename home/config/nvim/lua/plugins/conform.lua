@@ -51,7 +51,7 @@ return {
         jsonc = { "biome", "prettier", stop_after_first = true },
         justfile = { "just" },
         lua = { "stylua" },
-        markdown = { "markdownlint-cli2", "prettier" },
+        markdown = { "prettier" },
         python = { "ruff_fix", "ruff_format", "isort", "black" },
         sh = { "shfmt" },
         sql = { "sqlfluff" },

@@ -1,10 +1,11 @@
 ---@type LazySpec
 return {
   "ibhagwan/fzf-lua",
+  event = "VeryLazy",
   cmd = "FzfLua",
   keys = {
     { "<D-b>", function() require("fzf-lua").buffers() end, desc = "Buffers", silent = true },
-    { "<D-i>", function() require("fzf-lua").blines() end, desc = "Buffer lines", silent = true },
+    { "<D-i>", function() require("fzf-lua").blines() end, desc = "Buffer lines", silent = true, mode = { "n", "x" } },
     { "?", function() require("fzf-lua").helptags() end, desc = "Help", silent = true },
     { "<D-o>", function() require("fzf-lua").files() end, desc = "Open file", silent = true },
     {
@@ -30,6 +31,7 @@ return {
   init = function() require("which-key").add({ "<D>", group = "Fzf" }) end,
   config = function()
     require("fzf-lua").setup({
+      previewers = { builtin = { snacks_image = { enabled = false } } },
       fzf_colors = true,
       "telescope",
       defaults = {

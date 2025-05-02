@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   version = "*",
   build = ":TSUpdate",
   config = function()
@@ -18,10 +19,28 @@ return {
           node_decremental = "<S-Tab>",
         },
       },
-      indent = { disable = "yaml" },
+      indent = { enable = true },
       matchup = { enable = true },
       modules = {},
       sync_install = false,
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
+          selection_modes = {
+            ["@parameter.outer"] = "v",
+            ["@function.outer"] = "V",
+            ["@class.outer"] = "<c-v>",
+          },
+          include_surrounding_whitespace = true,
+        },
+      },
     })
   end,
 }

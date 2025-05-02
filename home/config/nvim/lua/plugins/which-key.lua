@@ -18,7 +18,7 @@ return {
         -- Misc
         { "<space>L", function() require("lazy").home() end, desc = "Set fold level to 1" },
         { "z1", ":set foldlevel=1<cr>", desc = "Set fold level to 1" },
-        { "<D-s>", ":w<cr>", desc = "Write file" },
+        { "<D-s>", ":silent w<cr>", desc = "Write file", silent = true },
         { "<esc>", ":nohlsearch<cr>", desc = "Disable search highlight" },
         { "<space>m", ":!timeout 3s gh markdown-preview %<cr>", desc = "Markdown preview" },
         { "<space>p", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },

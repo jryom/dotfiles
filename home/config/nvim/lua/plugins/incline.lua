@@ -1,5 +1,6 @@
 return {
   "b0o/incline.nvim",
+  event = "VeryLazy",
   config = function()
     require("incline").setup({
       render = function(props)
@@ -18,5 +19,4 @@ return {
       hide = { cursorline = "focused_win" },
     })
   end,
-  event = "VeryLazy",
 }
