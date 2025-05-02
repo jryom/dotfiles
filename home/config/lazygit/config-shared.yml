@@ -17,13 +17,15 @@ git:
     pager: delta --paging=never "--$(cat /tmp/dark-mode || light)"
   fetchAll: true
   autoRefresh: true
-  disableForcePushing: true
+  overrideGpg: true
 
 gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy
   showDivergenceFromBaseBranch: arrowAndNumber
-  showCommandLog: false
+  showCommandLog: true
+  showRandomTip: false
+  showBottomLine: false
   showFileTree: true
   showPanelJumps: false
   sidePanelWidth: 0.25

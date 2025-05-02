@@ -13,7 +13,6 @@ brew "fisher"
 brew "git"
 brew "git-lfs"
 brew "gnu-sed"
-brew "gpg"
 brew "hub"
 brew "hudochenkov/sshpass/sshpass"
 brew "lf"
@@ -29,9 +28,8 @@ cask_args force: true
 cask "1password"
 cask "aldente"
 cask "appcleaner"
-cask "docker"
-cask "excalidrawz"
-cask "firefox"
+cask "docker", greedy: true
+cask "firefox", greedy: true
 cask "font-iosevka"
 cask "gitify"
 cask "itsycal"
@@ -39,11 +37,10 @@ cask "jordanbaird-ice"
 cask "keepingyouawake"
 cask "kitty"
 cask "nikitabobko/tap/aerospace"
-cask "postman"
+cask "postman", greedy: true
 cask "reminders-menubar"
 cask "sonos"
 cask "spotify"
 cask "spotmenu"
-cask "ukelele"
 
 mas "NextDNS", id: 1464122853

@@ -1,7 +1,7 @@
 # vi: ft=sh
 
 # TS/JS
---glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,**/node_modules/**,.next/**,**/generated/**}
+--glob=!**/{*.lock,*lock.yaml,yarn*.log,package-lock.json,report*.json,test-report.xml,**/node_modules/**,.next/**,**/generated/**,*tfstate*}
 # Binaries and other filetypes
 --glob=!**/{*.snap,*.jp*g,*.png,*.woff*,*.svg,*.pdf,*.zip,__*__,*.dump,*\.*cache,*excalidraw}
 # Python

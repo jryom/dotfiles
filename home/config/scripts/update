@@ -2,16 +2,24 @@
 
 sudo -v
 
-function run_in_parallel
+function run_in_tmux_pane
     set -l cmd $argv[1]
-    set -l label $argv[2]
-    fish -c "$cmd | sed 's/^/[$label] /'" &
+    tmux split-window -h "fish -c '$cmd; read'"
+    tmux select-layout tiled
 end
 
-run_in_parallel "mise upgrade && mise prune" "mise upgrade && mise prune"
-run_in_parallel "pnpm update --global" "pnpm update --global"
-run_in_parallel "brew upgrade" "brew upgrade"
-run_in_parallel "gh extension upgrade --all" "gh extension upgrade"
+# Kill any existing session with the same name
+if tmux has-session -t update_session 2>/dev/null
+    tmux kill-session -t update_session
+end
 
-wait
-echo "All tasks completed."
+tmux new-session -d -s update_session "sleep 1"
+
+run_in_tmux_pane "mise upgrade --yes && mise prune --yes"
+run_in_tmux_pane "pnpm update --global"
+run_in_tmux_pane "brew upgrade"
+run_in_tmux_pane "gh extension upgrade --all"
+
+tmux kill-pane -t 0
+tmux select-layout tiled
+tmux attach-session -t update_session
