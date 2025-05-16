@@ -41,9 +41,9 @@ if status is-interactive
 
     abbr gcn git commit --no-verify
 
-    abbr --set-cursor ai sgpt \"%\"
-    abbr --set-cursor ais sgpt --shell \"%\"
-    abbr --set-cursor aic sgpt --code \"%\"
+    abbr ai aichat
+    abbr ais aichat --execute
+    abbr aic aichat --code
 
     ### Init calls
 

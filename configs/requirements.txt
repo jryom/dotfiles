@@ -2,6 +2,5 @@ dotbot
 neovim-remote
 pip
 pynvim
-shell-gpt
 sqlfluff
 virtualfish

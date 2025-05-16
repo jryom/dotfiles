@@ -48,7 +48,6 @@ return {
       { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
       { "neovim/nvim-lspconfig", version = "*" },
     },
-    event = "VeryLazy",
     config = function()
       vim.diagnostic.config({
         float = { source = true },
@@ -72,15 +71,6 @@ return {
       }
 
       local on_attach = function(client, bufnr)
-        if client.name == "eslint" then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-          client.server_capabilities.documentFormattingProvider = true
-          client.server_capabilities.documentRangeFormattingProvider = true
-        end
-
         require("lsp-format").on_attach(client)
 
         if vim.bo[bufnr].filetype == "yaml" then
@@ -90,13 +80,11 @@ return {
         end
 
         require("which-key").add({
+          { "gr", group = "LSP bindings" },
           { "<space>l", group = "LSP", buffer = bufnr },
           { "<space>lR", ":LspRestart<cr>", desc = "Restart", buffer = bufnr },
           { "<space>lS", ":LspStop<cr>", desc = "Stop", buffer = bufnr },
-          { "<space>la", vim.lsp.buf.code_action, desc = "Actions", buffer = bufnr },
           { "<space>lc", ":Trouble lsp_declarations toggle<cr>", desc = "Declarations", buffer = bufnr },
-          { "<space>ld", ":Trouble lsp_definitions toggle<cr>", desc = "Definitions", buffer = bufnr },
-          { "<space>li", ":Trouble lsp_implementations toggle<cr>", desc = "Implementation", buffer = bufnr },
           {
             "<space>lf",
             ":FzfLua lsp_live_workspace_symbols<cr>",
@@ -110,7 +98,6 @@ return {
           { "<space>lq", vim.diagnostic.setloclist, desc = "Diagnostics to quickfix", buffer = bufnr },
           { "<space>lr", ":Trouble lsp_references toggle<cr>", desc = "References", buffer = bufnr },
           { "<space>lt", ":Trouble lsp_type_definitions toggle<cr>", desc = "Type definition", buffer = bufnr },
-          { "<space>r", vim.lsp.buf.rename, desc = "Rename word", buffer = bufnr },
           {
             "<space>ls",
             ":Trouble lsp_document_symbols toggle win.position=right win.size=0.15<cr>",
@@ -143,7 +130,6 @@ return {
           cssls = {},
           dockerls = {},
           docker_compose_language_service = {},
-          eslint = {},
           gopls = {},
           html = {},
           marksman = {},

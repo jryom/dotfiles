@@ -22,7 +22,7 @@ cmd-shift-r = 'reload-config'
 ctrl-shift-d = '''exec-and-forget osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode''''
 ctrl-alt-cmd-k = 'exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"'
 ctrl-alt-cmd-n = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"'''
-ctrl-alt-cmd-g = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title aichat dash -c "fish -i -c 'aichat --session default'"'''
+ctrl-alt-cmd-g = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title aichat dash -c "fish -i -c 'aichat --role jlm --session default'"'''
 ctrl-alt-cmd-m = 'exec-and-forget open /System/Applications/Messages.app'
 ctrl-alt-cmd-r = 'exec-and-forget open /System/Applications/Reminders.app'
 ctrl-alt-cmd-b = 'exec-and-forget open /Applications/Firefox.app'
@@ -43,6 +43,7 @@ alt-shift-l = 'move right'
 
 alt-shift-p = ['move-node-to-workspace prev', 'workspace prev']
 alt-shift-n = ['move-node-to-workspace next', 'workspace next']
+alt-shift-m = ['move-node-to-monitor next --wrap-around --focus-follows-window']
 
 ctrl-shift-h = 'workspace prev'
 ctrl-shift-l = 'workspace next'

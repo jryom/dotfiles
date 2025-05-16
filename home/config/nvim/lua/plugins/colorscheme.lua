@@ -98,6 +98,7 @@ return {
         highlight! link DapUIWatchesError Error
         highlight! link DapUIBreakpointsPath Directory
         highlight! link DapUIBreakpointsInfo String
+        highlight! TabLineSel guibg=bg
       ]])
     end,
   },

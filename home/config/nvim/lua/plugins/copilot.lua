@@ -23,6 +23,11 @@ return {
   init = function() require("which-key").add({ "<leader>a", group = "AI" }) end,
   config = function()
     require("copilot").setup({
+      filetypes = {
+        gitcommit = true,
+        markdown = true,
+        yaml = true,
+      },
       suggestion = {
         auto_trigger = true,
         hide_during_completion = true,
