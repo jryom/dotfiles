@@ -19,6 +19,8 @@ run_in_tmux_pane "mise upgrade --yes && mise prune --yes"
 run_in_tmux_pane "pnpm update --global"
 run_in_tmux_pane "brew upgrade"
 run_in_tmux_pane "gh extension upgrade --all"
+run_in_tmux_pane "fisher upgrade"
+run_in_tmux_pane "aichat --sync-models"
 
 tmux kill-pane -t 0
 tmux select-layout tiled

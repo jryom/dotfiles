@@ -37,7 +37,7 @@ return {
 
   {
     "b0o/schemastore.nvim",
-    ft = { "json", "yaml" },
+    ft = { "json", "yaml", "toml" },
   },
 
   { "icholy/lsplinks.nvim", ft = "yaml" },
@@ -134,7 +134,7 @@ return {
           html = {},
           marksman = {},
           pyright = {},
-          -- taplo = {} -- https://github.com/tamasfe/taplo/issues/431,
+          taplo = { filetypes = { "toml" } },
           terraformls = {},
           vtsls = {
             settings = {

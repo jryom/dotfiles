@@ -137,4 +137,6 @@ if status is-interactive
         end
     end
     delta_sidebyside
+
+    starship init fish | source
 end
