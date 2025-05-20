@@ -28,6 +28,7 @@ set -Ux MANPATH $MANPATH "$brew_prefix/share/man"
 set -Ux PNPM_HOME "$HOME/.pnpm"
 set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -Ux VISUAL "$EDITOR"
+set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 
 fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
 fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin /$brew_prefix/opt/grep/libexec/gnubin

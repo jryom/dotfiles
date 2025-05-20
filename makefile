@@ -24,7 +24,7 @@ fish-globals:
 	@fish -i -c 'vf addplugins auto_activation'
 
 gatekeeper:
-	if spctl --status >/dev/null; then sudo spctl --master-disable; fi
+	if spctl --status >/dev/null; then sudo spctl --master-disable || exit 0; fi
 
 gh:
 	while IFS= read -r line; do \

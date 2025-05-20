@@ -40,7 +40,6 @@ brew "zoxide"
 
 cask_args force: true
 
-cask "1password"
 cask "aldente"
 cask "appcleaner"
 cask "docker", greedy: true
