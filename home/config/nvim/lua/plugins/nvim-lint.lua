@@ -23,8 +23,6 @@ return {
       dockerfile = { "hadolint" },
       make = { "checkmake" },
       python = { "ruff" },
-      sql = { "sqlfluff" },
-      -- terraform = { "tflint" },
       zsh = { "zsh" },
     }
 

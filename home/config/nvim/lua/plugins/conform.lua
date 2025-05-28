@@ -54,7 +54,6 @@ return {
         markdown = { "prettier" },
         python = { "ruff_fix", "ruff_format", "isort", "black" },
         sh = { "shfmt" },
-        sql = { "sqlfluff" },
         terraform = { "terraform_fmt" },
         toml = { "taplo" },
         typescript = { "biome", "prettier", stop_after_first = true },

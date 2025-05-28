@@ -24,6 +24,8 @@ return {
   config = function()
     require("trouble").setup({
       auto_close = true,
+      auto_preview = false,
+      auto_jump = false,
       modes = {
         diagnostics = {
           filter = {

@@ -12,7 +12,7 @@
 	<array>
 		<string>/opt/homebrew/bin/fish</string>
 		<string>-ic</string>
-		<string>aichat --serve --role jlm --session default</string>
+		<string>aichat --serve localhost:1234 --session default</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
