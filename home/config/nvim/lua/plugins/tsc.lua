@@ -9,9 +9,9 @@ return {
   config = function()
     require("tsc").setup({
       auto_open_qflist = true,
-      auto_start_watch_mode = true,
+      auto_start_watch_mode = false,
       bin_path = vim.fn.trim(vim.fn.system("which tsgo")),
-      ---@diagnostic disable-next-line: assign-type-mismatch
+      --- @diagnostic disable-next-line: assign-type-mismatch
       flags = "--noEmit true --pretty false",
       hide_progress_notifications_from_history = true,
       use_trouble_qflist = true,

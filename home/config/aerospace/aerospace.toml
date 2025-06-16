@@ -44,6 +44,15 @@ alt-shift-l = 'move right'
 alt-shift-p = ['move-node-to-workspace prev', 'workspace prev']
 alt-shift-n = ['move-node-to-workspace next', 'workspace next']
 alt-shift-m = ['move-node-to-monitor next --wrap-around --focus-follows-window']
+alt-shift-1 = ['move-node-to-workspace 1 --focus-follows-window']
+alt-shift-2 = ['move-node-to-workspace 2 --focus-follows-window']
+alt-shift-3 = ['move-node-to-workspace 3 --focus-follows-window']
+alt-shift-4 = ['move-node-to-workspace 4 --focus-follows-window']
+alt-shift-5 = ['move-node-to-workspace 5 --focus-follows-window']
+alt-shift-6 = ['move-node-to-workspace 6 --focus-follows-window']
+alt-shift-7 = ['move-node-to-workspace 7 --focus-follows-window']
+alt-shift-8 = ['move-node-to-workspace 8 --focus-follows-window']
+alt-shift-9 = ['move-node-to-workspace 9 --focus-follows-window']
 
 ctrl-shift-h = 'workspace prev'
 ctrl-shift-l = 'workspace next'
