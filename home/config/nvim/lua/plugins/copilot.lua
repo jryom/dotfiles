@@ -18,7 +18,18 @@ return {
     { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
     { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review", mode = { "n", "x" } },
     { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate tests", mode = { "n", "x" } },
-    { "yop", function() vim.b.copilot_enabled = not vim.b.copilot_enabled end, desc = "Toggle Copilot" },
+    {
+      "<Tab>",
+      function()
+        if require("copilot.suggestion").is_visible() then
+          require("copilot.suggestion").accept()
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+        end
+      end,
+      mode = { "i" },
+    },
+    { "yop", "<cmd>Copilot disable<cr>", desc = "Toggle Copilot" },
   },
   init = function() require("which-key").add({ "<leader>a", group = "AI" }) end,
   config = function()
@@ -29,11 +40,11 @@ return {
         yaml = true,
       },
       suggestion = {
+        accept = false,
         auto_trigger = true,
         hide_during_completion = true,
         trigger_on_accept = true,
         keymap = {
-          accept = "<Tab>",
           accept_word = false,
           accept_line = false,
           next = "<Right>",

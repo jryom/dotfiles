@@ -8,8 +8,9 @@ brew "bat"
 brew "beeftornado/rmtree/brew-rmtree"
 brew "coreutils"
 brew "cormacrelf/tap/dark-notify"
-brew "dash"
+brew "dash-shell"
 brew "delta"
+brew "direnv"
 brew "eza"
 brew "fd"
 brew "findutils"
@@ -42,7 +43,7 @@ cask_args force: true
 
 cask "aldente"
 cask "appcleaner"
-cask "docker", greedy: true
+cask "docker-desktop", greedy: true
 cask "firefox", greedy: true
 cask "font-iosevka"
 cask "gitify"
@@ -51,8 +52,8 @@ cask "jordanbaird-ice"
 cask "keepingyouawake"
 cask "kitty"
 cask "nikitabobko/tap/aerospace"
-cask "postman", greedy: true
 cask "reminders-menubar"
+cask "restfox", greedy: true
 cask "sonos"
 cask "spotify"
 cask "spotmenu"

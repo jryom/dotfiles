@@ -1,6 +1,4 @@
 ---@diagnostic disable: undefined-global
-require("utils")
-
 local overwrite = function()
   local lush = require("lush")
 
@@ -58,7 +56,10 @@ return {
     priority = 1000,
     dependencies = "rktjmp/lush.nvim",
     config = function()
-      local mode = Utils:read_file("/tmp/dark-mode")
+      local mode = nil
+      if vim.fn.filereadable("/tmp/dark-mode") == 1 then
+        mode = vim.fn.readfile("/tmp/dark-mode")[1]
+      end
 
       vim.g.zenbones_darken_noncurrent_window = true
       vim.g.zenbones_lighten_noncurrent_window = true

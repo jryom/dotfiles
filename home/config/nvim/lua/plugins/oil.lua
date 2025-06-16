@@ -2,6 +2,7 @@
 return {
   "stevearc/oil.nvim",
   version = "*",
+  lazy = false,
   cmd = "Oil",
   keys = {
     { "-", ":Oil<CR>", desc = "File browser", silent = true },

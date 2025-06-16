@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Source the shared script to get the Copilot token
+source "$(dirname "$0")/get-copilot-token"
+
+# Inform the user
+echo "OPENAI_API_KEY is set for this session."
+
+# Launch aider with the environment variable set
+echo "Starting aider..."
+exec aider --add-gitignore-files "$@"

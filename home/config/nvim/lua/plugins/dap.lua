@@ -5,7 +5,7 @@ return {
     { "thehamsta/nvim-dap-virtual-text" },
     {
       "microsoft/vscode-js-debug",
-      build = "pnpm install --ignore-scripts && pnpm compile && pnpm exec gulp dapDebugServer",
+      build = "npm install --ignore-scripts && npm run compile && npx gulp dapDebugServer",
     },
   },
   config = function()

@@ -1,5 +1,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Set a longer timeout for commands to avoid errors in slow directories.
+# The default is 2000ms.
+command_timeout = 5000
+
 format = """
 $username\
 $hostname\
@@ -15,6 +19,7 @@ $character"""
 [directory]
 style = "blue"
 
+
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
@@ -25,7 +30,7 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+format = "[[(*$conflicted$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
 conflicted = "​"
 untracked = "​"
