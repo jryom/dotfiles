@@ -6,3 +6,4 @@
 .out
 Session.vim
 node_modules
+.aider*

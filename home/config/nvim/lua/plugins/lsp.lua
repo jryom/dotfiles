@@ -146,31 +146,33 @@ return {
               },
             },
           },
-          yamlls = {},
+          yamlls = {
+            settings = {
+              yaml = {
+                schemas = require("schemastore").yaml.schemas(),
+                schemaStore = {
+                  enable = true,
+                  url = "",
+                },
+              },
+              redhat = { telemetry = { enabled = false } },
+            },
+          },
           jsonls = {
             init_options = { provideFormatter = false },
-            settings = function()
-              local ft = vim.bo.filetype
-              if ft == "json" or ft == "yaml" then
-                return {
-                  yaml = {
-                    schemas = require("schemastore").yaml.schemas(),
-                    schemaStore = {
-                      enable = true,
-                      url = "",
-                    },
-                  },
-                  json = {
-                    schemas = require("schemastore").json.schemas(),
-                    validate = { enable = true },
-                  },
-                }
-              end
-              return {
-                yaml = { schemaStore = { enable = false, url = "" } },
-                json = { validate = { enable = true } },
-              }
-            end,
+            settings = {
+              yaml = {
+                schemas = require("schemastore").yaml.schemas(),
+                schemaStore = {
+                  enable = true,
+                  url = "",
+                },
+              },
+              json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+              },
+            },
           },
           lua_ls = {
             settings = {

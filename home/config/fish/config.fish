@@ -12,6 +12,8 @@ if status is-interactive
 
     ### Abbreviations
 
+    abbr aider "$HOME/.config/scripts/aider"
+
     abbr gitgrep "git rev-list --all | xargs git grep --break"
     abbr ll "ls -halG"
     abbr n cd '~/Documents/Notes && nvim -c "Oil"'
@@ -19,7 +21,7 @@ if status is-interactive
     abbr up "$HOME/.config/scripts/update"
     abbr sc "source ~/.config/fish/config.fish"
 
-    abbr delete_branch_workflow_runs 'CI=true gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId -q '.[].databaseId' | xargs -IID -P10 CI=true gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE || true'
+    abbr delete_branch_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId --jq \'.[].databaseId\' | xargs -IID -P10 env CI=true gh run delete ID'
     abbr delete_manual_workflow_runs 'CI=true gh run list --user=jryom --event=workflow_dispatch --limit 1000 --json databaseId --jq '.[].databaseId' | xargs -P 20 -I {} bash -c "CI=true gh run delete {}"'
     abbr list_workflow_runs 'gh run list --user=jryom'
 
@@ -50,6 +52,7 @@ if status is-interactive
     ssh-add -l &>/dev/null || ssh-add 2>/dev/null
     zoxide init fish --cmd j | source
     mise activate fish | source
+    direnv hook fish | source
 
     ### Functions
 

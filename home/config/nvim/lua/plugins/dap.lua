@@ -3,10 +3,10 @@ return {
   dependencies = {
     { "rcarriga/nvim-dap-ui" },
     { "thehamsta/nvim-dap-virtual-text" },
-    {
-      "microsoft/vscode-js-debug",
-      build = "pnpm install --ignore-scripts && pnpm compile && pnpm exec gulp dapDebugServer",
-    },
+    -- {
+    --   "microsoft/vscode-js-debug",
+    --   build = "pnpm install --ignore-scripts && pnpm compile && pnpm exec gulp dapDebugServer",
+    -- },
   },
   config = function()
     local dap = require("dap")
