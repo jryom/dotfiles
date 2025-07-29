@@ -16,7 +16,7 @@ set -Ux EDITOR nvim
 set -Ux ESCDELAY 0
 set -Ux FZF_COMPLETE 1
 set -Ux FZF_CTRL_T_COMMAND "rg --files"
-set -Ux FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --sceme path"
+set -Ux FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --scheme path"
 set -Ux FZF_DEFAULT_COMMAND "rg --files"
 set -Ux FZF_DEFAULT_OPTS "$FZF_THEME --no-separator --info hidden"
 set -Ux FZF_ENABLE_OPEN_PREVIEW 1
@@ -31,7 +31,7 @@ set -Ux VISUAL "$EDITOR"
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 
 fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
-fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin /$brew_prefix/opt/grep/libexec/gnubin
+fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin $brew_prefix/opt/grep/libexec/gnubin
 fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/.pnpm
 fish_add_path --universal $HOME/go/bin

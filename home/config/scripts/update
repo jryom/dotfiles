@@ -1,27 +1,36 @@
 #!/usr/bin/env fish
 
+# Prompt for sudo password upfront.
 sudo -v
 
-function run_in_tmux_pane
-    set -l cmd $argv[1]
-    tmux split-window -h "fish -c '$cmd; read'"
-    tmux select-layout tiled
-end
+# --- Configuration ---
+set -l session_name "update_session"
+set -l update_commands \
+    "mise upgrade --yes && mise prune --yes" \
+    "pnpm update --global" \
+    "brew upgrade" \
+    "gh extension upgrade --all" \
+    "fisher update" \
+    "aichat --sync-models"
+
+# --- Script ---
 
 # Kill any existing session with the same name
-if tmux has-session -t update_session 2>/dev/null
-    tmux kill-session -t update_session
+if tmux has-session -t $session_name 2>/dev/null
+    tmux kill-session -t $session_name
 end
 
-tmux new-session -d -s update_session "sleep 1"
+# Create a new detached session with a placeholder pane
+tmux new-session -d -s $session_name
 
-run_in_tmux_pane "mise upgrade --yes && mise prune --yes"
-run_in_tmux_pane "pnpm update --global"
-run_in_tmux_pane "brew upgrade"
-run_in_tmux_pane "gh extension upgrade --all"
-run_in_tmux_pane "fisher update"
-run_in_tmux_pane "aichat --sync-models"
+# Create a new pane for each update command
+for cmd in $update_commands
+    tmux split-window -t $session_name -h "fish -c \"$cmd; read\""
+    tmux select-layout -t $session_name tiled
+end
 
-tmux kill-pane -t 0
-tmux select-layout tiled
-tmux attach-session -t update_session
+# Kill the initial placeholder pane
+tmux kill-pane -t "$session_name:0.0"
+
+# Attach to the tmux session
+tmux attach-session -t $session_name

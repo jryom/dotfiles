@@ -52,8 +52,8 @@ cask "jordanbaird-ice"
 cask "keepingyouawake"
 cask "kitty"
 cask "nikitabobko/tap/aerospace"
-cask "postman", greedy: true
 cask "reminders-menubar"
+cask "restfox", greedy: true
 cask "sonos"
 cask "spotify"
 cask "spotmenu"
