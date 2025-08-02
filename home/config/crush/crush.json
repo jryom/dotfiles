@@ -1,0 +1,116 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "ansiblels": {
+      "command": "ansible-language-server",
+      "args": ["--stdio"]
+    },
+    "bashls": {
+      "command": "bash-language-server",
+      "args": ["start"]
+    },
+    "biome": {
+      "command": "npx",
+      "args": [
+        "biome",
+        "lsp-proxy"
+      ]
+    },
+    "cssls": {
+      "command": "vscode-css-language-server",
+       "args": ["--stdio"]
+    },
+    "dockerls": {
+      "command": "docker-langserver",
+       "args": ["--stdio"]
+    },
+    "docker-compose-language-service": {
+      "command": "docker-compose-language-server",
+       "args": ["--stdio"]
+    },
+    "gopls": {
+      "command": "gopls"
+    },
+    "html": {
+      "command": "vscode-html-language-server",
+       "args": ["--stdio"]
+    },
+    "marksman": {
+      "command": "marksman",
+       "args": ["server"]
+    },
+    "pyright": {
+      "command": "pyright-langserver",
+       "args": ["--stdio"]
+    },
+    "taplo": {
+      "command": "taplo",
+       "args": ["lsp", "stdio"]
+    },
+    "terraformls": {
+      "command": "terraform-ls",
+       "args": ["serve"]
+    },
+    "vtsls": {
+      "command": "vtsls",
+      "args": [
+        "--stdio"
+      ]
+    },
+    "yamlls": {
+      "command": "yaml-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "options": {
+        "yaml": {
+          "schemas": {},
+          "schemaStore": {
+            "enable": true,
+            "url": ""
+          }
+        },
+        "redhat": {
+          "telemetry": {
+            "enabled": false
+          }
+        }
+      }
+    },
+    "jsonls": {
+      "command": "vscode-json-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "options": {
+        "provideFormatter": false,
+        "json": {
+          "schemas": [],
+          "validate": {
+            "enable": true
+          }
+        }
+      }
+    },
+    "lua_ls": {
+      "command": "lua-language-server",
+      "options": {
+        "Lua": {
+          "runtime": {
+            "version": "LuaJIT"
+          },
+          "format": {
+            "enable": false
+          },
+          "diagnostics": {
+            "enable": true,
+            "globals": [
+              "vim",
+              "describe"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

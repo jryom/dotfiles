@@ -1,6 +1,7 @@
 [tools]
 actionlint = "latest"
 checkmake = "latest"
+crush = "latest"
 dotenv-linter = "latest"
 gemini-cli = "latest"
 hadolint = "latest"
