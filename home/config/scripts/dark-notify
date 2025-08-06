@@ -1,3 +1,0 @@
-#!/usr/bin/env dash
-
-dark-notify -c "$HOME/.config/scripts/dark-mode"
