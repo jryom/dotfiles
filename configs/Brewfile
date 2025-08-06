@@ -33,14 +33,13 @@ brew "neovim"
 brew "ripgrep"
 brew "starship"
 brew "tealdeer"
+brew "terminal-notifier"
 brew "tmux"
 brew "trash"
 brew "zoxide"
 
 cask_args force: true
 
-cask "aldente"
-cask "appcleaner"
 cask "docker-desktop", greedy: true
 cask "firefox", greedy: true
 cask "font-iosevka"
@@ -49,8 +48,5 @@ cask "itsycal"
 cask "kitty"
 cask "nikitabobko/tap/aerospace"
 cask "restfox", greedy: true
-cask "sonos"
 cask "spotify"
-cask "spotmenu"
-
-mas "NextDNS", id: 1464122853
+cask "swiftbar"

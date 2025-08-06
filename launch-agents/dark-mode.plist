@@ -12,7 +12,7 @@
 	<array>
 		<string>bash</string>
 		<string>-ic</string>
-		<string>$HOME/.config/scripts/dark-notify</string>
+		<string>dark-notify</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

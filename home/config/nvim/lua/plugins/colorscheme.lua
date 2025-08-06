@@ -56,9 +56,12 @@ return {
     priority = 1000,
     dependencies = "rktjmp/lush.nvim",
     config = function()
-      local mode = nil
-      if vim.fn.filereadable("/tmp/dark-mode") == 1 then
-        mode = vim.fn.readfile("/tmp/dark-mode")[1]
+      local mode = "light"
+      local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+      if handle then
+        local result = handle:read("*a")
+        handle:close()
+        if result and result:match("Dark") then mode = "dark" end
       end
 
       vim.g.zenbones_darken_noncurrent_window = true

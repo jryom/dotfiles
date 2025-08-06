@@ -1,7 +1,7 @@
 source ~/.config/fish/env.fish
 
 if status is-interactive
-    if test -f /tmp/dark-mode; and [ "$(cat /tmp/dark-mode)" = dark ]
+    if string match -q Dark (defaults read -g AppleInterfaceStyle 2>/dev/null)
         set -gx BAT_THEME ansi
         set -gx DELTA_FEATURES dark-mode
     else
@@ -16,7 +16,7 @@ if status is-interactive
 
     abbr gitgrep "git rev-list --all | xargs git grep --break"
     abbr ll "ls -halG"
-    abbr n cd '~/Documents/Notes && nvim -c "Oil"'
+    abbr n 'cd ~/Documents/Notes; and nvim -c "Oil"'
     abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
     abbr sc "source ~/.config/fish/config.fish"
@@ -42,10 +42,6 @@ if status is-interactive
     abbr pag pnpm add --global
 
     abbr gcn git commit --no-verify
-
-    abbr ai aichat
-    abbr ais aichat --execute
-    abbr aic aichat --code
 
     ### Init calls
 
@@ -101,7 +97,11 @@ if status is-interactive
     function g
         set LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
 
-        set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-$(cat /tmp/dark-mode || 'light').yml"
+        if string match -q Dark (defaults read -g AppleInterfaceStyle 2>/dev/null)
+            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
+        else
+            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
+        end
 
         if test (tput cols) -ge 150
             set -gx DFT_DISPLAY side-by-side
@@ -111,7 +111,6 @@ if status is-interactive
 
         j_and_launch lazygit "$argv[1]"
     end
-
     ### Bindings
 
     function fish_user_key_bindings

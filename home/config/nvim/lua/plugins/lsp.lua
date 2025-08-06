@@ -1,6 +1,5 @@
 ---@type LazySpec
 return {
-
   {
     "wansmer/symbol-usage.nvim",
     event = "LspAttach",
@@ -43,10 +42,9 @@ return {
   { "icholy/lsplinks.nvim", ft = "yaml" },
 
   {
-    "junnplus/lsp-setup.nvim",
+    "neovim/nvim-lspconfig",
     dependencies = {
       { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
-      { "neovim/nvim-lspconfig", version = "*" },
     },
     config = function()
       vim.diagnostic.config({
@@ -119,77 +117,81 @@ return {
         })
       end
 
-      require("lsp-setup").setup({
-        capabilities = capabilities,
-        default_mappings = false,
-        on_attach = on_attach,
-        servers = {
-          ansiblels = {},
-          bashls = {},
-          biome = { cmd = { "npx", "biome", "lsp-proxy" } },
-          cssls = {},
-          dockerls = {},
-          docker_compose_language_service = {},
-          gopls = {},
-          html = {},
-          marksman = {},
-          pyright = {},
-          taplo = { filetypes = { "toml" } },
-          terraformls = {},
-          vtsls = {
-            settings = {
-              vtsls = {
-                autoUseWorkspaceTsdk = true,
-              },
-              typescript = {
-                format = { enable = false },
-              },
+      local lspconfig = require("lspconfig")
+
+      local servers = {
+        ansiblels = {},
+        bashls = {},
+        biome = { cmd = { "npx", "biome", "lsp-proxy" } },
+        cssls = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        gopls = {},
+        html = {},
+        marksman = {},
+        pyright = {},
+        taplo = { filetypes = { "toml" } },
+        terraformls = {},
+        vtsls = {
+          settings = {
+            vtsls = {
+              autoUseWorkspaceTsdk = true,
+            },
+            typescript = {
+              format = { enable = false },
             },
           },
-          yamlls = {
-            settings = {
-              yaml = {
-                schemas = require("schemastore").yaml.schemas(),
-                schemaStore = {
-                  enable = true,
-                  url = "",
-                },
-              },
-              redhat = { telemetry = { enabled = false } },
-            },
-          },
-          jsonls = {
-            init_options = { provideFormatter = false },
-            settings = {
-              yaml = {
-                schemas = require("schemastore").yaml.schemas(),
-                schemaStore = {
-                  enable = true,
-                  url = "",
-                },
-              },
-              json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              format = { enable = false },
+              schemas = require("schemastore").yaml.schemas(),
+              schemaStore = {
+                enable = true,
+                url = "",
               },
             },
+            redhat = { telemetry = { enabled = false } },
           },
-          lua_ls = {
-            settings = {
-              Lua = {
-                runtime = { version = "LuaJIT" },
-                format = { enable = false },
-                diagnostics = {
-                  enable = true,
-                  globals = { "vim", "describe" },
-                },
+        },
+        jsonls = {
+          init_options = { provideFormatter = false },
+          settings = {
+            yaml = {
+              schemas = require("schemastore").yaml.schemas(),
+              schemaStore = {
+                enable = true,
+                url = "",
+              },
+            },
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = { version = "LuaJIT" },
+              format = { enable = false },
+              diagnostics = {
+                enable = true,
+                globals = { "vim", "describe" },
               },
             },
           },
         },
-      })
+      }
+
+      for server, config in pairs(servers) do
+        config.on_attach = on_attach
+        config.capabilities = capabilities
+        lspconfig[server].setup(config)
+      end
+
       vim.lsp.set_log_level("warn")
-      vim.cmd("LspStart")
     end,
   },
 }

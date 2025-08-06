@@ -2,7 +2,6 @@
 return {
   "copilotc-nvim/copilotchat.nvim",
   version = "*",
-  branch = "canary",
   dependencies = {
     { "zbirenbaum/copilot.lua" },
     { "nvim-lua/plenary.nvim" },
@@ -40,7 +39,7 @@ return {
         yaml = true,
       },
       suggestion = {
-        accept = false,
+        enabled = true,
         auto_trigger = true,
         hide_during_completion = true,
         trigger_on_accept = true,
@@ -54,17 +53,13 @@ return {
       },
     })
 
-    local group = vim.api.nvim_create_augroup("copilot", {})
-    vim.api.nvim_create_autocmd({ "BufEnter" }, {
-      pattern = { "copilot-chat" },
-      command = "vertical resize 80",
-      group = group,
-    })
-
     require("CopilotChat").setup({
-      mappings = { complete = { insert = "" } },
-      context = "buffers",
-      model = "claude-3.7-sonnet-thought",
+      -- Avoid <Tab> conflicts inside chat; use <C-Space> to trigger completion
+      mappings = { complete = { insert = "<C-Space>" } },
+      auto_insert_mode = true,
+      window = { layout = "vertical", width = 80 },
+      -- If you want default resources, uncomment below
+      -- sticky = { '#buffers:visible' },
     })
   end,
 }

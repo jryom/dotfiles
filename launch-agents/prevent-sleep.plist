@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.prevent-sleep</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>bash</string>
+        <string>-ic</string>
+        <string>$HOME/.config/scripts/manage-prevent-sleep.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Second</key>
+        <integer>1</integer>
+    </dict>
+    <key>StandardErrorPath</key>
+    <string>/tmp/local.prevent-sleep.err</string>
+</dict>
+</plist>

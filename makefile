@@ -61,7 +61,6 @@ shell:
 
 system-preferences:
 	defaults write -g AppleSpacesSwitchOnActivate -bool false
-	defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 	defaults write -g NSWindowShouldDragOnGesture -bool true
 	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 	defaults write NSGlobalDomain InitialKeyRepeat -int 15
@@ -90,6 +89,6 @@ system-preferences:
 	defaults write com.apple.finder ShowStatusBar -bool true
 	defaults write com.apple.finder _FXSortFoldersFirst -bool YES
 	defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
-	defaults write com.apple.spaces spans-displays -bool true
+	defaults write com.apple.spaces spans-displays -bool false
 
 	killall Dock

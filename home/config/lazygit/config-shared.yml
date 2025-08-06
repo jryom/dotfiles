@@ -14,7 +14,7 @@ git:
     showWholeGraph: false
   paging:
     colorArg: always
-    pager: delta --paging=never "--$(cat /tmp/dark-mode || light)"
+    pager: delta --paging=never "--$(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "dark"; else echo "light"; fi)"
   fetchAll: true
   autoRefresh: true
   overrideGpg: true
