@@ -5,6 +5,8 @@ cask_args force: true
 
 cask "1password"
 cask "ableton-live-suite"
+cask "aldente"
+cask "appcleaner"
 cask "arturia-software-center"
 cask "audacity"
 cask "fabfilter-pro-c"
@@ -21,6 +23,9 @@ cask "ilok-license-manager"
 cask "native-access"
 cask "selfcontrol"
 cask "softube-central"
+cask "sonos"
 cask "splice"
 cask "synology-drive"
 cask "tailscale"
+
+mas "NextDNS", id: 1464122853

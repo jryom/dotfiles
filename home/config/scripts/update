@@ -4,14 +4,13 @@
 sudo -v
 
 # --- Configuration ---
-set -l session_name "update_session"
+set -l session_name update_session
 set -l update_commands \
     "mise upgrade --yes && mise prune --yes" \
     "pnpm update --global" \
     "brew upgrade" \
     "gh extension upgrade --all" \
-    "fisher update" \
-    "aichat --sync-models"
+    "fisher update"
 
 # --- Script ---
 

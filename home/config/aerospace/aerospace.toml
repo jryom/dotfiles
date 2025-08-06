@@ -22,13 +22,12 @@ cmd-shift-r = 'reload-config'
 ctrl-shift-d = '''exec-and-forget osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode''''
 ctrl-alt-cmd-k = 'exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Code"'
 ctrl-alt-cmd-n = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"'''
-ctrl-alt-cmd-g = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --window-title aichat dash -c "fish -i -c 'aichat --role jlm --session default'"'''
+ctrl-alt-cmd-j = 'exec-and-forget ~/.config/scripts/manage-prevent-sleep.sh toggle'
 ctrl-alt-cmd-m = 'exec-and-forget open /System/Applications/Messages.app'
 ctrl-alt-cmd-r = 'exec-and-forget open /System/Applications/Reminders.app'
 ctrl-alt-cmd-b = 'exec-and-forget open /Applications/Firefox.app'
 ctrl-alt-cmd-f = 'exec-and-forget open /System/Library/CoreServices/Finder.app'
 ctrl-alt-cmd-s = 'exec-and-forget open /Applications/Spotify.app'
-ctrl-cmd-q = 'exec-and-forget open -b com.apple.ScreenSaver.Engine'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -41,6 +40,10 @@ alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
+ctrl-shift-m = [
+  'move-workspace-to-monitor next --wrap-around',
+  'focus-monitor next --wrap-around',
+]
 alt-shift-p = ['move-node-to-workspace prev', 'workspace prev']
 alt-shift-n = ['move-node-to-workspace next', 'workspace next']
 alt-shift-m = ['move-node-to-monitor next --wrap-around --focus-follows-window']
@@ -103,3 +106,9 @@ run = ['move-node-to-workspace 4']
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace 4']
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'secondary'
+4 = 'secondary'
