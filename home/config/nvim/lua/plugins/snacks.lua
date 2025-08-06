@@ -9,18 +9,28 @@ return {
       bigfile = { enabled = true },
       indent = { enabled = true, indent = { char = "▏" }, scope = { char = "▏" } },
       input = { enabled = true },
-      notifier = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
-      styles = { notification = { wo = { wrap = true } } },
-      toggle = { enabled = true },
+      styles = {
+        notification = { wo = { wrap = true } },
+        zen = {
+          width = 160,
+          backdrop = { transparent = true, blend = 40 },
+          zindex = 80,
+        },
+      },
       words = { enabled = true, debounce = 1000 },
+      zen = {
+        toggles = {
+          dim = false,
+        },
+      },
     })
   end,
   keys = {
-    { "<space>gt", function() Snacks.toggle() end, desc = "Toggle settings" },
     { "<space>lf", function() Snacks.rename() end, desc = "Rename File" },
     { "gn", function() Snacks.words.jump(vim.v.count1, true) end, desc = "Next Reference" },
     { "gN", function() Snacks.words.jump(-vim.v.count1, true) end, desc = "Prev Reference" },
+    { "gz", function() Snacks.zen() end, desc = "Zen" },
   },
 }

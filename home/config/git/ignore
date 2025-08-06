@@ -6,6 +6,3 @@
 .out
 Session.vim
 node_modules
-.aider*
-.crush
-CRUSH.md
