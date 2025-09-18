@@ -1,10 +1,7 @@
 #!/usr/bin/env fish
 
-# Prompt for sudo password upfront.
 sudo -v
 
-# --- Configuration ---
-set -l session_name update_session
 set -l update_commands \
     "mise upgrade --yes && mise prune --yes" \
     "pnpm update --global" \
@@ -12,24 +9,17 @@ set -l update_commands \
     "gh extension upgrade --all" \
     "fisher update"
 
-# --- Script ---
-
-# Kill any existing session with the same name
-if tmux has-session -t $session_name 2>/dev/null
-    tmux kill-session -t $session_name
+function print_header
+    set_color --bold
+    echo ""
+    echo --------------------------------------------------
+    echo "   " $argv
+    echo --------------------------------------------------
+    echo ""
+    set_color normal
 end
 
-# Create a new detached session with a placeholder pane
-tmux new-session -d -s $session_name
-
-# Create a new pane for each update command
 for cmd in $update_commands
-    tmux split-window -t $session_name -h "fish -c \"$cmd; read\""
-    tmux select-layout -t $session_name tiled
+    print_header "$cmd"
+    fish -c "$cmd"
 end
-
-# Kill the initial placeholder pane
-tmux kill-pane -t "$session_name:0.0"
-
-# Attach to the tmux session
-tmux attach-session -t $session_name

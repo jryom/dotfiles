@@ -34,7 +34,6 @@ brew "ripgrep"
 brew "starship"
 brew "tealdeer"
 brew "terminal-notifier"
-brew "tmux"
 brew "trash"
 brew "zoxide"
 
