@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   {
     "wansmer/symbol-usage.nvim",
@@ -8,28 +7,6 @@ return {
         vt_position = "end_of_line",
         request_pending_text = "",
         hl = { link = "LspInlayHint" },
-      })
-    end,
-  },
-
-  {
-    "artemave/workspace-diagnostics.nvim",
-    keys = { "<space>lp" },
-    config = function()
-      require("workspace-diagnostics").setup({
-        workspace_files = function()
-          local ignore_list = { "generated", ".md", ".json" }
-          local cwd = vim.fn.getcwd()
-          local workspace_files = vim.fn.split(vim.fn.system("git ls-files " .. cwd), "\n")
-          workspace_files = vim.tbl_filter(function(file)
-            for _, ignore in ipairs(ignore_list) do
-              if file:match(ignore) then return false end
-            end
-            return true
-          end, workspace_files)
-
-          return workspace_files
-        end,
       })
     end,
   },
@@ -128,6 +105,7 @@ return {
         docker_compose_language_service = {},
         gopls = {},
         html = {},
+        kulala_ls = {},
         marksman = {},
         pyright = {},
         taplo = { filetypes = { "toml" } },

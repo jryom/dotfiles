@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "stevearc/oil.nvim",
   version = "*",

@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "magicduck/grug-far.nvim",
   keys = {

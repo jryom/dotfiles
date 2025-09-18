@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "altermo/ultimate-autopair.nvim",
   event = { "InsertEnter", "CmdlineEnter" },

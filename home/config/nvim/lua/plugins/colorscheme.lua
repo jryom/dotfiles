@@ -48,7 +48,6 @@ local overwrite = function()
   lush.apply(lush.compile(specs))
 end
 
----@type LazySpec[]
 return {
   {
     "mcchrish/zenbones.nvim",

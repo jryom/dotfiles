@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "ibhagwan/fzf-lua",
   event = "VeryLazy",

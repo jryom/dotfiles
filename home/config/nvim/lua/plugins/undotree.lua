@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "mbbill/undotree",
   keys = {

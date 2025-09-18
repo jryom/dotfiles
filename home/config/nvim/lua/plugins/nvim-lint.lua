@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "mfussenegger/nvim-lint",
   config = function()

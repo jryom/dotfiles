@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "rmagatti/auto-session",
   config = function()

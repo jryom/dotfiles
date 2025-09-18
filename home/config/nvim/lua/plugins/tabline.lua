@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "jryom/nvim-tabulous",
   event = { "TabEnter", "TabNew" },

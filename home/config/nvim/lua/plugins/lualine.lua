@@ -15,14 +15,12 @@ local hideBelow = function(columns)
   return function() return vim.o.columns > columns end
 end
 
----@type LazySpec
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
     local utils = require("lualine.utils.utils")
     require("lualine").setup({
       options = {
-        globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
       },

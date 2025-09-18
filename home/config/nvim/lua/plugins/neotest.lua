@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "nvim-neotest/neotest",
   dependencies = {

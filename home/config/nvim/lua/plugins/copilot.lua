@@ -1,4 +1,3 @@
----@type LazySpec
 return {
   "copilotc-nvim/copilotchat.nvim",
   version = "*",
