@@ -94,8 +94,6 @@ return {
         })
       end
 
-      local lspconfig = require("lspconfig")
-
       local servers = {
         ansiblels = {},
         bashls = {},
@@ -166,7 +164,8 @@ return {
       for server, config in pairs(servers) do
         config.on_attach = on_attach
         config.capabilities = capabilities
-        lspconfig[server].setup(config)
+        vim.lsp.config[server] = config
+        vim.lsp.enable(server)
       end
 
       vim.lsp.set_log_level("warn")

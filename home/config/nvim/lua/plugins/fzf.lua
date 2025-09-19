@@ -59,5 +59,6 @@ return {
         no_header = true,
       },
     })
+    require("fzf-lua").register_ui_select()
   end,
 }

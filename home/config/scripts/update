@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-sudo -v
-
 set -l update_commands \
     "mise upgrade --yes && mise prune --yes" \
     "pnpm update --global" \
