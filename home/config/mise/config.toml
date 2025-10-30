@@ -1,3 +1,6 @@
+[settings]
+trusted_config_paths = ['$HOME/Code']
+
 [tools]
 actionlint = "latest"
 checkmake = "latest"

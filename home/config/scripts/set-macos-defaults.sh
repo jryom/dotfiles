@@ -29,6 +29,7 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder _FXSortFoldersFirst -bool YES
 defaults write com.apple.menuextra.clock "DateFormat" -string "HH:mm"
+defaults write com.apple.screencapture thumbnailExpireTime -float 30
 defaults write com.apple.spaces spans-displays -bool false
 
 killall Dock

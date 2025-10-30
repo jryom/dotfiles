@@ -40,6 +40,8 @@ alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
+alt-0 = 'balance-sizes'
+
 ctrl-shift-m = [
   'move-workspace-to-monitor next --wrap-around',
   'focus-monitor next --wrap-around',
@@ -54,11 +56,6 @@ ctrl-shift-1 = 'workspace 1'
 ctrl-shift-2 = 'workspace 2'
 ctrl-shift-3 = 'workspace 3'
 ctrl-shift-4 = 'workspace 4'
-ctrl-shift-5 = 'workspace 5'
-ctrl-shift-6 = 'workspace 6'
-ctrl-shift-7 = 'workspace 7'
-ctrl-shift-8 = 'workspace 8'
-ctrl-shift-9 = 'workspace 9'
 
 cmd-shift-l = 'layout tiles accordion'
 cmd-shift-m = 'move-workspace-to-monitor --wrap-around next'
