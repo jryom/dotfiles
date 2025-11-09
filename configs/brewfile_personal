@@ -26,6 +26,6 @@ cask "softube-central"
 cask "sonos"
 cask "splice"
 cask "synology-drive"
-cask "tailscale"
+cask "tailscale", greedy: true
 
 mas "NextDNS", id: 1464122853

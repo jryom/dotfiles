@@ -42,10 +42,10 @@ cask_args force: true
 cask "docker-desktop", greedy: true
 cask "firefox", greedy: true
 cask "font-iosevka"
-cask "gitify"
-cask "itsycal"
-cask "kitty"
-cask "nikitabobko/tap/aerospace"
+cask "gitify", greedy: true
+cask "itsycal", greedy: true
+cask "kitty", greedy: true
+cask "nikitabobko/tap/aerospace", greedy: true
 cask "restfox", greedy: true
 cask "spotify"
-cask "swiftbar"
+cask "swiftbar", greedy: true

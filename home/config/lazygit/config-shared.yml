@@ -3,22 +3,17 @@
 notARepository: "skip"
 promptToReturnFromSubprocess: false
 disableStartupPopups: true
-
 git:
   autoFetch: true
-  branchLogCmd:
-    'git log --graph --color=always --abbrev-commit --decorate --date=relative
-    --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)|
-    %C(cyan)%ad%C(white))" {{branchName}} --'
+  branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
   log:
     showWholeGraph: false
-  paging:
-    colorArg: always
-    pager: delta --paging=never $(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "--dark --syntax-theme=ansi"; else echo "--light --syntax-theme=GitHub"; fi)
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never $(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "--dark --syntax-theme=ansi"; else echo "--light --syntax-theme=GitHub"; fi)
   fetchAll: true
   autoRefresh: true
   overrideGpg: true
-
 gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy
@@ -33,7 +28,6 @@ gui:
   skipStashWarning: true
   authorColors:
     "*": "blue"
-
 keybinding:
   files:
     commitChanges: "C"

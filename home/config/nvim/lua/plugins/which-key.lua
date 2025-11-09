@@ -26,6 +26,14 @@ return {
         { "<", "<gv", desc = "Outdent", mode = { "x" } },
         { ">", ">gv", desc = "Indent", mode = { "x" } },
         {
+          "<leader>cp",
+          function()
+            local path = vim.fn.expand("%:~:.")
+            if path ~= "" then vim.fn.setreg("+", path) end
+          end,
+          desc = "Copy relative file path",
+        },
+        {
           "<C-j>",
           function() vim.cmd("norm! zo") end,
           desc = "Open fold",

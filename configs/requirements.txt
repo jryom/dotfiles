@@ -4,3 +4,4 @@ pip
 pynvim
 sqlfluff
 virtualfish
+yamllint
