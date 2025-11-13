@@ -30,6 +30,10 @@ set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -Ux VISUAL "$EDITOR"
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 
+set -Ux HOMEBREW_NO_ANALYTICS 1
+set -Ux HOMEBREW_NO_ENV_HINTS 1
+set -Ux HOMEBREW_NO_UPDATE_REPORT_NEW 1
+
 fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
 fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin $brew_prefix/opt/grep/libexec/gnubin
 fish_add_path --universal /usr/local/bin
