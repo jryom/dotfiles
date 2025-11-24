@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm pip misc fisher virtualfish fish-globals system-preferences gatekeeper shell
+.PHONY: default install dotbot brew brew-personal gh mise pnpm pip misc fisher virtualfish fish-globals system-preferences gatekeeper shell uv uv-update
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew pip fish-globals dotbot fisher virtualfish pnpm misc gh
+install: homebrew gatekeeper system-preferences mise brew pip fish-globals dotbot fisher virtualfish pnpm misc gh uv
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -18,6 +18,19 @@ dotbot:
 
 fisher:
 	@fish -i -c 'fisher update'
+
+mise-update:
+	mise upgrade --yes
+	mise prune --yes
+
+pnpm-update:
+	pnpm update --global
+
+brew-update:
+	brew upgrade
+
+gh-update:
+	gh extension upgrade --all
 
 fish-globals:
 	@fish -i -c $(CURDIR)/configs/fish_globals.fish
@@ -52,6 +65,13 @@ pip:
 
 pnpm:
 	@fish -i -c 'pnpm add --global (cat "$(CURDIR)/configs/global_node_modules")'
+
+uv:
+	mise install
+	uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+
+uv-update:
+	uv tool upgrade --all
 
 shell:
 	cat /etc/shells | grep $$(which fish) &>/dev/null || echo $$(which fish) | sudo tee -a /etc/shells

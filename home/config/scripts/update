@@ -1,11 +1,12 @@
 #!/usr/bin/env fish
 
 set -l update_commands \
-    "mise upgrade --yes && mise prune --yes" \
-    "pnpm update --global" \
-    "brew upgrade" \
-    "gh extension upgrade --all" \
-    "fisher update"
+    "make mise-update" \
+    "make pnpm-update" \
+    "make brew-update" \
+    "make gh-update" \
+    "make fisher" \
+    "make uv-update"
 
 function print_header
     set_color --bold
