@@ -12,8 +12,6 @@ if status is-interactive
 
     ### Abbreviations
 
-    abbr aider "$HOME/.config/scripts/aider"
-
     abbr gitgrep "git rev-list --all | xargs git grep --break"
     abbr ll "ls -halG"
     abbr n 'cd ~/Documents/Notes; and nvim -c "Oil"'

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "github-copilot/claude-sonnet-4.5",
+  "small_model": "github-copilot/claude-haiku-4.5",
+  "autoupdate": true,
+  "agent": {
+    "plan": {
+      "model": "github-copilot/claude-sonnet-4.5",
+    },
+    "build": {
+      "model": "github-copilot/claude-sonnet-4.5",
+    },
+    "general": {
+      "model": "github-copilot/claude-haiku-4.5",
+    }
+  },
+  "lsp": {
+    "jsonls": {
+      "command": ["vscode-json-languageserver", "--stdio"],
+      "extensions": ["json"]
+    }
+  }
+}

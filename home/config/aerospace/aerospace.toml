@@ -104,6 +104,10 @@ run = ['move-node-to-workspace 4']
 if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace 4']
 
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout tiling"]
+
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'main'

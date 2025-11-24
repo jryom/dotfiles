@@ -1,0 +1,93 @@
+# Shell
+shell-integration = fish
+shell-integration-features = no-sudo,no-cursor
+command = /opt/homebrew/bin/fish
+
+# Window
+window-decoration = true
+macos-titlebar-style = tabs
+macos-window-buttons = hidden
+window-padding-x = 1
+window-padding-y = 1
+confirm-close-surface = false
+
+# Transparency and blur
+background-opacity = 0.85
+background-blur = 20
+
+# Scrollback
+scrollback-limit = 10000
+
+# Font
+font-family = Iosevka Fixed
+font-size = 14
+font-feature = -calt
+adjust-cell-height = 18%
+adjust-underline-position = 5
+adjust-underline-thickness = 130%
+adjust-strikethrough-position = 3
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-text = cell-background
+
+# Performance
+minimum-contrast = 1.0
+
+# Theme (auto-switched based on system appearance)
+theme = dark:dark,light:light
+
+# Keybindings
+# New window/tab
+keybind = cmd+n=new_window
+keybind = cmd+shift+n=new_window
+keybind = cmd+t=new_tab
+keybind = cmd+shift+t=new_tab
+
+# Close window/tab
+keybind = cmd+w=close_surface
+keybind = cmd+shift+w=close_tab
+
+# Clear screen
+keybind = cmd+k=clear_screen
+
+# Font size
+keybind = cmd+z=increase_font_size:1
+keybind = cmd+x=decrease_font_size:1
+keybind = cmd+0=reset_font_size
+
+# Tab navigation
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+6=goto_tab:6
+keybind = cmd+7=goto_tab:7
+keybind = cmd+8=goto_tab:8
+keybind = cmd+9=goto_tab:9
+
+# Split navigation (using ctrl+alt like kitty_mod)
+keybind = ctrl+alt+h=goto_split:previous
+keybind = ctrl+alt+l=goto_split:next
+keybind = ctrl+alt+c=new_split:right
+
+# Scrolling
+keybind = ctrl+alt+j=scroll_page_lines:1
+keybind = ctrl+alt+k=scroll_page_lines:-1
+keybind = ctrl+alt+b=scroll_page_fractional:-1
+keybind = ctrl+alt+f=scroll_page_fractional:1
+
+# Tab title
+keybind = cmd+r=prompt_surface_title
+
+# Tab movement
+keybind = ctrl+alt+right=move_tab:1
+keybind = ctrl+alt+left=move_tab:-1
+keybind = ctrl+alt+p=previous_tab
+keybind = ctrl+alt+n=next_tab
+
+# Window movement
+keybind = cmd+right=goto_split:next
+keybind = cmd+left=goto_split:previous
