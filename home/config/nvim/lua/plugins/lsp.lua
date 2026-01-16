@@ -101,6 +101,7 @@ return {
         cssls = {},
         dockerls = {},
         docker_compose_language_service = {},
+        gh_actions_ls = {},
         gopls = {},
         html = {},
         kulala_ls = {},

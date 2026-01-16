@@ -74,6 +74,9 @@ vim.cmd.inoreabbrev({
   "strftime('%Y-%m-%d | %A | %H:%M')",
 })
 
+vim.keymap.set("n", "n", "nzz", { desc = "Next search result (centered)" })
+vim.keymap.set("n", "N", "Nzz", { desc = "Prev search result (centered)" })
+
 require("lazy").setup({
   ui = {
     size = {

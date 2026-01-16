@@ -5,10 +5,16 @@
   "autoupdate": true,
   "agent": {
     "plan": {
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/claude-opus-4.5",
     },
     "build": {
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/claude-opus-4.5",
+    },
+    "title": {
+      "model": "github-copilot/claude-haiku-4.5",
+    },
+    "explore": {
+      "model": "github-copilot/claude-haiku-4.5",
     },
     "general": {
       "model": "github-copilot/claude-haiku-4.5",
