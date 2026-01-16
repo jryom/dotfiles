@@ -1,7 +1,0 @@
-dotbot
-neovim-remote
-pip
-pynvim
-sqlfluff
-virtualfish
-yamllint

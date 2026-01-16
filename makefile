@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm pip misc fisher virtualfish fish-globals system-preferences gatekeeper shell uv uv-update
+.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher virtualfish fish-globals system-preferences gatekeeper shell uv uv-update npm-update
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew pip fish-globals dotbot fisher virtualfish pnpm misc gh uv
+install: homebrew gatekeeper system-preferences mise brew uv fish-globals dotbot fisher virtualfish pnpm misc gh
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -25,6 +25,9 @@ mise-update:
 
 pnpm-update:
 	pnpm update --global
+
+npm-update:
+	npm update --global
 
 brew-update:
 	brew upgrade
@@ -60,15 +63,11 @@ mise:
 	brew install mise
 	mise install --yes
 
-pip:
-	@fish -i -c 'pip install --upgrade --requirement "$(CURDIR)/configs/requirements.txt"'
-
 pnpm:
 	@fish -i -c 'pnpm add --global (cat "$(CURDIR)/configs/global_node_modules")'
 
 uv:
-	mise install
-	uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+	xargs -L1 uv tool install --force < "$(CURDIR)/configs/uv_tools"
 
 uv-update:
 	uv tool upgrade --all

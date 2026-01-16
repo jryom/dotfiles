@@ -1,12 +1,16 @@
 #!/usr/bin/env fish
 
+set -l script_dir (dirname (realpath (status --current-filename)))
+set -l dotfiles_dir (realpath "$script_dir/../../..")
+
 set -l update_commands \
-    "make mise-update" \
-    "make pnpm-update" \
-    "make brew-update" \
-    "make gh-update" \
-    "make fisher" \
-    "make uv-update"
+    "make -C $dotfiles_dir mise-update" \
+    "make -C $dotfiles_dir pnpm-update" \
+    "make -C $dotfiles_dir npm-update" \
+    "make -C $dotfiles_dir brew-update" \
+    "make -C $dotfiles_dir gh-update" \
+    "make -C $dotfiles_dir fisher" \
+    "make -C $dotfiles_dir uv-update"
 
 function print_header
     set_color --bold

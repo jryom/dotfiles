@@ -1,0 +1,7 @@
+dotbot
+neovim-remote
+pynvim
+specify-cli --from git+https://github.com/github/spec-kit.git
+sqlfluff
+virtualfish
+yamllint
