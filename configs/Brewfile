@@ -47,6 +47,7 @@ cask "gitify", greedy: true
 cask "itsycal", greedy: true
 cask "kitty", greedy: true
 cask "nikitabobko/tap/aerospace", greedy: true
+cask "obsidian", greedy: true
 cask "restfox", greedy: true
 cask "spotify"
 cask "swiftbar", greedy: true

@@ -58,7 +58,6 @@ ctrl-shift-3 = 'workspace 3'
 ctrl-shift-4 = 'workspace 4'
 
 cmd-shift-l = 'layout tiles accordion'
-cmd-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
 # terminal
 [[on-window-detected]]
@@ -86,6 +85,11 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 3']
+
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['move-node-to-workspace 4']
 
 # audio
 [[on-window-detected]]
