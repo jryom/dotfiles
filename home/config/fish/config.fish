@@ -23,6 +23,8 @@ if status is-interactive
     abbr delete_manual_workflow_runs 'CI=true gh run list --user=jryom --event=workflow_dispatch --limit 1000 --json databaseId --jq '.[].databaseId' | xargs -P 20 -I {} bash -c "CI=true gh run delete {}"'
     abbr list_workflow_runs 'gh run list --user=jryom'
 
+    abbr oc "opencode --continue"
+
     abbr y yarn
     abbr ya yarn add
     abbr yad yarn add -D
@@ -49,6 +51,9 @@ if status is-interactive
     direnv hook fish | source
 
     ### Functions
+    function oas
+        docker run --rm -p 8080:8080 -e PERSIST_AUTHORIZATION=true -e SWAGGER_JSON=/spec/$argv[1] -v (pwd):/spec swaggerapi/swagger-ui
+    end
 
     function j_and_launch
         if test -d "$argv[2]"; or test -f "$argv[2]"
