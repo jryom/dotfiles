@@ -23,7 +23,7 @@ gui:
   showBottomLine: false
   showFileTree: true
   showPanelJumps: false
-  sidePanelWidth: 0.25
+  sidePanelWidth: 0.2
   skipRewordInEditorWarning: false
   skipStashWarning: true
   authorColors:

@@ -3,6 +3,7 @@ trusted_config_paths = ['$HOME/Code']
 
 [tools]
 actionlint = "latest"
+ast-grep = "latest"
 checkmake = "latest"
 dotenv-linter = "latest"
 hadolint = "latest"

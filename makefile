@@ -30,7 +30,7 @@ npm-update:
 	npm update --global
 
 brew-update:
-	brew upgrade
+	brew upgrade --greedy
 
 gh-update:
 	gh extension upgrade --all

@@ -7,7 +7,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.api.nvim_create_autocmd("QuitPre", {
   group = group,
-  command = "Bwipeout hidden",
+  callback = function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == "terminal" then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+    vim.cmd("Bwipeout hidden")
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
