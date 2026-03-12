@@ -1,27 +1,11 @@
 return {
   {
-    "wansmer/symbol-usage.nvim",
-    event = "LspAttach",
-    config = function()
-      require("symbol-usage").setup({
-        vt_position = "end_of_line",
-        request_pending_text = "",
-        hl = { link = "LspInlayHint" },
-      })
-    end,
-  },
-
-  {
-    "b0o/schemastore.nvim",
-    ft = { "json", "yaml", "toml" },
-  },
-
-  { "icholy/lsplinks.nvim", ft = "yaml" },
-
-  {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
+      "b0o/schemastore.nvim",
+      "icholy/lsplinks.nvim",
     },
     config = function()
       vim.diagnostic.config({
@@ -120,10 +104,13 @@ return {
           },
         },
         yamlls = {
+          on_init = function(client)
+            client.config.settings.yaml.schemas = require("schemastore").yaml.schemas()
+            client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+          end,
           settings = {
             yaml = {
               format = { enable = false },
-              schemas = require("schemastore").yaml.schemas(),
               schemaStore = {
                 enable = true,
                 url = "",
@@ -134,16 +121,19 @@ return {
         },
         jsonls = {
           init_options = { provideFormatter = false },
+          on_init = function(client)
+            client.config.settings.yaml.schemas = require("schemastore").yaml.schemas()
+            client.config.settings.json.schemas = require("schemastore").json.schemas()
+            client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+          end,
           settings = {
             yaml = {
-              schemas = require("schemastore").yaml.schemas(),
               schemaStore = {
                 enable = true,
                 url = "",
               },
             },
             json = {
-              schemas = require("schemastore").json.schemas(),
               validate = { enable = true },
             },
           },

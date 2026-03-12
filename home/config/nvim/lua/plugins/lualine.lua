@@ -17,6 +17,7 @@ end
 
 return {
   "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   config = function()
     local utils = require("lualine.utils.utils")
     require("lualine").setup({

@@ -7,6 +7,8 @@ return {
       preset = "helix",
       icons = { rules = false },
       spec = {
+        -- Buffers
+        { "Q", group = "buffers" },
         -- Tabs
         { "<C-t>H", ":-tabmove<cr>", desc = "Move tab left" },
         { "<C-t>L", ":tabmove<cr>", desc = "Move tab right" },
