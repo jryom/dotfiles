@@ -2,14 +2,6 @@
 [branch]
 	sort = -committerdate
 
-[color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	pager = true
-	status = auto
-	ui = true
-
 [color "grep"]
 	filename = blue
 	linenumber = green
@@ -94,16 +86,12 @@
 
 [push]
 	autoSetupRemote = true
-	default = simple
 	followTags = true
 
 [rebase]
 	autoSquash = true
 	autoStash = true
 	updateRefs = true
-
-[remote "origin"]
-	prune = true
 
 [rerere]
 	autoupdate = true

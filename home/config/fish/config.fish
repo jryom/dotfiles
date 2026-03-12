@@ -25,10 +25,6 @@ if status is-interactive
 
     abbr oc "opencode --continue"
 
-    abbr y yarn
-    abbr ya yarn add
-    abbr yad yarn add -D
-
     abbr tf terraform
     abbr tfsls terraform state list
     abbr tfsrm terraform state rm

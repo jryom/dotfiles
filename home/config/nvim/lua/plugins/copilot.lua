@@ -1,21 +1,9 @@
 return {
-  "copilotc-nvim/copilotchat.nvim",
+  "zbirenbaum/copilot.lua",
   version = "*",
-  dependencies = {
-    { "zbirenbaum/copilot.lua" },
-    { "nvim-lua/plenary.nvim" },
-  },
   event = { "InsertEnter" },
-  cmd = { "Copilot", "CopilotChat" },
-  build = "make tiktoken",
+  cmd = { "Copilot" },
   keys = {
-    { "<leader>ac", "<cmd>CopilotChat<cr>", mode = { "x", "n" }, desc = "Open in vertical split" },
-    { "<leader>ad", "<cmd>CopilotChatDocs<cr>", desc = "Write docs", mode = { "n", "x" } },
-    { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "Fix diagnostic", mode = { "n", "x" } },
-    { "<leader>ao", "<cmd>CopilotChatOptimize<cr>", desc = "Optimize", mode = { "n", "x" } },
-    { "<leader>aR", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
-    { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "Review", mode = { "n", "x" } },
-    { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate tests", mode = { "n", "x" } },
     {
       "<Tab>",
       function()
@@ -50,15 +38,6 @@ return {
           dismiss = "<C-c>",
         },
       },
-    })
-
-    require("CopilotChat").setup({
-      -- Avoid <Tab> conflicts inside chat; use <C-Space> to trigger completion
-      mappings = { complete = { insert = "<C-Space>" } },
-      auto_insert_mode = true,
-      window = { layout = "vertical", width = 80 },
-      -- If you want default resources, uncomment below
-      -- sticky = { '#buffers:visible' },
     })
   end,
 }
