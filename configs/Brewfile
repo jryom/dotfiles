@@ -1,9 +1,7 @@
-tap "beeftornado/rmtree"
 tap "hudochenkov/sshpass"
 
 brew "bash"
 brew "bat"
-brew "beeftornado/rmtree/brew-rmtree"
 brew "coreutils"
 brew "dash-shell"
 brew "delta"
@@ -31,7 +29,6 @@ brew "neovim"
 brew "ripgrep"
 brew "starship"
 brew "tealdeer"
-brew "terminal-notifier"
 brew "trash"
 brew "zoxide"
 

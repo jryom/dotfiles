@@ -5,30 +5,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
   command = "setlocal foldmethod=manual",
 })
 
-vim.api.nvim_create_autocmd("QuitPre", {
-  group = group,
-  callback = function()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == "terminal" then
-        vim.api.nvim_buf_delete(buf, { force = true })
-      end
-    end
-    vim.cmd("Bwipeout hidden")
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
-  pattern = { "*.{eslint,babel,stylelint,prettier,swc}rc" },
-  command = "set ft=json",
-  group = group,
-})
-
-vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized" }, {
+vim.api.nvim_create_autocmd({ "VimResized" }, {
   command = [[exe "silent norm! \<C-W>="]],
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
+vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
   group = group,
   callback = function()
     local excluded_filetypes = { "markdown", "oil" }
@@ -36,16 +18,22 @@ vim.api.nvim_create_autocmd({ "SessionLoadPost", "VimResized", "WinResized" }, {
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       local filetype = vim.bo[buf].filetype
+      local skip = false
       for _, ft in ipairs(excluded_filetypes) do
-        if ft == filetype then return true end
+        if ft == filetype then
+          skip = true
+          break
+        end
       end
-      local win_width = vim.api.nvim_win_get_width(win)
-      if win_width < 100 then
-        vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })
-        vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = win })
-      else
-        vim.api.nvim_set_option_value("number", true, { scope = "local", win = win })
-        vim.api.nvim_set_option_value("relativenumber", true, { scope = "local", win = win })
+      if not skip then
+        local win_width = vim.api.nvim_win_get_width(win)
+        if win_width < 100 then
+          vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })
+          vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = win })
+        else
+          vim.api.nvim_set_option_value("number", true, { scope = "local", win = win })
+          vim.api.nvim_set_option_value("relativenumber", true, { scope = "local", win = win })
+        end
       end
     end
   end,
@@ -62,7 +50,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "DirChanged", "SessionLoadPost", "UIEnter" }, {
+vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
   callback = function()
     local cwd = function()
       local cwd = vim.loop.cwd()

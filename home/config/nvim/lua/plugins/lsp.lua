@@ -1,27 +1,10 @@
 return {
   {
-    "wansmer/symbol-usage.nvim",
-    event = "LspAttach",
-    config = function()
-      require("symbol-usage").setup({
-        vt_position = "end_of_line",
-        request_pending_text = "",
-        hl = { link = "LspInlayHint" },
-      })
-    end,
-  },
-
-  {
-    "b0o/schemastore.nvim",
-    ft = { "json", "yaml", "toml" },
-  },
-
-  { "icholy/lsplinks.nvim", ft = "yaml" },
-
-  {
     "neovim/nvim-lspconfig",
+    lazy = false,
     dependencies = {
-      { "lukas-reineke/lsp-format.nvim", event = "LspAttach", version = "*" },
+      "b0o/schemastore.nvim",
+      "icholy/lsplinks.nvim",
     },
     config = function()
       vim.diagnostic.config({
@@ -46,8 +29,6 @@ return {
       }
 
       local on_attach = function(client, bufnr)
-        require("lsp-format").on_attach(client)
-
         if vim.bo[bufnr].filetype == "yaml" then
           local lsplinks = require("lsplinks")
           lsplinks.setup()
@@ -85,12 +66,6 @@ return {
             desc = "Toggle inlay hints",
             buffer = bufnr,
           },
-          {
-            "<space>lp",
-            function() require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr) end,
-            desc = "Populate workspace diagnostics",
-            buffer = bufnr,
-          },
         })
       end
 
@@ -104,7 +79,6 @@ return {
         gh_actions_ls = {},
         gopls = {},
         html = {},
-        kulala_ls = {},
         marksman = {},
         pyright = {},
         taplo = { filetypes = { "toml" } },
@@ -120,12 +94,15 @@ return {
           },
         },
         yamlls = {
+          on_init = function(client)
+            client.config.settings.yaml.schemas = require("schemastore").yaml.schemas()
+            client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+          end,
           settings = {
             yaml = {
               format = { enable = false },
-              schemas = require("schemastore").yaml.schemas(),
               schemaStore = {
-                enable = true,
+                enable = false,
                 url = "",
               },
             },
@@ -134,16 +111,13 @@ return {
         },
         jsonls = {
           init_options = { provideFormatter = false },
+          root_markers = {},
+          on_init = function(client)
+            client.config.settings.json.schemas = require("schemastore").json.schemas()
+            client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+          end,
           settings = {
-            yaml = {
-              schemas = require("schemastore").yaml.schemas(),
-              schemaStore = {
-                enable = true,
-                url = "",
-              },
-            },
             json = {
-              schemas = require("schemastore").json.schemas(),
               validate = { enable = true },
             },
           },

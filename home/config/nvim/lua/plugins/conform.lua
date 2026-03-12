@@ -8,7 +8,7 @@ return {
       function()
         vim.b.disable_autoformat = not vim.b.disable_autoformat
         if vim.b.disable_autoformat then return vim.notify("Disabled automatic formatting for buffer") end
-        vim.notify("Enabled automatic formatting enabled for buffer")
+        vim.notify("Enabled automatic formatting for buffer")
       end,
       desc = "Toggle autoformatting for buffer",
       silent = true,
@@ -51,7 +51,7 @@ return {
         justfile = { "just" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        python = { "ruff_fix", "ruff_format", "isort", "black" },
+        python = { "ruff_fix", "ruff_format" },
         sh = { "shfmt" },
         sql = { "sqlfluff" },
         terraform = { "terraform_fmt" },

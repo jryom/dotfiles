@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   version = "*",
+  event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -19,7 +20,6 @@ return {
         },
       },
       indent = { enable = true },
-      matchup = { enable = true },
       modules = {},
       sync_install = false,
       textobjects = {
