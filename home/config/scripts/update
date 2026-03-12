@@ -6,7 +6,6 @@ set -l dotfiles_dir (realpath "$script_dir/../../..")
 set -l update_commands \
     "make -C $dotfiles_dir mise-update" \
     "make -C $dotfiles_dir pnpm-update" \
-    "make -C $dotfiles_dir npm-update" \
     "make -C $dotfiles_dir brew-update" \
     "make -C $dotfiles_dir gh-update" \
     "make -C $dotfiles_dir fisher" \

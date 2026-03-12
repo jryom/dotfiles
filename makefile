@@ -26,9 +26,6 @@ mise-update:
 pnpm-update:
 	pnpm update --global
 
-npm-update:
-	npm update --global
-
 brew-update:
 	brew upgrade --greedy
 
