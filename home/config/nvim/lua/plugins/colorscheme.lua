@@ -55,24 +55,10 @@ return {
     priority = 1000,
     dependencies = "rktjmp/lush.nvim",
     config = function()
-      local mode = "light"
-      local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-      if handle then
-        local result = handle:read("*a")
-        handle:close()
-        if result and result:match("Dark") then mode = "dark" end
-      end
-
       vim.g.zenbones_darken_noncurrent_window = true
       vim.g.zenbones_lighten_noncurrent_window = true
       vim.g.zenbones_darken_line_nr = 15
       vim.g.zenbones_lighten_line_nr = 15
-
-      if type(mode) == "string" and string.find(mode, "dark") then
-        vim.opt.background = "dark"
-      else
-        vim.opt.background = "light"
-      end
 
       vim.cmd("colorscheme zenbones")
       overwrite()
@@ -103,16 +89,6 @@ return {
         highlight! link DapUIBreakpointsInfo String
         highlight! TabLineSel guibg=bg
       ]])
-    end,
-  },
-
-  {
-    "cormacrelf/dark-notify",
-    event = "VeryLazy",
-    config = function()
-      require("dark_notify").run({
-        onchange = overwrite,
-      })
     end,
   },
 }

@@ -1,12 +1,10 @@
 tap "beeftornado/rmtree"
-tap "cormacrelf/tap"
 tap "hudochenkov/sshpass"
 
 brew "bash"
 brew "bat"
 brew "beeftornado/rmtree/brew-rmtree"
 brew "coreutils"
-brew "cormacrelf/tap/dark-notify"
 brew "dash-shell"
 brew "delta"
 brew "direnv"
