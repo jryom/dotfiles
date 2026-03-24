@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher virtualfish fish-globals system-preferences gatekeeper shell uv uv-update npm-update
+.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew uv fish-globals dotbot fisher virtualfish pnpm misc gh
+install: homebrew gatekeeper system-preferences mise brew uv fish-globals dotbot fisher pnpm misc gh
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -34,7 +34,6 @@ gh-update:
 
 fish-globals:
 	@fish -i -c $(CURDIR)/configs/fish_globals.fish
-	@fish -i -c 'vf addplugins auto_activation'
 
 gatekeeper:
 	if spctl --status >/dev/null; then sudo spctl --master-disable || exit 0; fi

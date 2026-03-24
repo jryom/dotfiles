@@ -1,16 +1,11 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Set a longer timeout for commands to avoid errors in slow directories.
-# The default is 2000ms.
-command_timeout = 5000
-
 format = """
 $username\
 $hostname\
 $directory\
 $git_branch\
 $git_state\
-$git_status\
 $cmd_duration\
 $line_break\
 $python\
@@ -28,17 +23,6 @@ vimcmd_symbol = "[❮](green)"
 [git_branch]
 format = "[$branch]($style)"
 style = "bright-black"
-
-[git_status]
-format = "[[(*$conflicted$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
