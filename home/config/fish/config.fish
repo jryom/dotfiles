@@ -1,10 +1,24 @@
 source ~/.config/fish/env.fish
 
 if status is-interactive
-    if string match -q Dark (defaults read -g AppleInterfaceStyle 2>/dev/null)
+    function _cached_source
+        set -l name $argv[1]
+        set -l cache ~/.cache/fish/$name.fish
+        set -l bin (command -s $argv[2])
+        if test -z "$bin"; return 1; end
+        if not test -f $cache; or test "$bin" -nt $cache
+            mkdir -p ~/.cache/fish
+            $argv[2..-1] > $cache
+        end
+        source $cache
+    end
+
+    if defaults read -g AppleInterfaceStyle 2>/dev/null | string match -q Dark
+        set -g _appearance dark
         set -gx BAT_THEME ansi
         set -gx DELTA_FEATURES dark-mode
     else
+        set -g _appearance light
         set -gx BAT_THEME GitHub
         set -gx DELTA_FEATURES light-mode
     end
@@ -41,12 +55,12 @@ if status is-interactive
 
     ### Init calls
 
-    ssh-add -l &>/dev/null || ssh-add 2>/dev/null
-    zoxide init fish --cmd j | source
-    mise activate fish | source
-    direnv hook fish | source
+    _cached_source zoxide zoxide init fish --cmd j
+    _cached_source mise mise activate fish
+    _cached_source direnv direnv hook fish
 
     ### Functions
+
     function oas
         docker run --rm -p 8080:8080 -e PERSIST_AUTHORIZATION=true -e SWAGGER_JSON=/spec/$argv[1] -v (pwd):/spec swaggerapi/swagger-ui
     end
@@ -63,12 +77,11 @@ if status is-interactive
 
     function lf_launcher
         set tmp "$(mktemp)"
-        set columns "$(tput cols)"
         set size small
 
-        if [ $columns -gt 200 ]
+        if [ $COLUMNS -gt 200 ]
             set size large
-        else if [ $columns -gt 100 ]
+        else if [ $COLUMNS -gt 100 ]
             set size medium
         end
 
@@ -96,13 +109,13 @@ if status is-interactive
     function g
         set LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
 
-        if string match -q Dark (defaults read -g AppleInterfaceStyle 2>/dev/null)
+        if test "$_appearance" = dark
             set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
         else
             set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
         end
 
-        if test (tput cols) -ge 150
+        if test $COLUMNS -ge 150
             set -gx DFT_DISPLAY side-by-side
         else
             set -gx DFT_DISPLAY inline
@@ -110,6 +123,7 @@ if status is-interactive
 
         j_and_launch lazygit "$argv[1]"
     end
+
     ### Bindings
 
     function fish_user_key_bindings
@@ -139,5 +153,11 @@ if status is-interactive
     end
     delta_sidebyside
 
-    starship init fish | source
+    _cached_source starship starship init fish --print-full-init
+
+    function __mise_env_eval --on-event fish_prompt
+        if test "$PWD" = "$__mise_last_dir"; return; end
+        set -g __mise_last_dir $PWD
+        /opt/homebrew/opt/mise/bin/mise hook-env -s fish | source
+    end
 end
