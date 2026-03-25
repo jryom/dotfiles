@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 SCRIPT_PATH="$HOME/.config/scripts/manage-prevent-sleep.sh"
+JIGGLE_PATH="$HOME/.config/scripts/mouse-jiggle.swift"
 SYMBOL="☕"
+IDLE_THRESHOLD=60
+
+jiggle_if_idle() {
+  local ns idle
+  ns=$(ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print $NF; exit}')
+  idle=$((ns / 1000000000))
+  [ "$idle" -gt "$IDLE_THRESHOLD" ] && swift "$JIGGLE_PATH" >/dev/null 2>&1 &
+}
 
 print_menu() {
   local rem="$1" end="$2"
-  local mins=$(((rem+59)/60))
+  local mins=$(((rem + 59) / 60))
   if [ "$mins" -ge 60 ]; then
-    local h=$((mins/60)) m=$((mins%60))
+    local h=$((mins / 60)) m=$((mins % 60))
     echo "$SYMBOL ${h}h ${m}m"
   else
     echo "$SYMBOL ${mins}m"
@@ -24,26 +33,16 @@ parse_status() {
 if ! st=$("$SCRIPT_PATH" status 2>/dev/null); then
   exit 0
 fi
-[ "$st" = disabled ] && { exit 0; }
+[ "$st" = disabled ] && exit 0
 
 parse_status "$st"
 [[ "$rem" =~ ^[0-9]+$ ]] && [[ "$end" =~ ^[0-9]+$ ]] || { exit 0; }
 
-[ "$rem" -le 0 ] && { "$SCRIPT_PATH" disable >/dev/null 2>&1 & exit 0; }
+[ "$rem" -le 0 ] && {
+  "$SCRIPT_PATH" disable >/dev/null 2>&1 &
+  exit 0
+}
+
+jiggle_if_idle
 
 print_menu "$rem" "$end"
-
-if [ "$1" = extend ] && [[ "$2" =~ ^[0-9]+$ ]]; then
-  new=$(( end + $2*60 ))
-  if [ -x "$SCRIPT_PATH" ]; then
-    now=$(date +%s)
-    mins=$(( (new - now + 59)/60 ))
-    "$SCRIPT_PATH" "$mins" >/dev/null 2>&1 || true
-  else
-    pkill -f "caffeinate -i -t" >/dev/null 2>&1 || true
-    dur=$(( new - $(date +%s) ))
-    if [ "$dur" -gt 0 ]; then
-      caffeinate -i -t "$dur" & echo "$new" > /tmp/prevent-sleep.state
-    fi
-  fi
-fi
