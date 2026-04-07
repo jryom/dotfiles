@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
   callback = function()
     local cwd = function()
-      local cwd = vim.loop.cwd()
+      local cwd = vim.uv.cwd()
       local home = os.getenv("HOME")
 
       return cwd:gsub(home, "~"):gsub("~/Code/", "")

@@ -8,6 +8,19 @@ return {
     { "?", function() require("fzf-lua").helptags() end, desc = "Help", silent = true },
     { "<D-o>", function() require("fzf-lua").files() end, desc = "Open file", silent = true },
     {
+      "<D-o>",
+      function()
+        local reg = vim.fn.getreg("v")
+        vim.cmd('noau normal! "vy')
+        local sel = vim.fn.getreg("v")
+        vim.fn.setreg("v", reg)
+        require("fzf-lua").files({ fzf_opts = { ["--query"] = sel } })
+      end,
+      desc = "Open file by selection",
+      mode = "x",
+      silent = true,
+    },
+    {
       "<D-f>",
       function() require("fzf-lua").grep_project() end,
       desc = "Fuzzy grep",

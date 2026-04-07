@@ -27,7 +27,7 @@ pnpm-update:
 	pnpm update --global
 
 brew-update:
-	brew upgrade --greedy
+	brew upgrade
 
 gh-update:
 	gh extension upgrade --all

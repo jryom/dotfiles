@@ -40,6 +40,7 @@ fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/.pnpm
 fish_add_path --universal $HOME/go/bin
 fish_add_path --universal $HOME/.local/bin
+fish_add_path --universal /Applications/Docker.app/Contents/Resources/bin
 
 # Colors
 set -U fish_color_autosuggestion brblack -d
