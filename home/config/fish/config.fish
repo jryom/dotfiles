@@ -55,6 +55,8 @@ if status is-interactive
 
     ### Init calls
 
+    ssh-add -l &>/dev/null || ssh-add 2>/dev/null
+
     _cached_source zoxide zoxide init fish --cmd j
     _cached_source mise mise activate fish
     _cached_source direnv direnv hook fish
