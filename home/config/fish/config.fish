@@ -64,7 +64,7 @@ if status is-interactive
     ### Functions
 
     function oas
-        docker run --rm -p 8080:8080 -e PERSIST_AUTHORIZATION=true -e SWAGGER_JSON=/spec/$argv[1] -v (pwd):/spec swaggerapi/swagger-ui
+        podman run --rm -p 8080:8080 -e PERSIST_AUTHORIZATION=true -e SWAGGER_JSON=/spec/$argv[1] -v (pwd):/spec swaggerapi/swagger-ui
     end
 
     function j_and_launch

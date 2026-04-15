@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update
+.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update podman
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew uv fish-globals dotbot fisher pnpm misc gh
+install: homebrew gatekeeper system-preferences mise brew podman uv fish-globals dotbot fisher pnpm misc gh
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -49,6 +49,12 @@ homebrew:
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	fi
 	export PATH="/opt/homebrew/bin:$$PATH"
+
+podman:
+	sudo "$$(brew --prefix)"/Cellar/podman/$$(brew info podman --json | jq -r '.[0].installed[0].version')/bin/podman-mac-helper install
+	ln -sf "$$(which podman)" "$$(brew --prefix)"/bin/docker
+	podman machine init 2>/dev/null || true
+	podman machine start 2>/dev/null || true
 
 misc:
 	echo y | "$$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh

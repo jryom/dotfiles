@@ -18,7 +18,8 @@ brew "git-lfs"
 brew "gnu-sed"
 brew "hudochenkov/sshpass/sshpass"
 brew "jq"
-brew "lazydocker"
+brew "docker-compose"
+brew "podman"
 brew "lazygit"
 brew "lf"
 brew "mas"
@@ -35,7 +36,6 @@ brew "zoxide"
 
 cask_args force: true
 
-cask "docker-desktop"
 cask "firefox"
 cask "font-iosevka"
 cask "ghostty", greedy: true
