@@ -19,7 +19,9 @@ return {
         local buf = args.buf
         local lang = vim.treesitter.language.get_lang(args.match) or args.match
         if not vim.treesitter.language.add(lang) then
-          pcall(require("nvim-treesitter").install, lang)
+          if vim.list_contains(languages, lang) then
+            pcall(require("nvim-treesitter").install, lang)
+          end
           return
         end
         vim.treesitter.start(buf, lang)
