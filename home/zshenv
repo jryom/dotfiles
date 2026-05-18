@@ -1,3 +1,4 @@
 #!/usr/bin/env zsh
 
 PATH=/opt/homebrew/bin:$PATH
+eval "$(mise activate zsh)"
