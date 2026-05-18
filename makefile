@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update podman
+.PHONY: default install dotbot brew brew-personal gh mise npm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update podman
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew podman uv fish-globals dotbot fisher pnpm misc gh
+install: homebrew gatekeeper system-preferences mise brew podman uv fish-globals dotbot fisher npm misc gh
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -23,7 +23,7 @@ mise-update:
 	mise upgrade --yes
 	mise prune --yes
 
-pnpm-update:
+npm-update:
 	pnpm update --global
 
 brew-update:
@@ -65,8 +65,8 @@ mise:
 	brew install mise
 	mise install --yes
 
-pnpm:
-	@fish -i -c 'pnpm add --global (cat "$(CURDIR)/configs/global_node_modules")'
+npm:
+	@fish -i -c 'npm install --global (cat "$(CURDIR)/configs/global_node_modules")'
 
 uv:
 	xargs -L1 uv tool install --force < "$(CURDIR)/configs/uv_tools"
