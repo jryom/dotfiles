@@ -38,12 +38,9 @@ cask_args force: true
 
 cask "firefox"
 cask "font-iosevka"
-cask "ghostty", greedy: true
-cask "gitify", greedy: true
 cask "itsycal", greedy: true
 cask "kitty", greedy: true
 cask "nikitabobko/tap/aerospace", greedy: true
 cask "obsidian"
 cask "restfox", greedy: true
-cask "spotify"
 cask "swiftbar", greedy: true
