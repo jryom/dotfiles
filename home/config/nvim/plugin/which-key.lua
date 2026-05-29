@@ -37,8 +37,8 @@ require("which-key").setup({
       end,
       desc = "Copy relative file path",
     },
-    { "<C-j>", function() vim.cmd("norm! zo") end, desc = "Open fold" },
-    { "<C-k>", function() vim.cmd("norm! zc") end, desc = "Close fold" },
+    { "<C-j>", function() vim.cmd("silent! norm! zo") end, desc = "Open fold" },
+    { "<C-k>", function() vim.cmd("silent! norm! zc") end, desc = "Close fold" },
     {
       "<space>r",
       function()

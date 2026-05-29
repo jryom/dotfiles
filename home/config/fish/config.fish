@@ -64,6 +64,7 @@ if status is-interactive
     ### Functions
 
     function oas
+        open http://localhost:8080 &
         podman run --rm -p 8080:8080 -e PERSIST_AUTHORIZATION=true -e SWAGGER_JSON=/spec/$argv[1] -v (pwd):/spec swaggerapi/swagger-ui
     end
 

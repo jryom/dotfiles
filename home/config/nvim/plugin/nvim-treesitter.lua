@@ -8,19 +8,23 @@ local languages = { "lua", "bash", "markdown", "markdown_inline", "regex" }
 require("nvim-treesitter").setup({})
 require("nvim-treesitter").install(languages)
 
+local function start_treesitter(buf, lang)
+  if vim.treesitter.language.add(lang) then
+    vim.treesitter.start(buf, lang)
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    return true
+  end
+  return false
+end
+
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("treesitter.start", {}),
   callback = function(args)
     local buf = args.buf
     local lang = vim.treesitter.language.get_lang(args.match) or args.match
-    if not vim.treesitter.language.add(lang) then
-      if vim.list_contains(languages, lang) then
-        pcall(require("nvim-treesitter").install, lang)
-      end
-      return
+    if not start_treesitter(buf, lang) then
+      pcall(require("nvim-treesitter").install, lang)
     end
-    vim.treesitter.start(buf, lang)
-    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
 })
 

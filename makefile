@@ -24,7 +24,7 @@ mise-update:
 	mise prune --yes
 
 npm-update:
-	pnpm update --global
+	npm update --global
 
 brew-update:
 	brew upgrade
