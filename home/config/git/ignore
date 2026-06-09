@@ -2,6 +2,7 @@
 
 .DS_Store
 .Trashes
+.cocoindex_code
 .in
 .out
 Session.vim

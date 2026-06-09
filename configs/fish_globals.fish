@@ -7,7 +7,6 @@ set -U fish_cursor_visual block
 
 set -U brew_prefix (brew --prefix)
 set -U fish_greeting
-set -Ux fzf_fd_opts --color never
 set -Ux BAT_STYLE full
 set -Ux CLICOLOR 1
 set -Ux DFT_COLOR always
@@ -25,10 +24,12 @@ set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,poi
 set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
 set -Ux KEYTIMEOUT 1
 set -Ux MANPATH $MANPATH "$brew_prefix/share/man"
+set -Ux OPENCODE_DISABLE_PROJECT_CONFIG 1
 set -Ux PNPM_HOME "$HOME/.pnpm"
 set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
-set -Ux VISUAL "$EDITOR"
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
+set -Ux VISUAL "$EDITOR"
+set -Ux fzf_fd_opts --color never
 
 set -Ux HOMEBREW_NO_ANALYTICS 1
 set -Ux HOMEBREW_NO_ENV_HINTS 1

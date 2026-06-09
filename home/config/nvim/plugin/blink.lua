@@ -16,4 +16,5 @@ require("blink.cmp").setup({
     ["<C-h>"] = { "snippet_backward", "fallback" },
   },
   completion = { documentation = { auto_show = true } },
+  fuzzy = { implementation = "lua" },
 })
