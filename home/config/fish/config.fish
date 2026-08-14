@@ -59,8 +59,6 @@ if status is-interactive
 
     ### Init calls
 
-    ssh-add -l &>/dev/null || ssh-add 2>/dev/null
-
     _cached_source zoxide zoxide init fish --cmd j
     _cached_source mise mise activate fish
     fish_add_path --move --prepend "$PNPM_HOME/bin"
@@ -163,10 +161,4 @@ if status is-interactive
     delta_sidebyside
 
     _cached_source starship starship init fish --print-full-init
-
-    function __mise_env_eval --on-event fish_prompt
-        if test "$PWD" = "$__mise_last_dir"; return; end
-        set -g __mise_last_dir $PWD
-        /opt/homebrew/opt/mise/bin/mise hook-env -s fish | source
-    end
 end
