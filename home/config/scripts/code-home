@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+code_home=${CODE_HOME:-}
+if [ -z "$code_home" ] && [ -s "$HOME/.config/code-home" ]; then
+	IFS= read -r code_home <"$HOME/.config/code-home"
+fi
+
+printf '%s\n' "${code_home:-$HOME/Code}"

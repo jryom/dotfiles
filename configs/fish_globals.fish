@@ -24,7 +24,6 @@ set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,poi
 set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
 set -Ux KEYTIMEOUT 1
 set -Ux MANPATH $MANPATH "$brew_prefix/share/man"
-set -Ux OPENCODE_DISABLE_PROJECT_CONFIG 1
 set -Ux PNPM_HOME "$HOME/.pnpm"
 set -Ux RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
@@ -35,10 +34,33 @@ set -Ux HOMEBREW_NO_ANALYTICS 1
 set -Ux HOMEBREW_NO_ENV_HINTS 1
 set -Ux HOMEBREW_NO_UPDATE_REPORT_NEW 1
 
+set -l dev_vars CODE_HOME DEV_HOME DIRENV_CONFIG HOMEBREW_CACHE MISE_TRUSTED_CONFIG_PATHS \
+    XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME npm_config_cache npm_config_devdir \
+    pnpm_config_cache_dir pnpm_config_store_dir
+for var in $dev_vars
+    set -Ue $var
+end
+
+if test -s ~/.config/code-home
+    set -Ux CODE_HOME (string trim < ~/.config/code-home)
+    set -Ux DEV_HOME (dirname "$CODE_HOME")
+    set -Ux DIRENV_CONFIG "$HOME/.config/direnv-work"
+    set -Ux HOMEBREW_CACHE "$DEV_HOME/cache/homebrew"
+    set -Ux MISE_TRUSTED_CONFIG_PATHS "$CODE_HOME"
+    set -Ux PNPM_HOME "$DEV_HOME/pnpm-global"
+    set -Ux XDG_CACHE_HOME "$DEV_HOME/cache"
+    set -Ux XDG_DATA_HOME "$DEV_HOME"
+    set -Ux XDG_STATE_HOME "$DEV_HOME/state"
+    set -Ux npm_config_cache "$DEV_HOME/npm-cache"
+    set -Ux npm_config_devdir "$DEV_HOME/node-gyp-cache"
+    set -Ux pnpm_config_cache_dir "$DEV_HOME/pnpm-cache"
+    set -Ux pnpm_config_store_dir "$DEV_HOME/pnpm-store"
+end
+
 fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
 fish_add_path --universal --prepend $brew_prefix/opt $brew_prefix/sbin $brew_prefix/bin $brew_prefix/opt/grep/libexec/gnubin
 fish_add_path --universal /usr/local/bin
-fish_add_path --universal $HOME/.pnpm/bin
+fish_add_path --move --universal $PNPM_HOME/bin
 fish_add_path --universal $HOME/go/bin
 fish_add_path --universal $HOME/.local/bin
 

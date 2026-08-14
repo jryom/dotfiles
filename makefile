@@ -1,8 +1,8 @@
-.PHONY: default install dotbot brew brew-personal gh mise npm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update npm-update podman
+.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update pnpm-update podman
 
 default: install
 
-install: homebrew gatekeeper system-preferences mise brew podman uv fish-globals dotbot fisher npm misc gh
+install: homebrew gatekeeper system-preferences mise brew podman uv dotbot fish-globals fisher pnpm misc gh
 
 brew:
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
@@ -23,8 +23,8 @@ mise-update:
 	mise upgrade --yes
 	mise prune --yes
 
-npm-update:
-	npm update --global
+pnpm-update:
+	pnpm update --global --latest --yes
 
 brew-update:
 	brew upgrade
@@ -33,7 +33,7 @@ gh-update:
 	gh extension upgrade --all
 
 fish-globals:
-	@fish -i -c $(CURDIR)/configs/fish_globals.fish
+	@fish -i -c 'source "$(CURDIR)/configs/fish_globals.fish"'
 
 gatekeeper:
 	if spctl --status >/dev/null; then sudo spctl --master-disable || exit 0; fi
@@ -65,8 +65,8 @@ mise:
 	brew install mise
 	mise install --yes
 
-npm:
-	@fish -i -c 'npm install --global (cat "$(CURDIR)/configs/global_node_modules")'
+pnpm:
+	@fish -i -c 'pnpm add --global --allow-build=opencode-ai --allow-build=node-pty (cat "$(CURDIR)/configs/global_node_modules")'
 
 uv:
 	xargs -L1 uv tool install --force < "$(CURDIR)/configs/uv_tools"

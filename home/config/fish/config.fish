@@ -59,6 +59,8 @@ if status is-interactive
 
     _cached_source zoxide zoxide init fish --cmd j
     _cached_source mise mise activate fish
+    fish_add_path --move --prepend "$PNPM_HOME/bin"
+    fish_add_path --move --prepend "$HOME/.local/bin"
     _cached_source direnv direnv hook fish
 
     ### Functions

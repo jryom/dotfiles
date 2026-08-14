@@ -1,13 +1,6 @@
 vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
 
-local cwd = function()
-  local dir = vim.uv.cwd()
-  local home = os.getenv("HOME")
-  if dir and home then
-    return dir:gsub(home, "~"):gsub("~/Code/", "")
-  end
-  return ""
-end
+local cwd = require("config.paths").short_cwd
 
 local macro_rec = function() return vim.fn.reg_recording() end
 
