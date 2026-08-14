@@ -1,22 +1,6 @@
-source ~/.config/fish/env.fish
+test -r ~/.config/fish/env.fish; and source ~/.config/fish/env.fish
 
 if status is-interactive
-    function _cached_source
-        set -l name $argv[1]
-        set -l cache_dir "$HOME/.cache/fish"
-        if set -q XDG_CACHE_HOME
-            set cache_dir "$XDG_CACHE_HOME/fish"
-        end
-        set -l cache "$cache_dir/$name.fish"
-        set -l bin (command -s $argv[2])
-        if test -z "$bin"; return 1; end
-        if not test -f $cache; or test "$bin" -nt $cache
-            mkdir -p "$cache_dir"
-            $argv[2..-1] > $cache
-        end
-        source $cache
-    end
-
     if defaults read -g AppleInterfaceStyle 2>/dev/null | string match -q Dark
         set -g _appearance dark
         set -gx BAT_THEME ansi
@@ -26,8 +10,6 @@ if status is-interactive
         set -gx BAT_THEME GitHub
         set -gx DELTA_FEATURES light-mode
     end
-    set -gx GIT_CONFIG_VALUE_0 "$BAT_THEME"
-
     ### Abbreviations
 
     abbr gitgrep "git rev-list --all | xargs git grep --break"
@@ -59,11 +41,17 @@ if status is-interactive
 
     ### Init calls
 
-    _cached_source zoxide zoxide init fish --cmd j
-    _cached_source mise mise activate fish
-    fish_add_path --move --prepend "$PNPM_HOME/bin"
-    fish_add_path --move --prepend "$HOME/.local/bin"
-    _cached_source direnv direnv hook fish
+    ssh-add -l &>/dev/null; or ssh-add 2>/dev/null
+
+    zoxide init fish --cmd j | source
+    mise activate fish | source
+    for path in "$HOME/.pnpm" "$HOME/.pnpm/bin" "$DEV_HOME/pnpm-global/bin" \
+            /Applications/Docker.app/Contents/Resources/bin /opt/homebrew/opt \
+            /opt/homebrew/opt/mise/bin
+        set -gx PATH (string match -v -- "$path" $PATH)
+    end
+    set -e PNPM_HOME
+    direnv hook fish | source
 
     ### Functions
 
@@ -77,36 +65,26 @@ if status is-interactive
             $argv[1] "$argv[2]"
         else if test -z "$argv[2]"
             "$argv[1]"
+        else if j "$argv[2]"
+            "$argv[1]"
         else
-            j "$argv[2]" && "$argv[1]" || $argv[1] "$argv[2]"
+            $argv[1] "$argv[2]"
         end
     end
 
-    function lf_launcher
-        set tmp "$(mktemp)"
-        set size small
+    function yazi_launcher
+        set tmp (mktemp -t yazi-cwd.XXXXXX)
+        yazi $argv --cwd-file="$tmp"
 
-        if [ $COLUMNS -gt 200 ]
-            set size large
-        else if [ $COLUMNS -gt 100 ]
-            set size medium
-        end
-
-        lf -command "$size" -last-dir-path="$tmp"
-
-        if [ -f "$tmp" ]
-            set dir "$(cat "$tmp")"
-            rm -f "$tmp"
-            if [ -d "$dir" ]
-                if [ "$dir" != "$(pwd)" ]
-                    cd "$dir"
-                end
-            end
+        set dir (string trim <"$tmp")
+        rm -f "$tmp"
+        if test -n "$dir"; and test "$dir" != "$PWD"
+            cd "$dir"
         end
     end
 
     function l
-        j_and_launch lf_launcher "$argv[1]"
+        j_and_launch yazi_launcher "$argv[1]"
     end
 
     function v
@@ -114,18 +92,12 @@ if status is-interactive
     end
 
     function g
-        set LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
+        set -lx LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
 
         if test "$_appearance" = dark
-            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
+            set LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
         else
-            set -gx LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
-        end
-
-        if test $COLUMNS -ge 150
-            set -gx DFT_DISPLAY side-by-side
-        else
-            set -gx DFT_DISPLAY inline
+            set LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
         end
 
         j_and_launch lazygit "$argv[1]"
@@ -152,13 +124,13 @@ if status is-interactive
     fzf_configure_bindings --directory=\ct --variables=\e\cv
 
     function delta_sidebyside --on-signal WINCH
-        if test "$COLUMNS" -ge 120; and ! contains side-by-side "$DELTA_FEATURES"
+        if test "$COLUMNS" -ge 120; and ! contains side-by-side $DELTA_FEATURES
             set --global --export --append DELTA_FEATURES side-by-side
-        else if test "$COLUMNS" -lt 120; and contains side-by-side "$DELTA_FEATURES"
-            set --erase DELTA_FEATURES[(contains --index side-by-side "$DELTA_FEATURES")]
+        else if test "$COLUMNS" -lt 120; and contains side-by-side $DELTA_FEATURES
+            set --erase DELTA_FEATURES[(contains --index side-by-side $DELTA_FEATURES)]
         end
     end
     delta_sidebyside
 
-    _cached_source starship starship init fish --print-full-init
+    starship init fish | source
 end

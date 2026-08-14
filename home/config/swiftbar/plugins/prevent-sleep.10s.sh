@@ -24,24 +24,14 @@ print_menu() {
   echo "Until: $(date -r "$end" +%H:%M)"
 }
 
-parse_status() {
-  local st="$1"
-  rem=$(echo "$st" | awk -F '[ =]' '{for(i=1;i<=NF;i++){if($i~"remaining"){print $(i+1);exit}}}')
-  end=$(echo "$st" | awk -F '[ =]' '{for(i=1;i<=NF;i++){if($i~"end"){print $(i+1);exit}}}')
-}
-
 if ! st=$("$SCRIPT_PATH" status 2>/dev/null); then
   exit 0
 fi
-[ "$st" = disabled ] && exit 0
 
-parse_status "$st"
+read -r rem end <<<"$st"
+rem=${rem#remaining=}
+end=${end#end=}
 [[ "$rem" =~ ^[0-9]+$ ]] && [[ "$end" =~ ^[0-9]+$ ]] || { exit 0; }
-
-[ "$rem" -le 0 ] && {
-  "$SCRIPT_PATH" disable >/dev/null 2>&1 &
-  exit 0
-}
 
 jiggle_if_idle
 

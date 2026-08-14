@@ -1,15 +1,26 @@
 #!/usr/bin/env bash
-STATE_FILE="/tmp/prevent-sleep.state"
+STATE_FILE="/tmp/prevent-sleep.$UID.state"
+PID_FILE="$STATE_FILE.pid"
 INVALID_INPUT_MSG="Invalid input. Enter HH:MM or minutes."
 
 notify() { osascript -e "display notification \"$1\" with title \"Prevent Sleep\"" 2>/dev/null || true; }
 now_ts() { date +%s; }
 read_end() { cat "$STATE_FILE" 2>/dev/null; }
 write_end() { echo "$1" >"$STATE_FILE"; }
-stop_caffeinate() { pkill -f "caffeinate -i" >/dev/null 2>&1 || true; }
+stop_caffeinate() {
+	local pid
+	pid=$(cat "$PID_FILE" 2>/dev/null)
+	if [[ "$pid" =~ ^[0-9]+$ ]] && [ "$(ps -p "$pid" -o comm= 2>/dev/null)" = caffeinate ]; then
+		kill "$pid"
+	fi
+	rm -f "$PID_FILE"
+}
 start_caffeinate_for() {
 	local secs="$1"
-	[ "$secs" -gt 0 ] && caffeinate -i -d -t "$secs" &
+	if [ "$secs" -gt 0 ]; then
+		caffeinate -i -d -t "$secs" &
+		echo $! >"$PID_FILE"
+	fi
 }
 remaining_seconds() {
 	local end="$1"
@@ -32,6 +43,7 @@ status_output() {
 	}
 	rem=$(remaining_seconds "$end")
 	[ "$rem" -le 0 ] && {
+		rm -f "$STATE_FILE" "$PID_FILE"
 		echo disabled
 		return 1
 	}
@@ -98,7 +110,3 @@ if [ "$1" = "toggle" ]; then
 	start_until_epoch "$epoch" || disable
 	exit 0
 fi
-
-end=$(read_end)
-[[ "$end" =~ ^[0-9]+$ ]] || exit 0
-[ "$(now_ts)" -gt "$end" ] && disable

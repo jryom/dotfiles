@@ -1,3 +1,6 @@
+config-version = 2
+persistent-workspaces = ['1', '2', '3', '4']
+
 accordion-padding = 15
 automatically-unhide-macos-hidden-apps = true
 default-root-container-layout = 'accordion'
@@ -20,8 +23,8 @@ cmd-h = []
 cmd-alt-h = []
 cmd-shift-r = 'reload-config'
 ctrl-shift-d = '''exec-and-forget osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode''''
-ctrl-alt-cmd-k = 'exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "$(~/.config/scripts/code-home)"'
-ctrl-alt-cmd-n = '''exec-and-forget ~/.config/scripts/launch-kitty-if-not-running && kitten @ --to unix:/tmp/mykitty launch --type os-window --cwd "~/Documents/Notes" dash -c "fish -i -c 'nvim -i Oil'"'''
+ctrl-alt-cmd-k = 'exec-and-forget kitty --single-instance --instance-group=main --directory "$(~/.config/scripts/code-home)"'
+ctrl-alt-cmd-n = 'exec-and-forget kitty --single-instance --instance-group=main --directory "$HOME/Documents/Notes" fish -i -c "nvim -c Oil"'
 ctrl-alt-cmd-j = 'exec-and-forget ~/.config/scripts/manage-prevent-sleep.sh toggle'
 ctrl-alt-cmd-m = 'exec-and-forget open /System/Applications/Messages.app'
 ctrl-alt-cmd-r = 'exec-and-forget open /System/Applications/Reminders.app'

@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/bin/sh
 
 code_home=${CODE_HOME:-}
 if [ -z "$code_home" ] && [ -s "$HOME/.config/code-home" ]; then

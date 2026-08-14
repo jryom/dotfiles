@@ -10,10 +10,8 @@ git:
     showWholeGraph: false
   diffRenderers:
     - colorArg: always
-      command: delta --paging=never $(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "--dark --syntax-theme=ansi"; else echo "--light --syntax-theme=GitHub"; fi)
-  fetchAll: true
+      command: delta --paging=never
   autoRefresh: true
-  overrideGpg: true
 gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy

@@ -3,19 +3,4 @@
 set -l script_dir (dirname (realpath (status --current-filename)))
 set -l dotfiles_dir (realpath "$script_dir/../../..")
 
-set -l update_targets mise-update pnpm-update brew-update gh-update fisher uv-update
-
-function print_header
-    set_color --bold
-    echo ""
-    echo --------------------------------------------------
-    echo "   " $argv
-    echo --------------------------------------------------
-    echo ""
-    set_color normal
-end
-
-for target in $update_targets
-    print_header "make -C $dotfiles_dir $target"
-    make -C "$dotfiles_dir" "$target"; or exit 1
-end
+exec mise -C "$dotfiles_dir" run update
