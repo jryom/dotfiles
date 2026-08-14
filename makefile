@@ -1,22 +1,25 @@
-.PHONY: default install dotbot brew brew-personal brew-update gh gh-update mise mise-update pnpm pnpm-update misc fisher fish-globals system-preferences gatekeeper shell uv uv-update podman
+HOMEBREW_PREFIX := $(shell if command -v brew >/dev/null; then brew --prefix; elif [ "$$(uname -m)" = arm64 ]; then echo /opt/homebrew; else echo /usr/local; fi)
+export PATH := $(HOMEBREW_PREFIX)/bin:$(PATH)
+
+.PHONY: default install homebrew dotbot brew brew-personal brew-update gh gh-update mise mise-update pnpm pnpm-update misc fisher fish-globals system-preferences gatekeeper shell uv uv-update podman
 
 default: install
 
 install: homebrew gatekeeper system-preferences mise brew podman uv dotbot fish-globals fisher pnpm misc gh
 
-brew:
+brew: homebrew
 	brew bundle install --file="$(CURDIR)/configs/brewfile" --force
 
-brew-personal:
+brew-personal: homebrew
 	brew bundle install --file="$(CURDIR)/configs/brewfile_personal" --force
 
-dotbot:
+dotbot: uv
 	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; and \
 	set dotfiles_private "$$HOME/Documents/dotfiles-private"; and \
 	brctl download "$$dotfiles_private"; and \
 	sudo dotbot --config-file "$$dotfiles_private/configs/dotbot.yaml" --base-directory "$$dotfiles_private" --quiet'
 
-fisher:
+fisher: dotbot
 	@fish -i -c 'fisher update'
 
 mise-update:
@@ -32,13 +35,13 @@ brew-update:
 gh-update:
 	gh extension upgrade --all
 
-fish-globals:
+fish-globals: dotbot
 	@fish -i -c 'source "$(CURDIR)/configs/fish_globals.fish"'
 
 gatekeeper:
 	if spctl --status >/dev/null; then sudo spctl --master-disable || exit 0; fi
 
-gh:
+gh: brew
 	while IFS= read -r line; do \
 		echo $$line; \
 		gh extension install --force "$$line"; \
@@ -48,27 +51,24 @@ homebrew:
 	if ! command -v brew >/dev/null; then \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	fi
-	export PATH="/opt/homebrew/bin:$$PATH"
 
-podman:
+podman: brew
 	sudo "$$(brew --prefix)"/Cellar/podman/$$(brew info podman --json | jq -r '.[0].installed[0].version')/bin/podman-mac-helper install
 	ln -sf "$$(which podman)" "$$(brew --prefix)"/bin/docker
 	podman machine init 2>/dev/null || true
-	podman machine start 2>/dev/null || true
 
-misc:
+misc: brew
 	echo y | "$$(brew --prefix)"/opt/fzf/install --no-bash --no-zsh
 
-mise:
+mise: brew
 	mkdir -p "$$HOME/.config/mise"
-	ln -f "$(CURDIR)/home/config/mise/config.toml" "$$HOME/.config/mise/config.toml"
-	brew install mise
+	ln -sf "$(CURDIR)/home/config/mise/config.toml" "$$HOME/.config/mise/config.toml"
 	mise install --yes
 
-pnpm:
+pnpm: fish-globals
 	@fish -i -c 'pnpm add --global --allow-build=opencode-ai --allow-build=node-pty (cat "$(CURDIR)/configs/global_node_modules")'
 
-uv:
+uv: mise
 	xargs -L1 uv tool install --force < "$(CURDIR)/configs/uv_tools"
 
 uv-update:

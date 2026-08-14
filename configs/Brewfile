@@ -31,7 +31,7 @@ brew "ripgrep"
 brew "starship"
 brew "tealdeer"
 brew "trash"
-brew "tree-sitter"
+brew "tree-sitter-cli"
 brew "zoxide"
 
 cask_args force: true
