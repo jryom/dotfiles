@@ -55,12 +55,11 @@ end
 local servers = {
   ansiblels = {},
   bashls = {},
-  biome = { cmd = { "npx", "biome", "lsp-proxy" } },
+  biome = { cmd = { "biome", "lsp-proxy" } },
   cssls = {},
   dockerls = {},
   docker_compose_language_service = {},
   gh_actions_ls = {},
-  gopls = {},
   html = {},
   marksman = {},
   pyright = {},
@@ -111,7 +110,11 @@ local servers = {
 }
 
 for server, config in pairs(servers) do
-  config.on_attach = on_attach
+  local base_on_attach = vim.lsp.config[server].on_attach
+  config.on_attach = function(client, bufnr)
+    if base_on_attach then base_on_attach(client, bufnr) end
+    on_attach(client, bufnr)
+  end
   config.capabilities = capabilities
   vim.lsp.config[server] = config
   vim.lsp.enable(server)

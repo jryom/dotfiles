@@ -21,13 +21,11 @@ require("conform").setup({
   formatters_by_ft = {
     ["*"] = { "trim_whitespace", "trim_newlines" },
     fish = { "fish_indent" },
-    go = { "gofmt", "goimports" },
     javascript = { "biome-check", "biome", "prettier", stop_after_first = true },
     javascriptreact = { "biome-check", "biome", "prettier", stop_after_first = true },
     json = { "biome-check", "biome", "prettier", stop_after_first = true },
     json5 = { "biome-check", "biome", "prettier", stop_after_first = true },
     jsonc = { "biome-check", "biome", "prettier", stop_after_first = true },
-    justfile = { "just" },
     lua = { "stylua" },
     markdown = { "prettier" },
     python = { "ruff_fix", "ruff_format" },
@@ -41,7 +39,7 @@ require("conform").setup({
   },
   format_on_save = function(bufnr)
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
-    return { timeout_ms = 1000, lsp_fallback = true }
+    return { timeout_ms = 1000, lsp_format = "fallback" }
   end,
 })
 

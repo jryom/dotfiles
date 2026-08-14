@@ -23,7 +23,7 @@ require("fzf-lua").setup({
     RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
     rg_glob = true,
     fzf_opts = {
-      ["--history"] = vim.fn.expand("~/.local/share/nvim") .. "/" .. "fzf_grep_history",
+      ["--history"] = vim.fn.stdpath("data") .. "/fzf_grep_history",
     },
     no_header = true,
   },

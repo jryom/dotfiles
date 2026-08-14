@@ -29,4 +29,4 @@ vim.keymap.set("i", "<Tab>", function()
   end
 end)
 
-vim.keymap.set("n", "yop", "<cmd>Copilot disable<cr>", { desc = "Toggle Copilot" })
+vim.keymap.set("n", "yop", "<cmd>Copilot toggle<cr>", { desc = "Toggle Copilot" })

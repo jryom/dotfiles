@@ -53,8 +53,8 @@ vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufReadPost", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
   group = group,
-  pattern = { "**/.github/**/*.yml" },
+  pattern = { "**/.github/**/*.yml", "**/.github/**/*.yaml" },
   callback = function() require("lint").try_lint("actionlint") end,
 })

@@ -6,7 +6,6 @@ require("which-key").setup({
   spec = {
     { "Q", group = "buffers" },
     { "<space>g", group = "Git" },
-    { "<leader>a", group = "AI" },
     -- Tabs
     { "<C-t>H", ":-tabmove<cr>", desc = "Move tab left" },
     { "<C-t>L", ":tabmove<cr>", desc = "Move tab right" },
