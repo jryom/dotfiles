@@ -25,12 +25,11 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
+local lsplinks = require("lsplinks")
+lsplinks.setup()
+
 local on_attach = function(client, bufnr)
-  if vim.bo[bufnr].filetype == "yaml" then
-    local lsplinks = require("lsplinks")
-    lsplinks.setup()
-    vim.keymap.set("n", "gx", lsplinks.gx, { buffer = bufnr })
-  end
+  if vim.bo[bufnr].filetype == "yaml" then vim.keymap.set("n", "gx", lsplinks.gx, { buffer = bufnr }) end
 
   require("which-key").add({
     { "gr", group = "LSP bindings" },

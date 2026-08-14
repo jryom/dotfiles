@@ -13,19 +13,12 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
   group = group,
   callback = function()
-    local excluded_filetypes = { "markdown", "oil" }
+    local excluded_filetypes = { "markdown", "oil", "qf" }
 
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       local filetype = vim.bo[buf].filetype
-      local skip = false
-      for _, ft in ipairs(excluded_filetypes) do
-        if ft == filetype then
-          skip = true
-          break
-        end
-      end
-      if not skip then
+      if not vim.list_contains(excluded_filetypes, filetype) then
         local win_width = vim.api.nvim_win_get_width(win)
         if win_width < 100 then
           vim.api.nvim_set_option_value("number", false, { scope = "local", win = win })
@@ -40,7 +33,12 @@ vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
-  command = "setlocal cursorline | autocmd WinLeave * setlocal nocursorline",
+  command = "setlocal cursorline",
+  group = group,
+})
+
+vim.api.nvim_create_autocmd("WinLeave", {
+  command = "setlocal nocursorline",
   group = group,
 })
 
@@ -51,9 +49,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
-  callback = function()
-    vim.opt.titlestring = "nvim " .. require("config.paths").short_cwd()
-  end,
+  callback = function() vim.opt.titlestring = "nvim " .. require("config.paths").short_cwd() end,
   group = group,
 })
 
