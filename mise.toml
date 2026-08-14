@@ -1,0 +1,196 @@
+min_version = "2026.8.0"
+
+[settings]
+npm.package_manager = "pnpm"
+
+[tools]
+actionlint = "latest"
+checkmake = "latest"
+hadolint = "latest"
+lua-language-server = "latest"
+marksman = "latest"
+node = "lts"
+pnpm = "latest"
+pre-commit = "latest"
+python = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+stylua = "latest"
+terraform-ls = "latest"
+uv = "latest"
+"npm:@ansible/ansible-language-server" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@biomejs/biome" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@microsoft/compose-language-service" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@openchamber/web" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@taplo/cli" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@vtsls/language-server" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:bash-language-server" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:dockerfile-language-server-nodejs" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:gh-actions-language-server" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:markdownlint-cli2" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:opencode-ai" = { version = "latest", depends = ["node", "pnpm"], allow_builds = ["node-pty", "opencode-ai"] }
+"npm:prettier" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:pyright" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:typescript" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:vscode-langservers-extracted" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:yaml-language-server" = { version = "latest", depends = ["node", "pnpm"] }
+"pipx:cocoindex-code" = { version = "latest", depends = ["python", "uv"], extras = ["full"] }
+"pipx:ruff" = { version = "latest", depends = ["python", "uv"] }
+"pipx:sqlfluff" = { version = "latest", depends = ["python", "uv"] }
+
+[bootstrap.hooks.pre-packages]
+run = '''
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+if [ "$(uname -m)" = arm64 ]; then
+  PATH="/opt/homebrew/bin:$PATH"
+else
+  PATH="/usr/local/bin:$PATH"
+fi
+export PATH
+brew bundle install --file="$PWD/configs/Brewfile" --force
+'''
+
+[bootstrap.hooks.pre-dotfiles]
+run = '''
+private_dotfiles="$HOME/Documents/dotfiles-private"
+if [ ! -d "$private_dotfiles" ]; then
+  echo "Missing private dotfiles: $private_dotfiles" >&2
+  exit 1
+fi
+brctl download "$private_dotfiles"
+"$private_dotfiles/apply"
+'''
+
+[bootstrap.hooks.post-defaults]
+run = "killall Dock 2>/dev/null || true"
+
+[dotfiles]
+"~/.bashrc" = "home/bashrc"
+"~/.zshenv" = "home/zshenv"
+"~/.zshrc" = "home/zshrc"
+"~/.config/aerospace" = "home/config/aerospace"
+"~/.config/direnv" = "home/config/direnv"
+"~/.config/fish/config.fish" = "home/config/fish/config.fish"
+"~/.config/fish/fish_plugins" = "home/config/fish/fish_plugins"
+"~/.config/git" = "home/config/git"
+"~/.config/kitty" = "home/config/kitty"
+"~/.config/lazygit" = "home/config/lazygit"
+"~/.config/mise/config.toml" = "mise.toml"
+"~/.config/nvim" = "home/config/nvim"
+"~/.config/ripgreprc" = "home/config/ripgreprc"
+"~/.config/scripts/code-home" = "home/config/scripts/code-home"
+"~/.config/scripts/manage-prevent-sleep.sh" = "home/config/scripts/manage-prevent-sleep.sh"
+"~/.config/scripts/mouse-jiggle.swift" = "home/config/scripts/mouse-jiggle.swift"
+"~/.config/scripts/update" = "home/config/scripts/update"
+"~/.config/shell/path.sh" = "home/config/shell/path.sh"
+"~/.config/starship.toml" = "home/config/starship.toml"
+"~/.config/stylua.toml" = "home/config/stylua.toml"
+"~/.config/swiftbar/plugins/prevent-sleep.10s.sh" = "home/config/swiftbar/plugins/prevent-sleep.10s.sh"
+"~/.config/yazi/theme.toml" = "home/config/yazi/theme.toml"
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+three_finger_drag = true
+
+[bootstrap.macos.defaults.NSGlobalDomain]
+AppleShowAllExtensions = true
+AppleSpacesSwitchOnActivate = false
+InitialKeyRepeat = 15
+KeyRepeat = 2
+NSTableViewDefaultSizeMode = 1
+NSWindowShouldDragOnGesture = true
+
+[bootstrap.macos.defaults."com.apple.LaunchServices"]
+LSQuarantine = false
+
+[bootstrap.macos.defaults."com.apple.TextEdit"]
+RichText = false
+
+[bootstrap.macos.defaults."com.apple.dock"]
+autohide = true
+autohide-delay = 0.0
+autohide-time-modifier = 0.2
+expose-group-apps = true
+mru-spaces = false
+show-recents = false
+static-only = true
+tilesize = 48
+
+[bootstrap.macos.defaults."com.apple.finder"]
+FXDefaultSearchScope = "SCcf"
+FXEnableExtensionChangeWarning = false
+FXPreferredViewStyle = "Nlsv"
+FXRemoveOldTrashItems = true
+ShowHardDrivesOnDesktop = false
+ShowPathbar = true
+ShowStatusBar = true
+_FXSortFoldersFirst = true
+
+[bootstrap.macos.defaults."com.apple.menuextra.clock"]
+DateFormat = "HH:mm"
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+thumbnailExpireTime = 30.0
+
+[bootstrap.macos.defaults."com.apple.spaces"]
+spans-displays = false
+
+[bootstrap.macos.launchd.agents.capslock-escape]
+program = "/usr/bin/hidutil"
+args = ["property", "--set", '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}']
+run_at_load = true
+kickstart = true
+
+[bootstrap.macos.launchd.agents.podman-machine]
+program = "/bin/sh"
+args = ["-c", "podman machine inspect >/dev/null 2>&1 || podman machine init; podman machine inspect | jq -e '.[0].State == \"running\"' >/dev/null || podman machine start"]
+environment = { PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" }
+run_at_load = true
+kickstart = true
+stderr_path = "/tmp/dev.mise.podman-machine.err"
+
+[tasks.bootstrap]
+description = "Finish machine bootstrap"
+run = '''
+#!/bin/sh
+set -eu
+repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
+
+fish -i -c "source '$repo/configs/fish_globals.fish'"
+fish -i -c 'fisher update'
+
+gh extension install --force yusukebe/gh-markdown-preview
+
+launchctl bootout "gui/$(id -u)/local.capslock-esc" 2>/dev/null || true
+launchctl bootout "gui/$(id -u)/local.podman-machine" 2>/dev/null || true
+rm -f "$HOME/Library/LaunchAgents/capslock-escape.plist" "$HOME/Library/LaunchAgents/podman-machine.plist"
+
+pam_source="$repo/etc/pam.d/sudo_local"
+if [ "$(readlink /etc/pam.d/sudo_local 2>/dev/null || true)" != "$pam_source" ]; then
+  sudo ln -sf "$pam_source" /etc/pam.d/sudo_local
+fi
+'''
+
+[tasks.update]
+description = "Update packages, tools, extensions, and Fish plugins"
+run = '''
+#!/bin/sh
+set -eu
+repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
+
+brew bundle install --file="$repo/configs/Brewfile" --force
+brew upgrade --greedy
+mise upgrade --yes
+mise prune --yes
+gh extension upgrade --all
+fish -i -c 'fisher update'
+'''
+
+[tasks.personal]
+description = "Install personal packages"
+run = '''
+repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
+brew bundle install --file="$repo/configs/brewfile_personal" --force
+'''

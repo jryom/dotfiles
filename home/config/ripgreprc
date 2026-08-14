@@ -17,6 +17,5 @@
 --follow
 --hidden
 --line-number
---no-ignore
 --no-heading
 --smart-case

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -eu
+
+repo=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+MISE_TRUSTED_CONFIG_PATHS="$repo:$HOME/Code"
+export MISE_TRUSTED_CONFIG_PATHS
+
+if [ -s "$HOME/.config/code-home" ]; then
+	CODE_HOME=$(cat "$HOME/.config/code-home")
+	DEV_HOME=$(dirname "$CODE_HOME")
+	export CODE_HOME DEV_HOME
+	export HOMEBREW_CACHE="$DEV_HOME/cache/homebrew"
+	export MISE_TRUSTED_CONFIG_PATHS="$repo:$HOME/Code:$CODE_HOME"
+	export XDG_CACHE_HOME="$DEV_HOME/cache"
+	export XDG_DATA_HOME="$DEV_HOME"
+	export XDG_STATE_HOME="$DEV_HOME/state"
+	export npm_config_cache="$DEV_HOME/npm-cache"
+	export npm_config_devdir="$DEV_HOME/node-gyp-cache"
+	export pnpm_config_cache_dir="$DEV_HOME/pnpm-cache"
+	export pnpm_config_store_dir="$DEV_HOME/pnpm-store"
+fi
+
+if ! command -v mise >/dev/null 2>&1; then
+	curl -fsSL https://mise.run | sh
+	PATH="$HOME/.local/bin:$PATH"
+	export PATH
+fi
+
+exec mise bootstrap -C "$repo" --yes "$@"
