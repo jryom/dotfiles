@@ -8,9 +8,9 @@ git:
   branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
   log:
     showWholeGraph: false
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never $(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "--dark --syntax-theme=ansi"; else echo "--light --syntax-theme=GitHub"; fi)
+      command: delta --paging=never $(if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then echo "--dark --syntax-theme=ansi"; else echo "--light --syntax-theme=GitHub"; fi)
   fetchAll: true
   autoRefresh: true
   overrideGpg: true

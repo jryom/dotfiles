@@ -4,9 +4,13 @@ vim.pack.add({
 })
 
 local languages = { "lua", "bash", "markdown", "markdown_inline", "regex" }
+local available_languages = {}
 
 require("nvim-treesitter").setup({})
 require("nvim-treesitter").install(languages)
+for _, lang in ipairs(require("nvim-treesitter").get_available()) do
+  available_languages[lang] = true
+end
 
 local function start_treesitter(buf, lang)
   if vim.treesitter.language.add(lang) then
@@ -22,7 +26,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     local buf = args.buf
     local lang = vim.treesitter.language.get_lang(args.match) or args.match
-    if not start_treesitter(buf, lang) then
+    if not start_treesitter(buf, lang) and available_languages[lang] then
       pcall(require("nvim-treesitter").install, lang)
     end
   end,
