@@ -17,5 +17,5 @@ end
 
 for target in $update_targets
     print_header "make -C $dotfiles_dir $target"
-    make -C "$dotfiles_dir" "$target"
+    make -C "$dotfiles_dir" "$target"; or exit 1
 end

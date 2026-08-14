@@ -1,4 +1,4 @@
-.PHONY: default install dotbot brew brew-personal gh mise pnpm misc fisher fish-globals system-preferences gatekeeper shell uv uv-update pnpm-update podman
+.PHONY: default install dotbot brew brew-personal brew-update gh gh-update mise mise-update pnpm pnpm-update misc fisher fish-globals system-preferences gatekeeper shell uv uv-update podman
 
 default: install
 
@@ -11,9 +11,9 @@ brew-personal:
 	brew bundle install --file="$(CURDIR)/configs/brewfile_personal" --force
 
 dotbot:
-	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; \
-	set dotfiles_private "$$HOME/Documents/dotfiles-private"; \
-	brctl download "$$dotfiles_private"; \
+	@fish -i -c 'sudo dotbot --config-file "$(CURDIR)/configs/dotbot.yaml" --base-directory "$(CURDIR)" --quiet; and \
+	set dotfiles_private "$$HOME/Documents/dotfiles-private"; and \
+	brctl download "$$dotfiles_private"; and \
 	sudo dotbot --config-file "$$dotfiles_private/configs/dotbot.yaml" --base-directory "$$dotfiles_private" --quiet'
 
 fisher:
