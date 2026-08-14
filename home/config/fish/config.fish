@@ -3,11 +3,15 @@ source ~/.config/fish/env.fish
 if status is-interactive
     function _cached_source
         set -l name $argv[1]
-        set -l cache ~/.cache/fish/$name.fish
+        set -l cache_dir "$HOME/.cache/fish"
+        if set -q XDG_CACHE_HOME
+            set cache_dir "$XDG_CACHE_HOME/fish"
+        end
+        set -l cache "$cache_dir/$name.fish"
         set -l bin (command -s $argv[2])
         if test -z "$bin"; return 1; end
         if not test -f $cache; or test "$bin" -nt $cache
-            mkdir -p ~/.cache/fish
+            mkdir -p "$cache_dir"
             $argv[2..-1] > $cache
         end
         source $cache

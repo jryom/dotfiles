@@ -17,10 +17,10 @@ set -Ux FZF_COMPLETE 1
 set -Ux FZF_CTRL_T_COMMAND "rg --files"
 set -Ux FZF_CTRL_T_OPTS "--delimiter '/' --nth '-1' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat {}) || echo {}' --scheme path"
 set -Ux FZF_DEFAULT_COMMAND "rg --files"
+set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
 set -Ux FZF_DEFAULT_OPTS "$FZF_THEME --no-separator --info hidden"
 set -Ux FZF_ENABLE_OPEN_PREVIEW 1
 set -Ux FZF_LEGACY_KEYBINDINGS 0
-set -Ux FZF_THEME '--color fg:7,bg:0,hl:6,fg+:7,bg+:8,hl+:3,info:15,prompt:1,pointer:5,marker:2,spinner:3,header:6,gutter:0'
 set -Ux INFOPATH $INFOPATH "$brew_prefix/share/info"
 set -Ux KEYTIMEOUT 1
 set -Ux MANPATH $MANPATH "$brew_prefix/share/man"
