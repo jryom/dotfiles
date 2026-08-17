@@ -60,35 +60,22 @@ if [ ! -d "$private_dotfiles" ]; then
   exit 1
 fi
 brctl download "$private_dotfiles"
-"$private_dotfiles/apply"
+MISE_GLOBAL_CONFIG_FILE="$private_dotfiles/mise.toml" \
+MISE_GLOBAL_CONFIG_ROOT="$private_dotfiles" \
+MISE_IGNORED_CONFIG_PATHS="$HOME/.config/mise/config.toml" \
+MISE_TRUSTED_CONFIG_PATHS="$private_dotfiles" \
+mise -C "$HOME" bootstrap dotfiles apply --yes
 '''
 
 [bootstrap.hooks.post-defaults]
 run = "killall Dock 2>/dev/null || true"
 
 [dotfiles]
-"~/.bashrc" = "home/bashrc"
-"~/.zshenv" = "home/zshenv"
-"~/.zshrc" = "home/zshrc"
-"~/.config/aerospace" = "home/config/aerospace"
-"~/.config/direnv" = "home/config/direnv"
-"~/.config/fish/config.fish" = "home/config/fish/config.fish"
-"~/.config/fish/fish_plugins" = "home/config/fish/fish_plugins"
-"~/.config/git" = "home/config/git"
-"~/.config/kitty" = "home/config/kitty"
-"~/.config/lazygit" = "home/config/lazygit"
+"~/.bashrc" = "home/.bashrc"
+"~/.zshenv" = "home/.zshenv"
+"~/.zshrc" = "home/.zshrc"
+"~/.config" = { source = "home/.config", mode = "symlink-each", exclude = ["mise/**", "nvim/nvim-pack-lock.json"] }
 "~/.config/mise/config.toml" = "mise.toml"
-"~/.config/nvim" = "home/config/nvim"
-"~/.config/ripgreprc" = "home/config/ripgreprc"
-"~/.config/scripts/code-home" = "home/config/scripts/code-home"
-"~/.config/scripts/manage-prevent-sleep.sh" = "home/config/scripts/manage-prevent-sleep.sh"
-"~/.config/scripts/mouse-jiggle.swift" = "home/config/scripts/mouse-jiggle.swift"
-"~/.config/scripts/update" = "home/config/scripts/update"
-"~/.config/shell/path.sh" = "home/config/shell/path.sh"
-"~/.config/starship.toml" = "home/config/starship.toml"
-"~/.config/stylua.toml" = "home/config/stylua.toml"
-"~/.config/swiftbar/plugins/prevent-sleep.10s.sh" = "home/config/swiftbar/plugins/prevent-sleep.10s.sh"
-"~/.config/yazi/theme.toml" = "home/config/yazi/theme.toml"
 
 [bootstrap.macos.trackpad]
 tap_to_click = true
