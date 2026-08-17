@@ -146,6 +146,7 @@ set -eu
 repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
 
 fish -i -c "source '$repo/configs/fish_globals.fish'"
+"$repo/home/.config/scripts/update-yazi-smart-enter"
 fish -i -c 'fisher update'
 
 gh extension install --force yusukebe/gh-markdown-preview
@@ -172,6 +173,7 @@ brew upgrade --greedy
 mise upgrade --yes
 mise prune --yes
 gh extension upgrade --all
+"$repo/home/.config/scripts/update-yazi-smart-enter"
 fish -i -c 'fisher update'
 '''
 
