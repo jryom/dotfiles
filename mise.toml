@@ -145,6 +145,11 @@ run = '''
 set -eu
 repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
 
+if [ -L /etc/pam.d/sudo_local ] || [ "$(sudo cat /etc/pam.d/sudo_local 2>/dev/null || true)" != "auth       sufficient     pam_tid.so" ]; then
+  sudo rm -f /etc/pam.d/sudo_local
+  printf '%s\n' 'auth       sufficient     pam_tid.so' | sudo tee /etc/pam.d/sudo_local >/dev/null
+fi
+
 fish -i -c "source '$repo/configs/fish_globals.fish'"
 "$repo/home/.config/scripts/update-yazi-smart-enter"
 fish -i -c 'fisher update'
@@ -154,11 +159,6 @@ gh extension install --force yusukebe/gh-markdown-preview
 launchctl bootout "gui/$(id -u)/local.capslock-esc" 2>/dev/null || true
 launchctl bootout "gui/$(id -u)/local.podman-machine" 2>/dev/null || true
 rm -f "$HOME/Library/LaunchAgents/capslock-escape.plist" "$HOME/Library/LaunchAgents/podman-machine.plist"
-
-pam_source="$repo/etc/pam.d/sudo_local"
-if [ "$(readlink /etc/pam.d/sudo_local 2>/dev/null || true)" != "$pam_source" ]; then
-  sudo ln -sf "$pam_source" /etc/pam.d/sudo_local
-fi
 '''
 
 [tasks.update]
