@@ -90,9 +90,6 @@ KeyRepeat = 2
 NSTableViewDefaultSizeMode = 1
 NSWindowShouldDragOnGesture = true
 
-[bootstrap.macos.defaults."com.apple.LaunchServices"]
-LSQuarantine = false
-
 [bootstrap.macos.defaults."com.apple.TextEdit"]
 RichText = false
 
@@ -145,13 +142,13 @@ run = '''
 #!/bin/sh
 set -eu
 
-if [ -L /etc/pam.d/sudo_local ] || [ "$(sudo cat /etc/pam.d/sudo_local 2>/dev/null || true)" != "auth       sufficient     pam_tid.so" ]; then
-  sudo rm -f /etc/pam.d/sudo_local
-  printf '%s\n' 'auth       sufficient     pam_tid.so' | sudo tee /etc/pam.d/sudo_local >/dev/null
+pam_source="$MISE_CONFIG_ROOT/etc/pam.d/sudo_local"
+if [ "$(readlink /etc/pam.d/sudo_local 2>/dev/null || true)" != "$pam_source" ]; then
+  sudo ln -sfn "$pam_source" /etc/pam.d/sudo_local
 fi
 
 fish -i -c "source '$MISE_CONFIG_ROOT/configs/fish_globals.fish'"
-"$MISE_CONFIG_ROOT/home/.config/scripts/update-yazi-smart-enter"
+ya pkg install --discard
 fish -i -c 'fisher update'
 
 gh extension install --force yusukebe/gh-markdown-preview
@@ -168,7 +165,7 @@ brew upgrade --greedy
 mise upgrade --yes
 mise prune --yes
 gh extension upgrade --all
-"$MISE_CONFIG_ROOT/home/.config/scripts/update-yazi-smart-enter"
+ya pkg upgrade --discard
 fish -i -c 'fisher update'
 '''
 

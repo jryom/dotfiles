@@ -43,7 +43,8 @@ status_output() {
 	}
 	rem=$(remaining_seconds "$end")
 	[ "$rem" -le 0 ] && {
-		rm -f "$STATE_FILE" "$PID_FILE"
+		stop_caffeinate
+		rm -f "$STATE_FILE"
 		echo disabled
 		return 1
 	}
