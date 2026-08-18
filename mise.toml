@@ -49,7 +49,8 @@ else
   PATH="/usr/local/bin:$PATH"
 fi
 export PATH
-brew bundle install --file="$PWD/configs/Brewfile" --force
+repo=${DOTFILES_ROOT:-$PWD}
+brew bundle install --file="$repo/configs/Brewfile"
 '''
 
 [bootstrap.hooks.pre-dotfiles]
@@ -143,22 +144,18 @@ description = "Finish machine bootstrap"
 run = '''
 #!/bin/sh
 set -eu
-repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
 
 if [ -L /etc/pam.d/sudo_local ] || [ "$(sudo cat /etc/pam.d/sudo_local 2>/dev/null || true)" != "auth       sufficient     pam_tid.so" ]; then
   sudo rm -f /etc/pam.d/sudo_local
   printf '%s\n' 'auth       sufficient     pam_tid.so' | sudo tee /etc/pam.d/sudo_local >/dev/null
 fi
 
-fish -i -c "source '$repo/configs/fish_globals.fish'"
-"$repo/home/.config/scripts/update-yazi-smart-enter"
+fish -i -c "source '$MISE_CONFIG_ROOT/configs/fish_globals.fish'"
+"$MISE_CONFIG_ROOT/home/.config/scripts/update-yazi-smart-enter"
 fish -i -c 'fisher update'
 
 gh extension install --force yusukebe/gh-markdown-preview
 
-launchctl bootout "gui/$(id -u)/local.capslock-esc" 2>/dev/null || true
-launchctl bootout "gui/$(id -u)/local.podman-machine" 2>/dev/null || true
-rm -f "$HOME/Library/LaunchAgents/capslock-escape.plist" "$HOME/Library/LaunchAgents/podman-machine.plist"
 '''
 
 [tasks.update]
@@ -166,20 +163,17 @@ description = "Update packages, tools, extensions, and Fish plugins"
 run = '''
 #!/bin/sh
 set -eu
-repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
-
-brew bundle install --file="$repo/configs/Brewfile" --force
+brew bundle install --file="$MISE_CONFIG_ROOT/configs/Brewfile"
 brew upgrade --greedy
 mise upgrade --yes
 mise prune --yes
 gh extension upgrade --all
-"$repo/home/.config/scripts/update-yazi-smart-enter"
+"$MISE_CONFIG_ROOT/home/.config/scripts/update-yazi-smart-enter"
 fish -i -c 'fisher update'
 '''
 
 [tasks.personal]
 description = "Install personal packages"
 run = '''
-repo=$(dirname "$(readlink "$HOME/.config/mise/config.toml")")
-brew bundle install --file="$repo/configs/brewfile_personal" --force
+brew bundle install --file="$MISE_CONFIG_ROOT/configs/brewfile_personal"
 '''

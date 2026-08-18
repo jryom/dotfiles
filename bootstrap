@@ -3,6 +3,8 @@
 set -eu
 
 repo=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+DOTFILES_ROOT=$repo
+export DOTFILES_ROOT
 MISE_TRUSTED_CONFIG_PATHS="$repo:$HOME/Code"
 export MISE_TRUSTED_CONFIG_PATHS
 
@@ -21,10 +23,16 @@ if [ -s "$HOME/.config/code-home" ]; then
 	export pnpm_config_store_dir="$DEV_HOME/pnpm-store"
 fi
 
-if ! command -v mise >/dev/null 2>&1; then
-	curl -fsSL https://mise.run | sh
-	PATH="$HOME/.local/bin:$PATH"
-	export PATH
+if ! command -v brew >/dev/null 2>&1; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+if [ "$(uname -m)" = arm64 ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+if ! command -v mise >/dev/null 2>&1; then brew install mise; fi
 
 exec mise bootstrap -C "$repo" --yes "$@"

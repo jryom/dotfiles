@@ -5,7 +5,6 @@ brew "bat"
 brew "coreutils"
 brew "delta"
 brew "direnv"
-brew "eza"
 brew "fd"
 brew "findutils"
 brew "fish"
@@ -36,8 +35,6 @@ brew "trash"
 brew "tree-sitter-cli"
 brew "yazi"
 brew "zoxide"
-
-cask_args force: true
 
 cask "firefox"
 cask "font-iosevka"

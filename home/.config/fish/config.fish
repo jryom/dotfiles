@@ -39,14 +39,18 @@ if status is-interactive
     end
 
     function j_and_launch
-        if test -d "$argv[2]"; or test -f "$argv[2]"
-            $argv[1] "$argv[2]"
-        else if test -z "$argv[2]"
-            "$argv[1]"
-        else if j "$argv[2]"
-            "$argv[1]"
+        set -l launcher $argv[1]
+        set -l target $argv[2]
+        set -l extra $argv[3..-1]
+
+        if test -d "$target"; or test -f "$target"
+            $launcher "$target" $extra
+        else if test -z "$target"
+            $launcher $extra
+        else if j "$target"
+            $launcher $extra
         else
-            $argv[1] "$argv[2]"
+            $launcher "$target" $extra
         end
     end
 
@@ -62,11 +66,11 @@ if status is-interactive
     end
 
     function l
-        j_and_launch yazi_launcher "$argv[1]"
+        j_and_launch yazi_launcher $argv
     end
 
     function v
-        j_and_launch $EDITOR "$argv[1]"
+        j_and_launch $EDITOR $argv
     end
 
     function g
@@ -78,7 +82,7 @@ if status is-interactive
             set LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
         end
 
-        j_and_launch lazygit "$argv[1]"
+        j_and_launch lazygit $argv
     end
 
     ### Bindings

@@ -1,8 +1,6 @@
 brew "id3lib"
 brew "sox"
 
-cask_args force: true
-
 cask "1password"
 cask "ableton-live-suite"
 cask "aldente"
