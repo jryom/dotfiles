@@ -4,3 +4,6 @@ dirs = []
 files = []
 exts = []
 conds = []
+
+[indicator]
+parent = { reversed = false }
