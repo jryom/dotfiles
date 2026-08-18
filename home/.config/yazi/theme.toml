@@ -6,4 +6,4 @@ exts = []
 conds = []
 
 [indicator]
-parent = { reversed = false }
+preview = { underline = false }
