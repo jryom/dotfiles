@@ -12,32 +12,10 @@ if status is-interactive
     end
     ### Abbreviations
 
-    abbr gitgrep "git rev-list --all | xargs git grep --break"
-    abbr ll "ls -halG"
-    abbr n 'cd ~/Documents/Notes; and nvim -c "Oil"'
-    abbr s "kitty +kitten ssh"
     abbr up "$HOME/.config/scripts/update"
-    abbr sc "source ~/.config/fish/config.fish"
 
     abbr delete_branch_workflow_runs 'gh run list --branch (git rev-parse --abbrev-ref HEAD) --json databaseId --jq \'.[].databaseId\' | xargs -IID -P10 env CI=true gh run delete ID'
     abbr delete_manual_workflow_runs 'CI=true gh run list --user=jryom --event=workflow_dispatch --limit 1000 --json databaseId --jq '.[].databaseId' | xargs -P 20 -I {} bash -c "CI=true gh run delete {}"'
-    abbr list_workflow_runs 'gh run list --user=jryom'
-
-    abbr oc "opencode --continue"
-
-    abbr tf terraform
-    abbr tfsls terraform state list
-    abbr tfsrm terraform state rm
-
-    abbr p pnpm
-    abbr pi pnpm install
-    abbr pu pnpm update --latest
-    abbr pui pnpm update --interactive --latest
-    abbr pa pnpm add --save-exact
-    abbr pad pnpm add --save-dev --save-exact
-    abbr pag pnpm add --global
-
-    abbr gcn git commit --no-verify
 
     ### Init calls
 
