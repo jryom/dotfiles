@@ -21,14 +21,21 @@ uv = "latest"
 "npm:@ansible/ansible-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@biomejs/biome" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@microsoft/compose-language-service" = { version = "latest", depends = ["node", "pnpm"] }
-"npm:@openchamber/web" = { version = "latest", depends = ["node", "pnpm"] }
+[tools."npm:@openchamber/web"]
+version = "latest"
+depends = ["node", "pnpm"]
+minimum_release_age = "0s"
 "npm:@taplo/cli" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@vtsls/language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:bash-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:dockerfile-language-server-nodejs" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:gh-actions-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:markdownlint-cli2" = { version = "latest", depends = ["node", "pnpm"] }
-"npm:opencode-ai" = { version = "latest", depends = ["node", "pnpm"], allow_builds = ["node-pty", "opencode-ai"] }
+[tools."npm:opencode-ai"]
+version = "latest"
+depends = ["node", "pnpm"]
+allow_builds = ["node-pty", "opencode-ai"]
+minimum_release_age = "0s"
 "npm:prettier" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:pyright" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:typescript" = { version = "latest", depends = ["node", "pnpm"] }
@@ -159,11 +166,11 @@ gh extension install --force yusukebe/gh-markdown-preview
 description = "Update packages, tools, extensions, and Fish plugins"
 run = '''
 #!/bin/sh
-set -eu
-brew bundle install --file="$MISE_CONFIG_ROOT/configs/Brewfile"
+set -u
+brew bundle install --file="$DOTFILES_ROOT/configs/Brewfile"
 brew upgrade --greedy
-mise upgrade --yes
-mise prune --yes
+mise -C "$DOTFILES_ROOT" upgrade --yes
+mise -C "$DOTFILES_ROOT" prune --yes
 gh extension upgrade --all
 ya pkg upgrade --discard
 fish -i -c 'fisher update'

@@ -3,4 +3,5 @@
 set -l script_dir (dirname (realpath (status --current-filename)))
 set -l dotfiles_dir (realpath "$script_dir/../../..")
 
+set -lx DOTFILES_ROOT "$dotfiles_dir"
 exec mise -C "$dotfiles_dir" run update
