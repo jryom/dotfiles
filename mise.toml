@@ -41,7 +41,6 @@ minimum_release_age = "0s"
 "npm:typescript" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:vscode-langservers-extracted" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:yaml-language-server" = { version = "latest", depends = ["node", "pnpm"] }
-"pipx:cocoindex-code" = { version = "latest", depends = ["python", "uv"], extras = ["full"] }
 "pipx:ruff" = { version = "latest", depends = ["python", "uv"] }
 "pipx:sqlfluff" = { version = "latest", depends = ["python", "uv"] }
 
@@ -99,6 +98,9 @@ NSWindowShouldDragOnGesture = true
 
 [bootstrap.macos.defaults."com.apple.TextEdit"]
 RichText = false
+
+[bootstrap.macos.defaults."com.ameba.SwiftBar"]
+StealthMode = true
 
 [bootstrap.macos.defaults."com.apple.dock"]
 autohide = true
@@ -168,7 +170,7 @@ run = '''
 #!/bin/sh
 set -u
 brew bundle install --file="$DOTFILES_ROOT/configs/Brewfile"
-brew upgrade --greedy
+brew upgrade --greedy --yes
 mise -C "$DOTFILES_ROOT" upgrade --yes
 mise -C "$DOTFILES_ROOT" prune --yes
 gh extension upgrade --all
