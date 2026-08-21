@@ -151,12 +151,12 @@ run = '''
 #!/bin/sh
 set -eu
 
-pam_source="$MISE_CONFIG_ROOT/etc/pam.d/sudo_local"
+pam_source="$DOTFILES_ROOT/etc/pam.d/sudo_local"
 if [ "$(readlink /etc/pam.d/sudo_local 2>/dev/null || true)" != "$pam_source" ]; then
   sudo ln -sfn "$pam_source" /etc/pam.d/sudo_local
 fi
 
-fish -i -c "source '$MISE_CONFIG_ROOT/configs/fish_globals.fish'"
+fish -i -c "source '$DOTFILES_ROOT/configs/fish_globals.fish'"
 ya pkg install --discard
 fish -i -c 'fisher update'
 
