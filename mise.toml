@@ -7,7 +7,6 @@ npm.package_manager = "pnpm"
 actionlint = "latest"
 checkmake = "latest"
 hadolint = "latest"
-lua-language-server = "latest"
 marksman = "latest"
 node = "lts"
 pnpm = "latest"
@@ -18,24 +17,14 @@ shfmt = "latest"
 stylua = "latest"
 terraform-ls = "latest"
 uv = "latest"
-"npm:@ansible/ansible-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@biomejs/biome" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@microsoft/compose-language-service" = { version = "latest", depends = ["node", "pnpm"] }
-[tools."npm:@openchamber/web"]
-version = "latest"
-depends = ["node", "pnpm"]
-minimum_release_age = "0s"
+"pipx:azure-cli" = { version = "latest", depends = ["python", "uv"] }
 "npm:@taplo/cli" = { version = "latest", depends = ["node", "pnpm"] }
-"npm:@vtsls/language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:bash-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:dockerfile-language-server-nodejs" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:gh-actions-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:markdownlint-cli2" = { version = "latest", depends = ["node", "pnpm"] }
-[tools."npm:opencode-ai"]
-version = "latest"
-depends = ["node", "pnpm"]
-allow_builds = ["node-pty", "opencode-ai"]
-minimum_release_age = "0s"
 "npm:prettier" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:pyright" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:typescript" = { version = "latest", depends = ["node", "pnpm"] }
@@ -43,6 +32,17 @@ minimum_release_age = "0s"
 "npm:yaml-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "pipx:ruff" = { version = "latest", depends = ["python", "uv"] }
 "pipx:sqlfluff" = { version = "latest", depends = ["python", "uv"] }
+
+[tools."npm:@openchamber/web"]
+version = "latest"
+depends = ["node", "pnpm"]
+minimum_release_age = "0s"
+
+[tools."npm:opencode-ai"]
+version = "latest"
+depends = ["node", "pnpm"]
+allow_builds = ["node-pty", "opencode-ai"]
+minimum_release_age = "0s"
 
 [bootstrap.hooks.pre-packages]
 run = '''
@@ -75,7 +75,7 @@ mise -C "$HOME" bootstrap dotfiles apply --yes
 '''
 
 [bootstrap.hooks.post-defaults]
-run = "killall Dock 2>/dev/null || true"
+run = "killall Dock SystemUIServer 2>/dev/null || true"
 
 [dotfiles]
 "~/.bashrc" = "home/.bashrc"
@@ -125,8 +125,8 @@ _FXSortFoldersFirst = true
 [bootstrap.macos.defaults."com.apple.menuextra.clock"]
 DateFormat = "HH:mm"
 
-[bootstrap.macos.defaults."com.apple.screencapture"]
-thumbnailExpireTime = 30.0
+[bootstrap.macos.defaults."com.apple.screencaptureui"]
+thumbnailExpiration = 120.0
 
 [bootstrap.macos.defaults."com.apple.spaces"]
 spans-displays = false
@@ -139,9 +139,10 @@ kickstart = true
 
 [bootstrap.macos.launchd.agents.podman-machine]
 program = "/bin/sh"
-args = ["-c", "podman machine inspect >/dev/null 2>&1 || podman machine init; podman machine inspect | jq -e '.[0].State == \"running\"' >/dev/null || podman machine start"]
+args = ["-c", "podman machine inspect podman-machine-default >/dev/null 2>&1 || podman machine init; podman machine inspect podman-machine-default --format '{{.State}}' | grep -qx running || podman machine start podman-machine-default"]
 environment = { PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" }
 run_at_load = true
+start_interval = 60
 kickstart = true
 stderr_path = "/tmp/dev.mise.podman-machine.err"
 
@@ -170,7 +171,7 @@ run = '''
 #!/bin/sh
 set -u
 brew bundle install --file="$DOTFILES_ROOT/configs/Brewfile"
-brew upgrade --greedy --yes
+brew upgrade --yes
 mise -C "$DOTFILES_ROOT" upgrade --yes
 mise -C "$DOTFILES_ROOT" prune --yes
 gh extension upgrade --all

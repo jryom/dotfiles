@@ -2,30 +2,18 @@ vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 
 require("conform").setup({
   formatters = {
+    ["biome-check"] = { require_cwd = true },
     prettier = { require_cwd = true },
-    biome = {
-      require_cwd = true,
-      args = {
-        "check",
-        "--stdin-file-path",
-        "$FILENAME",
-        "--write",
-        "--unsafe",
-        "--no-errors-on-unmatched",
-        "--skip-errors",
-      },
-    },
     shfmt = { args = { "-filename", "$FILENAME", "-i", "2" } },
     sqlfluff = { args = { "fix", "--dialect=postgres", "-" } },
   },
   formatters_by_ft = {
-    ["*"] = { "trim_whitespace", "trim_newlines" },
     fish = { "fish_indent" },
-    javascript = { "biome-check", "biome", "prettier", stop_after_first = true },
-    javascriptreact = { "biome-check", "biome", "prettier", stop_after_first = true },
-    json = { "biome-check", "biome", "prettier", stop_after_first = true },
-    json5 = { "biome-check", "biome", "prettier", stop_after_first = true },
-    jsonc = { "biome-check", "biome", "prettier", stop_after_first = true },
+    javascript = { "biome-check", "prettier", stop_after_first = true },
+    javascriptreact = { "biome-check", "prettier", stop_after_first = true },
+    json = { "biome-check", "prettier", stop_after_first = true },
+    json5 = { "biome-check", "prettier", stop_after_first = true },
+    jsonc = { "biome-check", "prettier", stop_after_first = true },
     lua = { "stylua" },
     markdown = { "prettier" },
     python = { "ruff_fix", "ruff_format" },
@@ -33,8 +21,8 @@ require("conform").setup({
     sql = { "sqlfluff" },
     terraform = { "terraform_fmt" },
     toml = { "taplo" },
-    typescript = { "biome-check", "biome", "prettier", stop_after_first = true },
-    typescriptreact = { "biome-check", "biome", "prettier", stop_after_first = true },
+    typescript = { "biome-check", "prettier", stop_after_first = true },
+    typescriptreact = { "biome-check", "prettier", stop_after_first = true },
     yaml = { "prettier" },
   },
   format_on_save = function(bufnr)

@@ -11,5 +11,5 @@ vim.keymap.set("n", "<space>gb", ":Gitsigns blame_line<CR>", { desc = "Blame lin
 vim.keymap.set("n", "yog", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame", silent = true })
 vim.keymap.set({ "x", "n" }, "<space>gr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk", silent = true })
 vim.keymap.set({ "x", "n" }, "<space>gR", ":Gitsigns reset_buffer<CR>", { desc = "Reset buffer", silent = true })
-vim.keymap.set("n", "<space>gn", ":Gitsigns next_hunk<CR>", { desc = "Next hunk", silent = true })
-vim.keymap.set("n", "<space>gp", ":Gitsigns prev_hunk<CR>", { desc = "Prev hunk", silent = true })
+vim.keymap.set("n", "<space>gn", ":Gitsigns nav_hunk next<CR>", { desc = "Next hunk", silent = true })
+vim.keymap.set("n", "<space>gp", ":Gitsigns nav_hunk prev<CR>", { desc = "Prev hunk", silent = true })

@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = group,
 })
 
-vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
+vim.api.nvim_create_autocmd({ "BufWinEnter", "FileType", "VimResized", "WinResized" }, {
   group = group,
   callback = function()
     local excluded_filetypes = { "markdown", "oil", "qf" }

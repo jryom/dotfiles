@@ -9,11 +9,6 @@ require("snacks").setup({
   statuscolumn = { enabled = true },
   styles = {
     notification = { wo = { wrap = true } },
-    zen = {
-      width = 160,
-      backdrop = { transparent = true, blend = 40 },
-      zindex = 80,
-    },
   },
   words = { enabled = true, debounce = 1000 },
 })

@@ -4,6 +4,15 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
 })
 
+vim.filetype.add({
+  filename = {
+    ["compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
+  },
+})
+
 vim.diagnostic.config({
   float = { source = true },
   severity_sort = true,
@@ -34,8 +43,8 @@ local on_attach = function(client, bufnr)
   require("which-key").add({
     { "gr", group = "LSP bindings" },
     { "<space>l", group = "LSP", buffer = bufnr },
-    { "<space>lR", ":LspRestart<cr>", desc = "Restart", buffer = bufnr },
-    { "<space>lS", ":LspStop<cr>", desc = "Stop", buffer = bufnr },
+    { "<space>lR", ":lsp restart<cr>", desc = "Restart", buffer = bufnr },
+    { "<space>lS", ":lsp stop<cr>", desc = "Stop", buffer = bufnr },
     {
       "<space>lf",
       ":FzfLua lsp_live_workspace_symbols<cr>",
@@ -53,7 +62,6 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-  ansiblels = {},
   bashls = {},
   biome = { cmd = { "biome", "lsp-proxy" } },
   cssls = {},
@@ -65,12 +73,7 @@ local servers = {
   pyright = {},
   taplo = { filetypes = { "toml" } },
   terraformls = {},
-  vtsls = {
-    settings = {
-      vtsls = { autoUseWorkspaceTsdk = true },
-      typescript = { format = { enable = false } },
-    },
-  },
+  tsc = {},
   yamlls = {
     on_init = function(client)
       client.config.settings.yaml.schemas = require("schemastore").yaml.schemas()
@@ -93,18 +96,6 @@ local servers = {
     end,
     settings = {
       json = { validate = { enable = true } },
-    },
-  },
-  lua_ls = {
-    settings = {
-      Lua = {
-        runtime = { version = "LuaJIT" },
-        format = { enable = false },
-        diagnostics = {
-          enable = true,
-          globals = { "vim", "describe" },
-        },
-      },
     },
   },
 }
