@@ -1,3 +1,4 @@
+tap "acsandmann/tap"
 tap "hudochenkov/sshpass"
 
 brew "bash"
@@ -36,13 +37,13 @@ brew "trash"
 brew "tree-sitter-cli"
 brew "yazi"
 brew "zoxide"
+brew "acsandmann/tap/rift"
 
 cask "firefox"
 cask "font-iosevka"
 cask "font-symbols-only-nerd-font"
 cask "itsycal", greedy: true
 cask "kitty", greedy: true
-cask "nikitabobko/tap/aerospace", greedy: true
 cask "obsidian"
 cask "restfox", greedy: true
 cask "swiftbar", greedy: true
