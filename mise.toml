@@ -163,6 +163,8 @@ fish -i -c 'fisher update'
 
 gh extension install --force yusukebe/gh-markdown-preview
 
+rift service start
+
 '''
 
 [tasks.update]

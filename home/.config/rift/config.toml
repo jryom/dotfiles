@@ -1,0 +1,96 @@
+[settings]
+animate = true
+animation_duration = 0.2
+default_disable = false
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = false
+
+[settings.gestures]
+enabled = true
+fingers = 4
+haptics_enabled = false
+skip_empty = false
+
+[settings.layout]
+mode = "bsp"
+
+[settings.layout.stack]
+stack_offset = 10
+default_orientation = "horizontal"
+
+[settings.layout.gaps.inner]
+horizontal = 10
+vertical = 10
+
+[settings.layout.gaps.outer]
+left = 10
+bottom = 10
+top = 5
+right = 10
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = true
+display_style = "layout"
+
+[settings.ui.mission_control]
+enabled = true
+
+[virtual_workspaces]
+default_workspace_count = 4
+prevent_wrapping = true
+workspace_names = ["Development", "Web Browsing", "Communication", "Creative"]
+app_rules = [
+  { app_id = "net.kovidgoyal.kitty", workspace = "Development" },
+  { app_id = "org.mozilla.firefox", workspace = "Web Browsing" },
+  { app_id = "com.apple.FaceTime", workspace = "Communication" },
+  { app_id = "com.microsoft.teams2", workspace = "Communication" },
+  { app_id = "com.apple.mail", workspace = "Communication" },
+  { app_id = "com.apple.MobileSMS", workspace = "Communication" },
+  { app_id = "md.obsidian", workspace = "Creative" },
+  { app_id = "com.ableton.live", workspace = "Creative" },
+  { app_id = "com.apple.Music", workspace = "Creative" },
+  { app_id = "com.apple.podcasts", workspace = "Creative" },
+  { app_id = "com.spotify.client", workspace = "Creative" },
+]
+
+[keys]
+"Ctrl + Alt + M" = "show_mission_control_all"
+"Meta + Shift + R" = "reload_config"
+"Ctrl + Shift + D" = { exec = ["osascript", "-e", "tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode"] }
+"Ctrl + Alt + Meta + K" = { exec = ["sh", "-c", "kitty --single-instance --instance-group=main --directory \"$(~/.config/scripts/code-home)\""] }
+"Ctrl + Alt + Meta + N" = { exec = ["sh", "-c", "kitty --single-instance --instance-group=main --directory \"$HOME/Documents/Notes\" fish -i -c \"nvim -c Oil\""] }
+"Ctrl + Alt + Meta + J" = { exec = ["sh", "-c", "~/.config/scripts/manage-prevent-sleep.sh toggle"] }
+"Ctrl + Alt + Meta + M" = { exec = ["open", "/System/Applications/Messages.app"] }
+"Ctrl + Alt + Meta + R" = { exec = ["open", "/System/Applications/Reminders.app"] }
+"Ctrl + Alt + Meta + B" = { exec = ["open", "/Applications/Firefox.app"] }
+"Ctrl + Alt + Meta + F" = { exec = ["open", "/System/Library/CoreServices/Finder.app"] }
+"Ctrl + Alt + Meta + S" = { exec = ["open", "/Applications/Spotify.app"] }
+
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+"Alt + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" focus"] }
+"Alt + 0" = { exec = ["sh", "-c", "rift-cli execute workspace set-layout stack && rift-cli execute workspace set-layout bsp"] }
+
+"Alt + Shift + H" = { move_node = "left" }
+"Alt + Shift + J" = { move_node = "down" }
+"Alt + Shift + K" = { move_node = "up" }
+"Alt + Shift + L" = { move_node = "right" }
+
+"Ctrl + Shift + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" workspace"] }
+"Alt + Shift + P" = { move_window_to_workspace = { workspace = "prev", follow = true } }
+"Alt + Shift + N" = { move_window_to_workspace = { workspace = "next", follow = true } }
+"Alt + Shift + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" window"] }
+
+"Ctrl + Shift + H" = "prev_workspace"
+"Ctrl + Shift + L" = "next_workspace"
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+
+"Meta + Shift + L" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-cycle-layout.sh\""] }
+"Meta + Shift + B" = { set_workspace_layout = { mode = "bsp" } }
