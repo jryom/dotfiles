@@ -4,28 +4,36 @@ notARepository: "skip"
 promptToReturnFromSubprocess: false
 disableStartupPopups: true
 git:
-  autoFetch: true
   branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:"%C(auto)%h: %s (%C(blue)%an %C(white)| %C(cyan)%ad%C(white))" {{branchName}} --'
-  log:
-    showWholeGraph: false
   diffRenderers:
-    - colorArg: always
-      command: delta --paging=never
-  autoRefresh: true
+    - command: delta --{{colorScheme}} --syntax-theme={{if eq .colorScheme "light"}}GitHub{{else}}ansi{{end}} --paging=never
 gui:
   expandFocusedSidePanel: true
   filterMode: fuzzy
   showDivergenceFromBaseBranch: arrowAndNumber
-  showCommandLog: true
   showRandomTip: false
   showBottomLine: false
-  showFileTree: true
   showPanelJumps: false
   sidePanelWidth: 0.2
-  skipRewordInEditorWarning: false
   skipStashWarning: true
-  authorColors:
-    "*": "blue"
+  theme:
+    authorColors:
+      "*": "blue"
+  darkTheme:
+    activeBorderColor:
+      - bold
+    inactiveBorderColor:
+      - "#5f5650"
+    selectedLineBgColor:
+      - "#332d2b"
+  lightTheme:
+    activeBorderColor:
+      - white
+      - bold
+    inactiveBorderColor:
+      - "#d5c9c3"
+    selectedLineBgColor:
+      - "#E9E4E2"
 keybinding:
   files:
     commitChanges: "C"

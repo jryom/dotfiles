@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
-gui:
-  theme:
-    activeBorderColor:
-      - bold
-    inactiveBorderColor:
-      - "#5f5650"
-    selectedLineBgColor:
-      - "#332d2b"

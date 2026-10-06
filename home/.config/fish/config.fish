@@ -2,11 +2,9 @@ test -r ~/.config/fish/env.fish; and source ~/.config/fish/env.fish
 
 if status is-interactive
     if defaults read -g AppleInterfaceStyle 2>/dev/null | string match -q Dark
-        set -g _appearance dark
         set -gx BAT_THEME ansi
         set -gx DELTA_FEATURES dark-mode
     else
-        set -g _appearance light
         set -gx BAT_THEME GitHub
         set -gx DELTA_FEATURES light-mode
     end
@@ -74,14 +72,6 @@ if status is-interactive
     end
 
     function g
-        set -lx LG_CONFIG_FILE ~/.config/lazygit/config-shared.yml
-
-        if test "$_appearance" = dark
-            set LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-dark.yml"
-        else
-            set LG_CONFIG_FILE "$LG_CONFIG_FILE,$HOME/.config/lazygit/config-light.yml"
-        end
-
         j_and_launch lazygit $argv
     end
 
