@@ -25,33 +25,9 @@ set -Ux HOMEBREW_NO_ANALYTICS 1
 set -Ux HOMEBREW_NO_ENV_HINTS 1
 set -Ux HOMEBREW_NO_UPDATE_REPORT_NEW 1
 
-set -l dev_vars CODE_HOME DEV_HOME DIRENV_CONFIG HOMEBREW_CACHE MISE_TRUSTED_CONFIG_PATHS \
-    XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME npm_config_cache npm_config_devdir \
-    pnpm_config_cache_dir pnpm_config_store_dir
-for var in $dev_vars
-    set -Ue $var
-end
 set -Ux MISE_TRUSTED_CONFIG_PATHS "$HOME/Code"
 
-if test -s ~/.config/code-home
-    set -Ux CODE_HOME (string trim < ~/.config/code-home)
-    set -Ux DEV_HOME (dirname "$CODE_HOME")
-    set -Ux DIRENV_CONFIG "$HOME/.config/direnv-work"
-    set -Ux HOMEBREW_CACHE "$DEV_HOME/cache/homebrew"
-    set -Ux MISE_TRUSTED_CONFIG_PATHS "$CODE_HOME"
-    set -Ux XDG_CACHE_HOME "$DEV_HOME/cache"
-    set -Ux XDG_DATA_HOME "$DEV_HOME"
-    set -Ux XDG_STATE_HOME "$DEV_HOME/state"
-    set -Ux npm_config_cache "$DEV_HOME/npm-cache"
-    set -Ux npm_config_devdir "$DEV_HOME/node-gyp-cache"
-    set -Ux pnpm_config_cache_dir "$DEV_HOME/pnpm-cache"
-    set -Ux pnpm_config_store_dir "$DEV_HOME/pnpm-store"
-end
-
 set -l obsolete_tool_paths "$HOME/.pnpm/bin"
-if set -q DEV_HOME
-    set --append obsolete_tool_paths "$DEV_HOME/pnpm-global/bin" "$DEV_HOME/bin"
-end
 for path in $obsolete_tool_paths
     set -U fish_user_paths (string match -v -- "$path" $fish_user_paths)
 end
@@ -61,6 +37,7 @@ fish_add_path --universal --prepend $brew_prefix/sbin $brew_prefix/bin $brew_pre
 fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/go/bin
 fish_add_path --universal $HOME/.local/bin
+fish_add_path --universal $HOME/.opencode/bin
 
 # Colors
 set -U fish_color_autosuggestion brblack -d

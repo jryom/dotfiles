@@ -5,6 +5,7 @@ npm.package_manager = "pnpm"
 
 [tools]
 actionlint = "latest"
+bun = "latest"
 checkmake = "latest"
 hadolint = "latest"
 marksman = "latest"
@@ -19,7 +20,7 @@ terraform-ls = "latest"
 uv = "latest"
 "npm:@biomejs/biome" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@microsoft/compose-language-service" = { version = "latest", depends = ["node", "pnpm"] }
-"pipx:azure-cli" = { version = "latest", depends = ["python", "uv"] }
+"pipx:azure-cli" = { version = "latest", depends = ["python", "uv"], uvx_args = "--python 3.14" }
 "npm:@taplo/cli" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:bash-language-server" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:dockerfile-language-server-nodejs" = { version = "latest", depends = ["node", "pnpm"] }
@@ -36,12 +37,6 @@ uv = "latest"
 [tools."npm:@openchamber/web"]
 version = "latest"
 depends = ["node", "pnpm"]
-minimum_release_age = "0s"
-
-[tools."npm:opencode-ai"]
-version = "latest"
-depends = ["node", "pnpm"]
-allow_builds = ["node-pty", "opencode-ai"]
 minimum_release_age = "0s"
 
 [bootstrap.hooks.pre-packages]
@@ -66,7 +61,13 @@ if [ ! -d "$private_dotfiles" ]; then
   echo "Missing private dotfiles: $private_dotfiles" >&2
   exit 1
 fi
-brctl download "$private_dotfiles"
+cloud_only=$(find "$private_dotfiles" -flags +dataless -print -prune) || exit 1
+if [ -n "$cloud_only" ]; then
+  echo "Private dotfiles are not downloaded:" >&2
+  printf '%s\n' "$cloud_only" >&2
+  echo "In Finder, choose Keep Downloaded for $private_dotfiles, wait for the download, then retry." >&2
+  exit 1
+fi
 MISE_GLOBAL_CONFIG_FILE="$private_dotfiles/mise.toml" \
 MISE_GLOBAL_CONFIG_ROOT="$private_dotfiles" \
 MISE_IGNORED_CONFIG_PATHS="$HOME/.config/mise/config.toml" \
@@ -81,7 +82,7 @@ run = "killall Dock SystemUIServer 2>/dev/null || true"
 "~/.bashrc" = "home/.bashrc"
 "~/.zshenv" = "home/.zshenv"
 "~/.zshrc" = "home/.zshrc"
-"~/.config" = { source = "home/.config", mode = "symlink-each", exclude = ["mise/**", "nvim/nvim-pack-lock.json"] }
+"~/.config" = { source = "home/.config", mode = "symlink-each", exclude = ["**/.DS_Store", "mise/**", "nvim/nvim-pack-lock.json"] }
 "~/.config/mise/config.toml" = "mise.toml"
 
 [bootstrap.macos.trackpad]
@@ -95,9 +96,6 @@ InitialKeyRepeat = 15
 KeyRepeat = 2
 NSTableViewDefaultSizeMode = 1
 NSWindowShouldDragOnGesture = true
-
-[bootstrap.macos.defaults."com.apple.TextEdit"]
-RichText = false
 
 [bootstrap.macos.defaults."com.ameba.SwiftBar"]
 StealthMode = true

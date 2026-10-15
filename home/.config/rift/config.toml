@@ -36,9 +36,6 @@ mode = "active"
 display_style = "label"
 active_label = "index"
 
-[settings.ui.mission_control]
-enabled = true
-
 [virtual_workspaces]
 default_workspace_count = 4
 prevent_wrapping = true

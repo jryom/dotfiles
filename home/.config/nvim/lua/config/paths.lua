@@ -1,6 +1,6 @@
 local M = {}
 
-local code_home = vim.env.CODE_HOME and vim.env.CODE_HOME ~= "" and vim.env.CODE_HOME or vim.env.HOME .. "/Code"
+local code_home = vim.env.HOME .. "/Code"
 
 function M.short_cwd()
   local cwd = vim.uv.cwd()

@@ -21,7 +21,7 @@ if status is-interactive
 
     zoxide init fish --cmd j | source
     mise activate fish | source
-    for path in "$HOME/.pnpm" "$HOME/.pnpm/bin" "$DEV_HOME/pnpm-global/bin" \
+    for path in "$HOME/.pnpm" "$HOME/.pnpm/bin" \
             /Applications/Docker.app/Contents/Resources/bin /opt/homebrew/opt \
             /opt/homebrew/opt/mise/bin
         set -gx PATH (string match -v -- "$path" $PATH)
