@@ -19,6 +19,13 @@ mode = "bsp"
 stack_offset = 10
 default_orientation = "horizontal"
 
+[settings.layout.scrolling]
+
+[settings.layout.scrolling.gestures]
+enabled = true
+invert_horizontal = true
+propagate_to_workspace_swipe = false
+
 [settings.layout.gaps.inner]
 horizontal = 10
 vertical = 10
@@ -31,16 +38,24 @@ right = 10
 
 [settings.ui.menu_bar]
 enabled = true
-show_empty = false
-mode = "active"
+show_empty = true
+mode = "all"
 display_style = "label"
 active_label = "index"
+show_binding_mode = true
+show_fullscreen_indicator = false
+
+[settings.ui.stack_line]
+enabled = true
+thickness = 20.0
+spacing = 5.0
 
 [virtual_workspaces]
 default_workspace_count = 4
 prevent_wrapping = true
 workspace_names = ["Development", "Web Browsing", "Communication", "Creative"]
 app_rules = [
+  { app_id = "com.apple.Spotlight", manage = false },
   { app_id = "net.kovidgoyal.kitty", workspace = "Development" },
   { app_id = "org.mozilla.firefox", workspace = "Web Browsing" },
   { app_id = "com.apple.FaceTime", workspace = "Communication" },
@@ -53,36 +68,70 @@ app_rules = [
   { app_id = "com.apple.podcasts", workspace = "Creative" },
   { app_id = "com.spotify.client", workspace = "Creative" },
 ]
+mode = "global"
+workspace_rules = [
+	{ display = "top", workspace = "Development" },
+	{ display = "top", workspace = "Web Browsing" },
+	{ display = "bottom", workspace = "Communication" },
+	{ display = "bottom", workspace = "Creative" }
+]
 
 [keys]
 "Ctrl + Alt + M" = "show_mission_control_all"
-"Meta + Shift + R" = "reload_config"
-"Ctrl + Shift + D" = { exec = ["osascript", "-e", "tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode"] }
-"Ctrl + Alt + Meta + K" = { exec = ["sh", "-c", "kitty --single-instance --instance-group=main --directory \"$(~/.config/scripts/code-home)\""] }
-"Ctrl + Alt + Meta + N" = { exec = ["sh", "-c", "kitty --single-instance --instance-group=main --directory \"$HOME/Documents/Notes\" fish -i -c \"nvim -c Oil\""] }
-"Ctrl + Alt + Meta + J" = { exec = ["sh", "-c", "~/.config/scripts/manage-prevent-sleep.sh toggle"] }
-"Ctrl + Alt + Meta + M" = { exec = ["open", "/System/Applications/Messages.app"] }
-"Ctrl + Alt + Meta + R" = { exec = ["open", "/System/Applications/Reminders.app"] }
+"Ctrl + Shift + D" = { exec = [
+  "osascript",
+  "-e",
+  "tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode",
+] }
+"Ctrl + Alt + Meta + K" = { exec = [
+  "sh",
+  "-c",
+  "kitty --single-instance --instance-group=main --directory \"$(~/.config/scripts/code-home)\"",
+] }
+"Ctrl + Alt + Meta + N" = { exec = [
+  "sh",
+  "-c",
+  "kitty --single-instance --instance-group=main --directory \"$HOME/Documents/Notes\" fish -i -c \"nvim -c Oil\"",
+] }
+"Ctrl + Alt + Meta + J" = { exec = [
+  "sh",
+  "-c",
+  "~/.config/scripts/manage-prevent-sleep.sh toggle",
+] }
+"Ctrl + Alt + Meta + M" = { exec = [
+  "open",
+  "/System/Applications/Messages.app",
+] }
+"Ctrl + Alt + Meta + R" = { exec = [
+  "open",
+  "/System/Applications/Reminders.app",
+] }
 "Ctrl + Alt + Meta + B" = { exec = ["open", "/Applications/Firefox.app"] }
-"Ctrl + Alt + Meta + F" = { exec = ["open", "/System/Library/CoreServices/Finder.app"] }
+"Ctrl + Alt + Meta + F" = { exec = [
+  "open",
+  "/System/Library/CoreServices/Finder.app",
+] }
 "Ctrl + Alt + Meta + S" = { exec = ["open", "/Applications/Spotify.app"] }
 
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "down" }
 "Alt + K" = { move_focus = "up" }
 "Alt + L" = { move_focus = "right" }
-"Alt + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" focus"] }
-"Alt + 0" = { exec = ["sh", "-c", "rift-cli execute workspace set-layout stack && rift-cli execute workspace set-layout bsp"] }
+"Alt + 0" = "balance"
 
 "Alt + Shift + H" = { move_node = "left" }
 "Alt + Shift + J" = { move_node = "down" }
 "Alt + Shift + K" = { move_node = "up" }
 "Alt + Shift + L" = { move_node = "right" }
+"Alt + Shift + W" = { switch_preset_column_width = {} }
+"Alt + Shift + C" = "center_selection"
 
-"Ctrl + Shift + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" workspace"] }
+"Ctrl + Shift + M" = [
+  { move_workspace_to_display = { selector = "down" } },
+  { focus_display = "down" },
+]
 "Alt + Shift + P" = { move_window_to_workspace = { workspace = "prev", follow = true } }
 "Alt + Shift + N" = { move_window_to_workspace = { workspace = "next", follow = true } }
-"Alt + Shift + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\" window"] }
 
 "Ctrl + Shift + H" = "prev_workspace"
 "Ctrl + Shift + L" = "next_workspace"
@@ -91,5 +140,8 @@ app_rules = [
 "Alt + 3" = { switch_to_workspace = 2 }
 "Alt + 4" = { switch_to_workspace = 3 }
 
-"Meta + Shift + L" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-cycle-layout.sh\""] }
-"Meta + Shift + B" = { set_workspace_layout = { mode = "bsp" } }
+"Meta + Shift + L" = { exec = [
+  "sh",
+  "-c",
+  "sh \"$HOME/.config/scripts/rift-cycle-layout.sh\"",
+] }
