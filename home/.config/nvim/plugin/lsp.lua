@@ -73,7 +73,11 @@ local servers = {
   pyright = {},
   taplo = { filetypes = { "toml" } },
   terraformls = {},
-  tsc = {},
+  tsc = {
+    cmd = { "tsc", "--lsp", "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+  },
   yamlls = {
     on_init = function(client)
       client.config.settings.yaml.schemas = require("schemastore").yaml.schemas()
@@ -101,7 +105,7 @@ local servers = {
 }
 
 for server, config in pairs(servers) do
-  local base_on_attach = vim.lsp.config[server].on_attach
+  local base_on_attach = (vim.lsp.config[server] or {}).on_attach
   config.on_attach = function(client, bufnr)
     if base_on_attach then base_on_attach(client, bufnr) end
     on_attach(client, bufnr)
