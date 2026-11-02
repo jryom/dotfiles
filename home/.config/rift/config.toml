@@ -38,17 +38,15 @@ right = 10
 
 [settings.ui.menu_bar]
 enabled = true
-show_empty = true
-mode = "all"
+show_empty = false
+mode = "active"
 display_style = "label"
 active_label = "index"
 show_binding_mode = true
 show_fullscreen_indicator = false
 
 [settings.ui.stack_line]
-enabled = true
-thickness = 20.0
-spacing = 5.0
+enabled = false
 
 [virtual_workspaces]
 default_workspace_count = 4
@@ -70,11 +68,12 @@ app_rules = [
 ]
 mode = "global"
 workspace_rules = [
-	{ display = "top", workspace = "Development" },
-	{ display = "top", workspace = "Web Browsing" },
-	{ display = "bottom", workspace = "Communication" },
-	{ display = "bottom", workspace = "Creative" }
+  { display = "top", workspace = "Development" },
+  { display = "top", workspace = "Web Browsing" },
+  { display = "bottom", workspace = "Communication" },
+  { display = "bottom", workspace = "Creative" },
 ]
+preserve_focus_per_workspace = false
 
 [keys]
 "Ctrl + Alt + M" = "show_mission_control_all"
@@ -132,6 +131,7 @@ workspace_rules = [
 ]
 "Alt + Shift + P" = { move_window_to_workspace = { workspace = "prev", follow = true } }
 "Alt + Shift + N" = { move_window_to_workspace = { workspace = "next", follow = true } }
+"Alt + Shift + M" = { exec = ["sh", "-c", "sh \"$HOME/.config/scripts/rift-next-display.sh\""] }
 
 "Ctrl + Shift + H" = "prev_workspace"
 "Ctrl + Shift + L" = "next_workspace"
