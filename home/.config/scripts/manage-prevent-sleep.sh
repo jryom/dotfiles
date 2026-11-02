@@ -1,74 +1,23 @@
 #!/usr/bin/env bash
-STATE_FILE="/tmp/prevent-sleep.$UID.state"
-PID_FILE="$STATE_FILE.pid"
 INVALID_INPUT_MSG="Invalid input. Enter HH:MM or minutes."
 
 notify() { osascript -e "display notification \"$1\" with title \"Prevent Sleep\"" 2>/dev/null || true; }
-now_ts() { date +%s; }
-read_end() { cat "$STATE_FILE" 2>/dev/null; }
-write_end() { echo "$1" >"$STATE_FILE"; }
-stop_caffeinate() {
-	local pid
-	pid=$(cat "$PID_FILE" 2>/dev/null)
-	if [[ "$pid" =~ ^[0-9]+$ ]] && [ "$(ps -p "$pid" -o comm= 2>/dev/null)" = caffeinate ]; then
-		kill "$pid"
-	fi
-	rm -f "$PID_FILE"
-}
-start_caffeinate_for() {
-	local secs="$1"
-	if [ "$secs" -gt 0 ]; then
-		caffeinate -i -d -t "$secs" &
-		echo $! >"$PID_FILE"
-	fi
-}
-remaining_seconds() {
-	local end="$1"
-	echo $((end - $(now_ts)))
-}
-ensure_swiftbar() {
-	if ! pgrep -x SwiftBar >/dev/null 2>&1; then
-		open -ga SwiftBar >/dev/null 2>&1 || true
-		sleep 1
-	fi
-	osascript -e 'tell application "SwiftBar" to refresh all' >/dev/null 2>&1 || true
-}
-
-status_output() {
-	local end rem
-	end=$(read_end)
-	[[ "$end" =~ ^[0-9]+$ ]] || {
-		echo disabled
-		return 1
-	}
-	rem=$(remaining_seconds "$end")
-	[ "$rem" -le 0 ] && {
-		stop_caffeinate
-		rm -f "$STATE_FILE"
-		echo disabled
-		return 1
-	}
-	echo "remaining=$rem end=$end"
-}
-
 disable() {
-	stop_caffeinate
-	rm -f "$STATE_FILE"
-	notify "Disabled"
-	exit 0
+	osascript -e 'tell application "Amphetamine" to end session'
+	exit $?
 }
 
 parse_input_to_epoch() {
 	local input="$1" now epoch
 	if [[ "$input" =~ ^[0-9]+$ ]] && [ "$input" -gt 0 ]; then
-		now=$(now_ts)
-		epoch=$((now + input * 60))
+		now=$(date +%s)
+		epoch=$((now + 10#$input * 60))
 	elif [[ "$input" =~ ^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$ ]]; then
 		epoch=$(date -j -f "%Y-%m-%d %H:%M" "$(date +%F) $input" +%s 2>/dev/null) || {
 			notify "$INVALID_INPUT_MSG"
 			return 1
 		}
-		now=$(now_ts)
+		now=$(date +%s)
 		[ "$epoch" -le "$now" ] && epoch=$(date -j -f "%Y-%m-%d %H:%M" "$(date -v+1d +%F) $input" +%s)
 	else
 		notify "$INVALID_INPUT_MSG"
@@ -78,24 +27,14 @@ parse_input_to_epoch() {
 }
 
 start_until_epoch() {
-	local epoch="$1"
-	local now
-	now="$(now_ts)"
+	local epoch="$1" now
+	now=$(date +%s)
 	[ "$epoch" -gt "$now" ] || {
 		notify "Time already passed."
 		return 1
 	}
-	stop_caffeinate
-	start_caffeinate_for "$((epoch - now))"
-	write_end "$epoch"
-	ensure_swiftbar
-	notify "Enabled until $(date -r "$epoch" +%H:%M)"
+	osascript -e "tell application \"Amphetamine\" to start new session with options {duration:$(((epoch - now + 59) / 60)), interval:minutes, displaySleepAllowed:false}" || return 1
 }
-
-if [ "$1" = "status" ]; then
-	status_output
-	exit $?
-fi
 
 if [ -n "$1" ] && [ "$1" != "toggle" ]; then
 	[ "$1" = "disable" ] && disable

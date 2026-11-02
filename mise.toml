@@ -1,6 +1,7 @@
 min_version = "2026.8.0"
 
 [settings]
+env_file = ".env"
 npm.package_manager = "pnpm"
 
 [tools]
@@ -178,7 +179,7 @@ rift service start
 description = "Update packages, tools, extensions, and Fish plugins"
 run = '''
 #!/bin/sh
-set -u
+set -eu
 brew bundle install --file="$DOTFILES_ROOT/configs/Brewfile"
 brew upgrade --yes
 mise -C "$DOTFILES_ROOT" upgrade --yes

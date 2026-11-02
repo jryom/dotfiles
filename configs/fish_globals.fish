@@ -27,12 +27,6 @@ set -Ux HOMEBREW_NO_UPDATE_REPORT_NEW 1
 
 set -Ux MISE_TRUSTED_CONFIG_PATHS "$HOME/Code"
 
-set -l obsolete_tool_paths "$HOME/.pnpm/bin"
-for path in $obsolete_tool_paths
-    set -U fish_user_paths (string match -v -- "$path" $fish_user_paths)
-end
-
-fish_add_path --universal $(python3 -c "import site; print(site.USER_BASE)")/bin
 fish_add_path --universal --prepend $brew_prefix/sbin $brew_prefix/bin $brew_prefix/opt/grep/libexec/gnubin
 fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/go/bin

@@ -6,6 +6,7 @@ require("conform").setup({
     prettier = { require_cwd = true },
     shfmt = { args = { "-filename", "$FILENAME", "-i", "2" } },
     sqlfluff = { args = { "fix", "--dialect=postgres", "-" } },
+    taplo = { args = { "format", "--option", "array_auto_expand=false", "--stdin-filepath", "$FILENAME", "-" } },
   },
   formatters_by_ft = {
     fish = { "fish_indent" },

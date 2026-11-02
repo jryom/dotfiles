@@ -1,34 +1,33 @@
 tap "acsandmann/tap"
 tap "hudochenkov/sshpass"
 
+brew "acsandmann/tap/rift"
 brew "bash"
 brew "coreutils"
-brew "direnv"
 brew "findutils"
 brew "fish"
 brew "fisher"
 brew "git"
 brew "git-lfs"
-brew "grep"
 brew "gnu-sed"
+brew "grep"
 brew "hudochenkov/sshpass/sshpass"
 brew "jq"
-brew "podman"
-brew "podman-compose"
-brew "poppler"
-brew "resvg"
 brew "mas"
 brew "mise"
 brew "moreutils"
 brew "ncdu"
 brew "neovim"
+brew "podman"
+brew "podman-compose"
+brew "poppler"
+brew "resvg"
 brew "sevenzip"
 brew "starship"
 brew "terminal-notifier"
 brew "trash"
 brew "yazi"
 brew "zoxide"
-brew "acsandmann/tap/rift"
 
 cask "firefox"
 cask "font-iosevka"
@@ -36,5 +35,6 @@ cask "font-symbols-only-nerd-font"
 cask "itsycal", greedy: true
 cask "kitty", greedy: true
 cask "obsidian"
-cask "restfox", greedy: true
 cask "swiftbar", greedy: true
+
+mas "Amphetamine", id: 937984704

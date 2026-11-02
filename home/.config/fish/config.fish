@@ -21,13 +21,6 @@ if status is-interactive
 
     zoxide init fish --cmd j | source
     mise activate fish | source
-    for path in "$HOME/.pnpm" "$HOME/.pnpm/bin" \
-            /Applications/Docker.app/Contents/Resources/bin /opt/homebrew/opt \
-            /opt/homebrew/opt/mise/bin
-        set -gx PATH (string match -v -- "$path" $PATH)
-    end
-    set -e PNPM_HOME
-    direnv hook fish | source
 
     ### Functions
 
