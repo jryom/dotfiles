@@ -30,6 +30,7 @@ tree-sitter = "latest"
 uv = "latest"
 "npm:@biomejs/biome" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:@microsoft/compose-language-service" = { version = "latest", depends = ["node", "pnpm"] }
+"npm:@opencode/cli" = { version = "latest", depends = ["node", "pnpm"], allow_builds = ["@opencode/cli"] }
 "pipx:azure-cli" = { version = "latest", depends = ["python", "uv"], uvx_args = "--python 3.14" }
 "npm:@taplo/cli" = { version = "latest", depends = ["node", "pnpm"] }
 "npm:bash-language-server" = { version = "latest", depends = ["node", "pnpm"] }
@@ -47,6 +48,7 @@ uv = "latest"
 [tools."npm:@openchamber/web"]
 version = "latest"
 depends = ["node", "pnpm"]
+allow_builds = ["node-pty"]
 minimum_release_age = "0s"
 
 [bootstrap.hooks.pre-packages]

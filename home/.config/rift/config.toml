@@ -85,12 +85,12 @@ preserve_focus_per_workspace = false
 "Ctrl + Alt + Meta + K" = { exec = [
   "sh",
   "-c",
-  "kitty --single-instance --instance-group=main --directory \"$HOME/Code\"",
+  "open -n -a kitty --args --single-instance --instance-group=main --directory \"$HOME/Code\"",
 ] }
 "Ctrl + Alt + Meta + N" = { exec = [
   "sh",
   "-c",
-  "kitty --single-instance --instance-group=main --directory \"$HOME/Documents/Notes\" fish -i -c \"nvim -c Oil\"",
+  "open -n -a kitty --args --single-instance --instance-group=main --directory \"$HOME/Documents/Notes\" fish -i -c \"nvim -c Oil\"",
 ] }
 "Ctrl + Alt + Meta + J" = { exec = [
   "sh",

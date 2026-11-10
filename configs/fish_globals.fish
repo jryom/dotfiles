@@ -31,7 +31,6 @@ fish_add_path --universal --prepend $brew_prefix/sbin $brew_prefix/bin $brew_pre
 fish_add_path --universal /usr/local/bin
 fish_add_path --universal $HOME/go/bin
 fish_add_path --universal $HOME/.local/bin
-fish_add_path --universal $HOME/.opencode/bin
 
 # Colors
 set -U fish_color_autosuggestion brblack -d

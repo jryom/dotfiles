@@ -5,7 +5,7 @@ if command -v brew >/dev/null 2>&1; then
 	PATH="$brew_prefix/sbin:$brew_prefix/bin:$brew_prefix/opt/grep/libexec/gnubin:$PATH"
 fi
 
-PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:$PATH"
+PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:$PATH"
 
 clean_path=
 path_entries=$(printf '%s\n' "$PATH" | tr ':' '\n')
